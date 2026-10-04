@@ -1,0 +1,139 @@
+
+##### callers of 6699f0
+---- FUN_00672940 @ 00672940
+
+void __fastcall FUN_00672940(int param_1)
+
+{
+  int iVar1;
+  int *piVar2;
+  code *pcVar3;
+  uint uVar4;
+  uint uVar5;
+  undefined4 *puVar6;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 uStack_4;
+  
+  uStack_4 = 0xffffffff;
+  puStack_8 = &LAB_01123fc1;
+  pvStack_c = ExceptionList;
+  puVar6 = (undefined4 *)(param_1 + 0x48);
+  uVar5 = 0;
+  ExceptionList = &pvStack_c;
+  do {
+    iVar1 = *(int *)(param_1 + uVar5 * 8);
+    if (iVar1 != 0) {
+      if ((*(byte *)(iVar1 + 8) >> 2 & 1) != 0) {
+        if ((code *)*puVar6 == (code *)0x0) {
+          uVar4 = puVar6[-6];
+        }
+        else {
+          uVar4 = (*(code *)*puVar6)(puVar6[6]);
+        }
+        piVar2 = *(int **)(param_1 + uVar5 * 8);
+        if (*(ushort *)((int)piVar2 + 0x1e) != uVar4) {
+          switch(uVar4) {
+          default:
+            FUN_00654b70();
+            break;
+          case 2:
+            FUN_00654c20();
+            break;
+          case 3:
+            FUN_00654c70();
+            break;
+          case 0xd:
+            FUN_00655280();
+            break;
+          case 0xe:
+            FUN_00655010();
+            break;
+          case 0xf:
+            FUN_0066b9a0();
+            break;
+          case 0x10:
+            FUN_0066b8f0();
+            break;
+          case 0x11:
+            FUN_0066ba50();
+            break;
+          case 0x12:
+            FUN_00670a50();
+            break;
+          case 0x13:
+            FUN_006552e0();
+            break;
+          case 0x14:
+            FUN_006550d0();
+            break;
+          case 0x15:
+            FUN_0066ef60();
+            break;
+          case 0x16:
+            FUN_00655130();
+            break;
+          case 0x1b:
+            FUN_00654bd0();
+            break;
+          case 0x1f:
+            if (piVar2 != (int *)0x0) {
+              (**(code **)*piVar2)(1);
+            }
+            iVar1 = piVar2[6];
+            uStack_4 = 0;
+            FUN_006699f0(0);
+            pcVar3 = *(code **)(*piVar2 + 0x60);
+            uStack_4 = 0xffffffff;
+            piVar2[6] = iVar1;
+            (*pcVar3)();
+            break;
+          case 0x22:
+            FUN_00654cc0();
+          }
+        }
+      }
+      iVar1 = *(int *)(param_1 + 4 + uVar5 * 8);
+      if (((*(byte *)(iVar1 + 8) & 4) != 0) && (*(short *)(iVar1 + 0x1e) != 1)) {
+        FUN_00654b70();
+      }
+    }
+    uVar5 = uVar5 + 1;
+    puVar6 = puVar6 + 1;
+  } while (uVar5 < 6);
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- FUN_00669bd0 @ 00669bd0
+
+void __thiscall FUN_00669bd0(int *param_1,char param_2)
+
+{
+  int iVar1;
+  code *pcVar2;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01126961;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  if (param_1 != (int *)0x0) {
+    ExceptionList = &pvStack_c;
+    (**(code **)*param_1)(1);
+  }
+  iVar1 = param_1[6];
+  local_4 = 0;
+  FUN_006699f0(param_2 == '\0');
+  pcVar2 = *(code **)(*param_1 + 0x60);
+  local_4 = 0xffffffff;
+  param_1[6] = iVar1;
+  (*pcVar2)();
+  ExceptionList = pvStack_c;
+  return;
+}
+
+

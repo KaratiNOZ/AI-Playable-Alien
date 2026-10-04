@@ -1,0 +1,1910 @@
+---- 0050c6c0 FUN_0050c6c0 called from [00812fc5, 00813205]
+
+void __thiscall
+FUN_0050c6c0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_0050bfe0(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 008081e0 FUN_008081e0 called from [008159ae]
+
+void __fastcall FUN_008081e0(int param_1)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  undefined4 uVar3;
+  DWORD DVar4;
+  LPCRITICAL_SECTION lpCriticalSection;
+  undefined4 unaff_retaddr;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  lpCriticalSection = (LPCRITICAL_SECTION)(DAT_0174a78c + 4);
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection(lpCriticalSection);
+  iVar1 = **(int **)(param_1 + 8);
+  local_4 = 0;
+  DVar4 = GetCurrentThreadId();
+  (**(code **)(iVar1 + 0x6c))(DVar4);
+  (**(code **)(**(int **)(param_1 + 8) + 0xc0))();
+  FUN_00ce5b30();
+  puVar2 = *(undefined4 **)(param_1 + 0x68);
+  uVar3 = puVar2[1];
+  (**(code **)(*(int *)*puVar2 + 0x18))(puVar2[2],0,unaff_retaddr,0,0);
+  LeaveCriticalSection(lpCriticalSection);
+  ExceptionList = (void *)(uint)(((byte)uVar3 & 0x8f) == 10);
+  return;
+}
+
+
+---- 00808560 FUN_00808560 called from [0080b44f, 0080b49f]
+
+void __thiscall FUN_00808560(int param_1,byte *param_2)
+
+{
+  byte bVar1;
+  byte *pbVar2;
+  int iVar3;
+  byte *pbVar4;
+  byte *pbVar5;
+  uint uVar6;
+  bool bVar7;
+  undefined4 local_8;
+  undefined4 local_4;
+  
+  uVar6 = 0;
+  if (*(int *)(param_1 + 0x5a4) != 0) {
+    pbVar2 = (byte *)(param_1 + 0x5b0);
+    pbVar4 = param_2;
+    pbVar5 = pbVar2;
+LAB_00808584:
+    do {
+      bVar1 = *pbVar2;
+      bVar7 = bVar1 < *pbVar4;
+      if (bVar1 == *pbVar4) {
+        if (bVar1 != 0) {
+          bVar1 = pbVar2[1];
+          bVar7 = bVar1 < pbVar4[1];
+          if (bVar1 != pbVar4[1]) goto LAB_008085a4;
+          pbVar2 = pbVar2 + 2;
+          pbVar4 = pbVar4 + 2;
+          if (bVar1 != 0) goto LAB_00808584;
+        }
+        iVar3 = 0;
+      }
+      else {
+LAB_008085a4:
+        iVar3 = (1 - (uint)bVar7) - (uint)(bVar7 != 0);
+      }
+      if (iVar3 == 0) {
+        local_8 = *(undefined4 *)(pbVar5 + 0x40);
+        local_4 = *(undefined4 *)(pbVar5 + 0x44);
+        FUN_00930640(&local_8,&local_8,0,0,0,0);
+      }
+      uVar6 = uVar6 + 1;
+      pbVar2 = pbVar5 + 0x50;
+      pbVar4 = param_2;
+      pbVar5 = pbVar2;
+    } while (uVar6 < *(uint *)(param_1 + 0x5a4));
+  }
+  return;
+}
+
+
+---- 0080d470 FUN_0080d470 called from [008123e5]
+
+void __thiscall
+FUN_0080d470(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807210(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080d510 FUN_0080d510 called from [008124b4]
+
+void __thiscall
+FUN_0080d510(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807270(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080d5b0 FUN_0080d5b0 called from [00812527]
+
+void __thiscall FUN_0080d5b0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_4 = 0;
+  }
+  else {
+    param_4 = FUN_008072d0(param_2,param_3,param_4);
+  }
+  FUN_0080e9d0(&param_4);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080d650 FUN_0080d650 called from [00812587]
+
+void __thiscall FUN_0080d650(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_4 = 0;
+  }
+  else {
+    param_4 = FUN_00807330(param_2,param_3,param_4);
+  }
+  FUN_0080e9d0(&param_4);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080d850 FUN_0080d850 called from [00812634]
+
+void __thiscall
+FUN_0080d850(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807390(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080dac0 FUN_0080dac0 called from [00812835]
+
+void __thiscall
+FUN_0080dac0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_008074f0(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080db60 FUN_0080db60 called from [008128b5]
+
+void __thiscall
+FUN_0080db60(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807550(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080dc00 FUN_0080dc00 called from [00812935]
+
+void __thiscall
+FUN_0080dc00(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_008075b0(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080dca0 FUN_0080dca0 called from [008129b5]
+
+void __thiscall
+FUN_0080dca0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807610(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080dd40 FUN_0080dd40 called from [00812a34]
+
+void __thiscall
+FUN_0080dd40(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807670(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080dde0 FUN_0080dde0 called from [00812ab4]
+
+void __thiscall
+FUN_0080dde0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_008076d0(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080de80 FUN_0080de80 called from [00812b34, 00813524]
+
+void __thiscall
+FUN_0080de80(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807730(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080df20 FUN_0080df20 called from [00812bb4, 00813624]
+
+void __thiscall
+FUN_0080df20(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807790(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080dfc0 FUN_0080dfc0 called from [00812c34]
+
+void __thiscall
+FUN_0080dfc0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_008077f0(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e060 FUN_0080e060 called from [00812cb0]
+
+void __thiscall
+FUN_0080e060(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807850(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e100 FUN_0080e100 called from [00812d22]
+
+void __thiscall
+FUN_0080e100(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_008078b0(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e1a0 FUN_0080e1a0 called from [00812da5]
+
+void __thiscall
+FUN_0080e1a0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807910(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e240 FUN_0080e240 called from [00812e25]
+
+void __thiscall
+FUN_0080e240(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807970(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e2e0 FUN_0080e2e0 called from [00812ea5]
+
+void __thiscall
+FUN_0080e2e0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_008079d0(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e380 FUN_0080e380 called from [00812f26]
+
+void __thiscall
+FUN_0080e380(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807a30(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e420 FUN_0080e420 called from [00813056]
+
+void __thiscall
+FUN_0080e420(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807a90(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e4c0 FUN_0080e4c0 called from [008130e6]
+
+void __thiscall
+FUN_0080e4c0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807af0(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e560 FUN_0080e560 called from [00813175]
+
+void __thiscall
+FUN_0080e560(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807b50(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e600 FUN_0080e600 called from [00813286]
+
+void __thiscall
+FUN_0080e600(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807bb0(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e6a0 FUN_0080e6a0 called from [00813316]
+
+void __thiscall
+FUN_0080e6a0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807c10(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e740 FUN_0080e740 called from [008133a6]
+
+void __thiscall
+FUN_0080e740(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807c70(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e7e0 FUN_0080e7e0 called from [008134a5]
+
+void __thiscall
+FUN_0080e7e0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807cd0(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080e880 FUN_0080e880 called from [008135a4]
+
+void __thiscall
+FUN_0080e880(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5
+            )
+
+{
+  void *pvVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    pvVar1 = __aligned_malloc(0x298,0x10);
+  }
+  else {
+    pvVar1 = (void *)(*DAT_0174b750)();
+  }
+  if (pvVar1 == (void *)0x0) {
+    param_5 = 0;
+  }
+  else {
+    param_5 = FUN_00807d30(param_2,param_3,param_4,param_5);
+  }
+  FUN_0080e9d0(&param_5);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080fb20 FUN_0080fb20 called from [0083b16b]
+---- 0080fca0 FUN_0080fca0 called from [0050d1e3, 0050d32b, 0050d373, 0050d393, 0050d446, 0079f412, 0079f459, 0079f4a1, 0079f4c8, 0079f570, 0079f5dc, 007da227]
+---- 0080fdb0 FUN_0080fdb0 called from [007cce4d, 007cce5f, 00509b48, 00509eca, 0050c4ca, 0050d357, 0050d368, 00820a40, 008226d8, 0079f485, 0079f496, 007d9fb2, 007d9fc3, 00822758, 0083b1b6, 0083b1c7, 0083b1d8, 0083b1e9, 0050cacd]
+
+void __thiscall FUN_0080fdb0(int param_1,char *param_2,undefined4 *param_3)
+
+{
+  char cVar1;
+  int iVar2;
+  undefined4 *puVar3;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    puVar3 = __aligned_malloc(0x8c,0x10);
+  }
+  else {
+    puVar3 = (undefined4 *)(*DAT_0174b750)();
+  }
+  if (puVar3 == (undefined4 *)0x0) {
+    puVar3 = (undefined4 *)0x0;
+  }
+  else {
+    *(undefined1 *)(puVar3 + 0x22) = param_3._0_1_;
+    puVar3[1] = 3;
+    *puVar3 = &PTR_LAB_012f9b18;
+    if (param_2 != (char *)0x0) {
+      iVar2 = 8 - (int)param_2;
+      do {
+        cVar1 = *param_2;
+        param_2[(int)puVar3 + iVar2] = cVar1;
+        param_2 = param_2 + 1;
+      } while (cVar1 != '\0');
+    }
+  }
+  param_3 = puVar3;
+  FUN_0080e9d0(&param_3);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080fe60 FUN_0080fe60 called from [008124c4, 008173ad, 00820b17, 0081266a, 0050ffd3, 00510bb5, 00514757, 0081771d, 00833fdd, 008344f2, 0083e72c, 0083e7de, 0083ef0b, 0082ca93, 00508a68, 00508cd8, 0082c961, 0050c5cc, 0050c9f1, 00510b1b, 008150c6, 008153d4, 0081551b, 008176f2, 008179b5, 00830e73, 00833bbe, 00833e30, 0083e645, 0083ece0]
+
+void __thiscall FUN_0080fe60(int param_1,char *param_2)
+
+{
+  char cVar1;
+  int iVar2;
+  undefined4 *puVar3;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    puVar3 = __aligned_malloc(0x8c,0x10);
+  }
+  else {
+    puVar3 = (undefined4 *)(*DAT_0174b750)();
+  }
+  if (puVar3 == (undefined4 *)0x0) {
+    puVar3 = (undefined4 *)0x0;
+  }
+  else {
+    puVar3[1] = 4;
+    *puVar3 = &PTR_LAB_012f9b20;
+    *(undefined1 *)(puVar3 + 0x22) = 0;
+    if (param_2 != (char *)0x0) {
+      iVar2 = 8 - (int)param_2;
+      do {
+        cVar1 = *param_2;
+        param_2[(int)puVar3 + iVar2] = cVar1;
+        param_2 = param_2 + 1;
+      } while (cVar1 != '\0');
+    }
+  }
+  param_2 = (char *)puVar3;
+  FUN_0080e9d0(&param_2);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080ff10 FUN_0080ff10 called from [00826548, 0085365b]
+
+void __thiscall FUN_0080ff10(int param_1,char *param_2)
+
+{
+  char cVar1;
+  int iVar2;
+  undefined4 *puVar3;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    puVar3 = __aligned_malloc(0x8c,0x10);
+  }
+  else {
+    puVar3 = (undefined4 *)(*DAT_0174b750)();
+  }
+  if (puVar3 == (undefined4 *)0x0) {
+    puVar3 = (undefined4 *)0x0;
+  }
+  else {
+    puVar3[1] = 4;
+    *puVar3 = &PTR_LAB_012f9b20;
+    *(undefined1 *)(puVar3 + 0x22) = 1;
+    if (param_2 != (char *)0x0) {
+      iVar2 = 8 - (int)param_2;
+      do {
+        cVar1 = *param_2;
+        param_2[(int)puVar3 + iVar2] = cVar1;
+        param_2 = param_2 + 1;
+      } while (cVar1 != '\0');
+    }
+  }
+  param_2 = (char *)puVar3;
+  FUN_0080e9d0(&param_2);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0080ffc0 FUN_0080ffc0 called from [00820b47, 0083eeb2, 0083e635]
+
+void __thiscall FUN_0080ffc0(int param_1,char *param_2)
+
+{
+  char cVar1;
+  int iVar2;
+  undefined4 *puVar3;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (DAT_0174b750 == (code *)0x0) {
+    puVar3 = __aligned_malloc(0x8c,0x10);
+  }
+  else {
+    puVar3 = (undefined4 *)(*DAT_0174b750)();
+  }
+  if (puVar3 == (undefined4 *)0x0) {
+    puVar3 = (undefined4 *)0x0;
+  }
+  else {
+    puVar3[1] = 5;
+    *puVar3 = &PTR_LAB_012f9b28;
+    *(undefined1 *)(puVar3 + 0x22) = 1;
+    if (param_2 != (char *)0x0) {
+      iVar2 = 8 - (int)param_2;
+      do {
+        cVar1 = *param_2;
+        param_2[(int)puVar3 + iVar2] = cVar1;
+        param_2 = param_2 + 1;
+      } while (cVar1 != '\0');
+    }
+  }
+  param_2 = (char *)puVar3;
+  FUN_0080e9d0(&param_2);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 00810070 FUN_00810070 called from [0050ffb7, 00510ba6, 00514748, 008344e2, 0083e7b7, 0083eebd, 00508cb2, 008150b6, 00833bae, 0083e608, 0083ecc1]
+---- 00810170 FUN_00810170 called from [00508b90, 00508d69, 00815209, 008162e0, 00817539, 005147e6, 00853666]
+---- 00810420 FUN_00810420 called from [0078deff, 007ccd49, 006bda82, 00840614, 0079ba07, 007c4dc4, 00785471, 007b6328, 007b634e, 0077b52d, 0077b6a7, 0077b6c2, 0077b6dd, 008225f0, 0082260b, 00845f45, 0084602e, 007a83cd, 00785656, 00785671, 0079ab80, 007a8c16, 00515134, 00777904, 007c0dbb, 007c0dd6, 00794d01, 00794d22, 00787354, 0041e206, 007d4cc9, 0078030e, 0041e184, 007802d4, 0078ec63, 0043b8d9, 006bb9f8, 004d636d, 004e269e, 00508610, 00508a8f, 00508b3e, 00508b6c, 00508d19, 00508d45, 00508bce, 0050901f, 005094c7, 005094e3, 005094fe, 00509558, 0050957c, 005096a9, 005096c8, 005096e7, 00509702, 00509ad2, 00509b33, 00509eb5, 0050b6e9, 0050b6fb, 0050bae1, 0050baf7, 0050bb22, 0050b992, 0050c4b5, 0050cf77, 00820aea, 0050d209, 0050ff9f, 00510018, 0051030e, 00510388, 005103f7, 005107be, 00510b95, 00510c0e, 00510c40, 00510c52, 00510cef, 00510e2f, 00510e41, 00510ef7, 00510df4, 0051103f, 00511076, 005111c9, 005111dd, 005112ab, 005110ed, 005116d4, 00512fb9, 005130ea, 0051462f, 00514732, 00514d0f, 005431fe, 00543287, 005432a2, 005432eb, 00509224, 005624bf, 008334fd, 00562651, 0056c7de, 004672a3, 0056d191, 0056e08e, 00574f2b, 0078de25, 0077f5c9, 00507ed4, 0082720c, 008272ac, 007c2ed7, 005a729d, 005a8c47, 005acf2a, 005f56ea, 005f57cc, 007d8907, 00653ce2, 00780414, 00780374, 0065e2fb, 0065ef16, 0065efea, 0065f0a8, 0043ac14, 007ad8da, 007ada34, 006720f1, 0078edf3, 0067b7d5, 00678214, 00680814, 00680839, 007821f6, 0078f834, 0078f87e, 0078f8e3, 0078f9c1, 0078fa89, 0078fb29, 007de871, 007938c7, 00793978, 00793a7d, 0079b55d, 007a0575, 007a075b, 007a312a, 007aa181, 007aa243, 00777994, 007c5291, 007c52b7, 007c52e2, 007c5318, 007c596d, 00786479, 007864c1, 00786560, 00817582, 00819ab5, 008232e1, 00823342, 00825801, 008286ad, 008287bd, 008288cd, 008289dc, 00828b5c, 0082c8bd, 0082df73, 00830403, 00833094, 008334a0, 008336e2, 00787433, 00834490, 0083d92b, 0083daf0, 0083e353, 0083e97a, 0083ed3b, 0083ed51, 0083ee9e, 0083fcec, 0083fd10, 00837ae4, 00837aff, 00837b17, 0050cc64, 00828f28, 00828f3e, 0084021a, 00838743, 00838938, 008432e9, 00843363, 00817900, 00828579, 00846fae, 005a5334, 00813b80, 00849c12, 00787027, 00848d4c, 0084bc6d, 0084bc8b, 0084bca7, 0084bcc3, 0084bcdf, 0084bcfb, 0084bdfa, 0083dbae, 008294be, 00829177, 008291b4, 00828fbb, 00829018, 00829057, 00829094, 008290db, 00829138, 008291f7, 00829220, 00829267, 00829290, 008292d7, 00829300, 00829347, 00829370, 00837c3b, 00837d35, 00821394, 008534fd, 0085384c, 00730e07, 006b6014, 007a24b8, 007a2588, 007871a7, 007b371d, 0079baff, 007a9f8f, 007a9e1d, 007a9e59, 00818d99, 00814dd2, 00818bc1, 00818cbc, 0082326f, 00828abc, 00823052, 00825c4d, 0082cd83, 0082cdc3, 00837923, 0084801a, 0081237b, 0083b0c3, 0041e646, 00507f08, 0050851f, 005085cb, 00508a1b, 00508a4c, 00508c78, 00508ca5, 00508ddc, 00509254, 00509284, 005092b4, 00509314, 00509374, 005093c4, 00509414, 00509464, 005095d6, 005095f1, 0050960c, 00509627, 005097a7, 005097c3, 005097de, 00509821, 00509845, 00509914, 00509938, 00509b95, 00509bf0, 0050a14b, 0078ee9b, 0078eec0, 0078ef2c, 0078ef51, 0078efdf, 0078f004, 0079ce37, 0078f09b, 007aa826, 007aa864, 0079ced2, 0079cf09, 0050b591, 0050b5a3, 0050beea, 0050bf1a, 0050c529, 0050cab8, 0050e76f, 0050e7bf, 0050eb9b, 0050ebbb, 0050fa38, 0050fa94, 0050fab8, 0050fae4, 0050fb14, 0050fb44, 0050fb74, 0050fba9, 0051016d, 005101cc, 005101f0, 00510218, 00510868, 00510a3f, 00510b2b, 00510b5b, 00510d64, 00510d8c, 00510db4, 00511677, 00511798, 00512a37, 00513738, 00514494, 00514704, 005147f6, 0051481a, 00514abb, 00514b61, 0051566c, 00515764, 00543756, 0056d733, 0056d99f, 00828107, 0056db4c, 0056db8a, 0056dd2e, 0083f5d7, 0056df0c, 005975e4, 00598f42, 005a3a3b, 005a3a5b, 005a53b6, 005a57c9, 005a6f14, 005a6f44, 005a71af, 005a730c, 005a7384, 005a73b8, 005a7408, 005f5831, 005f5917, 0079cb7d, 0082120a, 0081a974, 0082587e, 00826534, 00830e14, 00833b18, 00833b53, 00833b8e, 008379f4, 00837a6c, 0083e579, 0083e5b4, 0083e5ef, 0083e621, 0083e837, 0083e869, 0083e8cd, 0083ec86, 0083ec9c, 0084c5bb, 0084cdec, 008365f8, 00853647, 008536a1]
+
+int __thiscall FUN_00810420(int param_1,byte *param_2)
+
+{
+  LPCRITICAL_SECTION lpCriticalSection;
+  byte bVar1;
+  byte *pbVar2;
+  int iVar3;
+  byte *pbVar4;
+  int *piVar5;
+  uint uVar6;
+  bool bVar7;
+  
+  lpCriticalSection = (LPCRITICAL_SECTION)(param_1 + 4);
+  EnterCriticalSection(lpCriticalSection);
+  uVar6 = 0;
+  if (*(uint *)(param_1 + 0x3c) != 0) {
+    piVar5 = *(int **)(param_1 + 0x38);
+    do {
+      pbVar4 = *(byte **)(*piVar5 + 0x34);
+      pbVar2 = param_2;
+      do {
+        bVar1 = *pbVar2;
+        bVar7 = bVar1 < *pbVar4;
+        if (bVar1 != *pbVar4) {
+LAB_00810477:
+          iVar3 = (1 - (uint)bVar7) - (uint)(bVar7 != 0);
+          goto LAB_0081047c;
+        }
+        if (bVar1 == 0) break;
+        bVar1 = pbVar2[1];
+        bVar7 = bVar1 < pbVar4[1];
+        if (bVar1 != pbVar4[1]) goto LAB_00810477;
+        pbVar2 = pbVar2 + 2;
+        pbVar4 = pbVar4 + 2;
+      } while (bVar1 != 0);
+      iVar3 = 0;
+LAB_0081047c:
+      if (iVar3 == 0) {
+        iVar3 = (*(int **)(param_1 + 0x38))[uVar6];
+        LeaveCriticalSection(lpCriticalSection);
+        return iVar3;
+      }
+      uVar6 = uVar6 + 1;
+      piVar5 = piVar5 + 1;
+    } while (uVar6 < *(uint *)(param_1 + 0x3c));
+  }
+  LeaveCriticalSection(lpCriticalSection);
+  return 0;
+}
+
+
+---- 008104e0 FUN_008104e0 called from [00820de5, 00810ebb, 0081113d, 0081115e, 0081117e, 008111ae, 00812343, 0083acfe, 0083ad2e]
+
+int __thiscall FUN_008104e0(int param_1,int param_2)
+
+{
+  LPCRITICAL_SECTION lpCriticalSection;
+  int iVar1;
+  uint uVar2;
+  int *piVar3;
+  
+  lpCriticalSection = (LPCRITICAL_SECTION)(param_1 + 4);
+  EnterCriticalSection(lpCriticalSection);
+  uVar2 = 0;
+  if (*(uint *)(param_1 + 0x3c) != 0) {
+    piVar3 = *(int **)(param_1 + 0x38);
+    do {
+      if (*(int *)(*piVar3 + 8) == param_2) {
+        iVar1 = (*(int **)(param_1 + 0x38))[uVar2];
+        LeaveCriticalSection(lpCriticalSection);
+        return iVar1;
+      }
+      uVar2 = uVar2 + 1;
+      piVar3 = piVar3 + 1;
+    } while (uVar2 < *(uint *)(param_1 + 0x3c));
+  }
+  LeaveCriticalSection(lpCriticalSection);
+  return 0;
+}
+
+
+---- 00810630 FUN_00810630 called from [0082017b]
+---- 00810880 FUN_00810880 called from [0050d2dc, 005a4113]
+
+void __thiscall FUN_00810880(int param_1,undefined4 param_2)
+
+{
+  uint uVar1;
+  
+  uVar1 = 0;
+  if (*(int *)(param_1 + 0x3c) != 0) {
+    do {
+      (**(code **)(**(int **)(*(int *)(param_1 + 0x38) + uVar1 * 4) + 0x38))(param_2);
+      uVar1 = uVar1 + 1;
+    } while (uVar1 < *(uint *)(param_1 + 0x3c));
+  }
+  return;
+}
+
+
+---- 008108b0 FUN_008108b0 called from [0050cf36, 005a45e7]
+
+void __thiscall FUN_008108b0(int param_1,undefined4 param_2)
+
+{
+  uint uVar1;
+  
+  uVar1 = 0;
+  if (*(int *)(param_1 + 0x3c) != 0) {
+    do {
+      (**(code **)(**(int **)(*(int *)(param_1 + 0x38) + uVar1 * 4) + 0x3c))(param_2);
+      uVar1 = uVar1 + 1;
+    } while (uVar1 < *(uint *)(param_1 + 0x3c));
+  }
+  return;
+}
+
+
+---- 008108e0 FUN_008108e0 called from [0050cf5e, 005a4b13]
+
+void __fastcall FUN_008108e0(int param_1)
+
+{
+  uint uVar1;
+  
+  uVar1 = 0;
+  if (*(int *)(param_1 + 0x3c) != 0) {
+    do {
+      (**(code **)(**(int **)(*(int *)(param_1 + 0x38) + uVar1 * 4) + 0x40))();
+      uVar1 = uVar1 + 1;
+    } while (uVar1 < *(uint *)(param_1 + 0x3c));
+  }
+  return;
+}
+
+
+---- 00810910 FUN_00810910 called from [0078fa53]
+
+void __fastcall FUN_00810910(int param_1)
+
+{
+  uint uVar1;
+  
+  uVar1 = 0;
+  if (*(int *)(param_1 + 0x3c) != 0) {
+    do {
+      (**(code **)(**(int **)(*(int *)(param_1 + 0x38) + uVar1 * 4) + 0x5c))();
+      uVar1 = uVar1 + 1;
+    } while (uVar1 < *(uint *)(param_1 + 0x3c));
+  }
+  return;
+}
+
+
+---- 00810940 FUN_00810940 called from [0078fb64]
+
+void __fastcall FUN_00810940(int param_1)
+
+{
+  uint uVar1;
+  
+  uVar1 = 0;
+  if (*(int *)(param_1 + 0x3c) != 0) {
+    do {
+      (**(code **)(**(int **)(*(int *)(param_1 + 0x38) + uVar1 * 4) + 0x60))();
+      uVar1 = uVar1 + 1;
+    } while (uVar1 < *(uint *)(param_1 + 0x3c));
+  }
+  FUN_00804540();
+  return;
+}
+
+
+---- 00810970 FUN_00810970 called from [0050ce9f, 0079f5b4]
+---- 00810b00 FUN_00810b00 called from [0050d1f0, 0079f427]
+---- 0081f620 FUN_0081f620 called from [007820b7, 007cce6a, 0050ce85, 0050ceaa, 0050cec8, 00820b27, 00820b58, 0079f5fc, 007d9fce, 007dce81, 0083a976, 0083b1f9, 0050d508]
+---- 0081f750 FUN_0081f750 called from [0083b260]
+---- 0081f8f0 FUN_0081f8f0 called from [00508b85, 00508d5e, 0082c9f9, 00820a29, 008226ca, 00510c9a, 0082274a, 0083e94e, 0083ed83, 00853628, 00853869, 0082cae9, 008385c7, 0083b1a5, 00508a2f, 0050beaa, 0051023a, 00510b75, 005146ab, 00833e72, 00834000, 0083e750, 0083e817, 008536c5]
+
+void __thiscall FUN_0081f8f0(int param_1,char *param_2)
+
+{
+  char cVar1;
+  int iVar2;
+  char *pcVar3;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  pcVar3 = param_2;
+  local_4 = 0;
+  iVar2 = FUN_00810420(param_2);
+  if (iVar2 != 0) {
+    *(undefined1 *)(iVar2 + 0x29) = 1;
+  }
+  if (DAT_0174b750 == (code *)0x0) {
+    param_2 = __aligned_malloc(0x8c,0x10);
+  }
+  else {
+    param_2 = (char *)(*DAT_0174b750)();
+  }
+  if (param_2 == (char *)0x0) {
+    param_2 = (char *)0x0;
+  }
+  else {
+    *(undefined4 *)((int)param_2 + 4) = 5;
+    *(undefined ***)param_2 = &PTR_LAB_012f9b28;
+    *(undefined1 *)((int)param_2 + 0x88) = 0;
+    if (pcVar3 != (char *)0x0) {
+      iVar2 = 8 - (int)pcVar3;
+      do {
+        cVar1 = *pcVar3;
+        pcVar3[(int)param_2 + iVar2] = cVar1;
+        pcVar3 = pcVar3 + 1;
+      } while (cVar1 != '\0');
+    }
+  }
+  FUN_0080e9d0(&param_2);
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 00820840 FUN_00820840 called from [0082ce43]
+
+void __thiscall FUN_00820840(int param_1,int param_2)
+
+{
+  int iVar1;
+  int *piVar2;
+  int iVar3;
+  int *piVar4;
+  uint uVar5;
+  
+  piVar4 = *(int **)(param_1 + 0xaac);
+  iVar1 = *(int *)(param_1 + 0xab0) * 4;
+  piVar2 = piVar4 + *(int *)(param_1 + 0xab0);
+  for (; piVar4 != piVar2; piVar4 = piVar4 + 1) {
+    if (param_2 == *piVar4) goto LAB_00820873;
+  }
+  piVar4 = (int *)(*(int *)(param_1 + 0xaac) + iVar1);
+LAB_00820873:
+  if (piVar4 != (int *)(iVar1 + *(int *)(param_1 + 0xaac))) {
+    *(int *)(param_1 + 0xab0) = *(int *)(param_1 + 0xab0) + -1;
+    uVar5 = (int)piVar4 - *(int *)(param_1 + 0xaac) >> 2;
+    if (uVar5 < *(uint *)(param_1 + 0xab0)) {
+      do {
+        iVar3 = uVar5 * 4;
+        iVar1 = uVar5 * 4;
+        uVar5 = uVar5 + 1;
+        *(undefined4 *)(*(int *)(param_1 + 0xaac) + iVar1) =
+             *(undefined4 *)(*(int *)(param_1 + 0xaac) + 4 + iVar3);
+      } while (uVar5 < *(uint *)(param_1 + 0xab0));
+    }
+  }
+  return;
+}
+
+
+---- 008208b0 FUN_008208b0 called from [0050d388, 0079f4bd]
+---- 00820a90 FUN_00820a90 called from [0050cebd, 0079f5f1]
+
+void __thiscall FUN_00820a90(int param_1,int param_2,int param_3)
+
+{
+  uint *puVar1;
+  int iVar2;
+  uint *puVar3;
+  uint uVar4;
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  local_c = ExceptionList;
+  ExceptionList = &local_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  if (param_3 != 0) {
+    puVar3 = (uint *)(param_2 + 0x80);
+    do {
+      puVar1 = puVar3 + -0x20;
+      iVar2 = FUN_00810420(puVar1);
+      if (iVar2 != 0) {
+        *(uint *)(iVar2 + 0xc4) = puVar3[2];
+        if (*puVar3 != *(uint *)(iVar2 + 0xac)) {
+          if (*puVar3 != 0) {
+            uVar4 = 0;
+            do {
+              FUN_0080fe60(puVar1);
+              uVar4 = uVar4 + 1;
+            } while (uVar4 < *puVar3);
+          }
+          FUN_0081f620();
+        }
+        if (puVar3[1] != *(uint *)(iVar2 + 0xb0)) {
+          uVar4 = 0;
+          if (puVar3[1] != 0) {
+            do {
+              FUN_0080ffc0(puVar1);
+              uVar4 = uVar4 + 1;
+            } while (uVar4 < puVar3[1]);
+          }
+          FUN_0081f620();
+        }
+      }
+      puVar3 = puVar3 + 0x23;
+      param_3 = param_3 + -1;
+    } while (param_3 != 0);
+  }
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = local_c;
+  return;
+}
+
+
+---- 00821c90 FUN_00821c90 called from [008258e5]
+
+void __fastcall FUN_00821c90(undefined4 *param_1)
+
+{
+  *param_1 = &PTR_FUN_012fc5b8;
+  param_1[1] = 0;
+  param_1[2] = 0;
+  param_1[5] = 0;
+  param_1[6] = 0;
+  param_1[4] = 0;
+  param_1[0xb] = 0;
+  param_1[0x12] = 0xffffffff;
+  param_1[0x13] = 0xffffffff;
+  *(undefined2 *)((int)param_1 + 0x52) = 0;
+  *(undefined2 *)(param_1 + 0x15) = 0;
+  param_1[0x16] = 0;
+  param_1[0x17] = 0xffffffff;
+  param_1[0x19] = 0;
+  param_1[0x1a] = 0;
+  param_1[0x1c] = 0;
+  param_1[0x1d] = 0;
+  param_1[0x22] = 0;
+  *(undefined1 *)(param_1 + 0x23) = 0;
+  param_1[0x29] = 0;
+  param_1[0x2d] = 9;
+  *(undefined1 *)(param_1 + 0x2e) = 0;
+  param_1[0x2f] = 0;
+  param_1[0x30] = 0;
+  param_1[0x31] = 1;
+  return;
+}
+
+
+---- 0082ceb0 FUN_0082ceb0 called from [00776206, 0077625d, 00835166, 00830d2b, 00830d59]
+---- 0082d4c0 FUN_0082d4c0 called from [007d5f66, 007d60f0]
+
+void __fastcall FUN_0082d4c0(int param_1)
+
+{
+  uint uVar1;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  uVar1 = 0;
+  local_4 = 0;
+  FUN_00810c90("stop_ui_interaction_sounds",0);
+  if (*(int *)(param_1 + 0x3c) != 0) {
+    do {
+      (**(code **)(**(int **)(*(int *)(param_1 + 0x38) + uVar1 * 4) + 0x34))();
+      uVar1 = uVar1 + 1;
+    } while (uVar1 < *(uint *)(param_1 + 0x3c));
+  }
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0083a590 FUN_0083a590 called from [00775018]
+
+void __thiscall FUN_0083a590(int param_1,undefined4 param_2)
+
+{
+  int iVar1;
+  int *piVar2;
+  DWORD DVar3;
+  uint uVar4;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01133170;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)&DAT_0174a7ec);
+  local_4 = 0;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = CONCAT31(local_4._1_3_,1);
+  FUN_0082d660(param_2);
+  uVar4 = 0;
+  if (*(int *)(param_1 + 0x3c) != 0) {
+    do {
+      iVar1 = *(int *)(*(int *)(param_1 + 0x38) + uVar4 * 4);
+      if ((*(int *)(iVar1 + 4) != 0) && (piVar2 = *(int **)(iVar1 + 8), piVar2 != (int *)0x0)) {
+        iVar1 = *piVar2;
+        DVar3 = GetCurrentThreadId();
+        (**(code **)(iVar1 + 0x6c))(DVar3);
+        if (DAT_0174ac31 != '\0') {
+          DAT_0174ac31 = '\0';
+          (**(code **)(**(int **)(*(int *)(*(int *)(param_1 + 0x38) + uVar4 * 4) + 8) + 0xd0))
+                    (0,0,0,0,0);
+        }
+      }
+      (**(code **)(**(int **)(*(int *)(param_1 + 0x38) + uVar4 * 4) + 0x6c))(param_2);
+      uVar4 = uVar4 + 1;
+    } while (uVar4 < *(uint *)(param_1 + 0x3c));
+  }
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  LeaveCriticalSection((LPCRITICAL_SECTION)&DAT_0174a7ec);
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0083a6a0 FUN_0083a6a0 called from [00790384, 007dce8d]
+---- 0083a880 FUN_0083a880 called from [0083af15]
+
+void __thiscall FUN_0083a880(int param_1,int param_2,uint param_3,char param_4)
+
+{
+  int *piVar1;
+  uint uVar2;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132318;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = 0;
+  FUN_0050cc80();
+  FUN_00999910();
+  uVar2 = 0;
+  do {
+    FUN_00a25f30(DAT_01bdf5d0,uVar2);
+    uVar2 = uVar2 + 1;
+  } while (uVar2 < 8);
+  FUN_0099aa30();
+  uVar2 = 0;
+  if (param_3 != 0) {
+    do {
+      if (*(int *)(param_2 + uVar2 * 4) != 0) {
+        piVar1 = (int *)FUN_00810420();
+        if (piVar1 != (int *)0x0) {
+          GetCurrentThreadId();
+          if ((int *)piVar1[2] != (int *)0x0) {
+            (**(code **)(*(int *)piVar1[2] + 0x6c))();
+            FUN_0082e0b0();
+          }
+          if ((piVar1[1] != 0) && (piVar1[2] != 0)) {
+            (**(code **)(*piVar1 + 0x70))();
+          }
+        }
+      }
+      uVar2 = uVar2 + 1;
+    } while (uVar2 < param_3);
+  }
+  *(undefined1 *)(param_1 + 0xac1) = 0;
+  if (param_4 != '\0') {
+    FUN_0081f620();
+  }
+  FUN_0099aa60();
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 0083a9b0 FUN_0083a9b0 called from [0083b08d]
+
+void __thiscall FUN_0083a9b0(int param_1,int param_2,uint param_3,undefined4 param_4)
+
+{
+  int iVar1;
+  int *piVar2;
+  DWORD DVar3;
+  uint local_1c;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01133170;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection((LPCRITICAL_SECTION)&DAT_0174a7ec);
+  local_4 = 0;
+  EnterCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  local_4 = CONCAT31(local_4._1_3_,1);
+  FUN_0082d660(param_4);
+  local_1c = 0;
+  if (param_3 != 0) {
+    do {
+      iVar1 = *(int *)(param_2 + local_1c * 4);
+      if ((iVar1 != 0) && (piVar2 = (int *)FUN_00810420(iVar1), piVar2 != (int *)0x0)) {
+        if ((piVar2[1] != 0) && ((int *)piVar2[2] != (int *)0x0)) {
+          iVar1 = *(int *)piVar2[2];
+          DVar3 = GetCurrentThreadId();
+          (**(code **)(iVar1 + 0x6c))(DVar3);
+          if (DAT_0174ac32 != '\0') {
+            DAT_0174ac32 = '\0';
+            (**(code **)(*(int *)piVar2[2] + 0xd0))(0,0,0,0,0);
+          }
+        }
+        (**(code **)(*piVar2 + 0x6c))(param_4);
+      }
+      local_1c = local_1c + 1;
+    } while (local_1c < param_3);
+  }
+  LeaveCriticalSection((LPCRITICAL_SECTION)(param_1 + 4));
+  LeaveCriticalSection((LPCRITICAL_SECTION)&DAT_0174a7ec);
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+---- 00ce5df0 GetCurrentThreadId called from [0081fb44]
+
+DWORD GetCurrentThreadId(void)
+
+{
+  DWORD DVar1;
+  
+                    /* WARNING: Could not recover jumptable at 0x00ce5df0. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  DVar1 = GetCurrentThreadId();
+  return DVar1;
+}
+
+

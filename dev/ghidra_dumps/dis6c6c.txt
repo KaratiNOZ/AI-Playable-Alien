@@ -1,0 +1,9 @@
+006c6c30  MOV EAX,dword ptr [ECX + 0x8]
+006c6c33  MOV ECX,dword ptr [ESP + 0x4]
+006c6c37  PUSH EAX
+006c6c38  ADD ECX,0x11a0
+006c6c3e  CALL 0x00784230
+006c6c43  MOV ECX,dword ptr [ESP + 0x8]
+006c6c47  MOV dword ptr [ECX + 0x4],0x9
+006c6c4e  RET 0x14
+006c6c60  PUSH ESI

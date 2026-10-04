@@ -1,0 +1,272 @@
+
+##### "HealthPercentage"
+string @ 013d6bf8
+
+##### "HEALTH_REACHED_ZERO"
+string @ 011c69d8
+---- ref from 00438cee FUN_00438ae0 @ 00438ae0
+
+void __thiscall FUN_00438ae0(int param_1,int *param_2)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  uint uVar3;
+  char *pcVar4;
+  int iVar5;
+  char *pcVar6;
+  char *pcVar7;
+  
+  puVar1 = (undefined4 *)*param_2;
+  uVar3 = puVar1[0xc9];
+  if (uVar3 == 0) {
+    uVar3 = 0;
+  }
+  else {
+    uVar3 = uVar3 & (*(int *)(uVar3 + 0x10) != 10) - 1;
+  }
+  if (uVar3 != 0) {
+    iVar2 = *(int *)(uVar3 + 0x1c);
+    if (iVar2 == 0) {
+      FUN_00438590(1,param_2);
+    }
+    else if (iVar2 == 1) {
+      if (*(int *)(param_1 + 0x5c) != 2) {
+        switch(*(undefined4 *)(param_1 + 8)) {
+        case 0:
+          pcVar7 = "ALIVE";
+          break;
+        case 1:
+          pcVar7 = "HEALTH_REACHED_ZERO";
+          break;
+        case 2:
+          pcVar7 = "DYING";
+          break;
+        case 3:
+          pcVar7 = "DEAD";
+          break;
+        default:
+          pcVar7 = "UNKNOWN Dead STATE";
+        }
+        switch(*(int *)(param_1 + 0x5c)) {
+        case 0:
+          pcVar4 = "ALIVE";
+          break;
+        case 1:
+          pcVar4 = "HEALTH_REACHED_ZERO";
+          break;
+        case 2:
+          pcVar4 = "DYING";
+          break;
+        case 3:
+          pcVar4 = "DEAD";
+          break;
+        default:
+          pcVar4 = "UNKNOWN Dead STATE";
+        }
+        FUN_00a69c90(*puVar1,"COVER",pcVar4,"DYING",pcVar7);
+      }
+      *(undefined4 *)(param_1 + 0x5c) = 2;
+    }
+    else if (iVar2 == 2) {
+      if (*(int *)(param_1 + 0x5c) != 3) {
+        switch(*(undefined4 *)(param_1 + 8)) {
+        case 0:
+          pcVar7 = "ALIVE";
+          break;
+        case 1:
+          pcVar7 = "HEALTH_REACHED_ZERO";
+          break;
+        case 2:
+          pcVar7 = "DYING";
+          break;
+        case 3:
+          pcVar7 = "DEAD";
+          break;
+        default:
+          pcVar7 = "UNKNOWN Dead STATE";
+        }
+        switch(*(int *)(param_1 + 0x5c)) {
+        case 0:
+          pcVar4 = "ALIVE";
+          break;
+        case 1:
+          pcVar4 = "HEALTH_REACHED_ZERO";
+          break;
+        case 2:
+          pcVar4 = "DYING";
+          break;
+        case 3:
+          pcVar4 = "DEAD";
+          break;
+        default:
+          pcVar4 = "UNKNOWN Dead STATE";
+        }
+        FUN_00a69c90(*puVar1,"COVER",pcVar4,&DAT_011c69c8,pcVar7);
+      }
+      *(undefined4 *)(param_1 + 0x5c) = 3;
+    }
+  }
+  if (*(char *)(param_1 + 0xc) != '\0') {
+    iVar2 = *(int *)(param_1 + 8);
+    iVar5 = FUN_004386f0(*(undefined4 *)(param_1 + 0x5c),param_2);
+    if (iVar2 != iVar5) {
+      switch(*(undefined4 *)(param_1 + 0x5c)) {
+      case 0:
+        pcVar7 = "ALIVE";
+        break;
+      case 1:
+        pcVar7 = "HEALTH_REACHED_ZERO";
+        break;
+      case 2:
+        pcVar7 = "DYING";
+        break;
+      case 3:
+        pcVar7 = "DEAD";
+        break;
+      default:
+        pcVar7 = "UNKNOWN Dead STATE";
+      }
+      switch(iVar5) {
+      case 0:
+        pcVar4 = "ALIVE";
+        break;
+      case 1:
+        pcVar4 = "HEALTH_REACHED_ZERO";
+        break;
+      case 2:
+        pcVar4 = "DYING";
+        break;
+      case 3:
+        pcVar4 = "DEAD";
+        break;
+      default:
+        pcVar4 = "UNKNOWN Dead STATE";
+      }
+      switch(iVar2) {
+      case 0:
+        pcVar6 = "ALIVE";
+        break;
+      case 1:
+        pcVar6 = "HEALTH_REACHED_ZERO";
+        break;
+      case 2:
+        pcVar6 = "DYING";
+        break;
+      case 3:
+        pcVar6 = "DEAD";
+        break;
+      default:
+        pcVar6 = "UNKNOWN Dead STATE";
+      }
+      FUN_00a69c90(*(undefined4 *)*param_2,"DEATH",pcVar6,pcVar4,pcVar7);
+    }
+  }
+  return;
+}
+
+
+---- ref from 00438630 FUN_00438590 @ 00438590
+
+void __thiscall FUN_00438590(int param_1,int param_2,undefined4 *param_3)
+
+{
+  char *pcVar1;
+  char *pcVar2;
+  char *pcVar3;
+  
+  if (*(int *)(param_1 + 0x5c) != param_2) {
+    switch(*(undefined4 *)(param_1 + 8)) {
+    case 0:
+      pcVar3 = "ALIVE";
+      break;
+    case 1:
+      pcVar3 = "HEALTH_REACHED_ZERO";
+      break;
+    case 2:
+      pcVar3 = "DYING";
+      break;
+    case 3:
+      pcVar3 = "DEAD";
+      break;
+    default:
+      pcVar3 = "UNKNOWN Dead STATE";
+    }
+    switch(param_2) {
+    case 0:
+      pcVar2 = "ALIVE";
+      break;
+    case 1:
+      pcVar2 = "HEALTH_REACHED_ZERO";
+      break;
+    case 2:
+      pcVar2 = "DYING";
+      break;
+    case 3:
+      pcVar2 = "DEAD";
+      break;
+    default:
+      pcVar2 = "UNKNOWN Dead STATE";
+    }
+    switch(*(int *)(param_1 + 0x5c)) {
+    case 0:
+      pcVar1 = "ALIVE";
+      break;
+    case 1:
+      pcVar1 = "HEALTH_REACHED_ZERO";
+      break;
+    case 2:
+      pcVar1 = "DYING";
+      break;
+    case 3:
+      pcVar1 = "DEAD";
+      break;
+    default:
+      pcVar1 = "UNKNOWN Dead STATE";
+    }
+    FUN_00a69c90(*(undefined4 *)*param_3,"COVER",pcVar1,pcVar2,pcVar3);
+  }
+  *(int *)(param_1 + 0x5c) = param_2;
+  return;
+}
+
+
+
+##### "ReduceHealthTo"
+string @ 012fea34
+---- ref from 00837067 FUN_00837000 @ 00837000
+
+void __fastcall FUN_00837000(int param_1)
+
+{
+  int iVar1;
+  DWORD DVar2;
+  LPCRITICAL_SECTION lpCriticalSection;
+  undefined4 unaff_retaddr;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01132e48;
+  pvStack_c = ExceptionList;
+  lpCriticalSection = (LPCRITICAL_SECTION)(DAT_0174a78c + 4);
+  ExceptionList = &pvStack_c;
+  EnterCriticalSection(lpCriticalSection);
+  iVar1 = **(int **)(param_1 + 8);
+  local_4 = 0;
+  DVar2 = GetCurrentThreadId();
+  (**(code **)(iVar1 + 0x6c))(DVar2);
+  (**(code **)(**(int **)(param_1 + 8) + 0xc0))();
+  FUN_00ce5b30();
+  FUN_0050dd80(*(undefined4 *)(param_1 + 0x68),"ReduceHealthTo",unaff_retaddr);
+  LeaveCriticalSection(lpCriticalSection);
+  *(undefined4 *)(param_1 + 0x11c) = unaff_retaddr;
+  ExceptionList = lpCriticalSection;
+  return;
+}
+
+
+
+##### "max_health"
+string @ 01652dd8

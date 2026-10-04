@@ -1,0 +1,41 @@
+---- FUN_00773280 @ 00773280 (callers: 1)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00773280(undefined8 param_1,undefined4 param_2)
+
+{
+  double dVar1;
+  float10 fVar2;
+  
+  fVar2 = (float10)FUN_00772fa0(param_1,param_2);
+  dVar1 = (double)fVar2;
+  FUN_00a2e000((float)((float10)1 / fVar2));
+  DAT_016410b0 = DAT_016410b0 + dVar1;
+  _DAT_016410b8 = _DAT_016410b8 + dVar1;
+  DAT_016410c0 = dVar1;
+  DAT_016410d0 = dVar1;
+  FUN_0099db50();
+  FUN_0099dbd0(0);
+  return;
+}
+
+
+---- FUN_007468d0 @ 007468d0 (callers: 1)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void __fastcall FUN_007468d0(int param_1)
+
+{
+  int iVar1;
+  
+  if ((*(int *)(param_1 + 0x44) != 0) &&
+     (iVar1 = *(int *)(param_1 + 0x44) + -1, *(int *)(param_1 + 0x44) = iVar1, iVar1 == 0)) {
+    DAT_016410d8 = 0;
+    DAT_016410c8 = _DAT_011c6ea0;
+  }
+  return;
+}
+
+

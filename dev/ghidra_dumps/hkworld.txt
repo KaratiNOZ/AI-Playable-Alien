@@ -1,0 +1,141 @@
+---- FUN_00b48890 @ 00b48890 (callers: 1)
+
+void __thiscall FUN_00b48890(int param_1,float *param_2,undefined4 param_3)
+
+{
+  undefined8 uVar1;
+  undefined8 uVar2;
+  undefined8 uVar3;
+  undefined4 *puVar4;
+  int iVar5;
+  int *piVar6;
+  undefined8 *puVar7;
+  undefined8 uVar8;
+  float fVar9;
+  float fVar10;
+  LPVOID pvVar11;
+  int *piVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float local_a0;
+  float fStack_9c;
+  float fStack_98;
+  float fStack_94;
+  float local_90;
+  float fStack_8c;
+  float fStack_88;
+  float fStack_84;
+  float local_80;
+  int local_7c;
+  int local_78;
+  float local_74;
+  undefined8 local_70;
+  undefined8 uStack_68;
+  undefined8 local_60;
+  undefined8 uStack_58;
+  undefined8 local_50;
+  undefined8 uStack_48;
+  undefined8 local_40;
+  undefined8 uStack_38;
+  undefined8 local_30;
+  undefined8 uStack_28;
+  undefined8 local_20;
+  undefined8 uStack_18;
+  
+  pvVar11 = TlsGetValue(DAT_01be6130);
+  puVar4 = *(undefined4 **)((int)pvVar11 + 4);
+  if (puVar4 < *(undefined4 **)((int)pvVar11 + 0xc)) {
+    *puVar4 = "TtrcPhantom";
+    uVar8 = rdtsc();
+    puVar4[1] = (int)uVar8;
+    *(undefined4 **)((int)pvVar11 + 4) = puVar4 + 3;
+  }
+  local_80 = param_2[9];
+  local_78 = 0;
+  if ((*(char *)(param_2 + 8) == '\0') ||
+     (local_7c = *(int *)(*(int *)(param_1 + 8) + 0x74), local_7c == 0)) {
+    local_7c = 0;
+  }
+  else {
+    local_7c = local_7c + 0x10;
+  }
+  piVar12 = *(int **)(param_1 + 0xc0);
+  iVar5 = *(int *)(param_1 + 0xc4);
+  local_74 = param_2[10];
+  while (iVar5 = iVar5 + -1, -1 < iVar5) {
+    piVar6 = *(int **)*piVar12;
+    if (piVar6 != (int *)0x0) {
+      puVar7 = (undefined8 *)((int *)*piVar12)[2];
+      local_40._0_4_ = (float)*puVar7;
+      local_40._4_4_ = (float)((ulonglong)*puVar7 >> 0x20);
+      uStack_38._0_4_ = (float)puVar7[1];
+      fVar13 = *param_2 - *(float *)(puVar7 + 6);
+      fVar14 = param_2[1] - *(float *)((int)puVar7 + 0x34);
+      fVar15 = param_2[2] - *(float *)(puVar7 + 7);
+      uVar8 = puVar7[4];
+      uVar1 = puVar7[5];
+      local_50._0_4_ = (float)puVar7[2];
+      fVar10 = (float)local_50;
+      local_50._4_4_ = (float)((ulonglong)puVar7[2] >> 0x20);
+      uStack_48._0_4_ = (float)puVar7[3];
+      fVar9 = (float)uStack_48;
+      local_30._0_4_ = (float)uVar8;
+      local_30._4_4_ = (float)((ulonglong)uVar8 >> 0x20);
+      uStack_28._0_4_ = (float)uVar1;
+      uStack_28._4_4_ = (float)((ulonglong)uVar1 >> 0x20);
+      local_50 = CONCAT44(local_50._4_4_,local_40._4_4_);
+      uStack_48 = CONCAT44(uStack_28._4_4_,local_30._4_4_);
+      local_a0 = fVar14 * local_40._4_4_ + fVar13 * (float)local_40 + (float)uStack_38 * fVar15;
+      fStack_9c = fVar14 * local_50._4_4_ + fVar13 * fVar10 + fVar9 * fVar15;
+      fStack_98 = fVar14 * local_30._4_4_ + fVar13 * (float)local_30 + (float)uStack_28 * fVar15;
+      fStack_94 = fVar14 * uStack_28._4_4_ + fVar13 * local_30._4_4_ + uStack_28._4_4_ * fVar15;
+      fVar14 = param_2[4] - *(float *)(puVar7 + 6);
+      fVar15 = param_2[5] - *(float *)((int)puVar7 + 0x34);
+      fVar16 = param_2[6] - *(float *)(puVar7 + 7);
+      local_70._0_4_ = (float)*puVar7;
+      local_70._4_4_ = (float)((ulonglong)*puVar7 >> 0x20);
+      uStack_68._0_4_ = (float)puVar7[1];
+      uVar2 = puVar7[4];
+      uVar3 = puVar7[5];
+      local_60._0_4_ = (float)puVar7[2];
+      fVar9 = (float)local_60;
+      local_60._4_4_ = (float)((ulonglong)puVar7[2] >> 0x20);
+      uStack_58._0_4_ = (float)puVar7[3];
+      fVar13 = (float)uStack_58;
+      local_20._0_4_ = (float)uVar2;
+      local_20._4_4_ = (float)((ulonglong)uVar2 >> 0x20);
+      uStack_18._0_4_ = (float)uVar3;
+      uStack_18._4_4_ = (float)((ulonglong)uVar3 >> 0x20);
+      local_40 = CONCAT44(fVar10,(float)local_40);
+      local_60 = CONCAT44(local_60._4_4_,local_70._4_4_);
+      uStack_58 = CONCAT44(uStack_18._4_4_,local_20._4_4_);
+      local_90 = fVar15 * local_70._4_4_ + fVar14 * (float)local_70 + (float)uStack_68 * fVar16;
+      fStack_8c = fVar15 * local_60._4_4_ + fVar14 * fVar9 + fVar13 * fVar16;
+      fStack_88 = fVar15 * local_20._4_4_ + fVar14 * (float)local_20 + (float)uStack_18 * fVar16;
+      fStack_84 = fVar15 * uStack_18._4_4_ + fVar14 * local_20._4_4_ + uStack_18._4_4_ * fVar16;
+      local_78 = *piVar12;
+      local_70 = CONCAT44(fVar9,(float)local_70);
+      uStack_68 = uVar2;
+      uStack_38 = uVar8;
+      local_30 = uVar8;
+      uStack_28 = uVar1;
+      local_20 = uVar2;
+      uStack_18 = uVar3;
+      (**(code **)(*piVar6 + 0x18))(&local_a0,*piVar12,param_3);
+    }
+    piVar12 = piVar12 + 1;
+  }
+  pvVar11 = TlsGetValue(DAT_01be6130);
+  puVar4 = *(undefined4 **)((int)pvVar11 + 4);
+  if (puVar4 < *(undefined4 **)((int)pvVar11 + 0xc)) {
+    *puVar4 = &DAT_01404a08;
+    uVar8 = rdtsc();
+    puVar4[1] = (int)uVar8;
+    *(undefined4 **)((int)pvVar11 + 4) = puVar4 + 3;
+  }
+  return;
+}
+
+

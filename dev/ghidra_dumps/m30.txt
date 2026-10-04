@@ -1,0 +1,16 @@
+00a6bbf3  SBB dword ptr [ECX],EAX
+00a6bbf6  TEST EAX,EAX
+00a6bbf8  JZ 0x00a6bbfc
+00a6bbfa  CALL EAX
+00a6bbfc  PUSH 0x19
+00a6bbfe  CALL 0x00a78673
+00a6bc03  PUSH 0x1
+00a6bc05  PUSH 0x0
+00a6bc07  CALL 0x00a7862c
+00a6bc0c  ADD ESP,0xc
+00a6bc0f  JMP 0x00a785f9
+00a6bc14  MOV EAX,dword ptr [ECX + 0x4]
+00a6bc17  TEST EAX,EAX
+00a6bc19  JNZ 0x00a6bc20
+00a6bc1b  MOV EAX,0x13ea894
+00a6bc20  RET

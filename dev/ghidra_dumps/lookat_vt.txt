@@ -1,0 +1,94 @@
+==== FUN_0066aa60 @ 0066aa60
+
+undefined4 * __fastcall FUN_0066aa60(undefined4 *param_1)
+
+{
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  puStack_8 = &LAB_011260b8;
+  local_c = ExceptionList;
+  ExceptionList = &local_c;
+  *param_1 = &PTR_FUN_012ab450;
+  local_4 = 0;
+  if (param_1[5] != 0) {
+    if ((param_1[1] != 0) && (param_1[1] != -0x3f0)) {
+      FUN_006a9800(param_1[5]);
+    }
+    param_1[5] = 0;
+  }
+  *param_1 = &PTR_LAB_012f8b20;
+  ExceptionList = local_c;
+  return param_1;
+}
+
+
+==== FUN_00674130 @ 00674130
+
+void __fastcall FUN_00674130(int *param_1)
+
+{
+  char cVar1;
+  int iVar2;
+  int iVar3;
+  uint uVar4;
+  
+  cVar1 = *(char *)(param_1[1] + 0x2af);
+  iVar2 = param_1[5];
+  if (iVar2 != 0) {
+    if (cVar1 == '\0') {
+      uVar4 = FUN_00403940();
+      iVar3 = (uVar4 ^ 0x50) * 0x1000193;
+    }
+    else {
+      iVar3 = FUN_00403b20();
+    }
+    if (*(int *)(iVar2 + 0x38) != iVar3) {
+      (**(code **)(*param_1 + 0x54))();
+    }
+  }
+  if (param_1[5] == 0) {
+    if (cVar1 == '\0') {
+      FUN_0066e770("PERSISTENT_ACT_LOOK_AT_FP");
+    }
+    else {
+      FUN_00403b20("PERSISTENT_ACT_LOOK_AT_CROUCHED_FP");
+    }
+    (**(code **)(*param_1 + 0x4c))();
+    if (param_1[5] != 0) {
+      FUN_0068cae0(&stack0xffffff70,4);
+    }
+  }
+  return;
+}
+
+
+==== FUN_00648b80 @ 00648b80
+
+void __fastcall FUN_00648b80(int param_1)
+
+{
+  *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | 2;
+  return;
+}
+
+
+==== FUN_00d0fb70 @ 00d0fb70
+
+undefined4 FUN_00d0fb70(void)
+
+{
+  return 0;
+}
+
+
+==== FUN_00a69c90 @ 00a69c90
+
+void FUN_00a69c90(void)
+
+{
+  return;
+}
+
+

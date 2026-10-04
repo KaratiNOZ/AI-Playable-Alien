@@ -1,0 +1,12 @@
+013a180c  CATHODE::BloomSettings::vftable
+013a1bac  CATHODE::ColourSettings::vftable
+013a22ec  CATHODE::HighSpecMotionBlurSettings::vftable
+013a268c  CATHODE::FilmGrainSettings::vftable
+013a2a2c  CATHODE::VignetteSettings::vftable
+013a316c  CATHODE::SharpnessSettings::vftable
+013a350c  CATHODE::LensDustSettings::vftable
+013a3fec  CATHODE::DayToneMappingSettings::vftable
+013a438c  CATHODE::LightAdaptationSettings::vftable
+013a764c  CATHODE::FullScreenBlurSettings::vftable
+013a812c  CATHODE::DepthOfFieldSettings::vftable
+013a84cc  CATHODE::ChromaticAberrations::vftable

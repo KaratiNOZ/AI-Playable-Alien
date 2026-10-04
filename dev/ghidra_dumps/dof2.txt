@@ -1,0 +1,55 @@
+---- FUN_00610970 @ 00610970 (callers: 1)
+
+void FUN_00610970(undefined4 param_1,undefined2 *param_2)
+
+{
+  undefined1 uVar1;
+  undefined2 uVar2;
+  float10 fVar3;
+  
+  fVar3 = (float10)FUN_008f3d70(param_1);
+  *(float *)(param_2 + 2) = (float)fVar3;
+  uVar2 = FUN_008f3d10(param_1);
+  *param_2 = uVar2;
+  uVar1 = FUN_008f3d40(param_1);
+  *(undefined1 *)(param_2 + 1) = uVar1;
+  fVar3 = (float10)FUN_008f56f0(param_1);
+  *(float *)(param_2 + 4) = (float)fVar3;
+  fVar3 = (float10)FUN_008f5720(param_1);
+  *(float *)(param_2 + 6) = (float)fVar3;
+  fVar3 = (float10)FUN_008f5750(param_1);
+  *(float *)(param_2 + 8) = (float)fVar3;
+  fVar3 = (float10)FUN_008f5780(param_1);
+  *(float *)(param_2 + 10) = (float)fVar3;
+  fVar3 = (float10)FUN_008f57b0(param_1);
+  *(float *)(param_2 + 0xc) = (float)fVar3;
+  return;
+}
+
+
+---- FUN_008f54b0 @ 008f54b0 (callers: 1)
+
+float10 FUN_008f54b0(undefined4 param_1)
+
+{
+  float local_8;
+  
+  local_8 = 0.0;
+  FUN_008d6510(param_1,&DAT_01753fcc,&local_8);
+  return (float10)local_8;
+}
+
+
+---- FUN_008f5a80 @ 008f5a80 (callers: 1)
+
+float10 FUN_008f5a80(undefined4 param_1)
+
+{
+  float local_8;
+  
+  local_8 = 0.0;
+  FUN_008d6510(param_1,&DAT_0175407c,&local_8);
+  return (float10)local_8;
+}
+
+

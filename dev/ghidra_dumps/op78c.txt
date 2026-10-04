@@ -1,0 +1,11 @@
+0x79c]	006cc7cb	FLD float ptr [EAX + 0x79c]	FUN_006cbfe0
+0x79c]	006e7040	MOVSS XMM0,dword ptr [ECX + 0x79c]	FUN_006e6db0
+0x79c]	007c311c	MOV dword ptr [ESP + 0x79c],EBP	FUN_007c2dc0
+0x79c]	007c3145	CMP dword ptr [ESP + 0x79c],EBP	FUN_007c2dc0
+0x79c]	007c31a4	CMP ESI,dword ptr [ESP + 0x79c]	FUN_007c2dc0
+0x79c]	009ffed2	MOVSS XMM0,dword ptr [ESI + 0x79c]	FUN_009ffda0
+0x79c]	00a33fe8	FSTP float ptr [EDI + 0x79c]	FUN_00a31710
+0x79c]	00a3aadf	FLD float ptr [ESI + 0x79c]	FUN_00a39890
+0x79c]	00a3aae5	FSTP float ptr [EAX + 0x79c]	FUN_00a39890
+0x79c]	00af2ff6	LEA EDX,[ESP + 0x79c]	FUN_00af2ee0
+0x79c]	00d483b7	MOV dword ptr [ESI + 0x79c],0x2	FUN_00d48270

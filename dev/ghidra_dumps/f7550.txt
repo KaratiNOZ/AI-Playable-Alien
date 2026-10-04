@@ -1,0 +1,63 @@
+---- FUN_007f7550 @ 007f7550 (callers: 2)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_007f7550(void)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+  int *piVar3;
+  uint uVar4;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 local_18;
+  int local_14;
+  undefined4 local_10;
+  undefined4 local_c;
+  undefined4 local_8;
+  undefined4 local_4;
+  
+  iVar1 = FUN_00b42850(DAT_01707918);
+  if (iVar1 == 0) {
+    uVar4 = MXCSR | 0x8000;
+    MXCSR = uVar4;
+    uVar2 = FUN_009e9020(FUN_007e9a70,DAT_01707918,0,0xffffffff,1);
+    FUN_009e9420(uVar2,0);
+    FUN_00b411b0(DAT_01707918,0);
+    FUN_007eb030((float)DAT_016410c0);
+    DAT_01707964 = DAT_01707964 + 1;
+    if (DAT_01707964 == 2) {
+      local_18 = 0xffffffff;
+      local_14 = -1;
+      local_10 = 0xffffffff;
+      local_c = 0xffffffff;
+      local_8 = 0xffffffff;
+      local_4 = 0xffffffff;
+      (**(code **)(*DAT_01707908 + 0x20))(&local_18);
+      uStack_34 = 0xffffffff;
+      uStack_30 = 0xffffffff;
+      uStack_2c = 0xffffffff;
+      uStack_28 = 0xffffffff;
+      uStack_24 = 0xffffffff;
+      uStack_20 = 0xffffffff;
+      piVar3 = (int *)FUN_00a97760();
+      (**(code **)(*piVar3 + 0x2c))(&uStack_34);
+      piVar3 = (int *)FUN_00a97760();
+      (**(code **)(*piVar3 + 0x14))(&stack0xffffffc4,local_14 + -0x32000 + uVar4);
+    }
+    iVar1 = DAT_01707968;
+    FUN_007f07e0(*(undefined4 *)(*(int *)(DAT_01707968 + 0x10) + 4));
+    *(int *)(*(int *)(iVar1 + 0x10) + 4) = *(int *)(iVar1 + 0x10);
+    *(undefined4 *)*(undefined4 *)(iVar1 + 0x10) = *(undefined4 *)(iVar1 + 0x10);
+    *(int *)(*(int *)(iVar1 + 0x10) + 8) = *(int *)(iVar1 + 0x10);
+    *(undefined4 *)(iVar1 + 0x14) = 0;
+  }
+  return;
+}
+
+

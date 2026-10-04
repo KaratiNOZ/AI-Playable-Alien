@@ -1,0 +1,105 @@
+==== FUN_0066ba50 @ 0066ba50
+
+void __fastcall FUN_0066ba50(undefined4 *param_1)
+
+{
+  undefined4 uVar1;
+  undefined1 local_1c [8];
+  undefined4 local_14;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_011269c1;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  if (param_1 != (undefined4 *)0x0) {
+    ExceptionList = &pvStack_c;
+    (**(code **)*param_1)(1);
+  }
+  uVar1 = param_1[6];
+  local_4 = 0;
+  local_14 = 0;
+  FUN_0066a8e0(0x11,local_1c);
+  *param_1 = &PTR_FUN_012af420;
+  local_4 = 0xffffffff;
+  param_1[6] = uVar1;
+  (*(code *)PTR_FUN_012af480)();
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+==== FUN_0066b9a0 @ 0066b9a0
+
+void __fastcall FUN_0066b9a0(undefined4 *param_1)
+
+{
+  undefined4 uVar1;
+  uint uVar2;
+  undefined1 auStack_1c [8];
+  int iStack_14;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_011269c1;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  if (param_1 != (undefined4 *)0x0) {
+    ExceptionList = &pvStack_c;
+    (**(code **)*param_1)(1);
+  }
+  uVar1 = param_1[6];
+  local_4 = 0;
+  uVar2 = FUN_004031d0("SecondaryActLookAtIkOnly");
+  iStack_14 = ((((uVar2 ^ 0x4f) * 0x1000193 ^ 0x6e) * 0x1000193 ^ 0x6c) * 0x1000193 ^ 0x79) *
+              0x1000193;
+  FUN_0066a8e0(0xf,auStack_1c);
+  *param_1 = &PTR_FUN_012af538;
+  local_4 = 0xffffffff;
+  param_1[6] = uVar1;
+  (*(code *)PTR_FUN_012af598)();
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+==== FUN_0066b8f0 @ 0066b8f0
+
+void __fastcall FUN_0066b8f0(undefined4 *param_1)
+
+{
+  undefined4 uVar1;
+  uint uVar2;
+  undefined1 auStack_1c [8];
+  int iStack_14;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_011269c1;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  if (param_1 != (undefined4 *)0x0) {
+    ExceptionList = &pvStack_c;
+    (**(code **)*param_1)(1);
+  }
+  uVar1 = param_1[6];
+  local_4 = 0;
+  uVar2 = FUN_00402f40("PERSISTENT_ACT_LOOK_AT");
+  iStack_14 = ((((uVar2 ^ 0x4b) * 0x1000193 ^ 0x5f) * 0x1000193 ^ 0x41) * 0x1000193 ^ 0x54) *
+              0x1000193;
+  FUN_0066a8e0(0x10,auStack_1c);
+  *param_1 = &PTR_FUN_012af4a0;
+  local_4 = 0xffffffff;
+  param_1[6] = uVar1;
+  (*(code *)PTR_FUN_012af500)();
+  ExceptionList = pvStack_c;
+  return;
+}
+
+

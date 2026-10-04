@@ -1,0 +1,52 @@
+---- FUN_008f3e90 @ 008f3e90 (callers: 1)
+
+float10 FUN_008f3e90(undefined4 param_1)
+
+{
+  float local_8;
+  
+  local_8 = 0.0;
+  FUN_008d6510(param_1,&DAT_01753ce4,&local_8);
+  return (float10)local_8;
+}
+
+
+---- FUN_008f3d70 @ 008f3d70 (callers: 13)
+
+float10 FUN_008f3d70(undefined4 param_1)
+
+{
+  float local_8;
+  
+  local_8 = 1.0;
+  FUN_008d6510(param_1,&DAT_01753cbc,&local_8);
+  return (float10)local_8;
+}
+
+
+---- FUN_008f3d10 @ 008f3d10 (callers: 13)
+
+undefined4 FUN_008f3d10(undefined4 param_1)
+
+{
+  undefined4 local_8;
+  
+  local_8 = 100;
+  FUN_00796570(param_1,&DAT_01753cc0,&local_8);
+  return local_8;
+}
+
+
+---- FUN_008f45e0 @ 008f45e0 (callers: 1)
+
+float10 FUN_008f45e0(undefined4 param_1)
+
+{
+  float local_8;
+  
+  local_8 = 1.0;
+  FUN_008d6510(param_1,&DAT_01753d90,&local_8);
+  return (float10)local_8;
+}
+
+

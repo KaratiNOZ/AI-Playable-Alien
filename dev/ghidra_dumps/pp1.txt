@@ -1,0 +1,705 @@
+
+##### 013a3c4c CATHODE::HableToneMappingSettings::vftable
+---- slot2 -> 008d32b0
+
+undefined4 FUN_008d32b0(void)
+
+{
+  return DAT_013121c0;
+}
+
+
+---- slot3 -> 008cb7e0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+float10 FUN_008cb7e0(void)
+
+{
+  return (float10)_DAT_013121c4;
+}
+
+
+---- slot18 -> 008d21e0
+
+undefined1 FUN_008d21e0(void)
+
+{
+  return 0;
+}
+
+
+---- slot19 -> 008d21e0
+
+undefined1 FUN_008d21e0(void)
+
+{
+  return 0;
+}
+
+
+---- slot126 -> 0091ad40
+
+undefined4 __thiscall
+FUN_0091ad40(int *param_1,int *param_2,undefined1 *param_3,undefined4 param_4,undefined4 param_5)
+
+{
+  code *pcVar1;
+  char cVar2;
+  undefined1 uVar3;
+  uint uVar4;
+  undefined4 uVar5;
+  void *local_10;
+  undefined1 *puStack_c;
+  undefined4 local_8;
+  
+  local_8 = 0xffffffff;
+  puStack_c = &LAB_01136150;
+  local_10 = ExceptionList;
+  uVar4 = DAT_0165f890 ^ (uint)&stack0xfffffffc;
+  ExceptionList = &local_10;
+  if (DAT_0174d328 != *param_2) {
+    if (DAT_0174d334 != *param_2) {
+      uVar5 = FUN_00915f20(param_2,param_3,param_4,param_5);
+      ExceptionList = local_10;
+      return uVar5;
+    }
+    FUN_00e1bcc0(&DAT_0130a0cc);
+    local_8 = 1;
+    FUN_00a69c90();
+    FUN_00a69c90(param_4);
+    if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+      *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+      cVar2 = FUN_0085d000();
+      if (cVar2 != '\0') {
+        pcVar1 = (code *)swi(3);
+        uVar5 = (*pcVar1)();
+        return uVar5;
+      }
+    }
+    uVar3 = (**(code **)(*param_1 + 0x290))(param_4,param_5);
+    *param_3 = uVar3;
+    FUN_00a69c90();
+    local_8 = 0xffffffff;
+    FUN_00a69c90();
+    ExceptionList = local_10;
+    return 1;
+  }
+  FUN_00e1bcc0("start");
+  local_8 = 0;
+  FUN_00a69c90(uVar4);
+  FUN_00a69c90(param_4);
+  if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+    *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+    cVar2 = FUN_0085d000();
+    if (cVar2 != '\0') {
+      pcVar1 = (code *)swi(3);
+      uVar5 = (*pcVar1)();
+      return uVar5;
+    }
+  }
+  uVar3 = (**(code **)(*param_1 + 0x28c))(param_4,param_5);
+  *param_3 = uVar3;
+  FUN_00a69c90();
+  local_8 = 0xffffffff;
+  FUN_00a69c90();
+  ExceptionList = local_10;
+  return 1;
+}
+
+
+---- slot128 -> 00404030
+
+undefined1 FUN_00404030(void)
+
+{
+  return 1;
+}
+
+
+---- slot161 -> 00404030
+
+undefined1 FUN_00404030(void)
+
+{
+  return 1;
+}
+
+
+---- slot163 -> 00a6bbea
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00a6bbea(void)
+
+{
+  code *pcVar1;
+  
+  pcVar1 = DecodePointer(_DAT_01be4ee0);
+  if (pcVar1 != (code *)0x0) {
+    (*pcVar1)();
+  }
+  __NMSG_WRITE(0x19);
+  FUN_00a7862c(0,1);
+                    /* WARNING: Subroutine does not return */
+  _abort();
+}
+
+
+---- slot164 -> 00a6bbea
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00a6bbea(void)
+
+{
+  code *pcVar1;
+  
+  pcVar1 = DecodePointer(_DAT_01be4ee0);
+  if (pcVar1 != (code *)0x0) {
+    (*pcVar1)();
+  }
+  __NMSG_WRITE(0x19);
+  FUN_00a7862c(0,1);
+                    /* WARNING: Subroutine does not return */
+  _abort();
+}
+
+
+---- slot198 -> 006082f0
+
+void FUN_006082f0(undefined4 param_1)
+
+{
+  DAT_0174edac = param_1;
+  return;
+}
+
+
+---- slot199 -> 00608300
+
+undefined4 FUN_00608300(void)
+
+{
+  return DAT_0174edac;
+}
+
+
+---- slot204 -> 008d77c0
+
+uint __thiscall FUN_008d77c0(uint3 param_1,undefined4 param_2)
+
+{
+  undefined4 uStack_8;
+  
+  uStack_8 = (uint)param_1;
+  FUN_00630590(param_2,&DAT_0174f8ac,(int)&uStack_8 + 3);
+  return uStack_8 >> 0x18;
+}
+
+
+---- slot205 -> 008d77f0
+
+uint __thiscall FUN_008d77f0(uint3 param_1,undefined4 param_2)
+
+{
+  undefined4 uStack_8;
+  
+  uStack_8 = (uint)param_1;
+  FUN_00630590(param_2,&DAT_0174f8b0,(int)&uStack_8 + 3);
+  return uStack_8 >> 0x18;
+}
+
+
+  slot230 -> 00000000 (not code)
+  slot231 -> 015ed698 (not code)
+---- slot234 -> 008d32b0
+
+undefined4 FUN_008d32b0(void)
+
+{
+  return DAT_013121c0;
+}
+
+
+---- slot235 -> 008cb7e0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+float10 FUN_008cb7e0(void)
+
+{
+  return (float10)_DAT_013121c4;
+}
+
+
+
+##### 013a180c CATHODE::BloomSettings::vftable
+---- slot2 -> 008d32b0
+
+undefined4 FUN_008d32b0(void)
+
+{
+  return DAT_013121c0;
+}
+
+
+---- slot3 -> 008cb7e0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+float10 FUN_008cb7e0(void)
+
+{
+  return (float10)_DAT_013121c4;
+}
+
+
+---- slot18 -> 008d21e0
+
+undefined1 FUN_008d21e0(void)
+
+{
+  return 0;
+}
+
+
+---- slot19 -> 008d21e0
+
+undefined1 FUN_008d21e0(void)
+
+{
+  return 0;
+}
+
+
+---- slot126 -> 0091abc0
+
+undefined4 __thiscall
+FUN_0091abc0(int *param_1,int *param_2,undefined1 *param_3,undefined4 param_4,undefined4 param_5)
+
+{
+  code *pcVar1;
+  char cVar2;
+  undefined1 uVar3;
+  uint uVar4;
+  undefined4 uVar5;
+  void *local_10;
+  undefined1 *puStack_c;
+  undefined4 local_8;
+  
+  local_8 = 0xffffffff;
+  puStack_c = &LAB_01136150;
+  local_10 = ExceptionList;
+  uVar4 = DAT_0165f890 ^ (uint)&stack0xfffffffc;
+  ExceptionList = &local_10;
+  if (DAT_0174d328 != *param_2) {
+    if (DAT_0174d334 != *param_2) {
+      uVar5 = FUN_0091ad40(param_2,param_3,param_4,param_5);
+      ExceptionList = local_10;
+      return uVar5;
+    }
+    FUN_00e1bcc0(&DAT_0130a0cc);
+    local_8 = 1;
+    FUN_00a69c90();
+    FUN_00a69c90(param_4);
+    if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+      *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+      cVar2 = FUN_0085d000();
+      if (cVar2 != '\0') {
+        pcVar1 = (code *)swi(3);
+        uVar5 = (*pcVar1)();
+        return uVar5;
+      }
+    }
+    uVar3 = (**(code **)(*param_1 + 0x290))(param_4,param_5);
+    *param_3 = uVar3;
+    FUN_00a69c90();
+    local_8 = 0xffffffff;
+    FUN_00a69c90();
+    ExceptionList = local_10;
+    return 1;
+  }
+  FUN_00e1bcc0("start");
+  local_8 = 0;
+  FUN_00a69c90(uVar4);
+  FUN_00a69c90(param_4);
+  if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+    *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+    cVar2 = FUN_0085d000();
+    if (cVar2 != '\0') {
+      pcVar1 = (code *)swi(3);
+      uVar5 = (*pcVar1)();
+      return uVar5;
+    }
+  }
+  uVar3 = (**(code **)(*param_1 + 0x28c))(param_4,param_5);
+  *param_3 = uVar3;
+  FUN_00a69c90();
+  local_8 = 0xffffffff;
+  FUN_00a69c90();
+  ExceptionList = local_10;
+  return 1;
+}
+
+
+---- slot128 -> 00404030
+
+undefined1 FUN_00404030(void)
+
+{
+  return 1;
+}
+
+
+---- slot161 -> 00404030
+
+undefined1 FUN_00404030(void)
+
+{
+  return 1;
+}
+
+
+---- slot163 -> 00a6bbea
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00a6bbea(void)
+
+{
+  code *pcVar1;
+  
+  pcVar1 = DecodePointer(_DAT_01be4ee0);
+  if (pcVar1 != (code *)0x0) {
+    (*pcVar1)();
+  }
+  __NMSG_WRITE(0x19);
+  FUN_00a7862c(0,1);
+                    /* WARNING: Subroutine does not return */
+  _abort();
+}
+
+
+---- slot164 -> 00a6bbea
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00a6bbea(void)
+
+{
+  code *pcVar1;
+  
+  pcVar1 = DecodePointer(_DAT_01be4ee0);
+  if (pcVar1 != (code *)0x0) {
+    (*pcVar1)();
+  }
+  __NMSG_WRITE(0x19);
+  FUN_00a7862c(0,1);
+                    /* WARNING: Subroutine does not return */
+  _abort();
+}
+
+
+---- slot198 -> 0061dc20
+
+void FUN_0061dc20(undefined4 param_1)
+
+{
+  DAT_0174ed84 = param_1;
+  return;
+}
+
+
+---- slot199 -> 0061dc30
+
+undefined4 FUN_0061dc30(void)
+
+{
+  return DAT_0174ed84;
+}
+
+
+---- slot204 -> 008d77c0
+
+uint __thiscall FUN_008d77c0(uint3 param_1,undefined4 param_2)
+
+{
+  undefined4 uStack_8;
+  
+  uStack_8 = (uint)param_1;
+  FUN_00630590(param_2,&DAT_0174f8ac,(int)&uStack_8 + 3);
+  return uStack_8 >> 0x18;
+}
+
+
+---- slot205 -> 008d77f0
+
+uint __thiscall FUN_008d77f0(uint3 param_1,undefined4 param_2)
+
+{
+  undefined4 uStack_8;
+  
+  uStack_8 = (uint)param_1;
+  FUN_00630590(param_2,&DAT_0174f8b0,(int)&uStack_8 + 3);
+  return uStack_8 >> 0x18;
+}
+
+
+  slot230 -> 00000000 (not code)
+  slot231 -> 015ed290 (not code)
+---- slot234 -> 008d32b0
+
+undefined4 FUN_008d32b0(void)
+
+{
+  return DAT_013121c0;
+}
+
+
+---- slot235 -> 008cb7e0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+float10 FUN_008cb7e0(void)
+
+{
+  return (float10)_DAT_013121c4;
+}
+
+
+
+##### 013a2a2c CATHODE::VignetteSettings::vftable
+---- slot2 -> 008d32b0
+
+undefined4 FUN_008d32b0(void)
+
+{
+  return DAT_013121c0;
+}
+
+
+---- slot3 -> 008cb7e0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+float10 FUN_008cb7e0(void)
+
+{
+  return (float10)_DAT_013121c4;
+}
+
+
+---- slot18 -> 008d21e0
+
+undefined1 FUN_008d21e0(void)
+
+{
+  return 0;
+}
+
+
+---- slot19 -> 008d21e0
+
+undefined1 FUN_008d21e0(void)
+
+{
+  return 0;
+}
+
+
+---- slot126 -> 0091abc0
+
+undefined4 __thiscall
+FUN_0091abc0(int *param_1,int *param_2,undefined1 *param_3,undefined4 param_4,undefined4 param_5)
+
+{
+  code *pcVar1;
+  char cVar2;
+  undefined1 uVar3;
+  uint uVar4;
+  undefined4 uVar5;
+  void *local_10;
+  undefined1 *puStack_c;
+  undefined4 local_8;
+  
+  local_8 = 0xffffffff;
+  puStack_c = &LAB_01136150;
+  local_10 = ExceptionList;
+  uVar4 = DAT_0165f890 ^ (uint)&stack0xfffffffc;
+  ExceptionList = &local_10;
+  if (DAT_0174d328 != *param_2) {
+    if (DAT_0174d334 != *param_2) {
+      uVar5 = FUN_0091ad40(param_2,param_3,param_4,param_5);
+      ExceptionList = local_10;
+      return uVar5;
+    }
+    FUN_00e1bcc0(&DAT_0130a0cc);
+    local_8 = 1;
+    FUN_00a69c90();
+    FUN_00a69c90(param_4);
+    if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+      *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+      cVar2 = FUN_0085d000();
+      if (cVar2 != '\0') {
+        pcVar1 = (code *)swi(3);
+        uVar5 = (*pcVar1)();
+        return uVar5;
+      }
+    }
+    uVar3 = (**(code **)(*param_1 + 0x290))(param_4,param_5);
+    *param_3 = uVar3;
+    FUN_00a69c90();
+    local_8 = 0xffffffff;
+    FUN_00a69c90();
+    ExceptionList = local_10;
+    return 1;
+  }
+  FUN_00e1bcc0("start");
+  local_8 = 0;
+  FUN_00a69c90(uVar4);
+  FUN_00a69c90(param_4);
+  if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+    *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+    cVar2 = FUN_0085d000();
+    if (cVar2 != '\0') {
+      pcVar1 = (code *)swi(3);
+      uVar5 = (*pcVar1)();
+      return uVar5;
+    }
+  }
+  uVar3 = (**(code **)(*param_1 + 0x28c))(param_4,param_5);
+  *param_3 = uVar3;
+  FUN_00a69c90();
+  local_8 = 0xffffffff;
+  FUN_00a69c90();
+  ExceptionList = local_10;
+  return 1;
+}
+
+
+---- slot128 -> 00404030
+
+undefined1 FUN_00404030(void)
+
+{
+  return 1;
+}
+
+
+---- slot161 -> 00404030
+
+undefined1 FUN_00404030(void)
+
+{
+  return 1;
+}
+
+
+---- slot163 -> 00a6bbea
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00a6bbea(void)
+
+{
+  code *pcVar1;
+  
+  pcVar1 = DecodePointer(_DAT_01be4ee0);
+  if (pcVar1 != (code *)0x0) {
+    (*pcVar1)();
+  }
+  __NMSG_WRITE(0x19);
+  FUN_00a7862c(0,1);
+                    /* WARNING: Subroutine does not return */
+  _abort();
+}
+
+
+---- slot164 -> 00a6bbea
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00a6bbea(void)
+
+{
+  code *pcVar1;
+  
+  pcVar1 = DecodePointer(_DAT_01be4ee0);
+  if (pcVar1 != (code *)0x0) {
+    (*pcVar1)();
+  }
+  __NMSG_WRITE(0x19);
+  FUN_00a7862c(0,1);
+                    /* WARNING: Subroutine does not return */
+  _abort();
+}
+
+
+---- slot198 -> 00607560
+
+void FUN_00607560(undefined4 param_1)
+
+{
+  DAT_0174ed98 = param_1;
+  return;
+}
+
+
+---- slot199 -> 00607570
+
+undefined4 FUN_00607570(void)
+
+{
+  return DAT_0174ed98;
+}
+
+
+---- slot204 -> 008d77c0
+
+uint __thiscall FUN_008d77c0(uint3 param_1,undefined4 param_2)
+
+{
+  undefined4 uStack_8;
+  
+  uStack_8 = (uint)param_1;
+  FUN_00630590(param_2,&DAT_0174f8ac,(int)&uStack_8 + 3);
+  return uStack_8 >> 0x18;
+}
+
+
+---- slot205 -> 008d77f0
+
+uint __thiscall FUN_008d77f0(uint3 param_1,undefined4 param_2)
+
+{
+  undefined4 uStack_8;
+  
+  uStack_8 = (uint)param_1;
+  FUN_00630590(param_2,&DAT_0174f8b0,(int)&uStack_8 + 3);
+  return uStack_8 >> 0x18;
+}
+
+
+  slot230 -> 00000000 (not code)
+  slot231 -> 015ed498 (not code)
+---- slot234 -> 008d32b0
+
+undefined4 FUN_008d32b0(void)
+
+{
+  return DAT_013121c0;
+}
+
+
+---- slot235 -> 008cb7e0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+float10 FUN_008cb7e0(void)
+
+{
+  return (float10)_DAT_013121c4;
+}
+
+

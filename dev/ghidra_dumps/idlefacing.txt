@@ -1,0 +1,6 @@
+
+##### "ActionIdleTimeFacingTarget"
+string @ 012f0a57
+
+##### "ActionIdleTime"
+string @ 012f11c7

@@ -1,0 +1,15 @@
+0x760]	007c6a74	MOVSS XMM0,dword ptr [ESI + 0x760]	FUN_007c67b0
+0x760]	00a33e44	FSTP float ptr [EDI + 0x760]	FUN_00a31710
+0x760]	00a3aa2b	FLD float ptr [ESI + 0x760]	FUN_00a39890
+0x760]	00a3aa31	FSTP float ptr [EAX + 0x760]	FUN_00a39890
+0x760]	00b2113a	MOVAPS xmmword ptr [ESP + 0x760],XMM1	FUN_00b1f940
+0x760]	00b211a9	MULPS XMM7,xmmword ptr [ESP + 0x760]	FUN_00b1f940
+0x760]	00be0610	MOVAPS xmmword ptr [ESP + 0x760],XMM1	FUN_00bdf1f0
+0x760]	00be09bd	MOVAPS XMM2,xmmword ptr [ESP + 0x760]	FUN_00bdf1f0
+0x760]	00be583c	MOVAPS xmmword ptr [ESP + 0x760],XMM1	FUN_00be4230
+0x760]	00be5bfd	MOVAPS XMM2,xmmword ptr [ESP + 0x760]	FUN_00be4230
+0x760]	00bfe378	MOVAPS xmmword ptr [ESP + 0x760],XMM0	FUN_00bfe1b0
+0x760]	00c004c2	MULPS XMM2,xmmword ptr [ESP + 0x760]	FUN_00bfe1b0
+0x760]	00f30cac	FSTP float ptr [EDX + 0x760]	FUN_00f30c70
+0x760]	00f47233	FLD float ptr [ECX + 0x760]	FUN_00f471f0
+0x760]	00fbd397	FSTP double ptr [ESI + 0x760]	FUN_00fbd0b0

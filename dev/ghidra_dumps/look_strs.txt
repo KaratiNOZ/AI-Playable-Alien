@@ -1,0 +1,67 @@
+
+##### "look_theta"
+string @ 012afcd4
+
+##### "look_phi"
+string @ 012afcc8
+
+##### "requiredTurn"
+string @ 012b0a54
+---- ref from 00675496 FUN_006753b0 @ 006753b0
+
+void __fastcall FUN_006753b0(int *param_1)
+
+{
+  int iVar1;
+  int iVar2;
+  
+  FUN_00403a00();
+  iVar1 = param_1[1];
+  if (*(int *)(*(int *)(iVar1 + 100) + 4) == 1) {
+    if (((char)param_1[0x19] != '\0') && (*(char *)(iVar1 + 0x2b4) == '\0')) {
+      FUN_006671b0();
+    }
+  }
+  else {
+    iVar2 = *(int *)(*(int *)(iVar1 + 100) + 4);
+    if ((((iVar2 == 3) || (iVar2 == 4)) || (iVar2 == 6)) || (iVar2 == 9)) {
+      if (*(char *)(iVar1 + 0x2d7) == '\0') {
+        if (((char)param_1[0x19] != '\0') && (*(char *)(iVar1 + 0x2d8) == '\0')) {
+          FUN_00674090();
+        }
+      }
+      else if (((char)param_1[0x19] == '\0') || (*(char *)(iVar1 + 0x2d8) != '\0')) {
+        FUN_006736a0();
+      }
+      else {
+        FUN_00674090();
+      }
+    }
+  }
+  (**(code **)(*param_1 + 0x4c))();
+  if (param_1[5] != 0) {
+    FUN_0068cae0();
+  }
+  FUN_00402cf0("turnComplete");
+  FUN_006980e0();
+  FUN_00402cf0();
+  FUN_0068c9a0();
+  if (param_1[0x18] == 1) {
+    FUN_00402f40();
+    FUN_0068c9a0();
+  }
+  return;
+}
+
+
+
+##### "remainingTurn"
+string @ 012aea8c
+
+##### "ActNPCLocomotionStandingTurn"
+string @ 012b0ac0
+
+##### "AT_SECONDARY_LOOK_AROUND"
+string @ 012ab1d4
+
+##### "AT_LOOK_AT"

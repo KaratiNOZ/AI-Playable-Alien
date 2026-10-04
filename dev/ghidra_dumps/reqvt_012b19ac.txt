@@ -1,0 +1,246 @@
+---- slot0 -> 0067f830 FUN_0067f830
+
+undefined4 * __thiscall FUN_0067f830(undefined4 *param_1,byte param_2)
+
+{
+  int *piVar1;
+  int iVar2;
+  int *piVar3;
+  
+  *param_1 = &PTR_FUN_012b197c;
+  param_1[4] = 0;
+  piVar3 = (int *)param_1[2];
+  if (piVar3 != (int *)0x0) {
+    piVar1 = piVar3 + 2;
+    LOCK();
+    iVar2 = *piVar1;
+    *piVar1 = *piVar1 + -1;
+    UNLOCK();
+    if (iVar2 == 1) {
+      (**(code **)(*piVar3 + 4))();
+    }
+  }
+  if ((param_2 & 1) != 0) {
+    if (DAT_0174b754 != (code *)0x0) {
+      (*DAT_0174b754)();
+      return param_1;
+    }
+    FUN_00a6b185(param_1);
+  }
+  return param_1;
+}
+
+
+---- slot1 -> 00ea70f0 FUN_00ea70f0
+
+undefined1 FUN_00ea70f0(void)
+
+{
+  return 1;
+}
+
+
+---- slot2 -> 006815a0 FUN_006815a0
+
+void __thiscall FUN_006815a0(int param_1,int param_2,undefined4 param_3,int param_4)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  int *piVar5;
+  undefined4 *puVar6;
+  undefined1 auStack_10 [4];
+  int *piStack_c;
+  undefined1 auStack_8 [4];
+  int *piStack_4;
+  
+  if (param_4 == 2) {
+    FUN_00776120();
+    *(undefined1 *)(param_1 + 0x34) = 0;
+    uVar1 = *(undefined4 *)(param_2 + 0x74);
+    uVar2 = *(undefined4 *)(param_2 + 0x78);
+    *(undefined4 *)(param_1 + 0x28) = *(undefined4 *)(param_2 + 0x70);
+    *(undefined4 *)(param_1 + 0x2c) = uVar1;
+    *(undefined4 *)(param_1 + 0x30) = uVar2;
+    piVar5 = (int *)FUN_00402080(auStack_10);
+    iVar4 = *piVar5;
+    if (piStack_c != (int *)0x0) {
+      piVar5 = piStack_c + 1;
+      LOCK();
+      iVar3 = *piVar5;
+      *piVar5 = *piVar5 + -1;
+      UNLOCK();
+      if (iVar3 == 1) {
+        (**(code **)*piStack_c)();
+        piVar5 = piStack_c + 2;
+        LOCK();
+        iVar3 = *piVar5;
+        *piVar5 = *piVar5 + -1;
+        UNLOCK();
+        if (iVar3 == 1) {
+          (**(code **)(*piStack_c + 4))();
+        }
+      }
+    }
+    if (iVar4 != 0) {
+      puVar6 = (undefined4 *)FUN_00402080(auStack_8);
+      puVar6 = (undefined4 *)*puVar6;
+      uVar1 = *(undefined4 *)(param_1 + 0x24);
+      *puVar6 = *(undefined4 *)(param_1 + 0x1c);
+      puVar6[1] = uVar1;
+      if (piStack_4 != (int *)0x0) {
+        piVar5 = piStack_4 + 1;
+        LOCK();
+        iVar4 = *piVar5;
+        *piVar5 = *piVar5 + -1;
+        UNLOCK();
+        if (iVar4 == 1) {
+          (**(code **)*piStack_4)();
+          piVar5 = piStack_4 + 2;
+          LOCK();
+          iVar4 = *piVar5;
+          *piVar5 = *piVar5 + -1;
+          UNLOCK();
+          if (iVar4 == 1) {
+            (**(code **)(*piStack_4 + 4))();
+          }
+        }
+      }
+    }
+  }
+  return;
+}
+
+
+---- slot3 -> 006813a0 FUN_006813a0
+
+void __thiscall FUN_006813a0(int param_1,int param_2)
+
+{
+  int *piVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  int iVar4;
+  int iVar5;
+  int *piVar6;
+  undefined4 *puVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  undefined1 auStack_8 [4];
+  int *piStack_4;
+  
+  if (*(char *)(param_1 + 0x34) != '\0') {
+    uVar2 = *(undefined4 *)(param_2 + 0x74);
+    uVar3 = *(undefined4 *)(param_2 + 0x78);
+    *(undefined4 *)(param_1 + 0x28) = *(undefined4 *)(param_2 + 0x70);
+    *(undefined4 *)(param_1 + 0x2c) = uVar2;
+    *(undefined4 *)(param_1 + 0x30) = uVar3;
+    piVar6 = (int *)FUN_00402080(auStack_8);
+    piVar1 = piStack_4;
+    iVar5 = *piVar6;
+    if (piStack_4 != (int *)0x0) {
+      piVar6 = piStack_4 + 1;
+      LOCK();
+      iVar4 = *piVar6;
+      *piVar6 = *piVar6 + -1;
+      UNLOCK();
+      if (iVar4 == 1) {
+        (**(code **)*piStack_4)();
+        piVar6 = piVar1 + 2;
+        LOCK();
+        iVar4 = *piVar6;
+        *piVar6 = *piVar6 + -1;
+        UNLOCK();
+        if (iVar4 == 1) {
+          (**(code **)(*piVar1 + 4))();
+        }
+      }
+    }
+    if (iVar5 != 0) {
+      puVar7 = (undefined4 *)FUN_00402080(auStack_8);
+      piVar1 = piStack_4;
+      puVar7 = (undefined4 *)*puVar7;
+      uVar2 = *(undefined4 *)(param_1 + 0x24);
+      *puVar7 = *(undefined4 *)(param_1 + 0x1c);
+      puVar7[1] = uVar2;
+      if (piStack_4 != (int *)0x0) {
+        piVar6 = piStack_4 + 1;
+        LOCK();
+        iVar5 = *piVar6;
+        *piVar6 = *piVar6 + -1;
+        UNLOCK();
+        if (iVar5 == 1) {
+          (**(code **)*piStack_4)();
+          piVar6 = piVar1 + 2;
+          LOCK();
+          iVar5 = *piVar6;
+          *piVar6 = *piVar6 + -1;
+          UNLOCK();
+          if (iVar5 == 1) {
+            (**(code **)(*piVar1 + 4))();
+          }
+        }
+      }
+    }
+    *(undefined1 *)(param_1 + 0x34) = 0;
+  }
+  piVar6 = (int *)FUN_00402080(auStack_8);
+  piVar1 = piStack_4;
+  iVar5 = *piVar6;
+  if (piStack_4 != (int *)0x0) {
+    piVar6 = piStack_4 + 1;
+    LOCK();
+    iVar4 = *piVar6;
+    *piVar6 = *piVar6 + -1;
+    UNLOCK();
+    if (iVar4 == 1) {
+      (**(code **)*piStack_4)();
+      piVar6 = piVar1 + 2;
+      LOCK();
+      iVar4 = *piVar6;
+      *piVar6 = *piVar6 + -1;
+      UNLOCK();
+      if (iVar4 == 1) {
+        (**(code **)(*piVar1 + 4))();
+      }
+    }
+  }
+  if (iVar5 != 0) {
+    fVar8 = *(float *)(param_1 + 0x28) - *(float *)(param_2 + 0x70);
+    fVar9 = *(float *)(param_1 + 0x2c) - *(float *)(param_2 + 0x74);
+    fVar10 = *(float *)(param_1 + 0x30) - *(float *)(param_2 + 0x78);
+    fVar9 = *(float *)(param_1 + 0x24) - SQRT(fVar9 * fVar9 + fVar8 * fVar8 + fVar10 * fVar10);
+    puVar7 = (undefined4 *)FUN_00402080(auStack_8);
+    fVar8 = *(float *)(param_1 + 0x24);
+    if ((fVar9 <= *(float *)(param_1 + 0x24)) && (fVar8 = 0.0, 0.0 <= fVar9)) {
+      fVar8 = fVar9;
+    }
+    puVar7 = (undefined4 *)*puVar7;
+    *puVar7 = *(undefined4 *)(param_1 + 0x1c);
+    puVar7[1] = fVar8;
+    if (piStack_4 != (int *)0x0) {
+      piVar1 = piStack_4 + 1;
+      LOCK();
+      iVar5 = *piVar1;
+      *piVar1 = *piVar1 + -1;
+      UNLOCK();
+      if (iVar5 == 1) {
+        (**(code **)*piStack_4)();
+        piVar1 = piStack_4 + 2;
+        LOCK();
+        iVar5 = *piVar1;
+        *piVar1 = *piVar1 + -1;
+        UNLOCK();
+        if (iVar5 == 1) {
+          (**(code **)(*piStack_4 + 4))();
+        }
+      }
+    }
+  }
+  return;
+}
+
+

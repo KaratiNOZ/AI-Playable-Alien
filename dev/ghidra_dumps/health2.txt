@@ -1,0 +1,15 @@
+
+##### "CHR_SET_HEALTH"
+string @ 011f80a4
+
+##### "GET_CHARACTER_HEALTH"
+string @ 011f80b4
+
+##### "CHR_SET_INVINCIBILITY"
+string @ 011f808c
+
+##### "CHR_SetHealth"
+string @ 013d6be8
+
+##### "CHR_GetHealth"
+string @ 013d6c28

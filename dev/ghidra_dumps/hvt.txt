@@ -1,0 +1,376 @@
+---- slot0 -> 006600a0 FUN_006600a0
+
+undefined4 __fastcall FUN_006600a0(undefined4 param_1)
+
+{
+  FUN_0065d180();
+  return param_1;
+}
+
+
+---- slot1 -> 00664010 FUN_00664010
+
+void FUN_00664010(int param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = FUN_00402b50("End_Action");
+  if (iVar1 == param_1) {
+    FUN_0065d610();
+  }
+  return;
+}
+
+
+---- slot2 -> 00676830 FUN_00676830
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00676830(int param_1,undefined4 param_2,undefined4 param_3)
+
+{
+  if ((_DAT_016b0e10 & 1) == 0) {
+    _DAT_016b0e10 = _DAT_016b0e10 | 1;
+    FUN_006671b0("start_convergence");
+    _atexit((_func_4879 *)&DAT_0119baa0);
+  }
+  if (DAT_016b0e08 != *(int *)(param_1 + 8)) {
+    FUN_006764e0(param_1,param_2,param_3);
+  }
+  return;
+}
+
+
+---- slot3 -> 00a69c90 FUN_00a69c90
+
+void FUN_00a69c90(void)
+
+{
+  return;
+}
+
+
+---- slot4 -> 00b4d3f0 FUN_00b4d3f0
+
+void FUN_00b4d3f0(void)
+
+{
+  return;
+}
+
+
+---- slot5 -> 00ea70f0 FUN_00ea70f0
+
+undefined1 FUN_00ea70f0(void)
+
+{
+  return 1;
+}
+
+
+---- slot6 -> 00401440 FUN_00401440
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+float10 FUN_00401440(void)
+
+{
+  return (float10)_DAT_012ab3e4;
+}
+
+
+---- slot7 -> 004014b0 FUN_004014b0
+
+float10 FUN_004014b0(void)
+
+{
+  return (float10)DAT_011bb27c;
+}
+
+
+---- slot8 -> 0065d340 FUN_0065d340
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void __fastcall FUN_0065d340(int param_1)
+
+{
+  char cVar1;
+  int iVar2;
+  int *piVar3;
+  float *pfVar4;
+  float *pfVar5;
+  float10 fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  undefined4 uStack_6c;
+  float fStack_60;
+  undefined4 uStack_5c;
+  float afStack_54 [4];
+  float fStack_44;
+  float fStack_3c;
+  float fStack_34;
+  float fStack_2c;
+  float fStack_20;
+  undefined4 uStack_1c;
+  
+  fVar7 = (float)DAT_016410a8 - *(float *)(param_1 + 0x78);
+  if (DAT_011bbd84 < fVar7) {
+    iVar2 = FUN_006545c0(param_1 + 0x6c);
+    if (((*(char *)(*(int *)(iVar2 + 100) + 0x1c) == '\0') ||
+        (*(char *)(*(int *)(iVar2 + 100) + 0x1f) == '\0')) ||
+       (cVar1 = FUN_0078b330(), cVar1 == '\0')) {
+      *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | 6;
+      return;
+    }
+  }
+  else {
+    if ((*(int *)(param_1 + 100) == 0) &&
+       (*(float *)(param_1 + 0x8c) <= fVar7 && fVar7 != *(float *)(param_1 + 0x8c))) {
+      *(undefined4 *)(param_1 + 100) = 1;
+      FUN_0065d2e0();
+    }
+    if ((*(char *)(param_1 + 0x88) != '\0') &&
+       (piVar3 = (int *)FUN_006545c0(param_1 + 0x6c), piVar3 != (int *)0x0)) {
+      (**(code **)(*piVar3 + 0x50))();
+      (**(code **)(*piVar3 + 0x48))(&fStack_60);
+      if ((char)piVar3[0xac] != '\0') {
+        fStack_60 = fStack_60 - DAT_011bb27c;
+      }
+      pfVar4 = (float *)FUN_00428780();
+      pfVar5 = afStack_54;
+      for (iVar2 = 0x10; iVar2 != 0; iVar2 = iVar2 + -1) {
+        *pfVar5 = *pfVar4;
+        pfVar4 = pfVar4 + 1;
+        pfVar5 = pfVar5 + 1;
+      }
+      fVar6 = (float10)FUN_004012f0(uStack_6c);
+      fVar7 = (float)fVar6;
+      fVar8 = fVar7;
+      FUN_00a6bf39();
+      FUN_00a6bde2();
+      fVar10 = DAT_011bed34;
+      fVar12 = afStack_54[2] * fVar8;
+      afStack_54[2] = afStack_54[2] * fVar7 - afStack_54[0] * fVar8;
+      fVar13 = fStack_3c * fVar8;
+      fStack_3c = fStack_3c * fVar7 - fStack_44 * fVar8;
+      fStack_20 = fStack_60;
+      uStack_1c = uStack_5c;
+      fVar11 = fStack_34 * fVar8;
+      fVar9 = (float)DAT_016410c0 + *(float *)(param_1 + 0x90);
+      fStack_34 = fStack_2c * fVar8 + fStack_34 * fVar7;
+      fStack_2c = fStack_2c * fVar7 - fVar11;
+      *(float *)(param_1 + 0x90) = fVar9;
+      if (fVar10 < fVar9) {
+        *(float *)(param_1 + 0x90) = fVar10;
+      }
+      afStack_54[0] = fVar12 + afStack_54[0] * fVar7;
+      fStack_44 = fVar13 + fStack_44 * fVar7;
+      FUN_00689190(1,1,0,2,_DAT_012ab52c,_DAT_012ab52c);
+      fVar10 = DAT_011bed34;
+      fVar7 = *(float *)(param_1 + 0x90);
+      fVar8 = DAT_011bed34;
+      if ((fVar7 <= DAT_011bed34) && (fVar8 = fVar7, fVar7 < 0.0)) {
+        fVar8 = 0.0;
+      }
+      *(float *)(*(int *)(param_1 + 4) + 0x1004) = fVar8;
+      fVar7 = *(float *)(param_1 + 0x90);
+      if ((fVar7 <= fVar10) && (fVar10 = fVar7, fVar7 < 0.0)) {
+        fVar10 = 0.0;
+      }
+      *(float *)(*(int *)(param_1 + 4) + 0x1008) = fVar10;
+      FUN_006894c0(afStack_54);
+    }
+  }
+  return;
+}
+
+
+---- slot9 -> 00a69c90 FUN_00a69c90
+---- slot10 -> 00b4d3f0 FUN_00b4d3f0
+---- slot11 -> 00b4d3f0 FUN_00b4d3f0
+---- slot12 -> 00b4d3f0 FUN_00b4d3f0
+---- slot13 -> 004016e0 FUN_004016e0
+
+void __fastcall FUN_004016e0(int param_1)
+
+{
+  if ((*(byte *)(param_1 + 8) & 6) == 0) {
+    *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | 0x10;
+  }
+  *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | 0x26;
+  return;
+}
+
+
+---- slot14 -> 00648bb0 FUN_00648bb0
+
+void FUN_00648bb0(void)
+
+{
+  return;
+}
+
+
+---- slot15 -> 006508c0 FUN_006508c0
+
+undefined1 FUN_006508c0(void)
+
+{
+  return 0;
+}
+
+
+---- slot16 -> 006a6f80 FUN_006a6f80
+
+float10 FUN_006a6f80(void)
+
+{
+  return (float10)0;
+}
+
+
+---- slot17 -> 00401450 FUN_00401450
+
+uint FUN_00401450(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
+
+{
+  *param_2 = 0;
+  *param_3 = 0;
+  return (uint)param_2 & 0xffffff00;
+}
+
+
+---- slot18 -> 006508c0 FUN_006508c0
+---- slot19 -> 00401470 FUN_00401470
+
+void FUN_00401470(undefined4 param_1,undefined4 param_2,undefined4 param_3)
+
+{
+  undefined1 auStack_18 [8];
+  undefined4 local_10;
+  undefined4 uStack_8;
+  undefined1 *local_4;
+  
+  uStack_8 = 0;
+  local_4 = auStack_18;
+  local_10 = param_3;
+  FUN_0064aae0();
+  return;
+}
+
+
+---- slot20 -> 00401490 FUN_00401490
+
+void FUN_00401490(undefined4 param_1)
+
+{
+  FUN_0064ab20(0,param_1);
+  return;
+}
+
+
+---- slot21 -> 0064ab50 FUN_0064ab50
+
+void __fastcall FUN_0064ab50(int param_1)
+
+{
+  if (*(int *)(param_1 + 0x14) != 0) {
+    if ((*(int *)(param_1 + 4) != 0) && (*(int *)(param_1 + 4) != -0x3f0)) {
+      FUN_006a9800(*(int *)(param_1 + 0x14));
+    }
+    *(undefined4 *)(param_1 + 0x14) = 0;
+  }
+  return;
+}
+
+
+---- slot22 -> 00b4d3f0 FUN_00b4d3f0
+---- slot23 -> 00b4d3f0 FUN_00b4d3f0
+---- slot24 -> 0066fff0 FUN_0066fff0
+
+void __fastcall FUN_0066fff0(int *param_1)
+
+{
+  char cVar1;
+  int iVar2;
+  float fVar3;
+  
+  *(ushort *)(param_1 + 0xc) = *(ushort *)(param_1 + 0xc) | 4;
+  *(byte *)(param_1 + 0x21) = *(byte *)(param_1 + 0x21) & 0xfe;
+  *(undefined1 *)((int)param_1 + 0x85) = 0;
+  *(undefined1 *)(param_1 + 0x22) = 0;
+  param_1[0x24] = 0;
+  *(undefined1 *)(param_1[1] + 0x2a6) = 1;
+  cVar1 = FUN_0065fb80();
+  if (cVar1 != '\0') {
+    FUN_004039a0();
+    (**(code **)(*param_1 + 0x4c))();
+    param_1[0x19] = 0;
+    param_1[0x18] = 0;
+    iVar2 = FUN_006545c0();
+    if ((iVar2 != 0) && (*(char *)(iVar2 + 0x3e3a) == '\0')) {
+      param_1[0x18] = 1;
+    }
+    if (param_1[5] != 0) {
+      FUN_0068cae0();
+    }
+    FUN_00402b50("End_Action");
+    FUN_006980e0();
+    FUN_006671b0();
+    FUN_0068c9a0();
+    param_1[0x23] = 0;
+    fVar3 = DAT_011bb27c;
+    if (iVar2 != 0) {
+      if (*(char *)(*(int *)(iVar2 + 100) + 0x1c) == '\0') {
+        FUN_0064ec60();
+      }
+      else {
+        FUN_006dcc50();
+        (**(code **)(*(int *)param_1[1] + 0x1c))();
+        iVar2 = FUN_006d2d80();
+        fVar3 = *(float *)(iVar2 + 0x2c);
+      }
+      param_1[0x23] = (int)((float)param_1[0x23] + fVar3);
+    }
+    if ((param_1[1] != -0x3f0) && (*(int *)(param_1[1] + 0x714) != 0)) {
+      FUN_0068d820();
+    }
+  }
+  return;
+}
+
+
+---- slot25 -> 0064a7c0 FUN_0064a7c0
+
+void __thiscall FUN_0064a7c0(int param_1,undefined4 *param_2)
+
+{
+  int iVar1;
+  
+  iVar1 = *(int *)(param_1 + 4);
+  *param_2 = *(undefined4 *)(iVar1 + 0x70);
+  param_2[1] = *(undefined4 *)(iVar1 + 0x74);
+  param_2[2] = *(undefined4 *)(iVar1 + 0x78);
+  return;
+}
+
+
+---- slot26 -> 00b4d3f0 FUN_00b4d3f0
+---- slot27 -> 00d0fb70 FUN_00d0fb70
+
+undefined4 FUN_00d0fb70(void)
+
+{
+  return 0;
+}
+
+
+---- slot28 -> 00d0fb70 FUN_00d0fb70
+---- slot29 -> 00d0fb70 FUN_00d0fb70

@@ -1,0 +1,19 @@
+---- FUN_0078b380 @ 0078b380 (callers: 12)
+
+undefined4 __fastcall FUN_0078b380(undefined4 *param_1)
+
+{
+  char cVar1;
+  int iVar2;
+  
+  iVar2 = (**(code **)(*(int *)*param_1 + 0x1c))();
+  if (*(char *)(iVar2 + 0x2cf4) != '\0') {
+    cVar1 = FUN_00679860();
+    if ((cVar1 == '\0') || (*(int *)(iVar2 + 0x2f90) != 3)) {
+      return 0;
+    }
+  }
+  return 1;
+}
+
+

@@ -1,0 +1,211 @@
+---- FUN_00606950 @ 00606950 (callers: 0)
+
+undefined4 FUN_00606950(undefined4 param_1)
+
+{
+  float10 fVar1;
+  undefined2 *puVar2;
+  undefined2 local_20;
+  byte local_1e;
+  float local_1c;
+  float local_18;
+  float local_14;
+  float local_10;
+  float local_c;
+  float local_8;
+  float local_4;
+  
+  local_1c = 0.0;
+  local_18 = 0.0;
+  local_20 = 100;
+  local_1e = 2;
+  local_14 = (float)DAT_011bed34;
+  local_10 = (float)DAT_011bed34;
+  local_c = (float)DAT_011bed34;
+  local_8 = (float)DAT_011bed34;
+  local_4 = (float)DAT_011bed34;
+  fVar1 = (float10)FUN_008f3e90(param_1);
+  local_18 = (float)fVar1;
+  fVar1 = (float10)FUN_008f3ec0(param_1);
+  local_14 = (float)fVar1;
+  fVar1 = (float10)FUN_008f3ef0(param_1);
+  local_10 = (float)fVar1;
+  fVar1 = (float10)FUN_008f3f20(param_1);
+  local_c = (float)fVar1;
+  fVar1 = (float10)FUN_008f3f80(param_1);
+  local_4 = (float)fVar1;
+  fVar1 = (float10)FUN_008f3f50(param_1);
+  local_8 = (float)fVar1;
+  fVar1 = (float10)FUN_008f3d70(param_1);
+  local_1c = (float)fVar1;
+  local_20 = FUN_008f3d10(param_1);
+  local_1e = FUN_008f3d40(param_1);
+  puVar2 = &local_20;
+  if ((*(int *)(DAT_0174ef40 + 0xbc) == 2) &&
+     (*(char *)(*(int *)(DAT_016f0c88 + 0x58) + 0x221) == '\0')) {
+    local_1e = local_1e | 4;
+  }
+  FUN_009f19c0(&local_20);
+  FUN_00a00cd0(puVar2);
+  return 1;
+}
+
+
+---- FUN_00607590 @ 00607590 (callers: 0)
+
+undefined4 FUN_00607590(undefined4 param_1)
+
+{
+  float10 fVar1;
+  undefined2 *puVar2;
+  undefined2 local_10;
+  byte local_e;
+  float local_c;
+  float local_8;
+  float local_4;
+  
+  local_10 = 100;
+  local_e = 2;
+  local_c = 0.0;
+  local_8 = (float)DAT_011bed34;
+  local_4 = 0.0;
+  fVar1 = (float10)FUN_008f3d70(param_1);
+  local_c = (float)fVar1;
+  local_10 = FUN_008f3d10(param_1);
+  local_e = FUN_008f3d40(param_1);
+  fVar1 = (float10)FUN_008f45e0(param_1);
+  local_8 = (float)fVar1;
+  fVar1 = (float10)FUN_008f4610(param_1);
+  local_4 = (float)fVar1;
+  puVar2 = &local_10;
+  if ((*(int *)(DAT_0174ef40 + 0xbc) == 2) &&
+     (*(char *)(*(int *)(DAT_016f0c88 + 0x58) + 0x221) == '\0')) {
+    local_e = local_e | 4;
+  }
+  FUN_009f19c0(&local_10);
+  FUN_00a00dc0(puVar2);
+  return 1;
+}
+
+
+---- FUN_00607230 @ 00607230 (callers: 0)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+undefined4 FUN_00607230(undefined4 param_1)
+
+{
+  char cVar1;
+  float10 fVar2;
+  undefined2 *puVar3;
+  undefined2 local_38;
+  byte local_36;
+  float local_34;
+  float local_30;
+  float local_2c;
+  float local_28;
+  float local_24;
+  float local_20;
+  float local_1c;
+  float local_18;
+  float local_14;
+  float local_10;
+  float local_c;
+  float local_8;
+  float local_4;
+  
+  local_34 = 0.0;
+  local_30 = (float)DAT_013e4628;
+  local_24 = (float)DAT_013e4628;
+  local_20 = (float)_DAT_012f3334;
+  local_1c = (float)DAT_013e4628;
+  local_10 = (float)DAT_013e4628;
+  local_38 = 100;
+  local_36 = 2;
+  local_2c = (float)_DAT_011bbf78;
+  local_28 = (float)DAT_011bc084;
+  local_18 = (float)DAT_011bbce8;
+  local_14 = (float)_DAT_011bbf78;
+  local_c = (float)_DAT_011bbf78;
+  local_8 = (float)DAT_011bc084;
+  local_4 = (float)DAT_01296234;
+  fVar2 = (float10)FUN_008f3d70(param_1);
+  local_34 = (float)fVar2;
+  local_38 = FUN_008f3d10(param_1);
+  local_36 = FUN_008f3d40(param_1);
+  fVar2 = (float10)FUN_008f4490(param_1);
+  local_4 = (float)fVar2;
+  fVar2 = (float10)FUN_008f4370(param_1);
+  local_30 = (float)fVar2;
+  fVar2 = (float10)FUN_008f43a0(param_1);
+  local_2c = (float)fVar2;
+  fVar2 = (float10)FUN_008f43d0(param_1);
+  local_28 = (float)fVar2;
+  fVar2 = (float10)FUN_008f4400(param_1);
+  local_24 = (float)fVar2;
+  fVar2 = (float10)FUN_008f4430(param_1);
+  local_20 = (float)fVar2;
+  fVar2 = (float10)FUN_008f4460(param_1);
+  local_1c = (float)fVar2;
+  cVar1 = FUN_008f44c0(param_1);
+  if (cVar1 == '\0') {
+    local_10 = local_30;
+    local_c = local_2c;
+    local_8 = local_28;
+  }
+  else {
+    fVar2 = (float10)FUN_008f4550(param_1);
+    local_10 = (float)fVar2;
+    fVar2 = (float10)FUN_008f4580(param_1);
+    local_c = (float)fVar2;
+    fVar2 = (float10)FUN_008f45b0(param_1);
+    local_8 = (float)fVar2;
+  }
+  fVar2 = (float10)FUN_008f4520(param_1);
+  local_14 = (float)fVar2;
+  fVar2 = (float10)FUN_008f44f0(param_1);
+  local_18 = (float)fVar2;
+  puVar3 = &local_38;
+  if ((*(int *)(DAT_0174ef40 + 0xbc) == 2) &&
+     (*(char *)(*(int *)(DAT_016f0c88 + 0x58) + 0x221) == '\0')) {
+    local_36 = local_36 | 4;
+  }
+  FUN_009f19c0(&local_38);
+  FUN_00a00d90(puVar3);
+  return 1;
+}
+
+
+---- FUN_00610f00 @ 00610f00 (callers: 0)
+
+undefined4 FUN_00610f00(undefined4 param_1)
+
+{
+  float10 fVar1;
+  undefined2 *puVar2;
+  undefined2 local_c;
+  byte local_a;
+  float local_8;
+  float local_4;
+  
+  local_c = 100;
+  local_a = 2;
+  local_8 = 0.0;
+  local_4 = 0.0;
+  fVar1 = (float10)FUN_008f3d70(param_1);
+  local_8 = (float)fVar1;
+  local_c = FUN_008f3d10(param_1);
+  local_a = FUN_008f3d40(param_1);
+  fVar1 = (float10)FUN_008f5930(param_1);
+  local_4 = (float)fVar1;
+  puVar2 = &local_c;
+  if ((*(int *)(DAT_0174ef40 + 0xbc) == 2) &&
+     (*(char *)(*(int *)(DAT_016f0c88 + 0x58) + 0x221) == '\0')) {
+    local_a = local_a | 4;
+  }
+  FUN_009f19c0(&local_c);
+  FUN_00a00f40(puVar2);
+  return 1;
+}
+
+

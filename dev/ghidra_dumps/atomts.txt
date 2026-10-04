@@ -1,0 +1,3 @@
+
+##### "ATOMIC_TRIGGER_SOUND"
+string @ 012c6980

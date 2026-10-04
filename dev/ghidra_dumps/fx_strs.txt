@@ -1,0 +1,20 @@
+
+##### "drool"
+
+##### "Drool"
+
+##### "DROOL"
+
+##### "breath"
+
+##### "Breath"
+string @ 013d6840
+string @ 013d8320
+
+##### "BREATH"
+string @ 011f7f37
+string @ 012f4433
+
+##### "saliva"
+
+##### "Saliva"

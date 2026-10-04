@@ -1,0 +1,52 @@
+
+##### callers of 00773280
+---- FUN_007ddae0 @ 007ddae0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_007ddae0(void)
+
+{
+  double dVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  uint uVar5;
+  LARGE_INTEGER local_8;
+  
+  FUN_00a2a3f0();
+  FUN_00a2a5c0();
+  QueryPerformanceCounter(&local_8);
+  uVar3 = local_8.s.HighPart;
+  uVar2 = local_8.s.LowPart;
+  if ((DAT_017076c0 & 1) == 0) {
+    DAT_017076c0 = DAT_017076c0 | 1;
+    _DAT_017076b8 = local_8.s.LowPart;
+    _DAT_017076bc = local_8.s.HighPart;
+  }
+  if ((DAT_017076c0 & 2) == 0) {
+    DAT_017076c0 = DAT_017076c0 | 2;
+    QueryPerformanceFrequency(&local_8);
+    uVar4 = local_8.s.HighPart;
+    local_8.s = local_8.s & 0x7fffffffffffffff;
+    _DAT_017076b0 = (double)(longlong)local_8;
+    local_8 = (LARGE_INTEGER)((ulonglong)(uVar4 & 0x80000000) << 0x20);
+    _DAT_017076b0 = -(double)(longlong)local_8 + _DAT_017076b0;
+  }
+  uVar5 = (uVar3 - _DAT_017076bc) - (uint)((uint)uVar2 < _DAT_017076b8);
+  local_8 = (LARGE_INTEGER)(CONCAT44(uVar5,uVar2 - _DAT_017076b8) & 0x7fffffffffffffff);
+  dVar1 = (double)(longlong)local_8;
+  local_8 = (LARGE_INTEGER)((ulonglong)(uVar5 & 0x80000000) << 0x20);
+  local_8.QuadPart = (-(double)(longlong)local_8 + dVar1) / _DAT_017076b0;
+  if ((*(uint *)(DAT_016f194c + 4) & DAT_012f3014) == 0) {
+    FUN_00773050(local_8.QuadPart,0);
+    return;
+  }
+  FUN_00773280(local_8.QuadPart,0);
+  return;
+}
+
+
+
+##### callers of 00773050
+---- FUN_007ddae0 @ 007ddae0

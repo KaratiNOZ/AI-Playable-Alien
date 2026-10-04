@@ -1,0 +1,35 @@
+---- FUN_00657860 @ 00657860 (callers: 2)
+
+void __thiscall FUN_00657860(int *param_1,int param_2)
+
+{
+  code *pcVar1;
+  int *piVar2;
+  undefined1 unaff_retaddr;
+  
+  *(undefined1 *)((int)param_1 + 0x1b) = *(undefined1 *)((int)param_1 + 0x1a);
+  piVar2 = (int *)FUN_0078aaa0();
+  if (piVar2 != (int *)0x0) {
+    (**(code **)(*piVar2 + 0x10))(*(undefined1 *)((int)param_1 + 0x1a));
+  }
+  (**(code **)*param_1)(1);
+  *(char *)((int)param_1 + 0x19) = *(char *)((int)param_1 + 0x19) + '\x01';
+  *(byte *)(param_1 + 6) = *(byte *)(param_1 + 6) & 0xaf;
+  *(byte *)(param_1 + 2) = *(byte *)(param_1 + 2) & 3 | 0x20;
+  *(undefined2 *)(param_1 + 0xc) = 0;
+  *param_1 = (int)&PTR_FUN_012ac040;
+  param_1[3] = 0;
+  param_1[4] = 0;
+  param_1[5] = 0;
+  *(undefined1 *)((int)param_1 + 0x1a) = 0x39;
+  *(byte *)((int)param_1 + 0x41) = *(byte *)((int)param_1 + 0x41) & 0xfe;
+  *(undefined1 *)(param_1 + 0x10) = 0x28;
+  *(byte *)(param_1 + 2) = *(byte *)(param_1 + 2) & 0xfb | 2;
+  *(undefined1 *)(param_1 + 0x19) = unaff_retaddr;
+  pcVar1 = *(code **)(*param_1 + 0x60);
+  param_1[0x18] = param_2;
+  (*pcVar1)();
+  return;
+}
+
+

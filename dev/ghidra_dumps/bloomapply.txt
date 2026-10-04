@@ -1,0 +1,110 @@
+---- FUN_0061dc50 @ 0061dc50 (callers: 0)
+
+undefined4 FUN_0061dc50(undefined4 param_1)
+
+{
+  float10 fVar1;
+  undefined2 *puVar2;
+  undefined2 local_1c;
+  byte local_1a;
+  float local_18;
+  float local_14;
+  float local_10;
+  float local_c;
+  float local_8;
+  float local_4;
+  
+  local_14 = (float)DAT_011bed34;
+  local_c = (float)DAT_011bed34;
+  local_8 = (float)DAT_011bed34;
+  local_1c = 100;
+  local_1a = 2;
+  local_18 = 0.0;
+  local_10 = 0.0;
+  local_4 = (float)DAT_011c6e90;
+  fVar1 = (float10)FUN_008f3d70(param_1);
+  local_18 = (float)fVar1;
+  local_1c = FUN_008f3d10(param_1);
+  local_1a = FUN_008f3d40(param_1);
+  fVar1 = (float10)FUN_008f3da0(param_1);
+  local_14 = (float)fVar1;
+  fVar1 = (float10)FUN_008f3dd0(param_1);
+  local_10 = (float)fVar1;
+  fVar1 = (float10)FUN_008f3e00(param_1);
+  local_c = (float)fVar1;
+  fVar1 = (float10)FUN_008f3e60(param_1);
+  local_4 = (float)fVar1;
+  fVar1 = (float10)FUN_008f3e30(param_1);
+  local_8 = (float)fVar1;
+  puVar2 = &local_1c;
+  if ((*(int *)(DAT_0174ef40 + 0xbc) == 2) &&
+     (*(char *)(*(int *)(DAT_016f0c88 + 0x58) + 0x221) == '\0')) {
+    local_1a = local_1a | 4;
+  }
+  FUN_009f19c0(&local_1c);
+  FUN_00a00d00(puVar2);
+  return 1;
+}
+
+
+---- FUN_00606f50 @ 00606f50 (callers: 0)
+
+undefined4 FUN_00606f50(undefined4 param_1)
+
+{
+  float10 fVar1;
+  undefined2 *puVar2;
+  undefined2 local_28;
+  byte local_26;
+  float local_24;
+  float local_20;
+  float local_1c;
+  float local_18;
+  float local_14;
+  float local_10;
+  float local_c;
+  float local_8;
+  float local_4;
+  
+  local_24 = 0.0;
+  local_20 = (float)DAT_011bed34;
+  local_1c = (float)DAT_011bed34;
+  local_18 = (float)DAT_011bed34;
+  local_14 = (float)DAT_01295d4c;
+  local_c = (float)DAT_01295d4c;
+  local_28 = 100;
+  local_26 = 2;
+  local_10 = (float)DAT_01295d50;
+  local_8 = (float)DAT_01295d50;
+  local_4 = (float)DAT_011bbd8c;
+  fVar1 = (float10)FUN_008f3d70(param_1);
+  local_24 = (float)fVar1;
+  local_28 = FUN_008f3d10(param_1);
+  local_26 = FUN_008f3d40(param_1);
+  fVar1 = (float10)FUN_008f41f0(param_1);
+  local_20 = (float)fVar1;
+  fVar1 = (float10)FUN_008f4220(param_1);
+  local_18 = (float)fVar1;
+  fVar1 = (float10)FUN_008f4250(param_1);
+  local_c = (float)fVar1;
+  fVar1 = (float10)FUN_008f4280(param_1);
+  local_8 = (float)fVar1;
+  fVar1 = (float10)FUN_008f42b0(param_1);
+  local_1c = (float)fVar1;
+  fVar1 = (float10)FUN_008f42e0(param_1);
+  local_14 = (float)fVar1;
+  fVar1 = (float10)FUN_008f4310(param_1);
+  local_10 = (float)fVar1;
+  fVar1 = (float10)FUN_008f4340(param_1);
+  local_4 = (float)fVar1;
+  puVar2 = &local_28;
+  if ((*(int *)(DAT_0174ef40 + 0xbc) == 2) &&
+     (*(char *)(*(int *)(DAT_016f0c88 + 0x58) + 0x221) == '\0')) {
+    local_26 = local_26 | 4;
+  }
+  FUN_009f19c0(&local_28);
+  FUN_00a00d60(puVar2);
+  return 1;
+}
+
+

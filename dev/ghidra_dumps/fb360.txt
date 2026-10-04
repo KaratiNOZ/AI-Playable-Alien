@@ -1,0 +1,49 @@
+---- FUN_009fb360 @ 009fb360 (callers: 2)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_009fb360(int param_1,undefined4 *param_2)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  float fVar3;
+  float fVar4;
+  undefined4 local_b0 [6];
+  float local_98;
+  float local_8c;
+  float local_60;
+  float local_5c;
+  undefined1 local_50 [76];
+  
+  puVar2 = local_b0;
+  for (iVar1 = 0x18; iVar1 != 0; iVar1 = iVar1 + -1) {
+    *puVar2 = *param_2;
+    param_2 = param_2 + 1;
+    puVar2 = puVar2 + 1;
+  }
+  fVar3 = DAT_011bed34;
+  if ((local_8c < DAT_011bed34) && (fVar3 = local_8c, local_8c < DAT_011bb280)) {
+    fVar3 = DAT_011bb280;
+  }
+  FUN_00a6da16();
+  fVar4 = _DAT_0142c12c;
+  if (_DAT_0142c12c < local_98) {
+    fVar4 = local_98;
+  }
+  if (local_60 < DAT_012b3f20) {
+    local_60 = DAT_012b3f20;
+  }
+  FUN_0097aa00(local_50,fVar4,local_60,fVar3 * _DAT_011c3440 * DAT_013e3d28,DAT_011bed34 / local_5c)
+  ;
+  FUN_004bc550(local_b0);
+  FUN_0097a7d0(DAT_017583e4,local_b0,local_50);
+  DAT_01758100 = *(undefined4 *)(param_1 + 0x30);
+  DAT_01758104 = *(undefined4 *)(param_1 + 0x34);
+  DAT_01758108 = *(undefined4 *)(param_1 + 0x38);
+  uRam0175810c = 0;
+  FUN_0097a100(DAT_017583e4,1);
+  return;
+}
+
+

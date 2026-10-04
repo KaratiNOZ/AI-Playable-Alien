@@ -1,0 +1,43 @@
+
+##### "TtStepDelta"
+string @ 014293f0
+---- ref from 00bb735e FUN_00bb7340 @ 00bb7340
+
+void __thiscall FUN_00bb7340(int param_1,undefined4 param_2)
+
+{
+  undefined4 *puVar1;
+  undefined8 uVar2;
+  LPVOID pvVar3;
+  int iVar4;
+  
+  pvVar3 = TlsGetValue(DAT_01be6130);
+  puVar1 = *(undefined4 **)((int)pvVar3 + 4);
+  if (puVar1 < *(undefined4 **)((int)pvVar3 + 0xc)) {
+    *puVar1 = "TtStepDelta";
+    uVar2 = rdtsc();
+    puVar1[1] = (int)uVar2;
+    *(undefined4 **)((int)pvVar3 + 4) = puVar1 + 3;
+  }
+  iVar4 = 0;
+  if (0 < *(int *)(param_1 + 0x14)) {
+    do {
+      (**(code **)(**(int **)(*(int *)(param_1 + 0x10) + iVar4 * 4) + 0xc))(param_2);
+      iVar4 = iVar4 + 1;
+    } while (iVar4 < *(int *)(param_1 + 0x14));
+  }
+  pvVar3 = TlsGetValue(DAT_01be6130);
+  puVar1 = *(undefined4 **)((int)pvVar3 + 4);
+  if (puVar1 < *(undefined4 **)((int)pvVar3 + 0xc)) {
+    *puVar1 = &DAT_01404a08;
+    uVar2 = rdtsc();
+    puVar1[1] = (int)uVar2;
+    *(undefined4 **)((int)pvVar3 + 4) = puVar1 + 3;
+  }
+  return;
+}
+
+
+
+##### "physicsDeltaTime"
+string @ 01418540

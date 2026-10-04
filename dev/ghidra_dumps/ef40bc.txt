@@ -1,0 +1,14 @@
+00606a10  CMP dword ptr [ECX + 0xbc],0x2   in FUN_00606950
+00606d74  CMP dword ptr [ECX + 0xbc],0x2   in FUN_00606bf0
+0060704c  CMP dword ptr [ECX + 0xbc],0x2   in FUN_00606f50
+006073b6  CMP dword ptr [ECX + 0xbc],0x2   in FUN_00607230
+00607608  CMP dword ptr [ECX + 0xbc],0x2   in FUN_00607590
+00607896  CMP dword ptr [ECX + 0xbc],0x2   in FUN_006077f0
+00607ace  CMP dword ptr [ECX + 0xbc],0x2   in FUN_00607a70
+00607d76  CMP dword ptr [ECX + 0xbc],0x2   in FUN_00607cb0
+0061038e  CMP dword ptr [ECX + 0xbc],0x2   in FUN_00610330
+00610b7f  CMP dword ptr [EAX + 0xbc],0x2   in FUN_00610b20
+00610f5e  CMP dword ptr [ECX + 0xbc],0x2   in FUN_00610f00
+006126f8  CMP dword ptr [ECX + 0xbc],0x2   in FUN_00612680
+0061dd06  CMP dword ptr [ECX + 0xbc],0x2   in FUN_0061dc50
+0063c3bb  CMP dword ptr [ECX + 0xbc],EBX   in ?

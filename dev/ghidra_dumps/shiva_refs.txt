@@ -1,0 +1,9 @@
+
+##### "UseShivaArms"
+string @ 013d6464
+
+##### "CharacterShivaArms"
+string @ 013d5e14
+
+##### "CHARACTER_SHIVA_ARMS"
+string @ 011f82b4

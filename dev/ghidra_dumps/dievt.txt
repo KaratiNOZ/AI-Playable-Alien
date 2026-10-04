@@ -1,0 +1,4 @@
+0131cffc  CATHODE::CMD_Die::vftable
+013212bc  CATHODE::CMD_Ragdoll::vftable
+013241fc  CATHODE::CHR_TakeDamage::vftable
+013257dc  CATHODE::CHR_DeathMonitor::vftable

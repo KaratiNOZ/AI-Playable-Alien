@@ -1,0 +1,239 @@
+---- slot0 -> 00658e40 FUN_00658e40
+
+undefined4 __fastcall FUN_00658e40(undefined4 param_1)
+
+{
+  FUN_00651500();
+  return param_1;
+}
+
+
+---- slot1 -> 00b4d3f0 FUN_00b4d3f0
+
+void FUN_00b4d3f0(void)
+
+{
+  return;
+}
+
+
+---- slot2 -> 00648bb0 FUN_00648bb0
+
+void FUN_00648bb0(void)
+
+{
+  return;
+}
+
+
+---- slot3 -> 00a69c90 FUN_00a69c90
+
+void FUN_00a69c90(void)
+
+{
+  return;
+}
+
+
+---- slot4 -> 00b4d3f0 FUN_00b4d3f0
+---- slot5 -> 00ea70f0 FUN_00ea70f0
+
+undefined1 FUN_00ea70f0(void)
+
+{
+  return 1;
+}
+
+
+---- slot6 -> 00401440 FUN_00401440
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+float10 FUN_00401440(void)
+
+{
+  return (float10)_DAT_012ab3e4;
+}
+
+
+---- slot7 -> 004014b0 FUN_004014b0
+
+float10 FUN_004014b0(void)
+
+{
+  return (float10)DAT_011bb27c;
+}
+
+
+---- slot8 -> 00651600 FUN_00651600
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void __fastcall FUN_00651600(int param_1)
+
+{
+  if (*(char *)(param_1 + 0x68) != '\0') {
+    FUN_0064b340();
+  }
+  if ((*(char *)(param_1 + 0x69) == '\0') &&
+     (_DAT_011c6824 < (float)DAT_016410a8 - *(float *)(param_1 + 0x50))) {
+    FUN_0064b270();
+    FUN_0079a3c0(2);
+  }
+  return;
+}
+
+
+---- slot9 -> 00a69c90 FUN_00a69c90
+---- slot10 -> 00b4d3f0 FUN_00b4d3f0
+---- slot11 -> 00b4d3f0 FUN_00b4d3f0
+---- slot12 -> 00b4d3f0 FUN_00b4d3f0
+---- slot13 -> 004016e0 FUN_004016e0
+
+void __fastcall FUN_004016e0(int param_1)
+
+{
+  if ((*(byte *)(param_1 + 8) & 6) == 0) {
+    *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | 0x10;
+  }
+  *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | 0x26;
+  return;
+}
+
+
+---- slot14 -> 00648bb0 FUN_00648bb0
+---- slot15 -> 006508c0 FUN_006508c0
+
+undefined1 FUN_006508c0(void)
+
+{
+  return 0;
+}
+
+
+---- slot16 -> 006a6f80 FUN_006a6f80
+
+float10 FUN_006a6f80(void)
+
+{
+  return (float10)0;
+}
+
+
+---- slot17 -> 00401450 FUN_00401450
+
+uint FUN_00401450(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
+
+{
+  *param_2 = 0;
+  *param_3 = 0;
+  return (uint)param_2 & 0xffffff00;
+}
+
+
+---- slot18 -> 006508c0 FUN_006508c0
+---- slot19 -> 00401470 FUN_00401470
+
+void FUN_00401470(undefined4 param_1,undefined4 param_2,undefined4 param_3)
+
+{
+  undefined1 auStack_18 [8];
+  undefined4 local_10;
+  undefined4 uStack_8;
+  undefined1 *local_4;
+  
+  uStack_8 = 0;
+  local_4 = auStack_18;
+  local_10 = param_3;
+  FUN_0064aae0();
+  return;
+}
+
+
+---- slot20 -> 00401490 FUN_00401490
+
+void FUN_00401490(undefined4 param_1)
+
+{
+  FUN_0064ab20(0,param_1);
+  return;
+}
+
+
+---- slot21 -> 0064ab50 FUN_0064ab50
+
+void __fastcall FUN_0064ab50(int param_1)
+
+{
+  if (*(int *)(param_1 + 0x14) != 0) {
+    if ((*(int *)(param_1 + 4) != 0) && (*(int *)(param_1 + 4) != -0x3f0)) {
+      FUN_006a9800(*(int *)(param_1 + 0x14));
+    }
+    *(undefined4 *)(param_1 + 0x14) = 0;
+  }
+  return;
+}
+
+
+---- slot22 -> 00b4d3f0 FUN_00b4d3f0
+---- slot23 -> 00b4d3f0 FUN_00b4d3f0
+---- slot24 -> 0066ff00 FUN_0066ff00
+
+void __fastcall FUN_0066ff00(int *param_1)
+
+{
+  int iVar1;
+  
+  *(ushort *)(param_1 + 0xc) = *(ushort *)(param_1 + 0xc) | 3;
+  *(byte *)(param_1 + 2) = *(byte *)(param_1 + 2) & 0xf9;
+  *(undefined1 *)(param_1[1] + 0x2a6) = 1;
+  *(undefined1 *)((int)param_1 + 0x69) = 0;
+  *(undefined1 *)(param_1[1] + 0x2e8) = 0;
+  *(undefined1 *)(param_1[1] + 0x2ea) = 0;
+  FUN_007d0c10();
+  FUN_0079a3c0();
+  param_1[0x10] = 0;
+  iVar1 = (**(code **)(*(int *)param_1[1] + 0x1c))();
+  if (*(char *)(iVar1 + 0x3e3a) == '\0') {
+    param_1[0x10] = 1;
+  }
+  FUN_0066e770("ACT_DEATH_FROM_FACEHUGGER");
+  (**(code **)(*param_1 + 0x4c))();
+  if (param_1[5] != 0) {
+    FUN_0068cae0(&stack0xffffffd0,1);
+  }
+  if ((*(char *)(*(int *)(param_1[1] + 100) + 0x1c) != '\0') &&
+     (*(char *)(*(int *)(param_1[1] + 100) + 0x1f) != '\0')) {
+    FUN_00433540(5,0);
+  }
+  return;
+}
+
+
+---- slot25 -> 0064a7c0 FUN_0064a7c0
+
+void __thiscall FUN_0064a7c0(int param_1,undefined4 *param_2)
+
+{
+  int iVar1;
+  
+  iVar1 = *(int *)(param_1 + 4);
+  *param_2 = *(undefined4 *)(iVar1 + 0x70);
+  param_2[1] = *(undefined4 *)(iVar1 + 0x74);
+  param_2[2] = *(undefined4 *)(iVar1 + 0x78);
+  return;
+}
+
+
+---- slot26 -> 00b4d3f0 FUN_00b4d3f0
+---- slot27 -> 00d0fb70 FUN_00d0fb70
+
+undefined4 FUN_00d0fb70(void)
+
+{
+  return 0;
+}
+
+
+---- slot28 -> 00d0fb70 FUN_00d0fb70
+---- slot29 -> 00d0fb70 FUN_00d0fb70

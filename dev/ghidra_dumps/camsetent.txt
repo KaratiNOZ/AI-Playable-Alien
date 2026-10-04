@@ -1,0 +1,26 @@
+---- FUN_00429220 @ 00429220 (callers: 5)
+
+void __thiscall FUN_00429220(int param_1,int param_2)
+
+{
+  uint uVar1;
+  int *piVar2;
+  uint uVar3;
+  
+  uVar1 = *(uint *)(param_1 + 0xc0);
+  uVar3 = 0;
+  *(int *)(param_1 + 0x148) = param_2;
+  *(bool *)(param_1 + 0x14c) = param_2 != 0;
+  if (uVar1 != 0) {
+    do {
+      piVar2 = *(int **)(*(int *)(param_1 + 0xbc) + uVar3 * 4);
+      if (piVar2 != (int *)0x0) {
+        (**(code **)(*piVar2 + 0x2c))(param_2,param_1 + 0x2c);
+      }
+      uVar3 = uVar3 + 1;
+    } while (uVar3 < uVar1);
+  }
+  return;
+}
+
+

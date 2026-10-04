@@ -1,0 +1,103 @@
+
+##### "Queued speech"
+
+##### "Playing speech:"
+string @ 012b3e40
+---- ref from 006b9465 FUN_006b92a0 @ 006b92a0
+
+void __fastcall FUN_006b92a0(int param_1)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  char *pcVar3;
+  undefined *puVar4;
+  uint uVar5;
+  float fVar6;
+  void *local_4c;
+  undefined1 *puStack_48;
+  undefined4 local_44;
+  
+  local_44 = 0xffffffff;
+  puStack_48 = &LAB_0112810c;
+  local_4c = ExceptionList;
+  if (*(char *)(param_1 + 0x10) != '\0') {
+    ExceptionList = &local_4c;
+    if ((DAT_016b1858 & 1) == 0) {
+      DAT_016b1858 = DAT_016b1858 | 1;
+      ExceptionList = &local_4c;
+      _atexit((_func_4879 *)&DAT_0119bf90);
+    }
+    if ((DAT_016b1858 & 2) == 0) {
+      DAT_016b1858 = DAT_016b1858 | 2;
+      local_44 = 0;
+      _eh_vector_constructor_iterator_(&DAT_016b1854,1,3,FUN_004a4610,FUN_00a69c90);
+      _atexit((_func_4879 *)&LAB_0119bf70);
+      local_44 = 0xffffffff;
+    }
+    if ((DAT_016b1858 & 4) == 0) {
+      DAT_016b1858 = DAT_016b1858 | 4;
+      _atexit((_func_4879 *)&DAT_0119bf60);
+    }
+    if ((DAT_016b1858 & 8) == 0) {
+      DAT_016b1858 = DAT_016b1858 | 8;
+      local_44 = 1;
+      _eh_vector_constructor_iterator_(&DAT_016b1848,1,10,FUN_004a4610,FUN_00a69c90);
+      _atexit((_func_4879 *)&LAB_0119bf40);
+    }
+    uVar5 = 0;
+    for (puVar1 = *(undefined4 **)(param_1 + 0x124); puVar1 != (undefined4 *)0x0;
+        puVar1 = (undefined4 *)puVar1[0x41]) {
+      if (uVar5 < 10) {
+        pcVar3 = "NONE";
+        switch(*puVar1) {
+        case 1:
+          pcVar3 = "LOW";
+          break;
+        case 2:
+          pcVar3 = "MEDIUM";
+          break;
+        case 3:
+          pcVar3 = "HIGH";
+          break;
+        case 4:
+          pcVar3 = "COMBAT_STREAMED";
+          break;
+        case 5:
+          pcVar3 = "COMBAT";
+          break;
+        case 6:
+          pcVar3 = "DEATH";
+        }
+        if ((float)puVar1[0x40] == DAT_011bb280) {
+          fVar6 = 0.0;
+        }
+        else {
+          fVar6 = (float)puVar1[0x40] - (float)DAT_016410a8;
+        }
+        FUN_00a69c90(&DAT_016b1848 + uVar5,"%s: priority = %s, timeout = %.2f",
+                     *(undefined4 *)(puVar1[1] + 4),pcVar3,(double)fVar6);
+      }
+      uVar5 = uVar5 + 1;
+    }
+    FUN_00a69c90(&DAT_016b1845,"Queued speech [size = %u]:",uVar5);
+    FUN_00a69c90(&DAT_016b1844,"Playing speech:");
+    uVar5 = 0;
+    do {
+      if (*(int *)(*(int *)(param_1 + 0x138) + uVar5 * 4) != 0) {
+        iVar2 = *(int *)(*(int *)(param_1 + 0x138) + uVar5 * 4);
+        puVar4 = &DAT_012b3e3c;
+        if ((~(byte)(*(uint *)(*(int *)(iVar2 + 8) + 4) >> 2) & 1) == 0) {
+          puVar4 = &DAT_012b3e38;
+        }
+        FUN_00a69c90(&DAT_016b1854 + uVar5,"%s [%s]",*(undefined4 *)(*(int *)(iVar2 + 4) + 4),puVar4
+                    );
+      }
+      uVar5 = uVar5 + 1;
+    } while (uVar5 < 3);
+  }
+  ExceptionList = local_4c;
+  return;
+}
+
+

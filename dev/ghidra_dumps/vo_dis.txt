@@ -1,0 +1,7 @@
+0049fae0  MOV EAX,dword ptr [ESP + 0x4]
+0049fae4  MOV EAX,dword ptr [EAX + 0x11a8]
+0049faea  PUSH EAX
+0049faeb  CALL 0x008b7880
+0049faf0  ADD ESP,0x4
+0049faf3  RET 0x4
+0049fb00  CMP byte ptr [ECX + 0x3f],0x0

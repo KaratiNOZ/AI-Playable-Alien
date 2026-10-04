@@ -1,0 +1,304 @@
+==== 0097a8c2 in FUN_0097a8a0 @ 0097a8a0
+callers: FUN_009fa4a0 FUN_009887e0 FUN_009886f0 FUN_009888c0 FUN_009b11d0 FUN_009f5420 FUN_0097be90 
+
+void __thiscall
+FUN_0097a8a0(undefined4 *param_1,undefined4 param_2,undefined4 *param_3,undefined4 *param_4,
+            undefined4 *param_5)
+
+{
+  undefined4 *puVar1;
+  undefined4 uVar2;
+  int iVar3;
+  undefined4 *puVar4;
+  undefined1 local_50 [76];
+  
+  puVar1 = param_1 + 0xa0;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar1 = *param_3;
+    param_3 = param_3 + 1;
+    puVar1 = puVar1 + 1;
+  }
+  puVar1 = param_1 + 0x80;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar1 = *param_4;
+    param_4 = param_4 + 1;
+    puVar1 = puVar1 + 1;
+  }
+  puVar1 = (undefined4 *)FUN_00428220(local_50,param_1 + 0x80);
+  puVar4 = param_1;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  puVar1 = (undefined4 *)FUN_004bc550(local_50);
+  puVar4 = param_1 + 0x10;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  puVar1 = param_1 + 0x50;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar1 = *param_5;
+    param_5 = param_5 + 1;
+    puVar1 = puVar1 + 1;
+  }
+  puVar1 = (undefined4 *)FUN_00428220(local_50,param_1 + 0x50);
+  puVar4 = param_1 + 0x30;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  puVar1 = (undefined4 *)FUN_004bc550(local_50);
+  puVar4 = param_1 + 0x40;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  uVar2 = FUN_00a1a360();
+  puVar1 = (undefined4 *)FUN_00428220(local_50,uVar2);
+  puVar4 = param_1 + 0x20;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  puVar1 = (undefined4 *)FUN_00428220(local_50,uVar2);
+  puVar4 = param_1 + 0x90;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  puVar1 = (undefined4 *)FUN_00428220(local_50,uVar2);
+  puVar4 = param_1 + 0x60;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  puVar1 = (undefined4 *)FUN_00428220(local_50,uVar2);
+  puVar4 = param_1 + 0x70;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  FUN_0097a100(param_2,1);
+  return;
+}
+
+
+==== 0097a7f2 in FUN_0097a7d0 @ 0097a7d0
+callers: FUN_009fb360 
+
+void __thiscall
+FUN_0097a7d0(undefined4 *param_1,undefined4 param_2,undefined4 *param_3,undefined4 *param_4)
+
+{
+  undefined4 *puVar1;
+  undefined4 uVar2;
+  int iVar3;
+  undefined4 *puVar4;
+  undefined1 local_50 [76];
+  
+  puVar1 = param_1 + 0xa0;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar1 = *param_3;
+    param_3 = param_3 + 1;
+    puVar1 = puVar1 + 1;
+  }
+  puVar1 = param_1 + 0x80;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar1 = *param_4;
+    param_4 = param_4 + 1;
+    puVar1 = puVar1 + 1;
+  }
+  puVar1 = (undefined4 *)FUN_00428220(local_50,param_1 + 0x80);
+  puVar4 = param_1;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  puVar1 = (undefined4 *)FUN_004bc550(local_50);
+  puVar4 = param_1 + 0x10;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  uVar2 = FUN_00a1a360();
+  puVar1 = (undefined4 *)FUN_00428220(local_50,uVar2);
+  puVar4 = param_1 + 0x20;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  puVar1 = (undefined4 *)FUN_00428220(local_50,uVar2);
+  puVar4 = param_1 + 0x90;
+  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar4 = *puVar1;
+    puVar1 = puVar1 + 1;
+    puVar4 = puVar4 + 1;
+  }
+  FUN_0097a100(param_2,1);
+  return;
+}
+
+
+==== 004bc56c in FUN_004bc550 @ 004bc550
+callers: FUN_006b1a60 FUN_005679e0 FUN_009b8910 FUN_0097a7d0 FUN_0064d710 FUN_004be2b0 FUN_0064db50 FUN_006a0500 FUN_009cf800 FUN_009f4e80 FUN_007525d0 FUN_004bcf50 FUN_00982070 FUN_009f6000 FUN_006937c0 FUN_009c5f50 FUN_00974370 FUN_009ba9e0 FUN_0079eeb0 FUN_0064d230 FUN_009f9a80 FUN_009a2400 FUN_00689b80 FUN_007ab560 FUN_00974430 FUN_009fa140 FUN_009da910 FUN_009fb360 FUN_006a4710 FUN_009c4140 FUN_009c6b20 FUN_009e1cc0 FUN_006b4bd0 FUN_0097a8a0 
+
+void __thiscall FUN_004bc550(float *param_1,float *param_2)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  int iVar22;
+  float *pfVar23;
+  float *pfVar24;
+  float10 fVar25;
+  float fVar26;
+  float fVar27;
+  float fVar28;
+  float fVar29;
+  float fVar30;
+  float fVar31;
+  float fVar32;
+  float fVar33;
+  
+  pfVar23 = param_1;
+  pfVar24 = param_2;
+  for (iVar22 = 0x10; iVar22 != 0; iVar22 = iVar22 + -1) {
+    *pfVar24 = *pfVar23;
+    pfVar23 = pfVar23 + 1;
+    pfVar24 = pfVar24 + 1;
+  }
+  fVar25 = (float10)FUN_004bc300();
+  fVar1 = param_1[0xe];
+  fVar2 = param_1[10];
+  fVar3 = param_1[7];
+  fVar4 = param_1[0xf];
+  fVar5 = param_1[6];
+  fVar6 = param_1[0xd];
+  fVar7 = param_1[9];
+  fVar32 = fVar1 * param_1[5];
+  fVar8 = param_1[0xd];
+  fVar9 = param_1[0xb];
+  fVar10 = param_1[0xc];
+  fVar21 = (float)((float10)1 / fVar25);
+  *param_2 = ((((param_1[5] * fVar2 * fVar4 + fVar3 * fVar7 * fVar1 + fVar9 * fVar5 * fVar6) -
+               fVar32 * fVar9) - param_1[6] * param_1[9] * fVar4) - fVar8 * fVar2 * fVar3) * fVar21;
+  fVar11 = param_1[4];
+  fVar12 = param_1[8];
+  fVar26 = param_1[6];
+  fVar13 = param_1[4];
+  fVar14 = param_1[9];
+  fVar27 = param_1[8] * param_1[0xd];
+  fVar28 = fVar10 * param_1[5];
+  fVar33 = fVar10 * param_1[9];
+  fVar29 = param_1[4] * param_1[0xd];
+  fVar15 = param_1[8];
+  fVar16 = param_1[5];
+  param_2[4] = ((((param_1[8] * param_1[6] * fVar4 + fVar11 * fVar1 * fVar9 + fVar10 * fVar2 * fVar3
+                  ) - param_1[4] * fVar2 * fVar4) - fVar12 * fVar1 * fVar3) -
+               fVar10 * fVar26 * fVar9) * fVar21;
+  fVar17 = param_1[0xe];
+  fVar18 = param_1[6];
+  param_2[8] = ((((fVar27 * fVar3 + fVar13 * fVar14 * fVar4 + fVar28 * fVar9) - fVar29 * fVar9) -
+                fVar15 * fVar16 * fVar4) - fVar33 * fVar3) * fVar21;
+  fVar19 = param_1[2];
+  fVar20 = param_1[3];
+  param_2[0xc] = ((((fVar15 * fVar16 * fVar17 + fVar29 * fVar2 + fVar33 * fVar18) -
+                   fVar13 * fVar14 * param_1[0xe]) - fVar27 * param_1[6]) - fVar28 * fVar2) * fVar21
+  ;
+  fVar13 = param_1[1];
+  fVar14 = param_1[0xe];
+  fVar15 = param_1[0xd];
+  fVar16 = *param_1;
+  fVar17 = param_1[0xc];
+  param_2[1] = ((((fVar19 * param_1[9] * fVar4 + fVar13 * fVar14 * fVar9 + fVar20 * fVar8 * fVar2) -
+                 fVar13 * fVar2 * fVar4) - fVar20 * fVar7 * fVar1) - fVar19 * fVar15 * param_1[0xb])
+               * fVar21;
+  fVar7 = param_1[0xe];
+  fVar8 = param_1[8];
+  param_2[5] = ((((fVar16 * fVar2 * fVar4 + fVar20 * fVar12 * fVar1 + fVar19 * fVar17 * param_1[0xb]
+                  ) - fVar16 * fVar7 * param_1[0xb]) - fVar19 * param_1[8] * fVar4) -
+               fVar20 * fVar10 * fVar2) * fVar21;
+  fVar30 = fVar16 * param_1[0xd];
+  fVar2 = param_1[9];
+  fVar31 = fVar13 * param_1[0xc];
+  fVar9 = param_1[0xe];
+  fVar12 = param_1[10];
+  param_2[9] = ((((fVar30 * param_1[0xb] + fVar13 * fVar8 * fVar4 + fVar20 * fVar33) -
+                 fVar16 * fVar2 * fVar4) - fVar20 * fVar27) - fVar31 * param_1[0xb]) * fVar21;
+  fVar18 = param_1[6];
+  param_2[0xd] = ((((fVar19 * fVar27 + fVar16 * fVar2 * fVar9 + fVar31 * fVar12) -
+                   fVar30 * param_1[10]) - fVar13 * fVar8 * param_1[0xe]) - fVar19 * fVar33) *
+                 fVar21;
+  param_2[2] = ((((fVar13 * fVar18 * fVar4 + fVar20 * fVar32 + fVar19 * fVar15 * fVar3) -
+                 fVar13 * fVar14 * fVar3) - fVar19 * param_1[5] * fVar4) - fVar20 * fVar5 * fVar6) *
+               fVar21;
+  fVar2 = param_1[5];
+  fVar5 = param_1[4];
+  param_2[6] = ((((fVar19 * param_1[4] * fVar4 + fVar16 * fVar7 * fVar3 + fVar20 * fVar10 * fVar26)
+                 - fVar16 * param_1[6] * fVar4) - fVar20 * fVar11 * fVar1) - fVar19 * fVar17 * fVar3
+               ) * fVar21;
+  fVar1 = param_1[5];
+  fVar6 = param_1[0xe];
+  fVar7 = *param_1;
+  fVar8 = param_1[6];
+  fVar9 = param_1[2];
+  param_2[10] = ((((fVar16 * fVar2 * fVar4 + fVar20 * fVar29 + fVar31 * fVar3) - fVar30 * fVar3) -
+                 fVar13 * fVar5 * fVar4) - fVar20 * fVar28) * fVar21;
+  fVar2 = param_1[4];
+  fVar3 = param_1[1];
+  fVar26 = fVar7 * fVar1;
+  fVar4 = param_1[9];
+  fVar10 = param_1[3];
+  fVar11 = param_1[0xb];
+  param_2[0xe] = ((((fVar13 * fVar5 * fVar6 + fVar30 * fVar8 + fVar19 * fVar28) -
+                   param_1[0xe] * fVar26) - fVar2 * param_1[0xd] * fVar9) -
+                 fVar3 * param_1[0xc] * fVar8) * fVar21;
+  fVar5 = param_1[10];
+  fVar6 = param_1[7];
+  param_2[3] = ((((fVar5 * fVar3 * fVar6 + fVar9 * fVar1 * fVar11 + fVar4 * fVar8 * fVar10) -
+                 fVar8 * fVar3 * fVar11) - fVar5 * fVar1 * fVar10) - fVar4 * fVar9 * fVar6) * fVar21
+  ;
+  fVar12 = param_1[8];
+  param_2[7] = ((((fVar5 * fVar2 * fVar10 + fVar8 * fVar7 * fVar11 + fVar12 * fVar9 * fVar6) -
+                 fVar5 * fVar7 * fVar6) - fVar9 * fVar2 * fVar11) - fVar12 * fVar8 * fVar10) *
+               fVar21;
+  param_2[0xb] = ((((fVar4 * fVar7 * fVar6 + fVar3 * fVar2 * fVar11 + fVar12 * fVar1 * fVar10) -
+                   fVar11 * fVar26) - fVar4 * fVar2 * fVar10) - fVar12 * fVar3 * fVar6) * fVar21;
+  param_2[0xf] = ((((fVar4 * fVar2 * fVar9 + fVar5 * fVar26 + fVar12 * fVar3 * fVar8) -
+                   fVar4 * fVar7 * fVar8) - fVar3 * fVar2 * fVar5) - fVar12 * fVar1 * fVar9) *
+                 fVar21;
+  return;
+}
+
+

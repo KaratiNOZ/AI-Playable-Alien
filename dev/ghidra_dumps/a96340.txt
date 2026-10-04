@@ -1,0 +1,104 @@
+---- FUN_00a96340 @ 00a96340 (callers: 7)
+
+int __thiscall FUN_00a96340(int param_1,char param_2)
+
+{
+  undefined4 *puVar1;
+  undefined8 uVar2;
+  int iVar3;
+  LPVOID pvVar4;
+  uint uVar5;
+  char *pcVar6;
+  byte local_90;
+  byte local_8f;
+  
+  iVar3 = FUN_00a96320(&local_90,0);
+  while (iVar3 == 0) {
+    uVar5 = (uint)local_8f;
+    switch(uVar5) {
+    case 0:
+    case 1:
+    case 0x12:
+      pcVar6 = "TtPhysics";
+      break;
+    case 2:
+      pcVar6 = "TtCollision Query";
+      break;
+    case 3:
+      pcVar6 = "TtRayCast Query";
+      break;
+    case 4:
+      pcVar6 = "TtAnimation Sample and Combine";
+      break;
+    case 5:
+      pcVar6 = "TtAnimation Sample and Blend";
+      break;
+    case 6:
+      pcVar6 = "TtAnimation Mapping";
+      break;
+    case 7:
+      pcVar6 = "TtBehavior";
+      break;
+    case 8:
+      pcVar6 = "TtCloth";
+      break;
+    case 9:
+    case 10:
+      pcVar6 = "TtPathfinding Jobs";
+      break;
+    case 0xb:
+      pcVar6 = "TtAI Dynamic Jobs";
+      break;
+    case 0xc:
+      pcVar6 = "TtLocalSteering Jobs";
+      break;
+    case 0xd:
+      pcVar6 = "TtAI Generation";
+      break;
+    case 0xe:
+      pcVar6 = "TtDestruction";
+      break;
+    default:
+      pcVar6 = "TtOther";
+      break;
+    case 0x10:
+      pcVar6 = "TtCharacter Proxy";
+      break;
+    case 0x11:
+      pcVar6 = "TtVehicle";
+      break;
+    case 0x14:
+    case 0x15:
+      pcVar6 = "TtNewPhysics";
+      break;
+    case 0x16:
+      pcVar6 = "TtUserJob";
+    }
+    pvVar4 = TlsGetValue(DAT_01be6130);
+    if ((param_2 != '\0') &&
+       (puVar1 = *(undefined4 **)((int)pvVar4 + 4), puVar1 < *(undefined4 **)((int)pvVar4 + 0xc))) {
+      *puVar1 = pcVar6;
+      uVar2 = rdtsc();
+      puVar1[1] = (int)uVar2;
+      *(undefined4 **)((int)pvVar4 + 4) = puVar1 + 3;
+    }
+    if (*(int *)(param_1 + 0x2b4) != 0) {
+      (**(code **)(**(int **)(param_1 + 0x2b4) + 4))(uVar5,local_90);
+    }
+    iVar3 = (**(code **)(*(int *)(param_1 + 0x134 + uVar5 * 0x10) + (uint)local_90 * 4))
+                      (param_1,&local_90);
+    if (*(int *)(param_1 + 0x2b4) != 0) {
+      (**(code **)(**(int **)(param_1 + 0x2b4) + 8))(uVar5);
+    }
+    if ((param_2 != '\0') &&
+       (puVar1 = *(undefined4 **)((int)pvVar4 + 4), puVar1 < *(undefined4 **)((int)pvVar4 + 0xc))) {
+      *puVar1 = &DAT_01404a08;
+      uVar2 = rdtsc();
+      puVar1[1] = (int)uVar2;
+      *(undefined4 **)((int)pvVar4 + 4) = puVar1 + 3;
+    }
+  }
+  return iVar3;
+}
+
+

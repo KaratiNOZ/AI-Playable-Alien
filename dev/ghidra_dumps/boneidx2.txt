@@ -1,0 +1,38 @@
+---- FUN_00676ea0 @ 00676ea0 (callers: 3)
+
+int __thiscall FUN_00676ea0(int param_1,int param_2)
+
+{
+  char cVar1;
+  char cVar2;
+  uint uVar3;
+  
+  cVar1 = *(char *)(param_2 + 0x3e);
+  cVar2 = *(char *)(param_2 + 0x3f);
+  if (cVar2 != '\0') {
+    uVar3 = FUN_00676de0(param_2);
+    if (cVar1 != '\0') {
+      uVar3 = (uVar3 ^ (int)cVar1) * 0x1000193;
+    }
+    *(uint *)(param_1 + 8) = ((int)cVar2 ^ uVar3) * 0x1000193;
+    return param_1;
+  }
+  uVar3 = FUN_00676de0(param_2);
+  if (cVar1 != '\0') {
+    uVar3 = (uVar3 ^ (int)cVar1) * 0x1000193;
+  }
+  *(uint *)(param_1 + 8) = uVar3;
+  return param_1;
+}
+
+
+---- FUN_00a2c000 @ 00a2c000 (callers: 8)
+
+void FUN_00a2c000(void)
+
+{
+  FUN_00a43a70();
+  return;
+}
+
+

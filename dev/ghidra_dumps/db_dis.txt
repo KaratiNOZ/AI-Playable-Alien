@@ -1,0 +1,6 @@
+006b58b0  PUSH 0xb
+006b58b2  CALL 0x008546b0
+006b58b7  RET
+006b58c0  MOVSS XMM0,dword ptr [ESP + 0x4]
+006b58c6  MOVSS dword ptr [ECX + 0x1e0],XMM0
+006b58ce  MOVSS XMM0,dword ptr [ESP + 0x8]

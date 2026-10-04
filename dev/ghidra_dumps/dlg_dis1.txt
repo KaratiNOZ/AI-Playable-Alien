@@ -1,0 +1,12 @@
+004d7bd1  TEST AL,AL
+004d7bd3  LEA EAX,[EBX + 0xc]
+004d7bd6  PUSH EAX
+004d7bd7  JZ 0x004d7c5e
+004d7bdd  PUSH 0x11f55bc
+004d7be2  MOV ECX,dword ptr [0x016b1758]
+004d7be8  MOV ECX,dword ptr [ECX + 0xc4]
+004d7bee  CALL 0x008572a0
+004d7bf3  TEST AL,AL
+004d7bf5  JNZ 0x004d7cb0
+004d7bfb  MOV EAX,dword ptr [ESP + 0x1c]
+004d7bff  MOV dword ptr [ESP + 0x21c],0xffffffff

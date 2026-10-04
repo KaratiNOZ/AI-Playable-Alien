@@ -1,0 +1,167 @@
+
+##### callers of 008f4af0
+---- FUN_00608490 @ 00608490
+
+uint FUN_00608490(undefined4 param_1)
+
+{
+  float *pfVar1;
+  float fVar2;
+  int iVar3;
+  uint uVar4;
+  undefined2 extraout_var;
+  float10 fVar5;
+  float10 fVar6;
+  float10 fVar7;
+  float10 fVar8;
+  float10 fVar9;
+  float10 fVar10;
+  undefined4 local_1c;
+  
+  uVar4 = FUN_009f19c0();
+  iVar3 = *(int *)(uVar4 + 0x380);
+  if (iVar3 != 0) {
+    FUN_009b99b0();
+    fVar5 = (float10)FUN_008f4a00(param_1);
+    fVar6 = (float10)FUN_008f4a30(param_1);
+    fVar7 = (float10)FUN_008f4a60(param_1);
+    fVar8 = (float10)FUN_008f4a90(param_1);
+    fVar9 = (float10)FUN_008f4ac0(param_1);
+    fVar10 = (float10)FUN_008f4af0(param_1);
+    fVar2 = (float)fVar10;
+    if (((((float)fVar5 == *(float *)(iVar3 + 0xc)) && ((float)fVar6 == *(float *)(iVar3 + 0x10)))
+        && ((float)fVar7 == *(float *)(iVar3 + 0x14))) &&
+       (((float)fVar8 == *(float *)(iVar3 + 0x18) && ((float)fVar9 == *(float *)(iVar3 + 0x1c))))) {
+      pfVar1 = (float *)(iVar3 + 0x20);
+      uVar4 = (uint)CONCAT21(extraout_var,
+                             (fVar2 == *pfVar1) << 6 | (NAN(fVar2) || NAN(*pfVar1)) << 2 | 2U |
+                             fVar2 < *pfVar1) << 8;
+      if ((fVar2 == *pfVar1) && (DAT_01650980 == 6)) goto LAB_006085a7;
+    }
+    DAT_01650980 = 6;
+    *(ulonglong *)(iVar3 + 8) = CONCAT44((float)fVar5,local_1c);
+    *(ulonglong *)(iVar3 + 0x10) = CONCAT44((float)fVar7,(float)fVar6);
+    *(ulonglong *)(iVar3 + 0x18) = CONCAT44((float)fVar9,(float)fVar8);
+    *(float *)(iVar3 + 0x20) = fVar2;
+    return CONCAT31((int3)((uint)fVar2 >> 8),1);
+  }
+LAB_006085a7:
+  return uVar4 & 0xffffff00;
+}
+
+
+
+##### callers of 008f4c40
+---- FUN_00608760 @ 00608760
+
+int FUN_00608760(undefined4 param_1)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  int iVar11;
+  int iVar12;
+  undefined2 extraout_var;
+  undefined2 uVar13;
+  float10 fVar14;
+  undefined4 local_10;
+  
+  iVar11 = FUN_009f19c0();
+  FUN_009b98d0();
+  fVar14 = (float10)FUN_008f4b50(param_1);
+  fVar2 = (float)fVar14;
+  fVar14 = (float10)FUN_008f4b80(param_1);
+  fVar3 = (float)fVar14;
+  fVar14 = (float10)FUN_008f4bb0(param_1);
+  fVar4 = (float)fVar14;
+  fVar14 = (float10)FUN_008f4be0(param_1);
+  fVar5 = (float)fVar14;
+  fVar14 = (float10)FUN_008f4c10(param_1);
+  fVar6 = (float)fVar14;
+  fVar14 = (float10)FUN_008f4c40(param_1);
+  fVar7 = (float)fVar14;
+  iVar12 = FUN_008f4b20(param_1);
+  if (iVar12 == 0) {
+    local_10 = 0;
+  }
+  else if (iVar12 == 1) {
+    local_10 = 1;
+  }
+  fVar14 = (float10)FUN_008f4c70(param_1);
+  fVar8 = (float)fVar14;
+  fVar14 = (float10)FUN_008f4ca0(param_1);
+  fVar9 = (float)fVar14;
+  fVar14 = (float10)FUN_008f4cd0(param_1);
+  fVar10 = (float)fVar14;
+  fVar1 = *(float *)(iVar11 + 0x390);
+  iVar12 = (uint)CONCAT21(extraout_var,
+                          (fVar1 == fVar3) << 6 | (NAN(fVar1) || NAN(fVar3)) << 2 | 2U |
+                          fVar1 < fVar3) << 8;
+  if (fVar1 == fVar3) {
+    fVar1 = *(float *)(iVar11 + 0x394);
+    iVar12 = (uint)CONCAT21(extraout_var,
+                            (fVar1 == fVar2) << 6 | (NAN(fVar1) || NAN(fVar2)) << 2 | 2U |
+                            fVar1 < fVar2) << 8;
+    if (fVar1 == fVar2) {
+      fVar1 = *(float *)(iVar11 + 0x398);
+      iVar12 = (uint)CONCAT21(extraout_var,
+                              (fVar1 == fVar4) << 6 | (NAN(fVar1) || NAN(fVar4)) << 2 | 2U |
+                              fVar1 < fVar4) << 8;
+      if (fVar1 == fVar4) {
+        fVar1 = *(float *)(iVar11 + 0x39c);
+        iVar12 = (uint)CONCAT21(extraout_var,
+                                (fVar1 == fVar5) << 6 | (NAN(fVar1) || NAN(fVar5)) << 2 | 2U |
+                                fVar1 < fVar5) << 8;
+        if (fVar1 == fVar5) {
+          fVar1 = *(float *)(iVar11 + 0x3a0);
+          iVar12 = (uint)CONCAT21(extraout_var,
+                                  (fVar1 == fVar6) << 6 | (NAN(fVar1) || NAN(fVar6)) << 2 | 2U |
+                                  fVar1 < fVar6) << 8;
+          if (fVar1 == fVar6) {
+            fVar1 = *(float *)(iVar11 + 0x3a4);
+            iVar12 = (uint)CONCAT21(extraout_var,
+                                    (fVar1 == fVar7) << 6 | (NAN(fVar1) || NAN(fVar7)) << 2 | 2U |
+                                    fVar1 < fVar7) << 8;
+            if ((fVar1 == fVar7) && (iVar12 = *(int *)(iVar11 + 0x3a8), iVar12 == local_10)) {
+              fVar1 = *(float *)(iVar11 + 0x3ac);
+              uVar13 = (undefined2)((uint)iVar12 >> 0x10);
+              iVar12 = (uint)CONCAT21(uVar13,(fVar1 == fVar8) << 6 | (NAN(fVar1) || NAN(fVar8)) << 2
+                                             | 2U | fVar1 < fVar8) << 8;
+              if (fVar1 == fVar8) {
+                fVar1 = *(float *)(iVar11 + 0x3b0);
+                iVar12 = (uint)CONCAT21(uVar13,(fVar1 == fVar9) << 6 |
+                                               (NAN(fVar1) || NAN(fVar9)) << 2 | 2U | fVar1 < fVar9)
+                         << 8;
+                if (fVar1 == fVar9) {
+                  fVar1 = *(float *)(iVar11 + 0x3b4);
+                  iVar12 = (uint)CONCAT21(uVar13,(fVar1 == fVar10) << 6 |
+                                                 (NAN(fVar1) || NAN(fVar10)) << 2 | 2U |
+                                                 fVar1 < fVar10) << 8;
+                  if (fVar1 == fVar10) {
+                    return iVar12;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  *(ulonglong *)(iVar11 + 0x390) = CONCAT44(fVar2,fVar3);
+  *(ulonglong *)(iVar11 + 0x398) = CONCAT44(fVar5,fVar4);
+  *(ulonglong *)(iVar11 + 0x3a0) = CONCAT44(fVar7,fVar6);
+  *(ulonglong *)(iVar11 + 0x3a8) = CONCAT44(fVar8,local_10);
+  *(ulonglong *)(iVar11 + 0x3b0) = CONCAT44(fVar10,fVar9);
+  return CONCAT31((int3)((uint)iVar12 >> 8),1);
+}
+
+

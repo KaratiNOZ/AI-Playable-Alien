@@ -1,0 +1,41 @@
++ 0xba0]	006894c6	LEA EDI,[ECX + 0xba0]	FUN_006894c0
++ 0xba0]	006ae514	LEA EDI,[EDX + 0xba0]	FUN_006ad740
++ 0xba0]	006b1746	LEA EDX,[ESI + 0xba0]	FUN_006b14c0
++ 0xba0]	006b1e58	LEA ESI,[EBX + 0xba0]	FUN_006b1a60
+0xbd0]	0077f7c2	LEA ESI,[ECX + 0xbd0]	FUN_0077f780
+0xbd0]	0077f863	MOV dword ptr [EDX + 0xbd0],ESI	FUN_0077f780
+0xbd0]	0077f9f1	LEA EAX,[ECX + 0xbd0]	FUN_0077f9f0
+0xbd0]	0082db7f	FLD float ptr [EAX + 0xbd0]	FUN_0082d660
+0xbd0]	0097b4ce	MOV dword ptr [ESI + 0xbd0],EDI	FUN_0097b410
+0xbd0]	0097b529	MOV EDX,dword ptr [ESI + 0xbd0]	FUN_0097b410
+0xbd0]	0097b533	FILD dword ptr [ESI + 0xbd0]	FUN_0097b410
+0xbd0]	00993407	MOV dword ptr [ESI + 0xbd0],EBX	FUN_009932c0
+0xbd0]	0099346f	MOV EDX,dword ptr [ESI + 0xbd0]	FUN_009932c0
+0xbd0]	0099347d	FILD dword ptr [ESI + 0xbd0]	FUN_009932c0
+0xbd0]	00993727	MOV dword ptr [ESI + 0xbd0],EBX	FUN_00993620
++ 0xba0]	00c00b47	MOVAPS xmmword ptr [ESP + 0xba0],XMM2	FUN_00bfe1b0
+0xbb0]	00c00db6	MOVAPS xmmword ptr [ESP + 0xbb0],XMM7	FUN_00bfe1b0
+0xbb0]	00c00dc6	MOVAPS XMM2,xmmword ptr [ESP + 0xbb0]	FUN_00bfe1b0
+0xbb0]	00c00e4c	MOVAPS XMM1,xmmword ptr [ESP + 0xbb0]	FUN_00bfe1b0
+0xbd0]	00c00e5c	MOVAPS xmmword ptr [ESP + 0xbd0],XMM3	FUN_00bfe1b0
++ 0xba0]	00dc2b66	MOV EAX,dword ptr [ECX + 0xba0]	FUN_00dc2b30
++ 0xba0]	00dc48df	MOV ECX,dword ptr [ESI + 0xba0]	FUN_00dc4630
++ 0xba0]	00dc48f0	MOV dword ptr [ESI + 0xba0],EDI	FUN_00dc4630
++ 0xba0]	00dc60f5	MOV ECX,dword ptr [ESI + 0xba0]	FUN_00dc6020
++ 0xba0]	00dc6f7a	MOV dword ptr [ESI + 0xba0],EBX	FUN_00dc6d90
++ 0xba0]	00f613fc	MOV dword ptr [ECX + 0xba0],EAX	FUN_00f613f0
+0xbb0]	00f61414	MOV dword ptr [ECX + 0xbb0],EAX	FUN_00f613f0
+0xbd0]	00f61444	MOV dword ptr [ECX + 0xbd0],EAX	FUN_00f613f0
++ 0xba0]	00f61606	MOV EDI,dword ptr [EDX + EDI*0x4 + 0xba0]	FUN_00f61560
++ 0xba0]	00f623ae	MOV EDX,dword ptr [EAX + 0xba0]	FUN_00f61750
+0xbb0]	00f623ba	MOV dword ptr [EAX + 0xbb0],EDX	FUN_00f61750
++ 0xba0]	01026082	LEA EDX,[EAX + 0xba0]	FUN_01025d30
++ 0xba0]	0103d275	LEA ECX,[EAX + 0xba0]	FUN_0103c8c0
++ 0xba0]	0103d380	LEA ECX,[EAX + 0xba0]	FUN_0103c8c0
++ 0xba0]	0103d486	LEA ECX,[EAX + 0xba0]	FUN_0103c8c0
++ 0xba0]	0103d594	LEA ECX,[EAX + 0xba0]	FUN_0103c8c0
++ 0xba0]	0103dfda	LEA ECX,[EAX + 0xba0]	FUN_0103c8c0
++ 0xba0]	01041cae	LEA EDX,[EAX + 0xba0]	FUN_01041b60
++ 0xba0]	010424b1	LEA ECX,[EAX + 0xba0]	FUN_01041f30
++ 0xba0]	0104cc1b	LEA ECX,[EAX + 0xba0]	FUN_0104c3d0
++ 0xba0]	0104d531	LEA ECX,[EAX + 0xba0]	FUN_0104d510

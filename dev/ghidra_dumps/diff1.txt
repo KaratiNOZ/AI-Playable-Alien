@@ -1,0 +1,183 @@
+
+##### 013437dc CATHODE::IsPaused::vftable
+---- slot2 -> 00612b00
+
+undefined1 __thiscall FUN_00612b00(int *param_1,undefined4 param_2)
+
+{
+  undefined1 uVar1;
+  
+  uVar1 = (**(code **)(*param_1 + 4))(param_2);
+  return uVar1;
+}
+
+
+---- slot3 -> 005f59e0
+
+float10 __thiscall FUN_005f59e0(int *param_1,undefined4 param_2)
+
+{
+  byte bVar1;
+  
+  bVar1 = (**(code **)(*param_1 + 4))(param_2);
+  return (float10)bVar1;
+}
+
+
+---- slot18 -> 005a3810
+
+void __thiscall FUN_005a3810(int *param_1,undefined4 param_2,int *param_3)
+
+{
+  param_3 = (int *)CONCAT31(param_3._1_3_,*param_3 != DAT_013121c0);
+  (**(code **)(*param_1 + 0x44))(param_2,&param_3);
+  return;
+}
+
+
+---- slot19 -> 004989a0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void __thiscall FUN_004989a0(int *param_1,undefined4 param_2,float *param_3)
+
+{
+  float fVar1;
+  
+  fVar1 = *param_3;
+  param_3 = (float *)CONCAT31(param_3._1_3_,1);
+  if (fVar1 == _DAT_013121c4) {
+    param_3 = (float *)((uint)param_3._1_3_ << 8);
+  }
+  (**(code **)(*param_1 + 0x44))(param_2,&param_3);
+  return;
+}
+
+
+---- slot126 -> 009119c0
+
+undefined4 __thiscall
+FUN_009119c0(int *param_1,int *param_2,undefined1 *param_3,undefined4 param_4,undefined4 param_5)
+
+{
+  code *pcVar1;
+  char cVar2;
+  undefined1 uVar3;
+  uint uVar4;
+  undefined4 uVar5;
+  void *local_10;
+  undefined1 *puStack_c;
+  undefined4 local_8;
+  
+  local_8 = 0xffffffff;
+  puStack_c = &LAB_01135fb8;
+  local_10 = ExceptionList;
+  uVar4 = DAT_0165f890 ^ (uint)&stack0xfffffffc;
+  ExceptionList = &local_10;
+  if (DAT_0174d310 != *param_2) {
+    uVar5 = FUN_00916ec0(param_2,param_3,param_4,param_5);
+    ExceptionList = local_10;
+    return uVar5;
+  }
+  FUN_00e1bcc0("trigger");
+  local_8 = 0;
+  FUN_00a69c90(uVar4);
+  FUN_00a69c90(param_4);
+  if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+    *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+    cVar2 = FUN_0085d000();
+    if (cVar2 != '\0') {
+      pcVar1 = (code *)swi(3);
+      uVar5 = (*pcVar1)();
+      return uVar5;
+    }
+  }
+  uVar3 = (**(code **)(*param_1 + 0x284))(param_4,param_5);
+  *param_3 = uVar3;
+  FUN_00a69c90();
+  local_8 = 0xffffffff;
+  FUN_00a69c90();
+  ExceptionList = local_10;
+  return 1;
+}
+
+
+
+##### 013193dc CATHODE::GetCurrentCameraPos::vftable
+---- slot7 -> 004931b0
+
+void __thiscall FUN_004931b0(int *param_1,undefined4 param_2,undefined4 param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  undefined1 local_30 [44];
+  undefined4 *puStack_4;
+  
+  iVar3 = (**(code **)(*param_1 + 0x20))(local_30,param_3);
+  uVar1 = *(undefined4 *)(iVar3 + 0x1c);
+  uVar2 = *(undefined4 *)(iVar3 + 0x2c);
+  *puStack_4 = *(undefined4 *)(iVar3 + 0xc);
+  puStack_4[1] = uVar1;
+  puStack_4[2] = uVar2;
+  return;
+}
+
+
+---- slot8 -> 008d5bb0
+
+void FUN_008d5bb0(undefined4 *param_1)
+
+{
+  *param_1 = DAT_01643a78;
+  param_1[1] = DAT_01643a7c;
+  param_1[2] = DAT_01643a80;
+  param_1[3] = DAT_01643a84;
+  param_1[4] = DAT_01643a88;
+  param_1[5] = DAT_01643a8c;
+  param_1[6] = DAT_01643a90;
+  param_1[7] = DAT_01643a94;
+  param_1[8] = DAT_01643a98;
+  param_1[9] = DAT_01643a9c;
+  param_1[10] = DAT_01643aa0;
+  param_1[0xb] = DAT_01643aa4;
+  return;
+}
+
+
+---- slot23 -> 00490700
+
+void __thiscall FUN_00490700(int *param_1,undefined4 param_2,undefined4 *param_3)
+
+{
+  undefined4 local_30;
+  undefined4 local_2c;
+  undefined4 local_28;
+  undefined4 local_24;
+  undefined4 local_20;
+  undefined4 local_1c;
+  undefined4 local_18;
+  undefined4 local_14;
+  undefined4 local_10;
+  undefined4 local_c;
+  undefined4 local_8;
+  undefined4 local_4;
+  
+  local_24 = *param_3;
+  local_2c = 0;
+  local_28 = 0;
+  local_14 = param_3[1];
+  local_20 = 0;
+  local_18 = 0;
+  local_10 = 0;
+  local_c = 0;
+  local_4 = param_3[2];
+  local_30 = DAT_011bed34;
+  local_1c = DAT_011bed34;
+  local_8 = DAT_011bed34;
+  (**(code **)(*param_1 + 0x60))(param_2,&local_30);
+  return;
+}
+
+

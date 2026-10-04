@@ -1,0 +1,1158 @@
+
+##### "LegendPlugin.Nodes.ActionTriggerSound"
+string @ 012f0c94
+---- ref from 0072bde8 FUN_0072b950 @ 0072b950
+
+undefined4 FUN_0072b950(int param_1)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+  undefined4 unaff_ESI;
+  undefined4 unaff_EDI;
+  
+  while( true ) {
+    if (param_1 == 0) {
+      return 0;
+    }
+    iVar1 = FUN_0040c380("Class");
+    if (iVar1 == 0) {
+      return 0;
+    }
+    uVar2 = *(undefined4 *)(iVar1 + 4);
+    iVar1 = FUN_0040c300(uVar2,"Brainiac.Design.Nodes.Behavior",unaff_EDI,unaff_ESI);
+    if (iVar1 != 0) break;
+    iVar1 = FUN_006c3d00("Connector");
+    if (iVar1 == 0) {
+      return 0;
+    }
+    param_1 = FUN_006c3d00(&DAT_012ab538);
+  }
+  iVar1 = FUN_0040c300(uVar2,"Brainiac.Design.Nodes.ReferencedBehavior",unaff_EDI,unaff_ESI);
+  if (iVar1 == 0) {
+    iVar1 = FUN_0040c380("ReferenceFilename");
+    FUN_006c61e0();
+    uVar2 = FUN_0072d3e0(*(undefined4 *)(iVar1 + 4));
+    DAT_016b1875 = DAT_016b1875 + -1;
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionApplyPrimaryDamageControlResponse",unaff_EDI,
+                       unaff_ESI);
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6110(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionDead",unaff_EDI,unaff_ESI);
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6160(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionIdle");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f61b0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionForceIdle");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6200(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionIdleTime");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6250(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveToTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ec900(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveToAttackTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f62e0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveToNearestStandingPointToTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ec9c0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveThroughTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006eca20(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveToObjective");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006eca80(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveWithGamepad");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ecaf0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveInDirection");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ecb50(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionGetOutOfTheWay");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ecbb0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionScript");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6340(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSuspend");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006feb20(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionPlayerController");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ecc00(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionRangedAim");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ecc50(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionRangedShoot");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6390(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionPerformRole");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006eccc0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSwitchToNextTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f63f0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionIdleTimeFacingTargetSensedPosition");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ecd30(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionIdleTimeFacingTargetMostRecentSensedPosition"
+                      );
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ecdb0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionIdleTimeFacingTargetOutsideCombatArea");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ece30(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionResetSearchJobs");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6430(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionAlienWonScareTest");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6470(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSuccess");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f64b0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionDebugMenuLinkItem");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f64f0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionAssert");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6560(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionForceSearch");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006eceb0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionAbortMeleeAttack");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6600(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionNotifySquad");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ecf00(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionHitTargetAndRun");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ecf50(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMeleeAttack");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6640(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionFail");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f66a0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionTriggerSound");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f66e0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionWeaponEquip");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ecfb0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSuspectTargetResponse");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6730(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionThreatEscalation");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6780(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionStartTimer");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed010(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionStartTimerRandom");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed090(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSetLogicCharacterFlags");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed0f0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionPauseSenses");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f67d0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSetWithdrawState");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed160(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionExpireTimer");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed1b0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionAffectedByFlameThrower");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed210(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionAffectedByFlameThrowerInVent");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed260(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveToMostRecentSensedPosition");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed2b0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionIdleTimeFacingTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6840(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionFakeSense");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed310(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionThreatAware");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f68a0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionTakeStep");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f68f0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionRequestCover");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed370(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveToCover");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6990(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionIdleInCover");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f69e0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionBrokenCover");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6a30(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSetFrameFlag");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed3c0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionChangeCover");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed410(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSuspiciousItemMoveTo");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed450(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSuspiciousItemReaction");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed4e0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSuspiciousItemDoneStage");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed540(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionIdleTimeFacingSuspiciousItem");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6a80(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMakeAggressive");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed590(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSetGaugeAmount");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6ae0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionPlayTree");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6b50(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionPlayTreeAndFaceTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6bb0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionDespawn");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6c10(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionDoneSystematicSearch");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6c60(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionBreakout");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed5d0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionBackstageAreaSweep");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed630(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionDebugString");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00715670(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionPerformAmbush");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed690(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,
+                       "LegendPlugin.Nodes.ActionMoveToFrontStageViaFlankedVentClosestToPlayer");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006da3c0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveToBackstageViaVentClosestToAlien");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006da450(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionBackstageAlienResponse");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006f6ca0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSetMenaceManager");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ed6f0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionDebugMenuLinkTest");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00715700(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionRequiresPrimaryDamageControlResponse");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00715850(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsCorpseTrap");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00715970(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsDead");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00715a90(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHaveTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00715bb0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsEnemyOfTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00715cd0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsCharacterClass");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006febf0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsWithinDistance");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006fed40(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsWithinDistanceOfAlien");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006feeb0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsWithinAggroRadius");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ff020(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsPerformingRoleOrCouldPerformRole");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ff140(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionMostRecentSenseActivationHasBeenAbove");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ff290(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasMotivation");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ff3e0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasScript");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ff530(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsOnlyAccessibleCrouching");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ff650(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasValidRouteToNearTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ff7b0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionShouldFollow");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ff910(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionPlayerIsAnEnemy");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ffa30(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionPlayerIsInExploitableArea");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ffb50(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionShouldSuspend");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ffc70(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHaveNextTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00715df0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsSenseActivationAbove");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ffd90(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsAnySenseActivationAbove");
+  if (iVar1 == 0) {
+    uVar2 = FUN_006ffee0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasSenseActivationBeenAbove");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00700030(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasAnySenseBeenAbove");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00700180(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionWasSenseThresholdLastIncreaseActivation");
+  if (iVar1 == 0) {
+    uVar2 = FUN_007002d0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionAngleToTargetLessThan");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00700420(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasMeleeAttackAvailableOrIsAttacking");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00715f10(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasMeleeAttackAvailable");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00716040(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasMeleeCounterAttackAvailable");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00716170(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasMeleeBlockAvailable");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00716290(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsUsingMeleeAttack");
+  if (iVar1 == 0) {
+    uVar2 = FUN_007163b0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsTargetingMe");
+  if (iVar1 == 0) {
+    uVar2 = FUN_007164d0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionLastTimeTargetShotAtMe");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00700590(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsPlayer");
+  if (iVar1 == 0) {
+    uVar2 = FUN_007165f0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsGaugeAmountAbove");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00716710(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsWithinDistanceThreshold");
+  if (iVar1 == 0) {
+    uVar2 = FUN_007006e0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsInWeaponRange");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00700830(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionAllowedToAttackTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00716840(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionAllowedToPursueTarget");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00700980(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasAlertnessState");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00700aa0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasAggroLevel");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00700bf0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsInVent");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00700d40(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsCrouching");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00700e90(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsInCrawlSpace");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00701020(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionScriptedWithdrawRequested");
+  if (iVar1 == 0) {
+    uVar2 = FUN_007011b0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionRangeTestForScriptedWithdrawal");
+  if (iVar1 == 0) {
+    uVar2 = FUN_007012d0(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionShouldUseCover");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00716960(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasAWeapon");
+  if (iVar1 == 0) {
+    uVar2 = FUN_00716a80(param_1);
+    return uVar2;
+  }
+  iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionCurrentWeaponNeedsReloading");
+  if (iVar1 != 0) {
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionCurrentWeaponIsEquipped");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00716cd0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasTimerExpired");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00716df0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionLastTimeSensed");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007013f0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionLastTimeSquadNotified");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00701540(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetsWeaponHasProperty");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00701690(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionLogicCharacterFlags");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00701800(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetLogicCharacterFlags");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00701950(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsInCombatArea");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00701aa0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsInCombatArea");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00701c30(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionObjectiveIsInCombatArea");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00701d80(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasObjective");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00701ed0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionObjectiveIsWithinDistance");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00702020(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasGroupAwarenessState");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00702170(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionCheckHealthState");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007022c0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionWithdrawState");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00702410(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionAngleNPCToTargetsAimLessThan");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00702560(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsInTargetsWeaponRange");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007026b0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionVisualSomeRaysThroughGlass");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00716f20(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,
+                         "LegendPlugin.Nodes.ConditionAngleFromTargetAgainstTargetCameraDirnLessThan"
+                        );
+    if (iVar1 == 0) {
+      uVar2 = FUN_00702800(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetsWeaponHasAmmo");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00702970(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasValidRouteToTarget");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00717040(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsWithinRoutingDistance");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00702a90(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetIsWithinDistanceUnobscured");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00702bf0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTargetNearestStandPointIsWithinDistance"
+                        );
+    if (iVar1 == 0) {
+      uVar2 = FUN_00702d50(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasSearchedMostRecentSensedPosition");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00717160(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsBranchActive");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00702ec0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionCanTakeStep");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00703010(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsInCover");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007031a0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionCanShootNow");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00717280(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasValidCoverToChangeTo");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007173a0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsCurrentCoverValid");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007174c0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsRequestingCover");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007175e0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsCoverTooClose");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007032f0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsCoverExposed");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00703450(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionShouldProcessSuspiciousItem");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00717700(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionSuspiciousItemBTPriority");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007035c0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionSuspiciousItemShouldDoStage");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00703710(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionSuspiciousItemFirstGroupMember");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00703860(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionSuspiciousItemGroupMembersRoutingTo");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00703980(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionSuspiciousItemWaitForGroupRouting");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00717820(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionSuspiciousItemGroupAllowedToProgress");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00703aa0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsPartOfNPCGroup");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00703bc0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionSquadDoingEscalation");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00703ce0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionSquadDoingSuspiciousWarning");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00703e00(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionAllowedToSearch");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00703f20(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionAllowedToDoSuspiciousWarning");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00704040(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsGaugeAmountBelow");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00717940(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasAnySenseBeenAboveWithinTime");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00704160(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionLastTimeSearchedWithinTime");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007042b0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionLastTimeWasAbleToShootTarget");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00704410(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionCanBreakout");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00704560(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsBackstage");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00704680(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionLastTimeSensedFloat");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007047a0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionCanBeControlledByGamepad");
+    if (iVar1 == 0) {
+      uVar2 = FUN_007048f0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionNeedsToGetOutOfTheWay");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00704a10(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasAmbushPoint");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00704b30(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasKilltrap");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00704c50(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasFlankedVentCloseToPlayer");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00704d70(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasVentCloseToAlien");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00704ec0(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionAnotherAlienIsAttackingThisTarget");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00705010(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsTargetInDeepCrouch");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00705130(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionAlienIsAllowed");
+    if (iVar1 == 0) {
+      uVar2 = FUN_00705250(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionSuspiciousItemIsWithinDistance");
+    if (iVar1 == 0) {
+      uVar2 = FUN_006da510(param_1);
+      return uVar2;
+    }
+    iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionEventAOccuredAfterB");
+    if (iVar1 != 0) {
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionIsFrameFlagSet");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006da830(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasToken");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006da9c0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasDoneSuspectResponseMoveTo");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00717a70(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionHasDoneSuspectResponseWithinTime");
+      if (iVar1 == 0) {
+        uVar2 = FUN_007053a0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,
+                           "LegendPlugin.Nodes.ConditionWasSenseThresholdLastIncreaseActivationAbove"
+                          );
+      if (iVar1 == 0) {
+        uVar2 = FUN_007054f0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionGameIsDifficulty");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00705640(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionMoveToConvo");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006ed760(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionSpeakingInConvo");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006ed7b0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ActionListeningInConvo");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006ed800(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionInConvo");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00705790(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionTalkingInConvo");
+      if (iVar1 == 0) {
+        uVar2 = FUN_007058b0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionListeningInConvo");
+      if (iVar1 == 0) {
+        uVar2 = FUN_007059d0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionConvoInteruppted");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00705af0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionConvoInterupptedByPlayer");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00705c10(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionSomeoneJoinedConvo");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00705d30(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionPlayerJoinedConvo");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00705e50(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.ConditionInPositionForConvo");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00705f70(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.SelectorLinear");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00721af0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.SequenceLinear");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00726ab0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.SequenceStateless");
+      if (iVar1 == 0) {
+        uVar2 = FUN_00726c80(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.SelectorPercentage");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006dab40(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorPercentage");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006ed850(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorLoop");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006f6d00(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorTimer");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006ed980(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorBranch");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006edaa0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorAwarenessState");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006edbc0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorSuspiciousItemInProgress");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006f6e10(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorAggressionEscalation");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006f6f20(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorSquadSearch");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006f7030(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorSetSenseSet");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006edce0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorMood");
+      if (iVar1 == 0) {
+        uVar2 = FUN_006dacf0(param_1);
+        return uVar2;
+      }
+      iVar1 = FUN_0040c300(uVar2,"LegendPlugin.Nodes.DecoratorLockBestVents");
+      if (iVar1 != 0) {
+        return 0;
+      }
+      uVar2 = FUN_006ede00(param_1);
+      return uVar2;
+    }
+    uVar2 = FUN_006da6a0(param_1);
+    return uVar2;
+  }
+  uVar2 = FUN_00716bb0(param_1);
+  return uVar2;
+}
+
+
+
+##### "LegendPlugin.Nodes.ConditionDebugMenuLinkTest"
+string @ 012f056c

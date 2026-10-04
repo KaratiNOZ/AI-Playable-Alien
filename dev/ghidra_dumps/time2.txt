@@ -1,0 +1,1242 @@
+
+##### 016410a8
+  READ from 007d27b4 in FUN_007d26d0 @ 007d26d0
+  READ from 007c3a59 in FUN_007c3980 @ 007c3980
+  READ from 0046be25 in FUN_0046bdf0 @ 0046bdf0
+  READ from 0040154f in FUN_00401520 @ 00401520
+  READ from 004015e6 in FUN_004015e0 @ 004015e0
+  READ from 00775a75 in FUN_00775a70 @ 00775a70
+  READ from 007b4b2d in FUN_007b4ad0 @ 007b4ad0
+  READ from 007260c2 in FUN_007260a0 @ 007260a0
+  READ from 00720e3f in FUN_00720c60 @ 00720c60
+  READ from 0071aa06 in FUN_0071a9b0 @ 0071a9b0
+  READ from 0040cba2 in FUN_0040c950 @ 0040c950
+  READ from 0040d12c in FUN_0040d0b0 @ 0040d0b0
+  READ from 00410219 in FUN_00410080 @ 00410080
+  READ from 0041236d in FUN_00412330 @ 00412330
+  READ from 0042f898 in FUN_0042f320 @ 0042f320
+  READ from 00437f07 in FUN_00437e00 @ 00437e00
+  READ from 00437fbb in FUN_00437e00 @ 00437e00
+  READ from 00437ff5 in FUN_00437e00 @ 00437e00
+  READ from 0043800b in FUN_00437e00 @ 00437e00
+  READ from 00438037 in FUN_00437e00 @ 00437e00
+  READ from 007200e2 in FUN_00720090 @ 00720090
+  READ from 007d5db1 in FUN_007d5c90 @ 007d5c90
+  READ from 0045116b in FUN_00451040 @ 00451040
+  READ from 00457b27 in FUN_004579c0 @ 004579c0
+  READ from 00457cf2 in FUN_004579c0 @ 004579c0
+  READ from 004595e6 in FUN_004590d0 @ 004590d0
+  READ from 00459bab in FUN_004596d0 @ 004596d0
+  READ from 0045a2e8 in FUN_0045a280 @ 0045a280
+  READ from 0045d834 in FUN_0045d660 @ 0045d660
+  READ from 00454343 in FUN_004542c0 @ 004542c0
+  READ from 0045e268 in FUN_0045e170 @ 0045e170
+  READ from 0046a27f in FUN_0046a1a0 @ 0046a1a0
+  READ from 0046a3fa in FUN_0046a380 @ 0046a380
+  READ from 0046a46a in FUN_0046a420 @ 0046a420
+  READ from 0046b1c4 in FUN_0046b1a0 @ 0046b1a0
+  READ from 0046b1dc in FUN_0046b1a0 @ 0046b1a0
+  READ from 0046b591 in FUN_0046b570 @ 0046b570
+  READ from 0046b908 in FUN_0046b8d0 @ 0046b8d0
+  READ from 0046c5b6 in FUN_0046c5b0 @ 0046c5b0
+  READ from 006cdbb4 in FUN_006cdbb0 @ 006cdbb0
+  READ from 0046e552 in FUN_0046e530 @ 0046e530
+  READ from 0046ec65 in FUN_0046ebd0 @ 0046ebd0
+  READ from 0046ecad in FUN_0046ebd0 @ 0046ebd0
+  READ from 0046a35f in FUN_0046a2b0 @ 0046a2b0
+  READ from 0046fc92 in FUN_0046fc50 @ 0046fc50
+  READ from 00472893 in FUN_00472710 @ 00472710
+  READ from 00472cc1 in FUN_00472b90 @ 00472b90
+  READ from 007382ba in FUN_007382b0 @ 007382b0
+  READ from 007749e9 in FUN_007749a0 @ 007749a0
+  READ from 004735ad in FUN_00473570 @ 00473570
+  READ from 0046fd4c in FUN_0046fcc0 @ 0046fcc0
+  READ from 00784fb7 in FUN_00784fb0 @ 00784fb0
+  READ from 006d064c in FUN_006d0620 @ 006d0620
+  READ from 006f44c0 in FUN_006f42d0 @ 006f42d0
+  READ from 006f44da in FUN_006f42d0 @ 006f42d0
+  READ from 006ce9f6 in FUN_006ce9c0 @ 006ce9c0
+  READ from 006cea2e in FUN_006ce9c0 @ 006ce9c0
+  READ from 006cea68 in FUN_006ce9c0 @ 006ce9c0
+  READ from 006ceaa0 in FUN_006ce9c0 @ 006ce9c0
+  READ from 006ceada in FUN_006ce9c0 @ 006ce9c0
+  READ from 006ceb12 in FUN_006ce9c0 @ 006ce9c0
+  READ from 006ceb62 in FUN_006ce9c0 @ 006ce9c0
+  READ from 006ceb9d in FUN_006ce9c0 @ 006ce9c0
+  READ from 0072f7a1 in FUN_0072f730 @ 0072f730
+  READ from 00724414 in FUN_00724370 @ 00724370
+  READ from 007244a7 in FUN_00724370 @ 00724370
+  READ from 007244fb in FUN_00724370 @ 00724370
+  READ from 0071c33e in FUN_0071c2a0 @ 0071c2a0
+  READ from 0071c941 in FUN_0071c900 @ 0071c900
+  READ from 0071c9b0 in FUN_0071c900 @ 0071c900
+  READ from 0071ca45 in FUN_0071c900 @ 0071c900
+  READ from 0071cb40 in FUN_0071c900 @ 0071c900
+  READ from 0049c87d in FUN_0049c780 @ 0049c780
+  READ from 0049c8d4 in FUN_0049c780 @ 0049c780
+  READ from 0049ca01 in FUN_0049c780 @ 0049c780
+  READ from 00724139 in FUN_007240b0 @ 007240b0
+  READ from 007241cb in FUN_007240b0 @ 007240b0
+  READ from 00724223 in FUN_007240b0 @ 007240b0
+  READ from 0072fa00 in FUN_0072f910 @ 0072f910
+  READ from 0072fa19 in FUN_0072f910 @ 0072f910
+  READ from 006f46b0 in FUN_006f4520 @ 006f4520
+  READ from 006f46c9 in FUN_006f4520 @ 006f4520
+  READ from 0071c6df in FUN_0071c470 @ 0071c470
+  READ from 0071c747 in FUN_0071c470 @ 0071c470
+  READ from 0071cdd6 in FUN_0071cb80 @ 0071cb80
+  READ from 0071ce38 in FUN_0071cb80 @ 0071cb80
+  READ from 0070f7c0 in FUN_0070f7c0 @ 0070f7c0
+  READ from 0070f7d9 in FUN_0070f7c0 @ 0070f7c0
+  READ from 0071b966 in FUN_0071b940 @ 0071b940
+  READ from 0071b98b in FUN_0071b940 @ 0071b940
+  READ from 0071b7d1 in FUN_0071b770 @ 0071b770
+  READ from 004acf9b in FUN_004acf30 @ 004acf30
+  READ from 004acfaf in FUN_004acf30 @ 004acf30
+  READ from 006bee20 in FUN_006bec90 @ 006bec90
+  READ from 006bde37 in FUN_006bdba0 @ 006bdba0
+  READ from 006b80ed in FUN_006b8060 @ 006b8060
+  READ from 004a00d5 in FUN_004a0030 @ 004a0030
+  READ from 006d3f1b in FUN_006d3ec0 @ 006d3ec0
+  READ from 006d3f7f in FUN_006d3f40 @ 006d3f40
+  READ from 0070db89 in FUN_0070daf0 @ 0070daf0
+  READ from 004de213 in FUN_004de210 @ 004de210
+  READ from 004de491 in FUN_004de3c0 @ 004de3c0
+  READ from 004de4db in FUN_004de4c0 @ 004de4c0
+  READ from 004e3143 in FUN_004e30e0 @ 004e30e0
+  READ from 005208e1 in FUN_00520890 @ 00520890
+  READ from 00521508 in FUN_00521450 @ 00521450
+  READ from 00522c22 in FUN_00522960 @ 00522960
+  READ from 00792edc in FUN_00792e00 @ 00792e00
+  READ from 00792fb5 in FUN_00792e00 @ 00792e00
+  READ from 00793084 in FUN_00792e00 @ 00792e00
+  READ from 00793167 in FUN_00792e00 @ 00792e00
+  READ from 0079322f in FUN_00792e00 @ 00792e00
+  READ from 00723e71 in FUN_00723c90 @ 00723c90
+  READ from 0071b666 in FUN_0071b600 @ 0071b600
+  READ from 00562fc8 in FUN_00562e90 @ 00562e90
+  READ from 00563198 in FUN_00563180 @ 00563180
+  READ from 0056347d in FUN_00563450 @ 00563450
+  READ from 005638be in FUN_00563820 @ 00563820
+  READ from 005652c5 in FUN_005651f0 @ 005651f0
+  READ from 0056789a in FUN_00567350 @ 00567350
+  READ from 007542ad in FUN_00753ab0 @ 00753ab0
+  READ from 00753105 in FUN_007529b0 @ 007529b0
+  READ from 005780cd in FUN_00578010 @ 00578010
+  READ from 00578225 in FUN_005781a0 @ 005781a0
+  READ from 005782db in FUN_005781a0 @ 005781a0
+  READ from 00578483 in FUN_005781a0 @ 005781a0
+  READ from 00578529 in FUN_005781a0 @ 005781a0
+  READ from 0057859d in FUN_005781a0 @ 005781a0
+  READ from 006f25bc in FUN_006f24b0 @ 006f24b0
+  READ from 005ad283 in FUN_005ad280 @ 005ad280
+  READ from 005d9760 in FUN_005d9510 @ 005d9510
+  READ from 006d45ea in FUN_006d45b0 @ 006d45b0
+  READ from 006e010b in FUN_006e0080 @ 006e0080
+  READ from 006e02a8 in FUN_006e0080 @ 006e0080
+  READ from 006e02e6 in FUN_006e0080 @ 006e0080
+  READ from 0072a55d in FUN_0072a290 @ 0072a290
+  READ from 00724815 in FUN_007245a0 @ 007245a0
+  READ from 0073d700 in FUN_0073d6d0 @ 0073d6d0
+  READ from 00604935 in FUN_00604700 @ 00604700
+  READ from 0062b85d in FUN_0062b7b0 @ 0062b7b0
+  READ from 0063646b in FUN_006362f0 @ 006362f0
+  READ from 006364e4 in FUN_006362f0 @ 006362f0
+  READ from 006364f9 in FUN_006362f0 @ 006362f0
+  READ from 00767993 in FUN_007678f0 @ 007678f0
+  READ from 00766eba in FUN_00766e90 @ 00766e90
+  READ from 00766efb in FUN_00766e90 @ 00766e90
+  READ from 00645748 in FUN_006456e0 @ 006456e0
+  READ from 006c5ba9 in FUN_006c5ba0 @ 006c5ba0
+  READ from 0064e72d in FUN_0064e6c0 @ 0064e6c0
+  READ from 007c4f3c in FUN_007c4ec0 @ 007c4ec0
+  READ from 00651614 in FUN_00651600 @ 00651600
+  READ from 00655ada in FUN_00655a60 @ 00655a60
+  READ from 00657b07 in FUN_00657a40 @ 00657a40
+  READ from 00657bf1 in FUN_00657b40 @ 00657b40
+  READ from 006583ff in FUN_00658390 @ 00658390
+  READ from 00658ef9 in FUN_00658e50 @ 00658e50
+  READ from 006f2b96 in FUN_006f2ac0 @ 006f2ac0
+  READ from 0065929a in FUN_00659290 @ 00659290
+  READ from 006592c5 in FUN_00659290 @ 00659290
+  READ from 006592f0 in FUN_00659290 @ 00659290
+  READ from 0065943a in FUN_00659430 @ 00659430
+  READ from 00659465 in FUN_00659430 @ 00659430
+  READ from 006595ba in FUN_006595b0 @ 006595b0
+  READ from 006595df in FUN_006595b0 @ 006595b0
+  READ from 006597c4 in FUN_006596d0 @ 006596d0
+  READ from 0065993f in FUN_00659890 @ 00659890
+  READ from 006e8ced in FUN_006e8c00 @ 006e8c00
+  READ from 00659d52 in FUN_00659c50 @ 00659c50
+  READ from 0065a190 in FUN_0065a0e0 @ 0065a0e0
+  READ from 0065a680 in FUN_0065a5d0 @ 0065a5d0
+  READ from 0065a846 in FUN_0065a7a0 @ 0065a7a0
+  READ from 0065b135 in FUN_0065b030 @ 0065b030
+  READ from 0065d346 in FUN_0065d340 @ 0065d340
+  READ from 0065dda2 in FUN_0065dcf0 @ 0065dcf0
+  READ from 0065de9f in FUN_0065ddd0 @ 0065ddd0
+  READ from 0065e052 in FUN_0065dfa0 @ 0065dfa0
+  READ from 0065e142 in FUN_0065e090 @ 0065e090
+  READ from 0065f371 in FUN_0065f300 @ 0065f300
+  READ from 0065f8ae in FUN_0065f800 @ 0065f800
+  READ from 006600f9 in FUN_006600e0 @ 006600e0
+  READ from 00660700 in FUN_006606c0 @ 006606c0
+  READ from 00660725 in FUN_006606c0 @ 006606c0
+  READ from 00662b96 in FUN_00662670 @ 00662670
+  READ from 00662cc7 in FUN_00662670 @ 00662670
+  READ from 006fb590 in FUN_006fb450 @ 006fb450
+  READ from 006fb704 in FUN_006fb450 @ 006fb450
+  READ from 006630f4 in FUN_00662f90 @ 00662f90
+  READ from 00663163 in FUN_00662f90 @ 00662f90
+  READ from 006631fc in FUN_00662f90 @ 00662f90
+  READ from 006633c7 in FUN_006632e0 @ 006632e0
+  READ from 0066343c in FUN_006632e0 @ 006632e0
+  READ from 00663583 in FUN_006632e0 @ 006632e0
+  READ from 00663634 in FUN_006632e0 @ 006632e0
+  READ from 006636a7 in FUN_006632e0 @ 006632e0
+  READ from 00663729 in FUN_006632e0 @ 006632e0
+  READ from 006637c6 in FUN_006632e0 @ 006632e0
+  READ from 0066aef2 in FUN_0066ade0 @ 0066ade0
+  READ from 0066db54 in FUN_0066da90 @ 0066da90
+  READ from 0067031c in FUN_006702c0 @ 006702c0
+  READ from 00670e7b in FUN_00670e50 @ 00670e50
+  READ from 006783aa in FUN_00678370 @ 00678370
+  READ from 0067ba11 in FUN_0067b720 @ 0067b720
+  READ from 0067c45b in FUN_0067c3c0 @ 0067c3c0
+  READ from 0067c4a5 in FUN_0067c3c0 @ 0067c3c0
+  READ from 0067c4da in FUN_0067c3c0 @ 0067c3c0
+  READ from 00780e11 in FUN_00780de0 @ 00780de0
+  READ from 00780e3a in FUN_00780de0 @ 00780de0
+  READ from 00774278 in FUN_00774240 @ 00774240
+  READ from 00774291 in FUN_00774240 @ 00774240
+  READ from 0073d698 in FUN_0073d600 @ 0073d600
+  READ from 006856e4 in FUN_006852f0 @ 006852f0
+  READ from 00685838 in FUN_00685750 @ 00685750
+  READ from 0078b6bf in FUN_0078b6a0 @ 0078b6a0
+  READ from 0079a557 in FUN_0079a3f0 @ 0079a3f0
+  READ from 006963d6 in FUN_00696370 @ 00696370
+  READ from 00699d01 in FUN_00699cc0 @ 00699cc0
+  READ from 006a03c4 in FUN_006a0360 @ 006a0360
+  READ from 006a2f52 in FUN_006a2df0 @ 006a2df0
+  READ from 006b940f in FUN_006b92a0 @ 006b92a0
+  READ from 006c4968 in FUN_006c4930 @ 006c4930
+  READ from 006cf1bc in FUN_006cf080 @ 006cf080
+  READ from 007c4869 in FUN_007c4780 @ 007c4780
+  READ from 006d3e77 in FUN_006d3e40 @ 006d3e40
+  READ from 006d6e2b in FUN_006d6b00 @ 006d6b00
+  READ from 006dc793 in FUN_006dc740 @ 006dc740
+  READ from 006df271 in FUN_006df220 @ 006df220
+  READ from 006df346 in FUN_006df340 @ 006df340
+  READ from 006df3eb in FUN_006df340 @ 006df340
+  READ from 006df443 in FUN_006df340 @ 006df340
+  READ from 006df5c6 in FUN_006df340 @ 006df340
+  READ from 006df6b9 in FUN_006df340 @ 006df340
+  READ from 006e11c8 in FUN_006e11b0 @ 006e11b0
+  READ from 0076e6d2 in FUN_0076e6c0 @ 0076e6c0
+  READ from 0076fae0 in FUN_0076fa40 @ 0076fa40
+  READ from 00766fc8 in FUN_00766fa0 @ 00766fa0
+  READ from 00767028 in FUN_00766fa0 @ 00766fa0
+  READ from 00767044 in FUN_00766fa0 @ 00766fa0
+  READ from 0075daa6 in FUN_0075da30 @ 0075da30
+  READ from 0075db8d in FUN_0075da30 @ 0075da30
+  READ from 0075bba9 in FUN_0075bb80 @ 0075bb80
+  READ from 007670f6 in FUN_007670c0 @ 007670c0
+  READ from 00767119 in FUN_007670c0 @ 007670c0
+  READ from 007671b0 in FUN_007671b0 @ 007671b0
+  READ from 007671dc in FUN_007671b0 @ 007671b0
+  READ from 0076eae3 in FUN_0076e9f0 @ 0076e9f0
+  READ from 0076ecc8 in FUN_0076e9f0 @ 0076e9f0
+  READ from 0076867a in FUN_007685f0 @ 007685f0
+  READ from 0076874a in FUN_007685f0 @ 007685f0
+  READ from 006e3ebb in FUN_006e3db0 @ 006e3db0
+  READ from 006e7098 in FUN_006e6db0 @ 006e6db0
+  READ from 006e70dd in FUN_006e6db0 @ 006e6db0
+  READ from 006e7429 in FUN_006e73f0 @ 006e73f0
+  READ from 006e76e9 in FUN_006e7440 @ 006e7440
+  READ from 006e7972 in FUN_006e7440 @ 006e7440
+  READ from 006e9ef9 in FUN_006e9ec0 @ 006e9ec0
+  READ from 006eb861 in FUN_006eb790 @ 006eb790
+  READ from 006d7092 in FUN_006d7040 @ 006d7040
+  READ from 006f1016 in FUN_006f0f80 @ 006f0f80
+  READ from 006f1a24 in FUN_006f1940 @ 006f1940
+  READ from 006f18ee in FUN_006f1870 @ 006f1870
+  READ from 006f20f9 in FUN_006f1fe0 @ 006f1fe0
+  READ from 006f22cb in FUN_006f21a0 @ 006f21a0
+  READ from 006e9481 in FUN_006e9450 @ 006e9450
+  READ from 006f2462 in FUN_006f23f0 @ 006f23f0
+  READ from 00766cc4 in FUN_00766c80 @ 00766c80
+  READ from 00766ce7 in FUN_00766c80 @ 00766c80
+  READ from 006f3e51 in FUN_006f3ca0 @ 006f3ca0
+  READ from 006f5356 in FUN_006f5310 @ 006f5310
+  READ from 006d775b in FUN_006d7740 @ 006d7740
+  READ from 006d7792 in FUN_006d7740 @ 006d7740
+  READ from 006f8a95 in FUN_006f88d0 @ 006f88d0
+  READ from 006fbfc5 in FUN_006fbeb0 @ 006fbeb0
+  READ from 006fc04b in FUN_006fbeb0 @ 006fbeb0
+  READ from 006fc07f in FUN_006fbeb0 @ 006fbeb0
+  READ from 006fc10f in FUN_006fbeb0 @ 006fbeb0
+  READ from 006fc19a in FUN_006fbeb0 @ 006fbeb0
+  READ from 006fc1c2 in FUN_006fbeb0 @ 006fbeb0
+  READ from 006fc26a in FUN_006fbeb0 @ 006fbeb0
+  READ from 006c47b2 in FUN_006c47a0 @ 006c47a0
+  READ from 006cefa0 in FUN_006cefa0 @ 006cefa0
+  READ from 006cf05d in FUN_006cefa0 @ 006cefa0
+  READ from 006d58ce in FUN_006d58c0 @ 006d58c0
+  READ from 006fd34a in FUN_006fcf80 @ 006fcf80
+  READ from 007065a3 in FUN_00706520 @ 00706520
+  READ from 00709148 in FUN_00709100 @ 00709100
+  READ from 0070e5be in FUN_0070e220 @ 0070e220
+  READ from 0070e612 in FUN_0070e220 @ 0070e220
+  READ from 0070eaaa in FUN_0070e700 @ 0070e700
+  READ from 0070ec12 in FUN_0070e700 @ 0070e700
+  READ from 0070ec76 in FUN_0070e700 @ 0070e700
+  READ from 0070ecb3 in FUN_0070e700 @ 0070e700
+  READ from 0070f0a4 in FUN_0070e700 @ 0070e700
+  READ from 00710d4e in FUN_00710d40 @ 00710d40
+  READ from 00710e02 in FUN_00710de0 @ 00710de0
+  READ from 007115d0 in FUN_00711440 @ 00711440
+  READ from 0071161c in FUN_00711440 @ 00711440
+  READ from 007117ee in FUN_00711440 @ 00711440
+  READ from 0071183d in FUN_00711440 @ 00711440
+  READ from 006c5be2 in FUN_006c5bc0 @ 006c5bc0
+  READ from 00712d30 in FUN_00712c00 @ 00712c00
+  READ from 007183f3 in FUN_00718370 @ 00718370
+  READ from 00718643 in FUN_007185c0 @ 007185c0
+  READ from 00718aa3 in FUN_00718910 @ 00718910
+  READ from 00718e0f in FUN_00718ce0 @ 00718ce0
+  READ from 0073f9e8 in FUN_0073f8f0 @ 0073f8f0
+  READ from 0046a000 in FUN_0046a000 @ 0046a000
+  READ from 006dd283 in FUN_006dd240 @ 006dd240
+  READ from 0073a84e in FUN_0073a760 @ 0073a760
+  READ from 00719e8c in FUN_00719ac0 @ 00719ac0
+  READ from 0071b177 in FUN_0071b140 @ 0071b140
+  READ from 0071b20a in FUN_0071b140 @ 0071b140
+  READ from 0071b4d1 in FUN_0071b140 @ 0071b140
+  READ from 0071d68a in FUN_0071d5d0 @ 0071d5d0
+  READ from 0071d6d9 in FUN_0071d5d0 @ 0071d5d0
+  READ from 0071d731 in FUN_0071d5d0 @ 0071d5d0
+  READ from 0071d79b in FUN_0071d5d0 @ 0071d5d0
+  READ from 0071d80b in FUN_0071d5d0 @ 0071d5d0
+  READ from 0071d862 in FUN_0071d5d0 @ 0071d5d0
+  READ from 0071d92f in FUN_0071d5d0 @ 0071d5d0
+  READ from 0071d99c in FUN_0071d5d0 @ 0071d5d0
+  READ from 0071da26 in FUN_0071d5d0 @ 0071d5d0
+  READ from 0071da90 in FUN_0071d5d0 @ 0071d5d0
+  READ from 0071dff8 in FUN_0071dfe0 @ 0071dfe0
+  READ from 0071e1b4 in FUN_0071e140 @ 0071e140
+  READ from 0071e62c in FUN_0071e220 @ 0071e220
+  READ from 0071e6cc in FUN_0071e220 @ 0071e220
+  READ from 0071eb3a in FUN_0071e9d0 @ 0071e9d0
+  READ from 0071ed51 in FUN_0071ebc0 @ 0071ebc0
+  READ from 0071f253 in FUN_0071f070 @ 0071f070
+  READ from 0071f359 in FUN_0071f070 @ 0071f070
+  READ from 0071f4f1 in FUN_0071f3f0 @ 0071f3f0
+  READ from 0071f558 in FUN_0071f3f0 @ 0071f3f0
+  READ from 0071f978 in FUN_0071f950 @ 0071f950
+  READ from 0071fae7 in FUN_0071fac0 @ 0071fac0
+  READ from 007203d3 in FUN_00720310 @ 00720310
+  READ from 007373c6 in FUN_007373c0 @ 007373c0
+  READ from 0040a59e in FUN_0040a4a0 @ 0040a4a0
+  READ from 0040ac4f in FUN_0040ab40 @ 0040ab40
+  READ from 0040b858 in FUN_0040b5d0 @ 0040b5d0
+  READ from 0040c040 in FUN_0040bf30 @ 0040bf30
+  READ from 0071d4ce in FUN_0071d480 @ 0071d480
+  READ from 0071d588 in FUN_0071d480 @ 0071d480
+  READ from 006e920c in FUN_006e9100 @ 006e9100
+  READ from 006e9271 in FUN_006e9100 @ 006e9100
+  READ from 007242e6 in FUN_007242a0 @ 007242a0
+  READ from 00724c86 in FUN_00724be0 @ 00724be0
+  READ from 00724d97 in FUN_00724be0 @ 00724be0
+  READ from 00724e2e in FUN_00724be0 @ 00724be0
+  READ from 0072597c in FUN_00725330 @ 00725330
+  READ from 00725a86 in FUN_00725330 @ 00725330
+  READ from 00725bcb in FUN_00725330 @ 00725330
+  READ from 007273ef in FUN_007273c0 @ 007273c0
+  READ from 0072804c in FUN_00727ee0 @ 00727ee0
+  READ from 007280ff in FUN_00727ee0 @ 00727ee0
+  READ from 007291b5 in FUN_00729120 @ 00729120
+  READ from 0071c3fe in FUN_0071c3c0 @ 0071c3c0
+  READ from 00775c5e in FUN_00775c50 @ 00775c50
+  READ from 0072eb89 in FUN_0072eb60 @ 0072eb60
+  READ from 00730056 in FUN_0072fdd0 @ 0072fdd0
+  READ from 0073017c in FUN_0072fdd0 @ 0072fdd0
+  READ from 00730288 in FUN_0072fdd0 @ 0072fdd0
+  READ from 007302b2 in FUN_0072fdd0 @ 0072fdd0
+  READ from 006d1760 in FUN_006d16d0 @ 006d16d0
+  READ from 006d1779 in FUN_006d16d0 @ 006d16d0
+  READ from 0071bc2b in FUN_0071b9a0 @ 0071b9a0
+  READ from 0071bef5 in FUN_0071b9a0 @ 0071b9a0
+  READ from 0072f558 in FUN_0072f3a0 @ 0072f3a0
+  READ from 0072f583 in FUN_0072f3a0 @ 0072f3a0
+  READ from 0072f5c1 in FUN_0072f3a0 @ 0072f3a0
+  READ from 0072f60f in FUN_0072f3a0 @ 0072f3a0
+  READ from 00731bf5 in FUN_00731be0 @ 00731be0
+  READ from 00731cc8 in FUN_00731be0 @ 00731be0
+  READ from 00731e9d in FUN_00731be0 @ 00731be0
+  READ from 00731f49 in FUN_00731be0 @ 00731be0
+  READ from 00732091 in FUN_00731be0 @ 00731be0
+  READ from 007323ae in FUN_00731be0 @ 00731be0
+  READ from 007324c5 in FUN_00731be0 @ 00731be0
+  READ from 006cbe97 in FUN_006cbe80 @ 006cbe80
+  READ from 0071c148 in FUN_0071c0c0 @ 0071c0c0
+  READ from 0073737c in FUN_00737370 @ 00737370
+  READ from 007373a1 in FUN_00737370 @ 00737370
+  READ from 00742946 in FUN_00742940 @ 00742940
+  READ from 00776195 in FUN_00776170 @ 00776170
+  READ from 006c4e12 in FUN_006c4e00 @ 006c4e00
+  READ from 006f9eb0 in FUN_006f9d30 @ 006f9d30
+  READ from 006c8a08 in FUN_006c8a00 @ 006c8a00
+  READ from 006c8a48 in FUN_006c8a40 @ 006c8a40
+  READ from 006c8a88 in FUN_006c8a80 @ 006c8a80
+  READ from 00737fdd in FUN_00737fb0 @ 00737fb0
+  READ from 0073803d in FUN_00738010 @ 00738010
+  READ from 00738abc in FUN_00738910 @ 00738910
+  READ from 00738ded in FUN_00738b30 @ 00738b30
+  READ from 0073dd13 in FUN_0073da80 @ 0073da80
+  READ from 0073fb97 in FUN_0073fa20 @ 0073fa20
+  READ from 0073fbc8 in FUN_0073fa20 @ 0073fa20
+  READ from 00469fe0 in FUN_00469fe0 @ 00469fe0
+  READ from 0073e608 in FUN_0073e5d0 @ 0073e5d0
+  READ from 0074027c in FUN_007401a0 @ 007401a0
+  READ from 007406a6 in FUN_007406a0 @ 007406a0
+  READ from 00742e20 in FUN_00742e20 @ 00742e20
+  READ from 0074cd0a in FUN_0074c870 @ 0074c870
+  READ from 00750728 in FUN_00750710 @ 00750710
+  READ from 007511f8 in FUN_007511a0 @ 007511a0
+  READ from 0075a5cb in FUN_0075a580 @ 0075a580
+  READ from 0075ab0b in FUN_0075a9e0 @ 0075a9e0
+  READ from 0075ab36 in FUN_0075a9e0 @ 0075a9e0
+  READ from 0075de47 in FUN_0075de20 @ 0075de20
+  READ from 0075e0c7 in FUN_0075df20 @ 0075df20
+  READ from 0075e1ad in FUN_0075df20 @ 0075df20
+  READ from 0075e977 in FUN_0075e950 @ 0075e950
+  READ from 0075f089 in FUN_0075f060 @ 0075f060
+  READ from 0075fccb in FUN_0075fc90 @ 0075fc90
+  READ from 0075fd27 in FUN_0075fc90 @ 0075fc90
+  READ from 0075fd63 in FUN_0075fc90 @ 0075fc90
+  READ from 0075fe69 in FUN_0075fc90 @ 0075fc90
+  READ from 0075ff60 in FUN_0075fc90 @ 0075fc90
+  READ from 0075ff7e in FUN_0075fc90 @ 0075fc90
+  READ from 0077433a in FUN_007742e0 @ 007742e0
+  READ from 0077434c in FUN_007742e0 @ 007742e0
+  READ from 007638c8 in FUN_007638c0 @ 007638c0
+  READ from 0076393e in FUN_007638c0 @ 007638c0
+  READ from 00763eda in FUN_00763e80 @ 00763e80
+  READ from 00763f87 in FUN_00763e80 @ 00763e80
+  READ from 0072180a in FUN_00721740 @ 00721740
+  READ from 0072187f in FUN_00721740 @ 00721740
+  READ from 00765165 in FUN_00764ec0 @ 00764ec0
+  READ from 007672b3 in FUN_007672a0 @ 007672a0
+  READ from 007672d6 in FUN_007672a0 @ 007672a0
+  READ from 007675ae in FUN_00767490 @ 00767490
+  READ from 0076900c in FUN_00768d30 @ 00768d30
+  READ from 0076921c in FUN_00768d30 @ 00768d30
+  READ from 0075b68e in FUN_0075b670 @ 0075b670
+  READ from 007693d0 in FUN_007692c0 @ 007692c0
+  READ from 0076975d in FUN_007696d0 @ 007696d0
+  READ from 007698d2 in FUN_007696d0 @ 007696d0
+  READ from 0076a0f8 in FUN_0076a0e0 @ 0076a0e0
+  READ from 0076d1b7 in FUN_0076cf40 @ 0076cf40
+  READ from 0076d6a0 in FUN_0076d1f0 @ 0076d1f0
+  READ from 0076dc3f in FUN_0076d1f0 @ 0076d1f0
+  READ from 0075f5b9 in FUN_0075f540 @ 0075f540
+  READ from 0075f69e in FUN_0075f540 @ 0075f540
+  READ from 0076e238 in FUN_0076e120 @ 0076e120
+  READ from 0076e2c2 in FUN_0076e2a0 @ 0076e2a0
+  READ from 0076e33e in FUN_0076e2a0 @ 0076e2a0
+  READ from 0076e466 in FUN_0076e2a0 @ 0076e2a0
+  READ from 0076f64b in FUN_0076f4a0 @ 0076f4a0
+  READ from 00781087 in FUN_00780fb0 @ 00780fb0
+  READ from 007810b6 in FUN_00780fb0 @ 00780fb0
+  READ from 007811e9 in FUN_00780fb0 @ 00780fb0
+  READ from 0078121f in FUN_00780fb0 @ 00780fb0
+  READ from 007813d9 in FUN_00780fb0 @ 00780fb0
+  READ from 00781481 in FUN_00780fb0 @ 00780fb0
+  READ from 00781500 in FUN_00780fb0 @ 00780fb0
+  READ from 007815db in FUN_00781560 @ 00781560
+  READ from 00781837 in FUN_00781560 @ 00781560
+  READ from 00781871 in FUN_00781560 @ 00781560
+  READ from 00772f60 in FUN_00772f60 @ 00772f60
+  READ from 007fdfc3 in FUN_007fdec0 @ 007fdec0
+  READ from 007ff13a in FUN_007fefe0 @ 007fefe0
+  READ from 007ff293 in FUN_007fefe0 @ 007fefe0
+  READ from 007ff3de in FUN_007fefe0 @ 007fefe0
+  READ from 007ff529 in FUN_007fefe0 @ 007fefe0
+  READ from 007ff665 in FUN_007fefe0 @ 007fefe0
+  READ from 007ff7ec in FUN_007fefe0 @ 007fefe0
+  READ from 007ff8db in FUN_007fefe0 @ 007fefe0
+  READ from 007fb534 in FUN_007fae60 @ 007fae60
+  READ from 007fb8ac in FUN_007fb620 @ 007fb620
+  READ from 007fad75 in FUN_007faac0 @ 007faac0
+  READ from 007863e1 in FUN_00786300 @ 00786300
+  READ from 0079016d in FUN_00790000 @ 00790000
+  READ from 00792442 in FUN_007922f0 @ 007922f0
+  READ from 007925a8 in FUN_007922f0 @ 007922f0
+  READ from 0079293d in FUN_00792610 @ 00792610
+  READ from 007dd9ad in FUN_007dd990 @ 007dd990
+  READ from 007a09b9 in FUN_007a0940 @ 007a0940
+  READ from 007abdec in FUN_007ab560 @ 007ab560
+  READ from 00649d06 in FUN_00649cb0 @ 00649cb0
+  READ from 00649daf in FUN_00649cb0 @ 00649cb0
+  READ from 007adb28 in FUN_007adaa0 @ 007adaa0
+  READ from 007b8c05 in FUN_007b8b90 @ 007b8b90
+  READ from 007ba3d1 in FUN_007ba170 @ 007ba170
+  READ from 007bb265 in FUN_007bafa0 @ 007bafa0
+  READ from 007bb2e6 in FUN_007bafa0 @ 007bafa0
+  READ from 007bb79d in FUN_007bb4f0 @ 007bb4f0
+  READ from 007bb7ae in FUN_007bb4f0 @ 007bb4f0
+  READ from 007bb7d6 in FUN_007bb4f0 @ 007bb4f0
+  READ from 007bb831 in FUN_007bb4f0 @ 007bb4f0
+  READ from 007bb842 in FUN_007bb4f0 @ 007bb4f0
+  READ from 007bb8e7 in FUN_007bb4f0 @ 007bb4f0
+  READ from 007bb9d3 in FUN_007bb4f0 @ 007bb4f0
+  READ from 007c4b18 in FUN_007c4b00 @ 007c4b00
+  READ from 007c752e in FUN_007c71b0 @ 007c71b0
+  READ from 007c76a2 in FUN_007c71b0 @ 007c71b0
+  READ from 007c9049 in FUN_007c8510 @ 007c8510
+  READ from 0042b4ab in FUN_0042b440 @ 0042b440
+  READ from 007c9d48 in FUN_007c92e0 @ 007c92e0
+  READ from 007c9e82 in FUN_007c92e0 @ 007c92e0
+  READ from 007ca8f8 in FUN_007ca8d0 @ 007ca8d0
+  READ from 007c40b1 in FUN_007c3b10 @ 007c3b10
+  READ from 007cf418 in FUN_007cf2e0 @ 007cf2e0
+  READ from 006f30e5 in FUN_006f3050 @ 006f3050
+  READ from 0071b704 in FUN_0071b6d0 @ 0071b6d0
+  READ from 0072001e in FUN_0071ffc0 @ 0071ffc0
+  READ from 0073733a in FUN_00737330 @ 00737330
+  READ from 007d09ea in FUN_007d0950 @ 007d0950
+  READ from 007d0b85 in FUN_007d0950 @ 007d0950
+  READ from 00781c08 in FUN_00781980 @ 00781980
+  READ from 00781c1f in FUN_00781980 @ 00781980
+  READ from 007d4026 in FUN_007d3db0 @ 007d3db0
+  READ from 007d40be in FUN_007d3db0 @ 007d3db0
+  READ from 007ce66b in FUN_007ce650 @ 007ce650
+  READ from 007d4f53 in FUN_007d4f30 @ 007d4f30
+  READ from 007d509c in FUN_007d4f30 @ 007d4f30
+  READ from 00682dd5 in FUN_00682d90 @ 00682d90
+  READ from 00682f0a in FUN_00682d90 @ 00682d90
+  READ from 00735ebe in FUN_00735e50 @ 00735e50
+  READ from 00735f87 in FUN_00735e50 @ 00735e50
+  READ from 007d57b2 in FUN_007d55a0 @ 007d55a0
+  READ from 007d58d2 in FUN_007d55a0 @ 007d55a0
+  READ from 007d59f2 in FUN_007d55a0 @ 007d55a0
+  WRITE from 007d9a66 in FUN_007d9810 @ 007d9810
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_007d9810(void)
+
+{
+  int *piVar1;
+  undefined4 uVar2;
+  char cVar3;
+  int *piVar4;
+  int iVar5;
+  undefined4 *puVar6;
+  undefined4 uVar7;
+  int *piVar8;
+  undefined4 *puVar9;
+  undefined4 uVar10;
+  void *pvVar11;
+  int iVar12;
+  char *pcVar13;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  int local_4;
+  
+  uVar2 = DAT_01bdf5cc;
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01130293;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  FUN_00a23530(DAT_01bdf5cc);
+  local_4 = 0;
+  GetTickCount();
+  FUN_00a69c90();
+  cVar3 = FUN_00a14760();
+  if (cVar3 == '\0') {
+    FUN_009b0b70();
+  }
+  FUN_007d41b0();
+  FUN_009b9280();
+  *(undefined1 *)(DAT_016b1758 + 0x1ff) = 1;
+  FUN_0097ce50();
+  *(undefined1 *)(DAT_01be1bd4 + 0x2d) = 1;
+  FUN_009e5350();
+  FUN_00439bc0();
+  FUN_00a69c90();
+  FUN_007a11b0();
+  iVar12 = 8;
+  pcVar13 = DAT_016f0c84;
+  do {
+    if (*pcVar13 != '\0') {
+      FUN_007a5660();
+      FUN_007b18a0();
+      *pcVar13 = '\0';
+    }
+    iVar5 = DAT_0174a7b0;
+    pcVar13 = pcVar13 + 0x34;
+    iVar12 = iVar12 + -1;
+  } while (iVar12 != 0);
+  if (DAT_0174a7b0 != 0) {
+    FUN_00822680();
+    if (DAT_0174b754 == (code *)0x0) {
+      FUN_00a6b185(iVar5);
+    }
+    else {
+      (*DAT_0174b754)();
+    }
+  }
+  iVar12 = DAT_0174a7b8;
+  DAT_0174a7b0 = 0;
+  if (DAT_0174a7b8 != 0) {
+    FUN_00822700();
+    if (DAT_0174b754 == (code *)0x0) {
+      FUN_00a6b185(iVar12);
+    }
+    else {
+      (*DAT_0174b754)();
+    }
+  }
+  DAT_0174a7b8 = 0;
+  FUN_00990aa0(1);
+  FUN_00a235d0(DAT_01bdf5cc);
+  FUN_008091e0(0);
+  FUN_009b9280();
+  FUN_0099ab10();
+  FUN_0099f4d0();
+  FUN_009a6940();
+  FUN_00995510();
+  FUN_0099f640();
+  FUN_009ae160();
+  thunk_FUN_00994e50();
+  FUN_009bc4b0(DAT_01bdf5cc);
+  FUN_0068f880();
+  puVar9 = DAT_016f194c;
+  *DAT_016f194c = 0x401;
+  puVar9[1] = 0x401;
+  *(undefined1 *)((int)puVar9 + 0xf) = 0;
+  *(undefined1 *)((int)puVar9 + 0x11) = 10;
+  puVar9[2] = DAT_012f2fcc;
+  *(undefined1 *)(puVar9 + 4) = 0;
+  *(undefined1 *)((int)puVar9 + 0xd) = 0;
+  FUN_00977030(1,(DAT_016f194c[1] & 0x179ff) != 0);
+  FUN_009770e0(0);
+  FUN_009770d0(1);
+  FUN_00744de0();
+  FUN_007fbdc0();
+  FUN_009f6f50();
+  if (DAT_016f0c88[8] != 0) {
+    FUN_00741c10();
+  }
+  FUN_007d7460();
+  DAT_016410a8 = 0;
+  DAT_016410b0 = 0;
+  FUN_00744f00();
+  FUN_007a5010();
+  if (DAT_016f1844 != 0) {
+    piVar4 = (int *)FUN_00976070(4);
+    iVar12 = DAT_016f1844;
+    if (piVar4 == (int *)0x0) {
+      iVar5 = FUN_0089ff10();
+      piVar4 = *(int **)(iVar5 + 0x404);
+    }
+    (**(code **)(*piVar4 + 0x14))(iVar12);
+    DAT_016f1844 = 0;
+    _DAT_016f1840 = 0;
+  }
+  FUN_007b5ac0();
+  FUN_007d8650();
+  iVar12 = *DAT_016f0c88;
+  puVar9 = (undefined4 *)(iVar12 + 0x418);
+  *puVar9 = 0;
+  for (puVar6 = (undefined4 *)(iVar12 + 0x318); puVar6 != puVar9; puVar6 = puVar6 + 1) {
+    *puVar6 = 0;
+  }
+  FUN_0064caa0();
+  FUN_00994310();
+  FUN_00994310();
+  FUN_00994310();
+  FUN_00994310();
+  FUN_00994310();
+  FUN_00710c50();
+  FUN_007567b0();
+  FUN_00467e60();
+  iVar12 = DAT_016f0c88[0x11];
+  FUN_007b3220();
+  uVar7 = FUN_00779f80();
+  FUN_0078dcb0(uVar7);
+  *(undefined1 *)(iVar12 + 0x3b44) = 0;
+  FUN_007e7f50();
+  FUN_007d8a40();
+  FUN_0092d430();
+  FUN_00965a20();
+  FUN_0093ef80();
+  FUN_004352a0();
+  FUN_00994310();
+  thunk_FUN_0076f330();
+  FUN_007ec430();
+  FUN_009b9280();
+  FUN_009f19c0();
+  FUN_00a03ea0();
+  FUN_009b61d0();
+  FUN_009de630();
+  if ((DAT_016b0840 & 1) == 0) {
+    DAT_016b0840 = DAT_016b0840 | 1;
+    local_4._0_1_ = 1;
+    FUN_009f8d90();
+    _atexit((_func_4879 *)&LAB_0119b810);
+    local_4 = (uint)local_4._1_3_ << 8;
+  }
+  FUN_009f1530();
+  FUN_00a1a300();
+  FUN_00a69c90();
+  FUN_009b6a00();
+  FUN_009b8600();
+  FUN_00a27970();
+  FUN_007b5ac0();
+  FUN_00744db0();
+  thunk_FUN_007f9820();
+  FUN_007f7320();
+  FUN_00a2fb90();
+  FUN_00a38190();
+  FUN_007e7f50();
+  iVar12 = *(int *)(DAT_016f0c88[0x1e] + 0xcfc);
+  if (iVar12 != 0) {
+    do {
+      iVar12 = iVar12 + -1;
+    } while (iVar12 != 0);
+    *(undefined4 *)(DAT_016f0c88[0x1e] + 0xcfc) = 0;
+  }
+  FUN_0077d360();
+  FUN_0069a240();
+  iVar12 = DAT_016f0c88[2];
+  DAT_016f0c8c = 0;
+  FUN_007889a0();
+  (**(code **)(**(int **)(iVar12 + 0x28) + 0xc))();
+  FUN_0097acd0();
+  piVar4 = &DAT_016f23d4;
+  iVar12 = 5;
+  do {
+    piVar8 = (int *)*piVar4;
+    *piVar4 = 0;
+    piVar4[-1] = 0;
+    if (piVar8 != (int *)0x0) {
+      piVar1 = piVar8 + 1;
+      LOCK();
+      iVar5 = *piVar1;
+      *piVar1 = *piVar1 + -1;
+      UNLOCK();
+      if (iVar5 == 1) {
+        (**(code **)*piVar8)();
+        piVar1 = piVar8 + 2;
+        LOCK();
+        iVar5 = *piVar1;
+        *piVar1 = *piVar1 + -1;
+        UNLOCK();
+        if (iVar5 == 1) {
+          (**(code **)(*piVar8 + 4))();
+        }
+      }
+    }
+    piVar4 = piVar4 + 2;
+    iVar12 = iVar12 + -1;
+  } while (iVar12 != 0);
+  FUN_00689310();
+  FUN_00a31490();
+  _DAT_01be1c00 = 0;
+  _DAT_01be1c04 = 0;
+  _DAT_01be1c08 = 0;
+  _DAT_01be1c0c = 0;
+  _DAT_01be1c20 = 0;
+  _DAT_01be1c24 = 0;
+  _DAT_01be1c28 = 0;
+  _DAT_01be1c2c = 0;
+  FUN_006b8770();
+  FUN_006b8a80();
+  FUN_00409260();
+  FUN_00689310();
+  cVar3 = FUN_00a2ae30(4);
+  if (cVar3 == '\0') {
+    FUN_00a2ae10(4);
+    FUN_00a2ae50(4);
+  }
+  cVar3 = FUN_00a2ae30(5);
+  if (cVar3 == '\0') {
+    FUN_00a2ae10(5);
+    FUN_00a2ae50(5);
+  }
+  cVar3 = FUN_00a2ae30(3);
+  if (cVar3 == '\0') {
+    FUN_00a2ae10(3);
+    FUN_00a2ae50(3);
+  }
+  FUN_009cd820();
+  iVar12 = DAT_016f0de0;
+  if (DAT_016f0de0 != 0) {
+    FUN_007b4b60();
+    if (DAT_0174b754 == (code *)0x0) {
+      FUN_00a6b185(iVar12);
+    }
+    else {
+      (*DAT_0174b754)();
+    }
+  }
+  DAT_016f0de0 = 0;
+  if (*(char *)(DAT_016f0c88[0x12] + 0x1fd) != '\0') {
+    *(undefined1 *)(DAT_016f0c88[0x12] + 0x1fd) = 0;
+    FUN_007bcd40();
+  }
+  FUN_00822550();
+  FUN_00a23530(DAT_01bdf5cc);
+  FUN_00746870();
+  FUN_009a4910();
+  FUN_004079e0();
+  FUN_009b9210();
+  FUN_00a69c90();
+  piVar4 = DAT_016f0c88;
+  if (DAT_016f0c88[0x23] != 0) {
+    piVar8 = (int *)FUN_00976070(4);
+    if (piVar8 == (int *)0x0) {
+      iVar12 = FUN_0089ff10();
+      piVar8 = *(int **)(iVar12 + 0x404);
+    }
+    FUN_006fdb30();
+    iVar12 = piVar4[0x23];
+    if (piVar8 == (int *)0x0) {
+      iVar5 = FUN_0089ff10();
+      piVar8 = *(int **)(iVar5 + 0x404);
+    }
+    (**(code **)(*piVar8 + 0x14))(iVar12);
+  }
+  piVar4[0x23] = 0;
+  FUN_00976020();
+  FUN_008bf880();
+  puVar9 = (undefined4 *)SteamApps();
+  cVar3 = (**(code **)*puVar9)();
+  if (cVar3 == '\0') {
+    _DAT_00000000 = 0xffffffff;
+  }
+  *(undefined1 *)(DAT_01be1bd4 + 0x2d) = 0;
+  FUN_009b8830();
+  if ((DAT_01640f27 != '\0') && (cVar3 = FUN_00a14760(), cVar3 == '\0')) {
+    iVar12 = FUN_0089ff10();
+    uVar7 = *(undefined4 *)(iVar12 + 0x404);
+    uVar10 = FUN_00976070(0);
+    iVar12 = FUN_0089ff10();
+    EnterCriticalSection((LPCRITICAL_SECTION)(iVar12 + 0x410));
+    *(undefined4 *)(iVar12 + 0x404) = uVar10;
+    LeaveCriticalSection((LPCRITICAL_SECTION)(iVar12 + 0x410));
+    if (DAT_0174a78c != 0) {
+      FUN_0080fdb0("trc_overlay",0);
+      FUN_0080fdb0("popup_overlay",0);
+      FUN_0080fdb0("alwayson",0);
+      FUN_0081f620();
+    }
+    FUN_00804f50();
+    cVar3 = FUN_00804f60();
+    puVar9 = DAT_016f0de8;
+    while (DAT_016f0de8 = puVar9, cVar3 == '\0') {
+      SleepEx(10,1);
+      cVar3 = FUN_00804f60();
+      puVar9 = DAT_016f0de8;
+    }
+    if (puVar9 != (undefined4 *)0x0) {
+      (**(code **)*puVar9)(0);
+      if (DAT_0174b754 == (code *)0x0) {
+        FUN_00a6b185(puVar9);
+      }
+      else {
+        (*DAT_0174b754)();
+      }
+    }
+    DAT_016f0de8 = (undefined4 *)0x0;
+    FUN_0080f900();
+    if (DAT_01758330 == 0) {
+      if (DAT_0174b750 == (code *)0x0) {
+        pvVar11 = __aligned_malloc(0xc,4);
+      }
+      else {
+        pvVar11 = (void *)(*DAT_0174b750)();
+      }
+      local_4._0_1_ = 2;
+      if (pvVar11 == (void *)0x0) {
+        DAT_01758330 = 0;
+      }
+      else {
+        DAT_01758330 = FUN_009994a0();
+      }
+      local_4 = (uint)local_4._1_3_ << 8;
+    }
+    FUN_009994f0();
+    if (DAT_01758330 == 0) {
+      if (DAT_0174b750 == (code *)0x0) {
+        pvVar11 = __aligned_malloc(0xc,4);
+      }
+      else {
+        pvVar11 = (void *)(*DAT_0174b750)();
+      }
+      local_4._0_1_ = 3;
+      if (pvVar11 == (void *)0x0) {
+        DAT_01758330 = 0;
+      }
+      else {
+        DAT_01758330 = FUN_009994a0();
+      }
+      local_4 = (uint)local_4._1_3_ << 8;
+    }
+    FUN_0099b470();
+    if (DAT_01758330 == 0) {
+      if (DAT_0174b750 == (code *)0x0) {
+        pvVar11 = __aligned_malloc(0xc,4);
+      }
+      else {
+        pvVar11 = (void *)(*DAT_0174b750)();
+      }
+      local_4._0_1_ = 4;
+      if (pvVar11 == (void *)0x0) {
+        DAT_01758330 = 0;
+      }
+      else {
+        DAT_01758330 = FUN_009994a0();
+      }
+      local_4 = (uint)local_4._1_3_ << 8;
+    }
+    thunk_FUN_00d06f30();
+    piVar4 = (int *)FUN_00976070(9);
+    (**(code **)(*piVar4 + 0x18))(1);
+    piVar4 = (int *)FUN_00976070(8);
+    (**(code **)(*piVar4 + 0x18))(1);
+    FUN_00a27530(DAT_017583e4);
+    if (DAT_01758330 == 0) {
+      if (DAT_0174b750 == (code *)0x0) {
+        pvVar11 = __aligned_malloc(0xc,4);
+      }
+      else {
+        pvVar11 = (void *)(*DAT_0174b750)();
+      }
+      local_4._0_1_ = 5;
+      if (pvVar11 == (void *)0x0) {
+        DAT_01758330 = 0;
+      }
+      else {
+        DAT_01758330 = FUN_009994a0();
+      }
+      local_4 = (uint)local_4._1_3_ << 8;
+    }
+    FUN_0099b4b0(1,1);
+    FUN_0099d740(0);
+    if (DAT_01758330 == 0) {
+      if (DAT_0174b750 == (code *)0x0) {
+        pvVar11 = __aligned_malloc(0xc,4);
+      }
+      else {
+        pvVar11 = (void *)(*DAT_0174b750)();
+      }
+      local_4._0_1_ = 6;
+      if (pvVar11 == (void *)0x0) {
+        DAT_01758330 = 0;
+      }
+      else {
+        DAT_01758330 = FUN_009994a0();
+      }
+      local_4 = (uint)local_4._1_3_ << 8;
+    }
+    FUN_0099aaa0();
+    FUN_008464f0();
+    FUN_00812450();
+    FUN_0080fca0();
+    if (DAT_0174b750 == (code *)0x0) {
+      pvVar11 = __aligned_malloc(0x27094,4);
+    }
+    else {
+      pvVar11 = (void *)(*DAT_0174b750)();
+    }
+    local_4._0_1_ = 7;
+    if (pvVar11 == (void *)0x0) {
+      DAT_016f0de8 = (undefined4 *)0x0;
+    }
+    else {
+      DAT_016f0de8 = (undefined4 *)FUN_007c0570();
+    }
+    local_4 = (uint)local_4._1_3_ << 8;
+    iVar12 = FUN_0089ff10();
+    EnterCriticalSection((LPCRITICAL_SECTION)(iVar12 + 0x410));
+    *(undefined4 *)(iVar12 + 0x404) = uVar7;
+    LeaveCriticalSection((LPCRITICAL_SECTION)(iVar12 + 0x410));
+  }
+  local_4 = 0xffffffff;
+  FUN_00a235d0(uVar2);
+  ExceptionList = pvStack_c;
+  return;
+}
+
+
+  READ from 007f5c75 in FUN_007f5c20 @ 007f5c20
+  READ from 007730cc in FUN_00773050 @ 00773050
+  WRITE from 007730f2 in FUN_00773050 @ 00773050
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void __thiscall FUN_00773050(char *param_1,double param_2,undefined4 param_3)
+
+{
+  float10 fVar1;
+  double dVar2;
+  double dVar3;
+  
+  if (*param_1 == '\0') {
+    FUN_00a2e000((float)(_DAT_011c7138 / *(double *)(param_1 + 8)));
+    DAT_016410d0 = (double)DAT_01be1c6c;
+    DAT_016410b0 = DAT_016410b0 + DAT_016410d0;
+  }
+  else {
+    if (param_1[1] != '\0') {
+      fVar1 = (float10)FUN_00772fa0(param_2,param_3);
+      dVar2 = (double)fVar1;
+      FUN_00a2e000((float)((float10)1 / fVar1));
+      DAT_016410dc = DAT_016410dc + 1;
+      DAT_016410b0 = DAT_016410b0 + dVar2;
+      dVar3 = _DAT_011c6ea0;
+      if (DAT_016410d8 != '\0') {
+        dVar3 = DAT_016410c8;
+      }
+      DAT_016410c0 = dVar3 * dVar2;
+      DAT_016410a8 = DAT_016410a8 + DAT_016410c0;
+      _DAT_016410b8 = 0;
+      DAT_016410d0 = dVar2;
+      FUN_0099db50();
+      FUN_0099dbd0((float)DAT_016410c0);
+      return;
+    }
+    param_1[1] = '\x01';
+    *(double *)(param_1 + 0x10) = DAT_016410b0 - param_2;
+    *(double *)(param_1 + 0x18) = DAT_016410b0;
+    DAT_016410d0 = (double)DAT_01be1c6c;
+    DAT_016410b0 = DAT_016410b0 + DAT_016410d0;
+  }
+  DAT_016410dc = DAT_016410dc + 1;
+  dVar2 = DAT_016410c8;
+  if (DAT_016410d8 == '\0') {
+    dVar2 = _DAT_011c6ea0;
+  }
+  DAT_016410c0 = dVar2 * DAT_016410d0;
+  DAT_016410a8 = DAT_016410a8 + DAT_016410c0;
+  _DAT_016410b8 = 0;
+  FUN_0099db50();
+  FUN_0099dbd0((float)DAT_016410c0);
+  return;
+}
+
+
+  READ from 00773214 in FUN_00773050 @ 00773050
+  WRITE from 0077323d in FUN_00773050 @ 00773050
+  READ from 007732c8 in FUN_00773280 @ 00773280
+  READ from 007de610 in FUN_007de5a0 @ 007de5a0
+  READ from 007e078a in FUN_007e05c0 @ 007e05c0
+  READ from 007e0838 in FUN_007e05c0 @ 007e05c0
+  READ from 007e0a88 in FUN_007e09a0 @ 007e09a0
+  READ from 007e0af1 in FUN_007e09a0 @ 007e09a0
+  READ from 007e0bd3 in FUN_007e09a0 @ 007e09a0
+  READ from 007758f0 in FUN_007758f0 @ 007758f0
+  READ from 007e0d0e in FUN_007e0cc0 @ 007e0cc0
+  READ from 007e0d77 in FUN_007e0cc0 @ 007e0cc0
+  READ from 007e0e6b in FUN_007e0e50 @ 007e0e50
+  READ from 007e0e83 in FUN_007e0e50 @ 007e0e50
+  READ from 007e0ef6 in FUN_007e0e50 @ 007e0e50
+  READ from 00831bfe in FUN_00831a80 @ 00831a80
+  READ from 00831c2d in FUN_00831a80 @ 00831a80
+  READ from 00831c9f in FUN_00831a80 @ 00831a80
+  READ from 00831f2b in FUN_00831e40 @ 00831e40
+  READ from 00831f55 in FUN_00831e40 @ 00831e40
+  READ from 00460bad in FUN_00460b00 @ 00460b00
+  READ from 00740863 in FUN_00740760 @ 00740760
+  READ from 0046b989 in FUN_0046b8d0 @ 0046b8d0
+  READ from 0046b9be in FUN_0046b8d0 @ 0046b8d0
+  READ from 0046fde7 in FUN_0046fcc0 @ 0046fcc0
+  READ from 0046fe01 in FUN_0046fcc0 @ 0046fcc0
+  READ from 0046fe38 in FUN_0046fcc0 @ 0046fcc0
+  READ from 00729345 in FUN_00729120 @ 00729120
+  READ from 007293a4 in FUN_00729120 @ 00729120
+  READ from 0071c21b in FUN_0071c1d0 @ 0071c1d0
+  READ from 00723fb7 in FUN_00723f70 @ 00723f70
+  READ from 00724089 in FUN_00723f70 @ 00723f70
+  READ from 00729919 in FUN_00729120 @ 00729120
+  READ from 00729978 in FUN_00729120 @ 00729120
+  READ from 00729d15 in FUN_00729120 @ 00729120
+  READ from 00729d74 in FUN_00729120 @ 00729120
+  READ from 0049c2d8 in FUN_0049c220 @ 0049c220
+  READ from 0040b7b6 in FUN_0040b5d0 @ 0040b5d0
+  READ from 0040b827 in FUN_0040b5d0 @ 0040b5d0
+  READ from 0076a92a in FUN_0076a8b0 @ 0076a8b0
+  READ from 0076a98a in FUN_0076a8b0 @ 0076a8b0
+  READ from 004e35d4 in FUN_004e3360 @ 004e3360
+  READ from 004e365e in FUN_004e3360 @ 004e3360
+  READ from 004e36e5 in FUN_004e3360 @ 004e3360
+  READ from 004e376f in FUN_004e3360 @ 004e3360
+  READ from 004e37f9 in FUN_004e3360 @ 004e3360
+  READ from 006cdc24 in FUN_006cdc20 @ 006cdc20
+  READ from 00674dd0 in FUN_00674b70 @ 00674b70
+  READ from 006d98b0 in FUN_006d9820 @ 006d9820
+  READ from 006d98c9 in FUN_006d9820 @ 006d9820
+  READ from 0046e881 in FUN_0046e860 @ 0046e860
+  READ from 0046e8bb in FUN_0046e860 @ 0046e860
+  READ from 0046e912 in FUN_0046e860 @ 0046e860
+  READ from 0046e5af in FUN_0046e580 @ 0046e580
+  READ from 0070da4e in ?
+  READ from 00460fde in FUN_00460f70 @ 00460f70
+  READ from 00461004 in FUN_00460f70 @ 00460f70
+  DATA from 0077306b in FUN_00773050 @ 00773050
+  DATA from 007731c6 in FUN_00773050 @ 00773050
+  DATA from 007732a1 in FUN_00773280 @ 00773280
+  DATA from 007aad6d in FUN_007aabf0 @ 007aabf0
+  READ from 00469fa8 in ?
+  READ from 0046a095 in ?
+  READ from 0046a0be in ?
+  READ from 0046a0e0 in ?
+  READ from 0046a110 in ?
+  READ from 0046a140 in ?
+  READ from 0046a170 in ?
+  READ from 0046a600 in ?
+  READ from 0046a639 in ?
+  READ from 0046a660 in ?
+  READ from 0046a690 in ?
+  READ from 0046b2b5 in ?
+  READ from 0046b2cd in ?
+  READ from 007751ec in ?
+  READ from 0084683f in ?
+  READ from 0046a050 in FUN_0046a050 @ 0046a050
+  READ from 00412a30 in ?
+  READ from 0049c5cc in ?
+  READ from 004ac428 in ?
+  READ from 006f4e63 in FUN_006f4e50 @ 006f4e50
+  READ from 00562c85 in ?
+  READ from 00563074 in ?
+  READ from 005ad1a0 in ?
+  READ from 005ad1d0 in ?
+  READ from 005ad1f0 in ?
+  READ from 005ad217 in ?
+  READ from 005ad331 in ?
+  READ from 005ad345 in ?
+  READ from 0062b56d in ?
+  READ from 0062b732 in ?
+  READ from 0062ba20 in ?
+  READ from 0062bab3 in ?
+  READ from 0062bbb9 in FUN_0062bb70 @ 0062bb70
+  READ from 0062bbed in FUN_0062bb70 @ 0062bb70
+  READ from 0062bbfe in FUN_0062bb70 @ 0062bb70
+  READ from 0062b9d0 in FUN_0062b9d0 @ 0062b9d0
+  READ from 00669b86 in ?
+  READ from 0067534b in ?
+  READ from 0067538e in ?
+  READ from 00675f10 in ?
+  READ from 0067fb51 in ?
+  READ from 0067fb74 in ?
+  READ from 006bb5af in ?
+  READ from 006bdf04 in ?
+  READ from 006c45d8 in ?
+  READ from 006c463c in ?
+  READ from 006c4679 in ?
+  READ from 006c46b3 in ?
+  READ from 006c46e9 in ?
+  READ from 006c4723 in ?
+  READ from 006c4745 in ?
+  READ from 006c477f in ?
+  READ from 006c47dc in ?
+  READ from 006c4817 in ?
+  READ from 006c4867 in ?
+  READ from 006c48a5 in ?
+  READ from 006c48d3 in ?
+  READ from 006c4911 in ?
+  READ from 006c4a69 in ?
+  READ from 006c4a9d in ?
+  READ from 006c4aae in ?
+  READ from 006c4b19 in ?
+  READ from 006c4b4d in ?
+  READ from 006c4b5e in ?
+  READ from 006c4ba5 in ?
+  READ from 006c4bd9 in ?
+  READ from 006c4bea in ?
+  READ from 006c4c43 in ?
+  READ from 006c4c7b in ?
+  READ from 006c4c8c in ?
+  READ from 006c4ce3 in ?
+  READ from 006c4d1b in ?
+  READ from 006c4d2c in ?
+  READ from 006c4d7c in ?
+  READ from 006c4dc7 in ?
+  READ from 006c4e5c in ?
+  READ from 006c4eb2 in ?
+  READ from 006c4ed5 in ?
+  READ from 006c75e2 in ?
+  READ from 006ce6b7 in ?
+  READ from 006ce858 in ?
+  READ from 006cf392 in ?
+  READ from 006d2f67 in ?
+  READ from 006d3008 in ?
+  READ from 006d3c27 in ?
+  READ from 006d3c78 in ?
+  READ from 006d6067 in ?
+  READ from 006d60c7 in ?
+  READ from 006dcd9b in ?
+  READ from 006dd657 in ?
+  READ from 006de664 in ?
+  READ from 006deb61 in ?
+  READ from 006ded58 in ?
+  READ from 006e21ad in ?
+  READ from 006e21d9 in ?
+  READ from 006c498e in FUN_006c4980 @ 006c4980
+  READ from 006e2235 in ?
+  READ from 006e2270 in ?
+  READ from 006e9c20 in ?
+  READ from 006e9c8d in ?
+  READ from 006f06fd in ?
+  READ from 006f0739 in ?
+  READ from 006f0771 in ?
+  READ from 006f08b3 in ?
+  READ from 006f0ec2 in ?
+  READ from 006f1837 in FUN_006f17b0 @ 006f17b0
+  READ from 006f1848 in FUN_006f17b0 @ 006f17b0
+  READ from 00707a0f in ?
+  READ from 0071f738 in ?
+  READ from 0071f88d in ?
+  READ from 0071fc37 in ?
+  READ from 0071fd5e in ?
+  READ from 0071feae in ?
+  READ from 00720972 in ?
+  READ from 0046a021 in FUN_0046a020 @ 0046a020
+  READ from 00735052 in ?
+  READ from 00756e33 in ?
+  READ from 00756ff4 in ?
+  READ from 007571dd in ?
+  READ from 00757ecb in ?
+  READ from 00757f79 in ?
+  READ from 00758136 in ?
+  READ from 0075a45c in ?
+  READ from 0075a4fa in ?
+  READ from 0075a85a in ?
+  READ from 0075a91a in ?
+  READ from 0075dc37 in ?
+  READ from 006ce1ed in FUN_006ce1e0 @ 006ce1e0
+  READ from 00768946 in ?
+  READ from 007689cb in ?
+  READ from 0076b7d2 in ?
+  READ from 006d6a41 in FUN_006d6a30 @ 006d6a30
+  READ from 0079a264 in ?
+  READ from 0079a2b5 in ?
+  READ from 007e054f in FUN_007e04f0 @ 007e04f0
+  READ from 007180af in ?
+  READ from 0071812d in ?
+  READ from 007181a8 in ?
+  READ from 00718226 in ?
+  READ from 007182a1 in ?
+  READ from 00460d85 in FUN_00460d20 @ 00460d20
+  READ from 00460dab in FUN_00460d20 @ 00460d20
+  READ from 0070d596 in ?
+  READ from 0070d613 in ?
+  READ from 0046b742 in FUN_0046b720 @ 0046b720
+  READ from 0070d90d in ?
+  READ from 007310e0 in ?
+  READ from 00731188 in ?
+  READ from 00724fc3 in FUN_00724ed0 @ 00724ed0
+  READ from 006e285d in FUN_006e2830 @ 006e2830

@@ -1,0 +1,365 @@
+
+##### "ACT_DEATH_FROM_FACEHUGGER"
+string @ 012aff0c
+---- ref from 0066ff6e FUN_0066ff00 @ 0066ff00
+
+void __fastcall FUN_0066ff00(int *param_1)
+
+{
+  int iVar1;
+  
+  *(ushort *)(param_1 + 0xc) = *(ushort *)(param_1 + 0xc) | 3;
+  *(byte *)(param_1 + 2) = *(byte *)(param_1 + 2) & 0xf9;
+  *(undefined1 *)(param_1[1] + 0x2a6) = 1;
+  *(undefined1 *)((int)param_1 + 0x69) = 0;
+  *(undefined1 *)(param_1[1] + 0x2e8) = 0;
+  *(undefined1 *)(param_1[1] + 0x2ea) = 0;
+  FUN_007d0c10();
+  FUN_0079a3c0();
+  param_1[0x10] = 0;
+  iVar1 = (**(code **)(*(int *)param_1[1] + 0x1c))();
+  if (*(char *)(iVar1 + 0x3e3a) == '\0') {
+    param_1[0x10] = 1;
+  }
+  FUN_0066e770("ACT_DEATH_FROM_FACEHUGGER");
+  (**(code **)(*param_1 + 0x4c))();
+  if (param_1[5] != 0) {
+    FUN_0068cae0(&stack0xffffffd0,1);
+  }
+  if ((*(char *)(*(int *)(param_1[1] + 100) + 0x1c) != '\0') &&
+     (*(char *)(*(int *)(param_1[1] + 100) + 0x1f) != '\0')) {
+    FUN_00433540(5,0);
+  }
+  return;
+}
+
+
+---- caller of FUN_0066ff00 FUN_00657a40 @ 00657a40
+
+void __fastcall FUN_00657a40(int *param_1)
+
+{
+  code *pcVar1;
+  int *piVar2;
+  int unaff_retaddr;
+  void *pvStack_10;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 uStack_4;
+  
+  uStack_4 = 0xffffffff;
+  puStack_8 = &LAB_01126279;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  *(undefined1 *)((int)param_1 + 0x1b) = *(undefined1 *)((int)param_1 + 0x1a);
+  piVar2 = (int *)FUN_0078aaa0();
+  if (piVar2 != (int *)0x0) {
+    (**(code **)(*piVar2 + 0x10))(*(undefined1 *)((int)param_1 + 0x1a));
+  }
+  (**(code **)*param_1)(1);
+  *(char *)((int)param_1 + 0x19) = *(char *)((int)param_1 + 0x19) + '\x01';
+  *(byte *)(param_1 + 6) = *(byte *)(param_1 + 6) & 0xaf;
+  *(byte *)(param_1 + 2) = *(byte *)(param_1 + 2) & 3 | 0x20;
+  param_1[3] = (int)(param_1 + 0x11);
+  param_1[4] = 0;
+  param_1[5] = 0;
+  *(undefined1 *)((int)param_1 + 0x1a) = 0x3f;
+  *(undefined2 *)(param_1 + 0xc) = 0;
+  *param_1 = (int)&PTR_FUN_012ac848;
+  *(undefined1 *)(param_1 + 0x11) = 0x10;
+  *(byte *)((int)param_1 + 0x45) = *(byte *)((int)param_1 + 0x45) & 0xfe;
+  param_1[0x12] = 0;
+  param_1[0x13] = 0;
+  *(byte *)((int)param_1 + 0x55) = *(byte *)((int)param_1 + 0x55) & 0xfe;
+  *(undefined1 *)(param_1 + 0x15) = 2;
+  puStack_8 = (undefined1 *)0x1;
+  param_1[0x17] = 0;
+  param_1[0x18] = 0;
+  param_1[0x19] = 0;
+  *(undefined1 *)(param_1 + 0x1a) = 0;
+  piVar2 = (int *)FUN_0077a2f0();
+  param_1[0x12] = *piVar2;
+  param_1[0x13] = piVar2[1];
+  pcVar1 = *(code **)(*param_1 + 0x60);
+  param_1[0x14] = (int)(float)DAT_016410a8;
+  param_1[0x16] = unaff_retaddr;
+  puStack_8 = (undefined1 *)0xffffffff;
+  (*pcVar1)();
+  ExceptionList = pvStack_10;
+  return;
+}
+
+
+
+##### "AT_DEATH_FROM_FACEHUGGER"
+string @ 012aa9d4
+
+##### "PRESENCE_KILLED_BY_FACEHUGGER"
+string @ 011c6bd8
+---- ref from 00439029 FUN_00438f70 @ 00438f70
+
+void FUN_00438f70(int *param_1)
+
+{
+  int iVar1;
+  int iVar2;
+  undefined1 uVar3;
+  char cVar4;
+  int iVar5;
+  int *piVar6;
+  undefined4 uVar7;
+  uint uVar8;
+  char *pcVar9;
+  undefined **local_c [3];
+  
+  iVar1 = *(int *)*param_1;
+  if (((undefined4 *)param_1[1])[1] == 0) {
+    return;
+  }
+  if (*(int *)(*(int *)(**(int **)param_1[1] + 8) + 0x10) != 10) {
+    return;
+  }
+  uVar8 = ((int *)*param_1)[0xc9];
+  if (uVar8 == 0) {
+    uVar8 = 0;
+  }
+  else {
+    uVar8 = (*(int *)(uVar8 + 0x10) != 10) - 1 & uVar8;
+  }
+  if (uVar8 == 0) {
+    return;
+  }
+  iVar5 = FUN_004387e0(local_c);
+  iVar5 = *(int *)(iVar5 + 4);
+  local_c[0] = &PTR_LAB_012f7228;
+  if (iVar5 == 0) {
+    uVar3 = 1;
+  }
+  else {
+    uVar3 = FUN_0077ab80(*(undefined4 *)(iVar5 + 0x2e4));
+  }
+  *(undefined1 *)(iVar1 + 0x28c) = uVar3;
+  if ((*(char *)(*(int *)(iVar1 + 100) + 0x1c) == '\0') ||
+     (*(char *)(*(int *)(iVar1 + 100) + 0x1f) == '\0')) goto LAB_004390b5;
+  if ((iVar5 == 0) || (cVar4 = FUN_00438810(), cVar4 != '\0')) {
+LAB_00439077:
+    pcVar9 = "PRESENCE_KILLED_BY_CARELESS";
+  }
+  else {
+    iVar2 = *(int *)(*(int *)(iVar5 + 100) + 4);
+    if (iVar2 == 5) {
+      pcVar9 = "PRESENCE_KILLED_BY_FACEHUGGER";
+    }
+    else if (iVar2 == 1) {
+      piVar6 = (int *)FUN_00a55020();
+      (**(code **)(*piVar6 + 0xc))("CA_ALIENDEATHCOUNT_STAT",1);
+      pcVar9 = "PRESENCE_KILLED_BY_ALIEN";
+    }
+    else {
+      cVar4 = FUN_004384d0();
+      if (cVar4 == '\0') {
+        cVar4 = FUN_0040d740();
+        if (cVar4 == '\0') goto LAB_00439077;
+        pcVar9 = "PRESENCE_KILLED_BY_HUMAN";
+      }
+      else {
+        pcVar9 = "PRESENCE_KILLED_BY_ANDROID";
+      }
+    }
+  }
+  FUN_00a55050(pcVar9);
+  FUN_00a51e60(pcVar9);
+  if (iVar5 == 0) {
+    uVar7 = 0xffffffff;
+  }
+  else {
+    uVar7 = *(undefined4 *)(*(int *)(iVar5 + 100) + 4);
+  }
+  FUN_00785510(uVar7);
+  FUN_0078ca00(iVar5);
+LAB_004390b5:
+  if (((iVar5 != 0) && (*(int *)(iVar5 + 0x31c) != 0)) &&
+     (*(char *)(*(int *)(iVar5 + 0x31c) + 0x48) != '\0')) {
+    *(undefined1 *)(iVar1 + 0x289) = 1;
+    FUN_0079b760(iVar1);
+    return;
+  }
+  iVar5 = FUN_00438a70();
+  if (iVar5 != 0) {
+    FUN_00438a70();
+    cVar4 = FUN_0040a290();
+    if (cVar4 != '\0') {
+      *(undefined1 *)(iVar1 + 0x289) = 1;
+      uVar7 = FUN_00438a70();
+      FUN_0079b760(uVar7);
+    }
+  }
+  return;
+}
+
+
+---- caller of FUN_00438f70 FUN_00439710 @ 00439710
+
+undefined4 FUN_00439710(undefined4 param_1,int *param_2)
+
+{
+  int *piVar1;
+  int iVar2;
+  uint uVar3;
+  undefined **ppuVar4;
+  int iVar5;
+  undefined **ppuVar6;
+  int *piVar7;
+  char cVar8;
+  int *piVar9;
+  undefined ***pppuVar10;
+  undefined4 *puVar11;
+  int iVar12;
+  uint uVar13;
+  undefined **local_44;
+  int *local_40;
+  undefined4 uStack_3c;
+  undefined **appuStack_38 [3];
+  undefined **ppuStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined **ppuStack_18;
+  undefined4 uStack_14;
+  int iStack_10;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 uStack_4;
+  
+  uStack_4 = 0xffffffff;
+  puStack_8 = &LAB_0111f7c1;
+  pvStack_c = ExceptionList;
+  local_44 = (undefined **)0x0;
+  piVar1 = *(int **)*param_2;
+  ExceptionList = &pvStack_c;
+  piVar9 = (int *)FUN_00402080(&local_44);
+  piVar7 = local_40;
+  iVar2 = *piVar9;
+  if (local_40 != (int *)0x0) {
+    piVar9 = local_40 + 1;
+    LOCK();
+    iVar12 = *piVar9;
+    *piVar9 = *piVar9 + -1;
+    UNLOCK();
+    if (iVar12 == 1) {
+      (**(code **)*local_40)();
+      piVar9 = piVar7 + 2;
+      LOCK();
+      iVar12 = *piVar9;
+      *piVar9 = *piVar9 + -1;
+      UNLOCK();
+      if (iVar12 == 1) {
+        (**(code **)(*piVar7 + 4))();
+      }
+    }
+  }
+  if (iVar2 != 0) {
+    piVar9 = (int *)FUN_00402080(&local_44);
+    piVar7 = local_40;
+    *(undefined4 *)(*piVar9 + 8) = 5;
+    if (local_40 != (int *)0x0) {
+      piVar9 = local_40 + 1;
+      LOCK();
+      iVar2 = *piVar9;
+      *piVar9 = *piVar9 + -1;
+      UNLOCK();
+      if (iVar2 == 1) {
+        (**(code **)*local_40)();
+        piVar9 = piVar7 + 2;
+        LOCK();
+        iVar2 = *piVar9;
+        *piVar9 = *piVar9 + -1;
+        UNLOCK();
+        if (iVar2 == 1) {
+          (**(code **)(*piVar7 + 4))();
+        }
+      }
+    }
+  }
+  uVar3 = *(uint *)(*param_2 + 0x324);
+  uVar13 = 0;
+  if (uVar3 != 0) {
+    uVar13 = (*(int *)(uVar3 + 0x10) != 10) - 1 & uVar3;
+  }
+  if (uVar13 == 0) {
+    uStack_3c = 0;
+    local_40 = (int *)0x0;
+    local_44 = &PTR_LAB_012f7228;
+    pppuVar10 = &local_44;
+  }
+  else {
+    pppuVar10 = (undefined ***)FUN_004387e0(appuStack_38);
+  }
+  ppuVar4 = pppuVar10[1];
+  uStack_4 = 0xffffffff;
+  if (uVar13 != 0) {
+    appuStack_38[0] = &PTR_LAB_012f7228;
+  }
+  if (ppuVar4 == (undefined **)0x0) {
+    local_44 = (undefined **)0x0;
+    local_40 = (int *)0x0;
+  }
+  else {
+    puVar11 = (undefined4 *)FUN_0077a2f0();
+    local_44 = (undefined **)*puVar11;
+    local_40 = (int *)puVar11[1];
+  }
+  piVar7 = local_40;
+  ppuVar6 = local_44;
+  FUN_00438f70(param_2);
+  iStack_10 = piVar1[0xd9];
+  uStack_28 = 0;
+  uStack_24 = 0x1a;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  ppuStack_2c = &PTR_LAB_011c6a70;
+  ppuStack_18 = ppuVar6;
+  uStack_14 = piVar7;
+  uStack_4 = 1;
+  iVar12 = FUN_004393a0(&ppuStack_2c);
+  iVar2 = piVar1[*(int *)(iVar12 + 8) + 0xeeb];
+  if (iVar2 == 0) {
+    piVar1[*(int *)(iVar12 + 8) + 0xeeb] = iVar12;
+  }
+  else {
+    iVar5 = *(int *)(iVar2 + 0x10);
+    while (iVar5 != 0) {
+      iVar2 = *(int *)(iVar2 + 0x10);
+      iVar5 = *(int *)(iVar2 + 0x10);
+    }
+    *(int *)(iVar2 + 0x10) = iVar12;
+  }
+  uStack_4 = 0xffffffff;
+  (**(code **)(*piVar1 + 0x84))();
+  if (((ppuVar4 != (undefined **)0x0) && (ppuVar4[0x19][0x1c] != '\0')) &&
+     (ppuVar4[0x19][0x1f] != '\0')) {
+    if (*(int *)(piVar1[0x19] + 4) != 6) {
+      iVar2 = piVar1[0xc5];
+      (**(code **)(*ppuVar4 + 0x1c))();
+      cVar8 = FUN_0077a7d0(iVar2);
+      if (cVar8 != '\0') goto LAB_00439963;
+    }
+    if (*(int *)(DAT_016f0c88 + 0x5c) == 0) {
+      ExceptionList = pvStack_c;
+      return 0;
+    }
+    FUN_006cac00(piVar1);
+  }
+LAB_00439963:
+  if (*(int *)(DAT_016f0c88 + 0x5c) != 0) {
+    FUN_006d4af0(piVar1);
+  }
+  ExceptionList = pvStack_c;
+  return 0;
+}
+
+
+
+##### "AT_FACEHUGGER_VENT_ATTACK"
+string @ 012aa9f0

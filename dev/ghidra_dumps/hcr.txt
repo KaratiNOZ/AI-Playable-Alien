@@ -1,0 +1,100 @@
+==== 006623b0 in FUN_00662380 @ 00662380
+callers: FUN_006699f0 
+
+void __fastcall FUN_00662380(int param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = (**(code **)(**(int **)(param_1 + 4) + 0x1c))();
+  if (*(char *)(*(int *)(param_1 + 4) + 0x2c4) != '\0') {
+    iVar1 = FUN_00736e10(*(int *)(param_1 + 4));
+    *(undefined4 *)(param_1 + 0x4c) = 1;
+    *(uint *)(param_1 + 0x48) = (uint)(*(int *)(iVar1 + 0x1c) == 0);
+    FUN_00660540();
+    return;
+  }
+  *(int *)(param_1 + 0x48) = (int)*(char *)(iVar1 + 0x3e3a);
+  FUN_00660540();
+  return;
+}
+
+
+==== 00678621 in FUN_006785a0 @ 006785a0
+callers: FUN_0067a920 
+
+uint FUN_006785a0(undefined4 *param_1)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  uint uVar3;
+  uint uVar4;
+  uint local_a0;
+  undefined4 local_9c;
+  undefined4 local_98;
+  undefined4 local_94;
+  undefined4 local_90;
+  undefined4 local_8c;
+  undefined4 local_88;
+  undefined4 local_84 [10];
+  undefined1 local_5c [8];
+  undefined4 local_54;
+  
+  local_90 = DAT_013e4628;
+  local_8c = DAT_013e4628;
+  local_88 = DAT_013e4628;
+  FUN_0043c220();
+  local_9c = *param_1;
+  local_98 = param_1[1];
+  local_94 = param_1[2];
+  local_54 = 2;
+  uVar1 = FUN_004458e0();
+  uVar4 = 0;
+  local_a0 = 0;
+  iVar2 = thunk_FUN_004425e0(uVar1,&local_9c,&local_90,local_5c,local_84,&local_a0,10);
+  uVar3 = -(iVar2 >> 0x1f);
+  if ((uVar3 == 0) && (uVar3 = 0, local_a0 != 0)) {
+    uVar3 = 0;
+    if (local_a0 != 0) {
+      do {
+        iVar2 = FUN_00449410(local_84[uVar4]);
+        uVar3 = *(uint *)(iVar2 + 0x20);
+        if (((uVar3 >> 10 & 1) != 0) && (uVar3 = uVar3 & 0x300000, uVar3 != 0x200000))
+        goto LAB_0067867e;
+        uVar4 = uVar4 + 1;
+      } while (uVar4 < local_a0);
+    }
+    return CONCAT31((int3)(uVar3 >> 8),1);
+  }
+LAB_0067867e:
+  return uVar3 & 0xffffff00;
+}
+
+
+no function containing 007e3a8d
+==== 007cc266 in FUN_007cc220 @ 007cc220
+callers: 
+
+void FUN_007cc220(void)
+
+{
+  int iVar1;
+  int *piVar2;
+  int iVar3;
+  int *piVar4;
+  int local_48 [18];
+  
+  iVar3 = FUN_007c61d0(local_48);
+  for (piVar4 = local_48; piVar4 != local_48 + iVar3; piVar4 = piVar4 + 1) {
+    iVar1 = *piVar4;
+    if ((*(int *)(iVar1 + 0x1164) != 0) &&
+       (piVar2 = *(int **)(*(int *)(iVar1 + 0x1160) + -4 + *(int *)(iVar1 + 0x1164) * 4),
+       piVar2 != (int *)0x0)) {
+      (**(code **)(*piVar2 + 0x10))();
+    }
+  }
+  return;
+}
+
+

@@ -1,0 +1,13 @@
+0074a4a5  PUSH 0x7
+0074a4a7  ADD ECX,0x3f0
+0074a4ad  PUSH EDX
+0074a4ae  CALL 0x006b3100
+0074a4b3  MOV dword ptr [ESI + 0xe8],EAX
+0074a4b9  MOV ECX,dword ptr [ESI + 0x34]
+0074a4bc  TEST ECX,ECX
+0074a4be  JZ 0x0074a4f7
+0074a4c0  MOV EAX,dword ptr [ESI + 0xe4]
+0074a4c6  TEST EAX,EAX
+0074a4c8  JZ 0x0074a4f7
+0074a4ca  MOV EAX,dword ptr [EAX + 0x64]
+0074a4cd  CMP byte ptr [EAX + 0x1c],0x0

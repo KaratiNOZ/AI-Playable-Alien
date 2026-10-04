@@ -1,0 +1,18 @@
+---- FUN_00a21c20 @ 00a21c20 (callers: 70)
+
+void FUN_00a21c20(int param_1,int param_2,int param_3,undefined4 param_4,int param_5)
+
+{
+  int iVar1;
+  
+  iVar1 = *(int *)(param_1 + 0x490 + param_2 * 4);
+  if ((iVar1 != 0) && (iVar1 = *(int *)(iVar1 + 0x14), iVar1 != 0)) {
+    FUN_004666a0(param_3 * 0x10 + iVar1,param_4,param_5 << 4);
+    *(undefined1 *)(*(int *)(param_1 + 0x490 + param_2 * 4) + 0x11) = 1;
+    *(uint *)(param_1 + 0x488) = *(uint *)(param_1 + 0x488) | 1 << ((byte)param_2 & 0x1f);
+    *(uint *)(param_1 + 0x484) = *(uint *)(param_1 + 0x484) | *(uint *)(param_1 + 0x488);
+  }
+  return;
+}
+
+

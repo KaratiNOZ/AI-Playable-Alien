@@ -1,0 +1,268 @@
+
+##### "bokeh_manual"
+string @ 013e68fc
+---- ref from 00a01b2c FUN_00a01350 @ 00a01350
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00a01350(void)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  undefined8 local_10;
+  
+  FUN_00a011e0(DAT_019d27b0);
+  uVar2 = DAT_019d27b4;
+  uVar1 = DAT_019d27b0;
+  DAT_019d258c = FUN_009fc4c0("filter_Copy_ZMin",DAT_019d27b0,DAT_019d27b4);
+  _DAT_019d2590 = FUN_009fc4c0("filter_Copy_ZMin32R",uVar1,uVar2);
+  DAT_019d2594 = FUN_009fc4c0("filter_InvertOnCopy",uVar1,uVar2);
+  DAT_019d2598 = FUN_009fc4c0("filter_Copy_Stretch",uVar1,uVar2);
+  _DAT_019d259c = FUN_009fc4c0("filter_WriteColour",uVar1,uVar2);
+  _DAT_019d25a0 = FUN_009fc4c0("filter_Sampled2x2",uVar1,uVar2);
+  DAT_019d25a4 = FUN_009fc4c0("filter_Sampled2x2HDR",uVar1,uVar2);
+  _DAT_019d25a8 = FUN_009fc4c0("filter_Sampled2x2_F32",uVar1,uVar2);
+  local_10 = 0x40;
+  DAT_019d25ac = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x4000;
+  DAT_019d25b8 = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x800;
+  DAT_019d25bc = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x100;
+  DAT_019d25c0 = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x80;
+  DAT_019d25c4 = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x400;
+  DAT_019d25c8 = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x200;
+  DAT_019d25cc = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x10000;
+  _DAT_019d25e0 = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x8000;
+  _DAT_019d25dc = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x440000;
+  _DAT_019d25e4 = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x420000;
+  _DAT_019d25e8 = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x401000;
+  _DAT_019d25ec = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x402000;
+  _DAT_019d25f0 = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x302000;
+  DAT_019d25f4 = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x301000;
+  DAT_019d25f8 = FUN_009fc790(0x25,&local_10);
+  local_10 = 0x80000;
+  _DAT_019d25fc = FUN_009fc790(0x25,&local_10);
+  DAT_019d25d0 = FUN_009fc4c0("filter_GaussianLinear9TapVertical",uVar1,uVar2);
+  DAT_019d25d4 = FUN_009fc4c0("filter_GaussianLinear9TapHorizontal",uVar1,uVar2);
+  DAT_019d25d8 = FUN_009fc4c0("filter_GaussianRGBM9Horizontal",uVar1,uVar2);
+  DAT_019d2600 = FUN_009fc4c0("filter_Atmosphere",uVar1,uVar2);
+  _DAT_019d2604 = FUN_009fc4c0("filter_LinearizeDepth",uVar1,uVar2);
+  DAT_019d2614 = FUN_009fc4c0("shadow_Sampled2x2",uVar1,uVar2);
+  _DAT_019d2618 = FUN_009fc4c0("shadow_Sampled2x2_F32",uVar1,uVar2);
+  _DAT_019d261c = FUN_009fc4c0("shadow_Sampled2x2_Linearize",uVar1,uVar2);
+  _DAT_019d2620 = FUN_009fc4c0("shadow_Sampled2x2_Linearize_3D",uVar1,uVar2);
+  DAT_019d2624 = FUN_009fc4c0("shadow_Sampled2x2_3D",uVar1,uVar2);
+  _DAT_019d2628 = FUN_009fc4c0("shadow_Sampled2x2_F32_3D",uVar1,uVar2);
+  DAT_019d262c = FUN_009fc4c0("shadow_Decode_Linearize",uVar1,uVar2);
+  DAT_019d2630 = FUN_009fc4c0("shadow_Decode_Linearize_3D",uVar1,uVar2);
+  DAT_019d2634 = FUN_009fc4c0("shadow_Gaussian9Horiz",uVar1,uVar2);
+  DAT_019d2638 = FUN_009fc4c0("shadow_Gaussian9Vert",uVar1,uVar2);
+  DAT_019d263c = FUN_009fc4c0("filter_LowResComposite",uVar1,uVar2);
+  DAT_019d2640 = FUN_009fc4c0("filter_LowResNearestDepthComposite",uVar1,uVar2);
+  _DAT_019d2644 = FUN_009fc4c0("filter_LowResClear",uVar1,uVar2);
+  DAT_019d2648 = FUN_009fc4c0("filter_LowResDepthPrime",uVar1,uVar2);
+  _DAT_019d264c = FUN_009fc4c0("filter_Depth2x2Downsample",uVar1,uVar2);
+  DAT_019d2650 = FUN_009fc4c0("filter_Depth2x2DownsampleAndLinearise",uVar1,uVar2);
+  DAT_019d2654 = FUN_009fc4c0("filter_fxaa",uVar1,uVar2);
+  DAT_019d2658 = FUN_009fc4c0("filter_rgbm_encode",uVar1,uVar2);
+  _DAT_019d265c = FUN_009fc4c0("filter_rgbm_decode",uVar1,uVar2);
+  DAT_019d2558 = FUN_009fc4c0(&DAT_013e3e40,uVar1,uVar2);
+  _DAT_019d255c = FUN_009fc4c0("cubemap_debug",uVar1,uVar2);
+  _DAT_019d2560 = FUN_009fc4c0("volume_debug",uVar1,uVar2);
+  _DAT_019d2564 = FUN_009fc4c0("overlay_environment_debug",uVar1,uVar2);
+  _DAT_019d2568 = FUN_009fc4c0("overlay",uVar1,uVar2);
+  _DAT_019d256c = FUN_009fc4c0("overlay_linear",uVar1,uVar2);
+  _DAT_019d2570 = FUN_009fc4c0("overlay_shadow",uVar1,uVar2);
+  _DAT_019d2574 = FUN_009fc4c0("overlay_linear_shadow",uVar1,uVar2);
+  DAT_019d2690 = FUN_009fc4c0("calculate_histogram",uVar1,uVar2);
+  _DAT_019d2694 = FUN_009fc4c0("draw_histogram",uVar1,uVar2);
+  DAT_019d268c = FUN_009fc4c0("combine_lighting_and_glare",uVar1,uVar2);
+  DAT_019d2698 = FUN_009fc4c0("ambient_occlusion",uVar1,uVar2);
+  DAT_019d269c = FUN_009fc4c0("ambient_occlusion_blur",uVar1,uVar2);
+  DAT_019d26a0 = FUN_009fc4c0("CS_HDAO",uVar1,uVar2);
+  DAT_019d26a4 = FUN_009fc4c0("CS_HDAO_H_Dilate",uVar1,uVar2);
+  DAT_019d26a8 = FUN_009fc4c0("CS_HDAO_V_Dilate",uVar1,uVar2);
+  DAT_019d26ac = FUN_009fc4c0("CS_HDAO_PLUS",uVar1,uVar2);
+  DAT_019d26b0 = FUN_009fc4c0("CS_HDAO_PLUS_H_Dilate",uVar1,uVar2);
+  DAT_019d26b4 = FUN_009fc4c0("CS_HDAO_PLUS_V_Dilate",uVar1,uVar2);
+  DAT_019d26b8 = FUN_009fc4c0("CS_HDAO_DOWNSAMPLE_DN",uVar1,uVar2);
+  DAT_019d26bc = FUN_009fc4c0("HDAO_PLUS_RECOMBINE",uVar1,uVar2);
+  _DAT_019d26c0 = FUN_009fc4c0("legacy_dof",uVar1,uVar2);
+  DAT_019d26c4 = FUN_009fc4c0("radiosity_cubemap_generation",uVar1,uVar2);
+  DAT_019d26c8 = FUN_009fc4c0("radiosity_cubemap_generation_cs",uVar1,uVar2);
+  DAT_019d26cc = FUN_009fc4c0("radiosity_cubemap_gather_cs",uVar1,uVar2);
+  DAT_019d26d0 = FUN_009fc4c0("radiosity_direct_cs",uVar1,uVar2);
+  DAT_019d26d4 = FUN_009fc4c0("radiosity_clear_direct_cs",uVar1,uVar2);
+  DAT_019d26d8 = FUN_009fc4c0("blend_morph_target",uVar1,uVar2);
+  _DAT_019d26dc = FUN_009fc4c0("profile_graph",uVar1,uVar2);
+  _DAT_019d26e0 = FUN_009fc4c0("placeholder_environment",uVar1,uVar2);
+  DAT_019d26e4 = FUN_009fc4c0("hair_only_dummy_pass",uVar1,uVar2);
+  DAT_019d26e8 = FUN_009fc4c0("screen_space_hair_softening",uVar1,uVar2);
+  DAT_019d26f4 = FUN_009fc4c0("selection_overlay",uVar1,uVar2);
+  DAT_019d26fc = FUN_009fc4c0("conditional_galaxy",uVar1,uVar2);
+  DAT_019d26f8 = FUN_009fc4c0("atmosphere_occlusion",uVar1,uVar2);
+  DAT_019d26ec = FUN_009fc4c0("skin_subsurface_blur",uVar1,uVar2);
+  DAT_019d26f0 = FUN_009fc4c0("skin_subsurface_compose",uVar1,uVar2);
+  DAT_019d267c = FUN_009fc4c0("light_occlusion_query_zenable",uVar1,uVar2);
+  DAT_019d2680 = FUN_009fc4c0("light_occlusion_query_zdisable",uVar1,uVar2);
+  local_10 = 0x4000;
+  DAT_019d2684 = FUN_009fc790(0x37,&local_10);
+  local_10 = 0xc000;
+  DAT_019d2688 = FUN_009fc790(0x37,&local_10);
+  DAT_019d2700 = FUN_009fc4c0("bokeh_create_rgbz",uVar1,uVar2);
+  DAT_019d2704 = FUN_009fc4c0("bokeh_downsample_rgbz",uVar1,uVar2);
+  DAT_019d2708 = FUN_009fc4c0("bokeh_recombine",uVar1,uVar2);
+  DAT_019d270c = FUN_009fc4c0("bokeh_manual",uVar1,uVar2);
+  DAT_019d2710 = FUN_009fc4c0("bokeh_standard",uVar1,uVar2);
+  DAT_019d2714 = FUN_009fc4c0("bokeh_optimised",uVar1,uVar2);
+  _DAT_019d2718 = FUN_009fc4c0("bokeh_create_rgbz",uVar1,uVar2);
+  _DAT_019d271c = FUN_009fc4c0("bokeh_downsample_rgbz",uVar1,uVar2);
+  _DAT_019d2720 = FUN_009fc4c0("bokeh_recombine",uVar1,uVar2);
+  _DAT_019d2724 = FUN_009fc4c0("bokeh_manual_no_gs",uVar1,uVar2);
+  _DAT_019d2728 = FUN_009fc4c0("bokeh_standard_no_gs",uVar1,uVar2);
+  _DAT_019d272c = 0;
+  DAT_019d2730 = FUN_009fc4c0("smaa_edge_detection",uVar1,uVar2);
+  DAT_019d2734 = FUN_009fc4c0("smaa_blending_weight_calculation",uVar1,uVar2);
+  DAT_019d2738 = FUN_009fc4c0("smaa_neighborhood_blending",uVar1,uVar2);
+  DAT_019d273c = FUN_009fc4c0("smaa_neighborhood_blending_temporal",uVar1,uVar2);
+  DAT_019d2740 = FUN_009fc4c0("smaa_resolve",uVar1,uVar2);
+  iVar3 = FUN_009fc4c0("sc2d_std",uVar1,uVar2);
+  DAT_019d2660 = iVar3;
+  _DAT_019d266c = FUN_009fc4c0("sc2d_secondary_projection_std",uVar1,uVar2);
+  _DAT_019d2664 = FUN_009fc4c0("sc2d_std_frustum",uVar1,uVar2);
+  *(undefined2 *)(*(int *)(iVar3 + 0x1c) + 0x2e) = 0;
+  uVar2 = DAT_019d27b4;
+  uVar1 = DAT_019d27b0;
+  DAT_019d2668 = DAT_019d2660;
+  _DAT_019d2670 = 0;
+  _DAT_019d2674 = 0;
+  _DAT_019d2678 = 0;
+  DAT_019d2668 = FUN_009fc4c0("sc2d_AT",DAT_019d27b0,DAT_019d27b4);
+  local_10 = 0x42;
+  _DAT_019d2670 = FUN_009fc790(0x14,&local_10);
+  local_10 = 0x102;
+  _DAT_019d2674 = FUN_009fc790(0x14,&local_10);
+  local_10 = 0x26;
+  _DAT_019d2678 = FUN_009fc790(0x16,&local_10);
+  local_10 = 4;
+  DAT_019d25b0 = FUN_009fc790(0x25,&local_10);
+  local_10 = 2;
+  DAT_019d25b4 = FUN_009fc790(0x25,&local_10);
+  _DAT_019d2744 = FUN_009fc4c0("model_tracker_environment_solid",uVar1,uVar2);
+  _DAT_019d2748 = FUN_009fc4c0("model_tracker_environment_solid_vd",uVar1,uVar2);
+  _DAT_019d274c = FUN_009fc4c0("model_tracker_environment_solid_wf",uVar1,uVar2);
+  _DAT_019d2750 = FUN_009fc4c0("alpha_overdraw_overlay",uVar1,uVar2);
+  _DAT_019d2754 = FUN_009fc4c0("alpha_overdraw_overlay_wireframe",uVar1,uVar2);
+  _DAT_019d2758 = FUN_009fc4c0("model_wireframe_overlay",uVar1,uVar2);
+  _DAT_019d275c = FUN_009fc4c0("model_overdraw_overlay_raw",uVar1,uVar2);
+  _DAT_019d2760 = FUN_009fc4c0("model_overdraw_overlay_depth_enabled",uVar1,uVar2);
+  _DAT_019d2768 = FUN_009fc4c0("model_shaded_overdraw",uVar1,uVar2);
+  _DAT_019d276c = FUN_009fc4c0("model_shaded_overdraw_read",uVar1,uVar2);
+  _DAT_019d2764 = FUN_009fc4c0("model_environment_only_overlay",uVar1,uVar2);
+  _DAT_019d2770 = FUN_009fc4c0("zone_tracker_wireframe_overlay",uVar1,uVar2);
+  DAT_019d2774 = FUN_009fc4c0("particleSpawn",uVar1,uVar2);
+  DAT_019d2778 = FUN_009fc4c0("particleUpdate",uVar1,uVar2);
+  DAT_019d277c = FUN_009fc4c0("particleRender",uVar1,uVar2);
+  _DAT_019d2798 = FUN_009fc4c0("particleRenderLights",uVar1,uVar2);
+  DAT_019d2780 = FUN_009fc4c0("particleSpawn_cs",uVar1,uVar2);
+  DAT_019d2784 = FUN_009fc4c0("particleIndirectCountUpdate_cs",uVar1,uVar2);
+  DAT_019d2788 = FUN_009fc4c0("particleUpdate_cs",uVar1,uVar2);
+  DAT_019d278c = FUN_009fc4c0("particleUpdate_mgpu_cs",uVar1,uVar2);
+  DAT_019d2790 = FUN_009fc4c0("particleRenderAfterCompute",uVar1,uVar2);
+  DAT_019d2794 = FUN_009fc4c0("particleRenderAfterCompute_mGPU",uVar1,uVar2);
+  DAT_019d260c = FUN_009fc4c0("velocity_dilate_horiz",uVar1,uVar2);
+  DAT_019d2608 = FUN_009fc4c0("velocity_dilate_vert",uVar1,uVar2);
+  DAT_019d2610 = FUN_009fc4c0("combine_velocity",uVar1,uVar2);
+  DAT_019d27a0 = FUN_009fc4c0("light_shafts",uVar1,uVar2);
+  DAT_019d279c = FUN_009fc4c0("light_shafts_mask",uVar1,uVar2);
+  DAT_019d27a4 = FUN_009fc4c0("apply_light_shafts",uVar1,uVar2);
+  local_10 = 0x10000;
+  DAT_019d27a8 = FUN_009fc790(0x37,&local_10);
+  local_10 = 0x10200;
+  DAT_019d27ac = FUN_009fc790(0x37,&local_10);
+  _DAT_019d24e0 = FUN_009fc4c0("xyz_colour",uVar1,uVar2);
+  _DAT_019d24e4 = FUN_009fc4c0("xyz_colour_zfail",uVar1,uVar2);
+  _DAT_019d24e8 = FUN_009fc4c0("xyz_colour_no_z",uVar1,uVar2);
+  _DAT_019d2578 = FUN_009fc4c0("manual_clear_surface",uVar1,uVar2);
+  DAT_019d2538 = FUN_009fc4c0("postprocess_linear_to_gamma20",uVar1,uVar2);
+  DAT_019d253c = FUN_009fc4c0("postprocess_linear_to_gamma22",uVar1,uVar2);
+  DAT_019d2540 = FUN_009fc4c0("postprocess_linear_to_srgb",uVar1,uVar2);
+  DAT_019d2544 = FUN_009fc4c0("postprocess_linear",uVar1,uVar2);
+  DAT_019d2548 = FUN_009fc4c0("postprocess_sbs_anaglyph_mg",uVar1,uVar2);
+  _DAT_019d254c = FUN_009fc4c0("postprocess_oculus_rift_distortion",uVar1,uVar2);
+  DAT_019d2550 = FUN_009fc4c0("postprocess_stereo_draw_ui",uVar1,uVar2);
+  DAT_019d2554 = FUN_009fc4c0("postprocess_stereo_final",uVar1,uVar2);
+  return;
+}
+
+
+---- caller of FUN_00a01350 FUN_00a059e0 @ 00a059e0
+
+void __thiscall FUN_00a059e0(uint3 param_1,undefined4 param_2,undefined4 param_3)
+
+{
+  undefined4 uStack_4;
+  
+  uStack_4 = (uint)param_1;
+  FUN_00a05650(param_2,param_3,(int)&uStack_4 + 3);
+  if (uStack_4._3_1_ != '\0') {
+    FUN_00a01350();
+    return;
+  }
+  return;
+}
+
+
+---- caller of FUN_00a01350 FUN_00a08300 @ 00a08300
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00a08300(void)
+
+{
+  undefined4 uStack_4;
+  
+  FUN_009aa0e0();
+  _DAT_019d3c80 = 0;
+  FUN_00a07f80();
+  uStack_4 = uStack_4 & 0xffffff;
+  FUN_00a05650(&DAT_019d29f8,&DAT_019d2afc,(int)&uStack_4 + 3);
+  if (uStack_4._3_1_ != '\0') {
+    FUN_00a01350();
+  }
+  FUN_009acce0();
+  FUN_009c5b40();
+  FUN_009cabf0();
+  _DAT_019d0f98 = 0;
+  _DAT_019d0fa8 = 0;
+  _DAT_019d0fb0 = 0;
+  _DAT_019d0fe8 = 0;
+  FUN_009b61d0();
+  FUN_009c51a0();
+  FUN_009d2790();
+  FUN_0099f4d0();
+  FUN_009a6990();
+  return;
+}
+
+
+
+##### "bokeh_standard"
+string @ 013e68ec
+
+##### "bokeh_recombine"
+string @ 013e690c

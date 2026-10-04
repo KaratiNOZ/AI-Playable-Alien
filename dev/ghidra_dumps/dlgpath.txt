@@ -1,0 +1,143 @@
+---- FUN_0049fbc0 @ 0049fbc0 (callers: 8)
+
+void __fastcall FUN_0049fbc0(undefined4 *param_1)
+
+{
+  undefined4 uVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  
+  uVar1 = DAT_011bed34;
+  *param_1 = 0;
+  param_1[1] = 0;
+  param_1[2] = 0;
+  param_1[3] = 0;
+  param_1[4] = 0;
+  param_1[5] = uVar1;
+  param_1[6] = 0;
+  param_1[7] = 0;
+  *(undefined2 *)(param_1 + 8) = 0x101;
+  puVar2 = param_1 + 9;
+  iVar3 = 0xf;
+  do {
+    *puVar2 = 0;
+    puVar2[1] = 0;
+    puVar2 = puVar2 + 2;
+    iVar3 = iVar3 + -1;
+  } while (-1 < iVar3);
+  *(undefined2 *)(param_1 + 0x2f) = 0;
+  param_1[0x30] = 0;
+  return;
+}
+
+
+---- FUN_0049fa20 @ 0049fa20 (callers: 4)
+
+void __thiscall FUN_0049fa20(int param_1,undefined *param_2,int param_3)
+
+{
+  byte bVar1;
+  
+  if (param_3 == 0) {
+    param_3 = DAT_01642408;
+    param_2 = PTR_DAT_01642404;
+  }
+  bVar1 = *(byte *)(param_1 + 0xbd);
+  if (bVar1 < 0x10) {
+    *(undefined **)(param_1 + 0x24 + (uint)bVar1 * 8) = param_2;
+    *(int *)(param_1 + 0x28 + (uint)bVar1 * 8) = param_3;
+    *(char *)(param_1 + 0xbd) = *(char *)(param_1 + 0xbd) + '\x01';
+  }
+  return;
+}
+
+
+---- FUN_0049f930 @ 0049f930 (callers: 4)
+
+int __thiscall FUN_0049f930(int param_1,int param_2)
+
+{
+  undefined4 uVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  undefined1 local_20 [28];
+  
+  FUN_00401410(local_20,param_2);
+  FUN_00401410(local_20,param_2 + 0x10);
+  *(undefined1 *)(param_1 + 0x20) = *(undefined1 *)(param_2 + 0x20);
+  *(undefined1 *)(param_1 + 0x21) = *(undefined1 *)(param_2 + 0x21);
+  puVar2 = (undefined4 *)(param_1 + 0x24);
+  iVar3 = 0x10;
+  do {
+    *puVar2 = *(undefined4 *)((param_2 - param_1) + (int)puVar2);
+    puVar2[1] = *(undefined4 *)((param_2 - param_1) + 4 + (int)puVar2);
+    puVar2 = puVar2 + 2;
+    iVar3 = iVar3 + -1;
+  } while (iVar3 != 0);
+  uVar1 = *(undefined4 *)(param_2 + 0xa4);
+  *(undefined4 *)(param_1 + 0xb0) = *(undefined4 *)(param_2 + 0xb0);
+  *(undefined4 *)(param_1 + 0xa4) = uVar1;
+  uVar1 = *(undefined4 *)(param_2 + 0xa8);
+  *(undefined4 *)(param_1 + 0xb4) = *(undefined4 *)(param_2 + 0xb4);
+  *(undefined4 *)(param_1 + 0xa8) = uVar1;
+  uVar1 = *(undefined4 *)(param_2 + 0xac);
+  *(undefined4 *)(param_1 + 0xb8) = *(undefined4 *)(param_2 + 0xb8);
+  *(undefined4 *)(param_1 + 0xac) = uVar1;
+  *(undefined1 *)(param_1 + 0xbc) = *(undefined1 *)(param_2 + 0xbc);
+  *(undefined1 *)(param_1 + 0xbd) = *(undefined1 *)(param_2 + 0xbd);
+  *(undefined4 *)(param_1 + 0xc0) = *(undefined4 *)(param_2 + 0xc0);
+  return param_1;
+}
+
+
+---- FUN_00857340 @ 00857340 (callers: 12)
+
+undefined4 __thiscall FUN_00857340(int param_1,char *param_2,undefined4 *param_3)
+
+{
+  int iVar1;
+  
+  if (((*(char *)(*(int *)(param_1 + 8) + 0xe5) != '\0') && (param_2 != (char *)0x0)) &&
+     (*param_2 != '\0')) {
+    iVar1 = FUN_00853dd0(param_2);
+    if (iVar1 != 0) {
+      param_3[1] = iVar1;
+      *param_3 = param_2;
+      return 1;
+    }
+  }
+  *param_3 = PTR_DAT_01642404;
+  param_3[1] = DAT_01642408;
+  return 0;
+}
+
+
+---- FUN_008572a0 @ 008572a0 (callers: 21)
+
+uint __thiscall FUN_008572a0(undefined4 *param_1,int param_2,int *param_3)
+
+{
+  uint in_EAX;
+  uint uVar1;
+  uint *puVar2;
+  
+  *param_3 = 0;
+  if ((*(char *)(param_1[2] + 0xe5) != '\0') && (in_EAX = 0, param_2 != 0)) {
+    in_EAX = FUN_00853dd0(param_2);
+    uVar1 = 0;
+    if (param_1[1] != 0) {
+      puVar2 = (uint *)*param_1;
+      do {
+        if (in_EAX == *puVar2) {
+          *param_3 = (int)((uint *)*param_1 + uVar1 * 5);
+          return CONCAT31((int3)(uVar1 * 5 >> 8),1);
+        }
+        uVar1 = uVar1 + 1;
+        puVar2 = puVar2 + 5;
+      } while (uVar1 < (uint)param_1[1]);
+    }
+  }
+  return in_EAX & 0xffffff00;
+}
+
+

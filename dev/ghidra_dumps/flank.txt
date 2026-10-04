@@ -1,0 +1,249 @@
+
+##### "CONDITION_HAS_FLANKED_VENT_CLOSE_TO_PLAYER"
+string @ 012e0f1c
+
+##### "ATOMIC_MOVE_TO_FRONTSTAGE_VIA_FLANKED_VENT_CLOSEST_TO_PLAYER"
+string @ 011bccf4
+
+##### "MB_THREAT_AWARE_MOVE_TO_FLANKED_VENT"
+string @ 0130ce1c
+---- ref from 008b70c2 FUN_008b6d10 @ 008b6d10
+
+char * FUN_008b6d10(int *param_1)
+
+{
+  int iVar1;
+  char *pcVar2;
+  
+  iVar1 = *param_1;
+  if (DAT_0174c760 == iVar1) {
+    return "NONE";
+  }
+  if (DAT_0174c764 == iVar1) {
+    return "CINEMATIC_BRANCH";
+  }
+  if (DAT_0174c768 == iVar1) {
+    return "ATTACK_BRANCH";
+  }
+  if (DAT_0174c76c == iVar1) {
+    return "AIM_BRANCH";
+  }
+  if (DAT_0174c770 == iVar1) {
+    return "DESPAWN_BRANCH";
+  }
+  if (DAT_0174c774 == iVar1) {
+    return "FOLLOW_BRANCH";
+  }
+  if (DAT_0174c778 == iVar1) {
+    return "STANDARD_BRANCH";
+  }
+  if (DAT_0174c77c == iVar1) {
+    return "SEARCH_BRANCH";
+  }
+  if (DAT_0174c780 == iVar1) {
+    return "AREA_SWEEP_BRANCH";
+  }
+  if (DAT_0174c784 == iVar1) {
+    return "BACKSTAGE_AREA_SWEEP_BRANCH";
+  }
+  if (DAT_0174c788 == iVar1) {
+    return "SHOT_BRANCH";
+  }
+  if (DAT_0174c78c == iVar1) {
+    return "SUSPECT_TARGET_RESPONSE_BRANCH";
+  }
+  if (DAT_0174c790 == iVar1) {
+    return "THREAT_AWARE_BRANCH";
+  }
+  if (DAT_0174c794 == iVar1) {
+    return "BACKSTAGE_AMBUSH_BRANCH";
+  }
+  if (DAT_0174c798 == iVar1) {
+    return "IDLE_JOB_BRANCH";
+  }
+  if (DAT_0174c79c == iVar1) {
+    return "USE_COVER_BRANCH";
+  }
+  if (DAT_0174c7a0 == iVar1) {
+    return "ASSAULT_BRANCH";
+  }
+  if (DAT_0174c7a4 == iVar1) {
+    return "MELEE_BRANCH";
+  }
+  if (DAT_0174c7a8 == iVar1) {
+    return "RETREAT_BRANCH";
+  }
+  if (DAT_0174c7ac == iVar1) {
+    return "CLOSE_ON_TARGET_BRANCH";
+  }
+  if (DAT_0174c7b0 == iVar1) {
+    return "MUTUAL_MELEE_ONLY_BRANCH";
+  }
+  if (DAT_0174c7b4 == iVar1) {
+    return "VENT_MELEE_BRANCH";
+  }
+  if (DAT_0174c7b8 == iVar1) {
+    return "ASSAULT_NOT_ALLOWED_BRANCH";
+  }
+  if (DAT_0174c7bc == iVar1) {
+    return "IN_VENT_BRANCH";
+  }
+  if (DAT_0174c7c0 == iVar1) {
+    return "CLOSE_COMBAT_BRANCH";
+  }
+  if (DAT_0174c7c4 == iVar1) {
+    return "DRAW_WEAPON_BRANCH";
+  }
+  if (DAT_0174c7c8 == iVar1) {
+    return "PURSUE_TARGET_BRANCH";
+  }
+  if (DAT_0174c7cc == iVar1) {
+    return "RANGED_ATTACK_BRANCH";
+  }
+  if (DAT_0174c7d0 == iVar1) {
+    return "RANGED_COMBAT_BRANCH";
+  }
+  if (DAT_0174c7d4 == iVar1) {
+    return "PRIMARY_CONTROL_RESPONSE_BRANCH";
+  }
+  if (DAT_0174c7d8 == iVar1) {
+    return "DEAD_BRANCH";
+  }
+  if (DAT_0174c7dc == iVar1) {
+    return "SCRIPT_BRANCH";
+  }
+  if (DAT_0174c7e0 == iVar1) {
+    return "IDLE_BRANCH";
+  }
+  if (DAT_0174c7e4 == iVar1) {
+    return "DOWN_BUT_NOT_OUT_BRANCH";
+  }
+  if (DAT_0174c7e8 == iVar1) {
+    return "MELEE_BLOCK_BRANCH";
+  }
+  if (DAT_0174c7ec == iVar1) {
+    return "AGRESSIVE_BRANCH";
+  }
+  if (DAT_0174c7f0 == iVar1) {
+    return "ALERT_BRANCH";
+  }
+  if (DAT_0174c7f4 == iVar1) {
+    return "SHOOTING_BRANCH";
+  }
+  if (DAT_0174c7f8 == iVar1) {
+    return "GRAPPLE_BREAK_BRANCH";
+  }
+  if (DAT_0174c7fc == iVar1) {
+    return "REACT_TO_WEAPON_FIRE_BRANCH";
+  }
+  if (DAT_0174c800 == iVar1) {
+    return "IN_COVER_BRANCH";
+  }
+  if (DAT_0174c804 == iVar1) {
+    return "SUSPICIOUS_ITEM_BRANCH_HIGH";
+  }
+  if (DAT_0174c808 == iVar1) {
+    return "SUSPICIOUS_ITEM_BRANCH_MEDIUM";
+  }
+  if (DAT_0174c80c == iVar1) {
+    return "SUSPICIOUS_ITEM_BRANCH_LOW";
+  }
+  if (DAT_0174c810 == iVar1) {
+    return "AGGRESSION_ESCALATION_BRANCH";
+  }
+  if (DAT_0174c814 == iVar1) {
+    return "STUN_DAMAGE_BRANCH";
+  }
+  if (DAT_0174c818 == iVar1) {
+    return "BREAKOUT_BRANCH";
+  }
+  if (DAT_0174c81c == iVar1) {
+    return "SUSPEND_BRANCH";
+  }
+  if (DAT_0174c820 == iVar1) {
+    return "TARGET_IS_NPC_BRANCH";
+  }
+  if (DAT_0174c824 == iVar1) {
+    return "PLAYER_HIDING_BRANCH";
+  }
+  if (DAT_0174c828 == iVar1) {
+    return "ATTACK_CORE_BRANCH";
+  }
+  if (DAT_0174c82c == iVar1) {
+    return "CORPSE_TRAP_BRANCH";
+  }
+  if (DAT_0174c830 == iVar1) {
+    return "OBSERVE_TARGET_BRANCH";
+  }
+  if (DAT_0174c834 == iVar1) {
+    return "TARGET_IN_CRAWLSPACE_BRANCH";
+  }
+  if (DAT_0174c838 == iVar1) {
+    return "MB_SUSPICIOUS_ITEM_ATLEAST_MOVE_CLOSE_TO";
+  }
+  if (DAT_0174c83c == iVar1) {
+    return "MB_THREAT_AWARE_ATTACK_TARGET_WITHIN_CLOSE_RANGE";
+  }
+  if (DAT_0174c840 == iVar1) {
+    return "MB_THREAT_AWARE_ATTACK_TARGET_WITHIN_VERY_CLOSE_RANGE";
+  }
+  if (DAT_0174c844 == iVar1) {
+    return "MB_THREAT_AWARE_ATTACK_TARGET_FLAMED_ME";
+  }
+  if (DAT_0174c848 == iVar1) {
+    return "MB_THREAT_AWARE_ATTACK_WEAPON_NOT_AIMED";
+  }
+  if (DAT_0174c84c == iVar1) {
+    return "MB_THREAT_AWARE_MOVE_TO_LOST_VISUAL";
+  }
+  if (DAT_0174c850 == iVar1) {
+    return "MB_THREAT_AWARE_MOVE_TO_BEFORE_ANIM";
+  }
+  if (DAT_0174c854 == iVar1) {
+    return "MB_THREAT_AWARE_MOVE_TO_AFTER_ANIM";
+  }
+  if (DAT_0174c858 == iVar1) {
+    return "MB_THREAT_AWARE_MOVE_TO_FLANKED_VENT";
+  }
+  if (DAT_0174c85c == iVar1) {
+    return "KILLTRAP_BRANCH";
+  }
+  if (DAT_0174c860 == iVar1) {
+    return "PANIC_BRANCH";
+  }
+  if (DAT_0174c864 == iVar1) {
+    return "BACKSTAGE_ALIEN_RESPONSE_BRANCH";
+  }
+  if (DAT_0174c868 == iVar1) {
+    return "NPC_VS_ALIEN_BRANCH";
+  }
+  if (DAT_0174c86c == iVar1) {
+    return "USE_COVER_VS_ALIEN_BRANCH";
+  }
+  if (DAT_0174c870 == iVar1) {
+    return "IN_COVER_VS_ALIEN_BRANCH";
+  }
+  if (DAT_0174c874 == iVar1) {
+    return "REPEATED_PATHFIND_FAILS_BRANCH";
+  }
+  pcVar2 = "ALL_SEARCH_VARIANTS_BRANCH";
+  if (DAT_0174c878 != iVar1) {
+    pcVar2 = PTR_s_unknown_012f1387_1_016437c8;
+  }
+  return pcVar2;
+}
+
+
+---- caller of FUN_008b6d10 FUN_008b74b0 @ 008b74b0
+
+void FUN_008b74b0(undefined4 param_1)
+
+{
+  undefined4 uVar1;
+  
+  uVar1 = FUN_008b7150(param_1);
+  FUN_008b6d10(uVar1);
+  return;
+}
+
+

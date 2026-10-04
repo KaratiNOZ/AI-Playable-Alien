@@ -1,0 +1,344 @@
+
+##### "Pause_Game"
+string @ 012ff854
+---- ref from 00842be5 FUN_00842320 @ 00842320
+
+void FUN_00842320(int *param_1)
+
+{
+  LONG LVar1;
+  uint unaff_EBP;
+  undefined1 *puVar2;
+  undefined1 *puVar3;
+  uint uVar4;
+  void *pvStack_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_011334a0;
+  pvStack_c = ExceptionList;
+  ExceptionList = &pvStack_c;
+  FUN_00cec9b0();
+  local_4 = 0;
+  (**(code **)(*param_1 + 4))();
+  pvStack_c = (void *)0xffffffff;
+  LVar1 = InterlockedExchangeAdd((LONG *)((unaff_EBP & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  pvStack_c = (void *)0x1;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)(((uint)pvStack_c & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)&DAT_00000004,-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)&DAT_00000004,-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)&DAT_00000008,-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)&DAT_00000008,-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 6;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 7;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 8;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 9;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 10;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0xb;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0xc;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0xd;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0xe;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0xf;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x10;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x11;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x12;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x13;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x14;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x15;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x16;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x17;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x18;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x19;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x1a;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x1b;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x1c;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x1d;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x1e;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x1f;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x20;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x21;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x22;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x23;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x24;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x25;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x26;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  uVar4 = 0x27;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))();
+  }
+  FUN_00cec9b0();
+  puVar3 = &stack0xfffffec4;
+  uVar4 = 0x28;
+  (**(code **)(*param_1 + 4))();
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))(uVar4 & 0xfffffffc);
+  }
+  FUN_00cec9b0("register_HUB_input");
+  puVar2 = &LAB_0082b2e0;
+  uVar4 = 0x29;
+  (**(code **)(*param_1 + 4))(&stack0xfffffebc);
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))(uVar4 & 0xfffffffc);
+  }
+  FUN_00cec9b0("unregister_HUB_input");
+  uVar4 = 0x2a;
+  (**(code **)(*param_1 + 4))(&stack0xfffffeb4,&LAB_0082b2f0);
+  LVar1 = InterlockedExchangeAdd((LONG *)((uVar4 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))(uVar4 & 0xfffffffc);
+  }
+  FUN_00cec9b0("mark_missing_person_entry_read");
+  (**(code **)(*param_1 + 4))(&stack0xfffffe98,&LAB_0080ba90);
+  LVar1 = InterlockedExchangeAdd((LONG *)(((uint)puVar2 & 0xfffffffc) + 4),-1);
+  if (LVar1 == 1) {
+    (**(code **)(*DAT_01bfaa10 + 0x30))((uint)puVar2 & 0xfffffffc);
+  }
+  ExceptionList = puVar3;
+  return;
+}
+
+
+
+##### "Unpause_Game"
+string @ 012ff844
+
+##### "pause_game"
+string @ 013dae40
+
+##### "togglePause"
+string @ 015ae594
+
+##### "IS_PAUSED"
+string @ 01279e6c

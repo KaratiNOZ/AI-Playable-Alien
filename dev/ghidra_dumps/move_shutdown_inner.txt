@@ -1,0 +1,75 @@
+---- FUN_00471ae0 @ 00471ae0 (callers: 25)
+
+void __fastcall FUN_00471ae0(int param_1)
+
+{
+  int *piVar1;
+  int iVar2;
+  undefined4 uVar3;
+  undefined1 local_14 [4];
+  int *local_10;
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01129758;
+  local_c = ExceptionList;
+  ExceptionList = &local_c;
+  *(undefined1 *)(param_1 + 0x2c) = 0;
+  if ((*(int *)(param_1 + 0xc) == 0) || (*(int *)(param_1 + 0x10) == 0)) {
+    *(undefined4 *)(param_1 + 0xc) = 6;
+  }
+  else {
+    uVar3 = FUN_0046d8f0(local_14);
+    local_4 = 0;
+    FUN_00471220(uVar3);
+    local_4 = 0xffffffff;
+    if (local_10 != (int *)0x0) {
+      piVar1 = local_10 + 1;
+      LOCK();
+      iVar2 = *piVar1;
+      *piVar1 = *piVar1 + -1;
+      UNLOCK();
+      if (iVar2 == 1) {
+        (**(code **)*local_10)();
+        piVar1 = local_10 + 2;
+        LOCK();
+        iVar2 = *piVar1;
+        *piVar1 = *piVar1 + -1;
+        UNLOCK();
+        if (iVar2 == 1) {
+          (**(code **)(*local_10 + 4))();
+          ExceptionList = local_c;
+          return;
+        }
+      }
+    }
+  }
+  ExceptionList = local_c;
+  return;
+}
+
+
+---- FUN_006f8490 @ 006f8490 (callers: 15)
+
+undefined4 * __thiscall FUN_006f8490(int param_1,undefined4 *param_2)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+  
+  *param_2 = 0;
+  param_2[1] = 0;
+  iVar1 = *(int *)(param_1 + 0x38);
+  uVar2 = *(undefined4 *)(param_1 + 0x34);
+  if (iVar1 != 0) {
+    LOCK();
+    *(int *)(iVar1 + 4) = *(int *)(iVar1 + 4) + 1;
+    UNLOCK();
+  }
+  FUN_004460a0(uVar2,iVar1);
+  return param_2;
+}
+
+

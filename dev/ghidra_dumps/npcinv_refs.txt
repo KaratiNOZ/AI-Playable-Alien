@@ -1,0 +1,13 @@
+
+##### "NPC_SetInvisible"
+string @ 013d8140
+
+##### "SET_INVISIBLE"
+string @ 011f8260
+
+##### "CHR_SetSubModelVisibility"
+string @ 013d6c94
+
+##### "is_visible"
+string @ 013d6cb0
+string @ 013dc497

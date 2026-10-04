@@ -1,0 +1,128 @@
+---- FUN_00a048d0 @ 00a048d0 (callers: 1)
+
+void __fastcall FUN_00a048d0(int param_1)
+
+{
+  int iVar1;
+  
+  if (*(char *)(param_1 + 0x1b64) == '\0') {
+    FUN_00a026e0(param_1 + 0x1a84,4);
+    FUN_00a02770(param_1 + 0x1a90,4);
+    FUN_00a027e0(param_1 + 0x1a9c,4);
+    FUN_00a02850(param_1 + 0x1aa8,4);
+    FUN_00a027e0(param_1 + 0x1ab4,4);
+    FUN_00a028b0(param_1 + 0x1ac0,4);
+    FUN_00a02930(param_1 + 0x1acc,4);
+    FUN_00a02990(param_1 + 0x1ad8,4);
+    FUN_00a02770(param_1 + 0x1ae4,4);
+    FUN_00a02990(param_1 + 0x1af0,4);
+    FUN_00a02930(param_1 + 0x1afc,4);
+    FUN_00a02770(param_1 + 0x1b08,4);
+    FUN_00a02990(param_1 + 0x1b14,4);
+    FUN_00a02990(param_1 + 0x1b20,4);
+  }
+  else {
+    if (*(int *)(param_1 + 0x1a88) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1a88);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1a88) = 0;
+    }
+    if (*(int *)(param_1 + 0x1a94) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1a94);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1a94) = 0;
+    }
+    if (*(int *)(param_1 + 0x1aa0) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1aa0);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1aa0) = 0;
+    }
+    if (*(int *)(param_1 + 0x1aac) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1aac);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1aac) = 0;
+    }
+    if (*(int *)(param_1 + 0x1ab8) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1ab8);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1ab8) = 0;
+    }
+    if (*(int *)(param_1 + 0x1ac4) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1ac4);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1ac4) = 0;
+    }
+    if (*(int *)(param_1 + 0x1ad0) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1ad0);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1ad0) = 0;
+    }
+    if (*(int *)(param_1 + 0x1adc) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1adc);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1adc) = 0;
+    }
+    if (*(int *)(param_1 + 0x1ae8) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1ae8);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1ae8) = 0;
+    }
+    if (*(int *)(param_1 + 0x1af4) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1af4);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1af4) = 0;
+    }
+    if (*(int *)(param_1 + 0x1b00) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1b00);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1b00) = 0;
+    }
+    if (*(int *)(param_1 + 0x1b0c) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1b0c);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1b0c) = 0;
+    }
+    if (*(int *)(param_1 + 0x1b18) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1b18);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1b18) = 0;
+    }
+    if (*(int *)(param_1 + 0x1b24) != 0) {
+      iVar1 = *(int *)(param_1 + 0x1b24);
+      do {
+        iVar1 = iVar1 + -1;
+      } while (iVar1 != 0);
+      *(undefined4 *)(param_1 + 0x1b24) = 0;
+      return;
+    }
+  }
+  return;
+}
+
+

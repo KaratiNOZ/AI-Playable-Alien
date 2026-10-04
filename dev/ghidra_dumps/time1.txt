@@ -1,0 +1,9 @@
+---- FUN_00772f60 @ 00772f60 (callers: 1)
+
+float10 FUN_00772f60(void)
+
+{
+  return (float10)DAT_016410a8;
+}
+
+

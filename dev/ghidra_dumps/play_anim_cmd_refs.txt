@@ -1,0 +1,3 @@
+
+##### "CHARACTER_COMMAND_PLAY_ANIMATION"
+string @ 0123f90c

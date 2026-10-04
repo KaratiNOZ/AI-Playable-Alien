@@ -1,0 +1,7 @@
+0x1a40]	009f15c2	MOVAPS xmmword ptr [EAX + 0x1a40],XMM0	FUN_009f1580
+0x1a40]	009f1ef0	MOVSS XMM0,dword ptr [ESI + 0x1a40]	FUN_009f1ee0
+0x1a40]	009f1f13	MOVQ XMM0,qword ptr [ESI + 0x1a40]	FUN_009f1ee0
+0x1a40]	009f544e	MOVAPS XMM0,xmmword ptr [ESI + 0x1a40]	FUN_009f5420
+0x1a3c]	009ff543	MOVSS dword ptr [ESI + 0x1a3c],XMM0	FUN_009fefd0
+0x1a40]	009ff55b	MOVSS dword ptr [ESI + 0x1a40],XMM0	FUN_009fefd0
+0x1a40]	00a08e07	MOVQ qword ptr [EBX + 0x1a40],XMM0	FUN_00a08c50

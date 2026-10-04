@@ -1,0 +1,23 @@
+00a6bbc4  MOV EAX,dword ptr [EBP + -0x1c]
+00a6bbc7  CALL 0x00a785e5
+00a6bbcc  RET
+00a6bbcd  CALL 0x00a70e24
+00a6bbd2  RET
+00a6bbd3  MOV EDI,EDI
+00a6bbd5  PUSH EBP
+00a6bbd6  MOV EBP,ESP
+00a6bbd8  PUSH dword ptr [EBP + 0x8]
+00a6bbdb  CALL 0x00a6bb97
+00a6bbe0  NEG EAX
+00a6bbe2  SBB EAX,EAX
+00a6bbe4  NEG EAX
+00a6bbe6  POP ECX
+00a6bbe7  DEC EAX
+00a6bbe8  POP EBP
+00a6bbe9  RET
+00a6bbed  DEC ESI
+00a6bbee  MOV ESI,0xc15ff01
+00a6bbf3  SBB dword ptr [ECX],EAX
+00a6bbf6  TEST EAX,EAX
+00a6bbf8  JZ 0x00a6bbfc
+00a6bbfa  CALL EAX

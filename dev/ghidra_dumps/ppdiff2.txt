@@ -1,0 +1,217 @@
+
+##### 013a2a2c CATHODE::VignetteSettings::vftable
+---- slot198 -> 00607560
+
+void FUN_00607560(undefined4 param_1)
+
+{
+  DAT_0174ed98 = param_1;
+  return;
+}
+
+
+---- slot199 -> 00607570
+
+undefined4 FUN_00607570(void)
+
+{
+  return DAT_0174ed98;
+}
+
+
+
+##### 013a268c CATHODE::FilmGrainSettings::vftable
+---- slot198 -> 00607200
+
+void FUN_00607200(undefined4 param_1)
+
+{
+  DAT_0174ed94 = param_1;
+  return;
+}
+
+
+---- slot199 -> 00607210
+
+undefined4 FUN_00607210(void)
+
+{
+  return DAT_0174ed94;
+}
+
+
+
+##### 013a812c CATHODE::DepthOfFieldSettings::vftable
+---- slot198 -> 00610d30
+
+void FUN_00610d30(undefined4 param_1)
+
+{
+  DAT_0174edf8 = param_1;
+  return;
+}
+
+
+---- slot199 -> 00610d40
+
+undefined4 FUN_00610d40(void)
+
+{
+  return DAT_0174edf8;
+}
+
+
+
+##### 013a84cc CATHODE::ChromaticAberrations::vftable
+---- slot198 -> 00610ed0
+
+void FUN_00610ed0(undefined4 param_1)
+
+{
+  DAT_0174edfc = param_1;
+  return;
+}
+
+
+---- slot199 -> 00610ee0
+
+undefined4 FUN_00610ee0(void)
+
+{
+  return DAT_0174edfc;
+}
+
+
+
+##### 013a180c CATHODE::BloomSettings::vftable
+---- slot198 -> 0061dc20
+
+void FUN_0061dc20(undefined4 param_1)
+
+{
+  DAT_0174ed84 = param_1;
+  return;
+}
+
+
+---- slot199 -> 0061dc30
+
+undefined4 FUN_0061dc30(void)
+
+{
+  return DAT_0174ed84;
+}
+
+
+
+##### 013a316c CATHODE::SharpnessSettings::vftable
+---- slot198 -> 00607a40
+
+void FUN_00607a40(undefined4 param_1)
+
+{
+  DAT_0174eda0 = param_1;
+  return;
+}
+
+
+---- slot199 -> 00607a50
+
+undefined4 FUN_00607a50(void)
+
+{
+  return DAT_0174eda0;
+}
+
+
+
+##### 013a3fec CATHODE::DayToneMappingSettings::vftable
+---- slot126 -> 0091ad40
+
+undefined4 __thiscall
+FUN_0091ad40(int *param_1,int *param_2,undefined1 *param_3,undefined4 param_4,undefined4 param_5)
+
+{
+  code *pcVar1;
+  char cVar2;
+  undefined1 uVar3;
+  uint uVar4;
+  undefined4 uVar5;
+  void *local_10;
+  undefined1 *puStack_c;
+  undefined4 local_8;
+  
+  local_8 = 0xffffffff;
+  puStack_c = &LAB_01136150;
+  local_10 = ExceptionList;
+  uVar4 = DAT_0165f890 ^ (uint)&stack0xfffffffc;
+  ExceptionList = &local_10;
+  if (DAT_0174d328 != *param_2) {
+    if (DAT_0174d334 != *param_2) {
+      uVar5 = FUN_00915f20(param_2,param_3,param_4,param_5);
+      ExceptionList = local_10;
+      return uVar5;
+    }
+    FUN_00e1bcc0(&DAT_0130a0cc);
+    local_8 = 1;
+    FUN_00a69c90();
+    FUN_00a69c90(param_4);
+    if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+      *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+      cVar2 = FUN_0085d000();
+      if (cVar2 != '\0') {
+        pcVar1 = (code *)swi(3);
+        uVar5 = (*pcVar1)();
+        return uVar5;
+      }
+    }
+    uVar3 = (**(code **)(*param_1 + 0x290))(param_4,param_5);
+    *param_3 = uVar3;
+    FUN_00a69c90();
+    local_8 = 0xffffffff;
+    FUN_00a69c90();
+    ExceptionList = local_10;
+    return 1;
+  }
+  FUN_00e1bcc0("start");
+  local_8 = 0;
+  FUN_00a69c90(uVar4);
+  FUN_00a69c90(param_4);
+  if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+    *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+    cVar2 = FUN_0085d000();
+    if (cVar2 != '\0') {
+      pcVar1 = (code *)swi(3);
+      uVar5 = (*pcVar1)();
+      return uVar5;
+    }
+  }
+  uVar3 = (**(code **)(*param_1 + 0x28c))(param_4,param_5);
+  *param_3 = uVar3;
+  FUN_00a69c90();
+  local_8 = 0xffffffff;
+  FUN_00a69c90();
+  ExceptionList = local_10;
+  return 1;
+}
+
+
+---- slot198 -> 006085c0
+
+void FUN_006085c0(undefined4 param_1)
+
+{
+  DAT_0174edb0 = param_1;
+  return;
+}
+
+
+---- slot199 -> 006085d0
+
+undefined4 FUN_006085d0(void)
+
+{
+  return DAT_0174edb0;
+}
+
+

@@ -1,0 +1,57 @@
+006d95b0  MOV EAX,0x1
+006d95b5  TEST byte ptr [0x016ebea4],AL
+006d95bb  JNZ 0x006d971b
+006d95c1  OR dword ptr [0x016ebea4],EAX
+006d95c7  MOV dword ptr [0x016ebe1c],0xb4d3f0
+006d95d1  MOV dword ptr [0x016ebe20],0x6d1a20
+006d95db  MOV dword ptr [0x016ebe24],0x6d1a50
+006d95e5  MOV dword ptr [0x016ebe28],0x6d1a80
+006d95ef  MOV dword ptr [0x016ebe2c],0x6d1ad0
+006d95f9  MOV dword ptr [0x016ebe30],0x6d1b00
+006d9603  MOV dword ptr [0x016ebe34],0x6d1b20
+006d960d  MOV dword ptr [0x016ebe38],0x6d1b40
+006d9617  MOV dword ptr [0x016ebe3c],0x6d1b60
+006d9621  MOV dword ptr [0x016ebe40],0x6d1b80
+006d962b  MOV dword ptr [0x016ebe44],0x6d1ba0
+006d9635  MOV dword ptr [0x016ebe48],0x6d1bc0
+006d963f  MOV dword ptr [0x016ebe4c],0x6d1c20
+006d9649  MOV dword ptr [0x016ebe50],0x6d1c80
+006d9653  MOV dword ptr [0x016ebe54],0x6d1c80
+006d965d  MOV dword ptr [0x016ebe58],0x6d1c80
+006d9667  MOV dword ptr [0x016ebe5c],0x6d1ca0
+006d9671  MOV dword ptr [0x016ebe60],0x6d1d00
+006d967b  MOV dword ptr [0x016ebe64],0x6d1d30
+006d9685  MOV dword ptr [0x016ebe68],0x6d1d60
+006d968f  MOV dword ptr [0x016ebe6c],0x6d1d90
+006d9699  MOV dword ptr [0x016ebe70],0x6d1dc0
+006d96a3  MOV dword ptr [0x016ebe74],0x6d1df0
+006d96ad  MOV dword ptr [0x016ebe78],0x6d1e20
+006d96b7  MOV dword ptr [0x016ebe7c],0x6d1e80
+006d96c1  MOV dword ptr [0x016ebe80],0x6d1ee0
+006d96cb  MOV dword ptr [0x016ebe84],0x6d1f00
+006d96d5  MOV dword ptr [0x016ebe88],0x6d1f20
+006d96df  MOV dword ptr [0x016ebe8c],0x6d1f40
+006d96e9  MOV dword ptr [0x016ebe90],0x6d1f60
+006d96f3  MOV dword ptr [0x016ebe94],0x6d1f80
+006d96fd  MOV dword ptr [0x016ebe98],0x6d1fa0
+006d9707  MOV dword ptr [0x016ebe9c],0x6d1fc0
+006d9711  MOV dword ptr [0x016ebea0],0x6d1fe0
+006d971b  MOV EAX,dword ptr [ECX + 0x40]
+006d971e  MOV EAX,dword ptr [EAX*0x4 + 0x16ebe18]
+006d9725  JMP EAX
+006d9730  PUSH -0x1
+006d9732  PUSH 0x1123578
+006d9737  MOV EAX,FS:[0x0]
+006d973d  PUSH EAX
+006d973e  MOV dword ptr FS:[0x0],ESP
+006d9745  SUB ESP,0xc
+006d9748  MOV EAX,dword ptr [ESP + 0x1c]
+006d974c  PUSH ESI
+006d974d  PUSH EAX
+006d974e  LEA ECX,[ESP + 0xc]
+006d9752  PUSH ECX
+006d9753  XOR ESI,ESI
+006d9755  PUSH 0x8
+006d9757  MOV dword ptr [ESP + 0x14],ESI
+006d975b  MOV dword ptr [ESP + 0x18],ESI
+006d975f  CALL 0x009346a0

@@ -1,0 +1,29 @@
+---- FUN_008d2d10 @ 008d2d10 (callers: 0)
+
+undefined1 FUN_008d2d10(void)
+
+{
+  return DAT_013121bc;
+}
+
+
+---- FUN_008d32b0 @ 008d32b0 (callers: 0)
+
+undefined4 FUN_008d32b0(void)
+
+{
+  return DAT_013121c0;
+}
+
+
+---- FUN_008cb7e0 @ 008cb7e0 (callers: 0)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+float10 FUN_008cb7e0(void)
+
+{
+  return (float10)_DAT_013121c4;
+}
+
+

@@ -1,0 +1,13 @@
+---- FUN_008e21b0 @ 008e21b0 (callers: 1)
+
+undefined1 FUN_008e21b0(undefined4 param_1)
+
+{
+  undefined1 local_5;
+  
+  local_5 = 1;
+  FUN_00630590(param_1,&DAT_01750904,&local_5);
+  return local_5;
+}
+
+

@@ -1,0 +1,224 @@
+==== FUN_00bb9e80 @ 00bb9e80
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+int __thiscall FUN_00bb9e80(int *param_1,int param_2)
+
+{
+  undefined4 *puVar1;
+  undefined4 *puVar2;
+  float *pfVar3;
+  uint *puVar4;
+  byte bVar5;
+  short sVar6;
+  int iVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  undefined4 uVar14;
+  undefined4 uVar15;
+  undefined4 uVar16;
+  int iVar17;
+  float *pfVar18;
+  int iVar19;
+  int iVar20;
+  int iVar21;
+  float fVar22;
+  float fVar23;
+  float fVar24;
+  float fVar25;
+  float fVar26;
+  float fVar27;
+  float fVar28;
+  float local_30;
+  float fStack_2c;
+  float fStack_28;
+  float local_20;
+  float fStack_1c;
+  float fStack_18;
+  
+  iVar7 = param_1[7];
+  iVar21 = param_2 * 4;
+  bVar5 = *(byte *)(iVar21 + iVar7);
+  iVar20 = param_2;
+  do {
+    if ((bVar5 & 2) == 0) {
+LAB_00bb9efa:
+      iVar20 = iVar20 + 1;
+      if (iVar20 <= param_2) {
+        iVar21 = iVar20 * 0x30;
+        do {
+          if ((*(byte *)(param_1[7] + iVar20 * 4) & 8) != 0) {
+            pfVar3 = (float *)(param_1[1] + iVar21);
+            fVar8 = *pfVar3;
+            fVar9 = pfVar3[1];
+            fVar10 = pfVar3[2];
+            fVar28 = pfVar3[3];
+            iVar7 = param_1[4];
+            iVar19 = param_1[1] + iVar21;
+            iVar17 = *(short *)(*(int *)(*param_1 + 0xc) + iVar20 * 2) * 0x30;
+            pfVar3 = (float *)(iVar17 + 0x10 + iVar7);
+            fVar27 = *pfVar3;
+            fVar11 = pfVar3[1];
+            fVar12 = pfVar3[2];
+            fVar13 = pfVar3[3];
+            pfVar18 = (float *)(iVar17 + iVar7);
+            fVar22 = fVar27 * fVar8;
+            fVar23 = fVar11 * fVar9;
+            fVar24 = fVar12 * fVar10;
+            fVar25 = (fVar23 + fVar22 + fVar24) * fVar27 +
+                     ((float)(_DAT_01400c60 ^ DAT_015c6340) + fVar13 * fVar13) * fVar8 +
+                     (fVar10 * fVar11 - fVar12 * fVar9) * fVar13;
+            fVar26 = (fVar23 + fVar22 + fVar24) * fVar11 +
+                     ((float)(_UNK_01400c64 ^ _UNK_015c6344) + fVar13 * fVar13) * fVar9 +
+                     (fVar8 * fVar12 - fVar27 * fVar10) * fVar13;
+            fVar27 = (fVar23 + fVar22 + fVar24) * fVar12 +
+                     ((float)(_UNK_01400c68 ^ _UNK_015c6348) + fVar13 * fVar13) * fVar10 +
+                     (fVar9 * fVar27 - fVar11 * fVar8) * fVar13;
+            fVar28 = (fVar23 + fVar22 + fVar24) * fVar13 +
+                     ((float)(_UNK_01400c6c ^ _UNK_015c634c) + fVar13 * fVar13) * fVar28 +
+                     (fVar28 * fVar13 - fVar13 * fVar28) * fVar13;
+            fVar8 = pfVar18[1];
+            fVar9 = pfVar18[2];
+            fVar10 = pfVar18[3];
+            pfVar3 = (float *)(iVar21 + iVar7);
+            *pfVar3 = fVar25 + fVar25 + *pfVar18;
+            pfVar3[1] = fVar26 + fVar26 + fVar8;
+            pfVar3[2] = fVar27 + fVar27 + fVar9;
+            pfVar3[3] = fVar28 + fVar28 + fVar10;
+            fVar8 = *(float *)(iVar19 + 0x1c);
+            local_30 = (float)*(undefined8 *)(pfVar18 + 4);
+            fStack_2c = (float)((ulonglong)*(undefined8 *)(pfVar18 + 4) >> 0x20);
+            fStack_28 = (float)*(undefined8 *)(pfVar18 + 6);
+            local_20 = (float)*(undefined8 *)(iVar19 + 0x10);
+            fStack_1c = (float)((ulonglong)*(undefined8 *)(iVar19 + 0x10) >> 0x20);
+            fStack_18 = (float)*(undefined8 *)(iVar19 + 0x18);
+            fVar9 = pfVar18[7];
+            pfVar3 = (float *)(iVar21 + 0x10 + iVar7);
+            *pfVar3 = (fStack_18 * fStack_2c - fStack_28 * fStack_1c) + local_20 * fVar9 +
+                      local_30 * fVar8;
+            pfVar3[1] = (local_20 * fStack_28 - local_30 * fStack_18) + fStack_1c * fVar9 +
+                        fStack_2c * fVar8;
+            pfVar3[2] = (fStack_1c * local_30 - fStack_2c * local_20) + fStack_18 * fVar9 +
+                        fStack_28 * fVar8;
+            pfVar3[3] = fVar8 * fVar9 -
+                        (fStack_2c * fStack_1c + local_30 * local_20 + fStack_28 * fStack_18);
+            fVar8 = pfVar18[9];
+            fVar9 = pfVar18[10];
+            fVar10 = pfVar18[0xb];
+            fVar28 = *(float *)(iVar19 + 0x24);
+            fVar27 = *(float *)(iVar19 + 0x28);
+            fVar11 = *(float *)(iVar19 + 0x2c);
+            pfVar3 = (float *)(iVar21 + 0x20 + iVar7);
+            *pfVar3 = pfVar18[8] * *(float *)(iVar19 + 0x20);
+            pfVar3[1] = fVar8 * fVar28;
+            pfVar3[2] = fVar9 * fVar27;
+            pfVar3[3] = fVar10 * fVar11;
+            puVar4 = (uint *)(param_1[7] + iVar20 * 4);
+            *puVar4 = *puVar4 & 0xfffffff5;
+          }
+          iVar20 = iVar20 + 1;
+          iVar21 = iVar21 + 0x30;
+        } while (iVar20 <= param_2);
+      }
+      return param_2 * 0x30 + param_1[4];
+    }
+    sVar6 = *(short *)(*(int *)(*param_1 + 0xc) + iVar20 * 2);
+    if (sVar6 == -1) {
+      iVar21 = param_1[1];
+      iVar7 = param_1[4];
+      puVar1 = (undefined4 *)(iVar21 + iVar20 * 0x30);
+      uVar14 = puVar1[1];
+      uVar15 = puVar1[2];
+      uVar16 = puVar1[3];
+      puVar2 = (undefined4 *)(iVar7 + iVar20 * 0x30);
+      *puVar2 = *puVar1;
+      puVar2[1] = uVar14;
+      puVar2[2] = uVar15;
+      puVar2[3] = uVar16;
+      puVar1 = (undefined4 *)(iVar21 + 0x10 + iVar20 * 0x30);
+      uVar14 = puVar1[1];
+      uVar15 = puVar1[2];
+      uVar16 = puVar1[3];
+      puVar2 = (undefined4 *)(iVar7 + 0x10 + iVar20 * 0x30);
+      *puVar2 = *puVar1;
+      puVar2[1] = uVar14;
+      puVar2[2] = uVar15;
+      puVar2[3] = uVar16;
+      puVar1 = (undefined4 *)(iVar21 + 0x20 + iVar20 * 0x30);
+      uVar14 = puVar1[1];
+      uVar15 = puVar1[2];
+      uVar16 = puVar1[3];
+      puVar2 = (undefined4 *)(iVar7 + 0x20 + iVar20 * 0x30);
+      *puVar2 = *puVar1;
+      puVar2[1] = uVar14;
+      puVar2[2] = uVar15;
+      puVar2[3] = uVar16;
+      puVar4 = (uint *)(param_1[7] + iVar20 * 4);
+      *puVar4 = *puVar4 & 0xfffffffd;
+      goto LAB_00bb9efa;
+    }
+    *(uint *)(iVar7 + iVar21) = *(uint *)(iVar7 + iVar21) | 8;
+    iVar7 = param_1[7];
+    iVar20 = (int)sVar6;
+    bVar5 = *(byte *)(iVar7 + iVar20 * 4);
+    iVar21 = iVar20 * 4;
+  } while( true );
+}
+
+
+==== FUN_00a8ebe0 @ 00a8ebe0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void __thiscall FUN_00a8ebe0(undefined4 *param_1,undefined4 param_2)
+
+{
+  float local_b0;
+  float fStack_ac;
+  float fStack_a8;
+  float fStack_a4;
+  float local_a0;
+  float fStack_9c;
+  float fStack_98;
+  float fStack_94;
+  float local_90;
+  float fStack_8c;
+  float fStack_88;
+  float fStack_84;
+  undefined4 local_50;
+  undefined4 uStack_4c;
+  undefined4 uStack_48;
+  undefined4 uStack_44;
+  undefined1 local_40 [60];
+  
+  FUN_00a97000(param_1 + 4);
+  local_90 = (float)param_1[8];
+  fStack_8c = (float)param_1[9];
+  fStack_88 = (float)param_1[10];
+  fStack_84 = (float)param_1[0xb];
+  local_b0 = local_90 * (float)DAT_01400d10;
+  fStack_ac = fStack_8c * DAT_01400d10._4_4_;
+  fStack_a8 = fStack_88 * (float)DAT_01400d18;
+  fStack_a4 = fStack_84 * DAT_01400d18._4_4_;
+  local_a0 = local_90 * (float)DAT_01400d20;
+  fStack_9c = fStack_8c * DAT_01400d20._4_4_;
+  fStack_98 = fStack_88 * (float)DAT_01400d28;
+  fStack_94 = fStack_84 * DAT_01400d28._4_4_;
+  local_90 = local_90 * _DAT_01400d30;
+  fStack_8c = fStack_8c * _UNK_01400d34;
+  fStack_88 = fStack_88 * _UNK_01400d38;
+  fStack_84 = fStack_84 * _UNK_01400d3c;
+  FUN_00a92ef0(local_40,&local_b0);
+  local_50 = *param_1;
+  uStack_4c = param_1[1];
+  uStack_48 = param_1[2];
+  uStack_44 = param_1[3];
+  FUN_00a99330(param_2);
+  return;
+}
+
+

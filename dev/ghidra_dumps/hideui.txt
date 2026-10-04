@@ -1,0 +1,172 @@
+
+##### "HideUI"
+string @ 012fea7c
+---- ref from 0083731d FUN_008371f0 @ 008371f0
+
+void __fastcall FUN_008371f0(int param_1)
+
+{
+  bool bVar1;
+  bool bVar2;
+  undefined4 uVar3;
+  char cVar4;
+  char cVar5;
+  int iVar6;
+  int iVar7;
+  bool bVar8;
+  
+  bVar1 = false;
+  iVar6 = FUN_0078baf0(0);
+  if ((iVar6 != 0) && (*(int *)(iVar6 + 0x1100) != 0)) {
+    iVar7 = FUN_00782a40();
+    if ((iVar7 == 0) ||
+       ((*(char *)(iVar6 + 0x2c3) == '\0' ||
+        (bVar1 = true, *(int *)(*(int *)(iVar6 + 0x1100) + 0x2c) != 0)))) {
+      bVar1 = false;
+    }
+  }
+  bVar2 = false;
+  iVar6 = FUN_0078baf0(0);
+  if (((iVar6 != 0) && (*(int *)(iVar6 + 0x1100) != 0)) &&
+     (*(int *)(*(int *)(iVar6 + 0x1100) + 0x150c) == 6)) {
+    bVar2 = true;
+  }
+  bVar8 = false;
+  iVar6 = FUN_0078baf0(0);
+  if (iVar6 != 0) {
+    cVar4 = FUN_00648b70(3);
+    if (cVar4 == '\0') {
+      iVar6 = 0;
+    }
+    else {
+      iVar6 = *(int *)(iVar6 + 0x388);
+    }
+    bVar8 = *(short *)(iVar6 + 0x1e) == 6;
+  }
+  if (((!bVar1) || (bVar8)) || (bVar2)) {
+    cVar4 = '\0';
+  }
+  else {
+    cVar4 = '\x01';
+  }
+  if (cVar4 != *(char *)(param_1 + 0xe4)) {
+    if (cVar4 == '\0') {
+      FUN_008081e0("HideCrosshairs");
+      FUN_008081e0("HideUI");
+    }
+    else {
+      FUN_008081e0("ShowCrosshairs");
+      *(undefined1 *)(param_1 + 0x123) = 1;
+      cVar5 = FUN_008178e0();
+      if (cVar5 == '\0') {
+        if (*(char *)(param_1 + 0x122) == '\0') {
+          FUN_008081e0("ShowAmmo");
+          *(undefined2 *)(param_1 + 0x121) = 0x101;
+        }
+        uVar3 = DAT_012f9ac4;
+        *(char *)(param_1 + 0xe4) = cVar4;
+        *(undefined4 *)(param_1 + 0xe8) = uVar3;
+        return;
+      }
+    }
+    *(char *)(param_1 + 0xe4) = cVar4;
+  }
+  return;
+}
+
+
+
+##### "hide_ui"
+string @ 0130876c
+---- ref from 009195f3 FUN_00919530 @ 00919530
+
+undefined4 __thiscall
+FUN_00919530(int *param_1,int *param_2,undefined1 *param_3,undefined4 param_4,undefined4 param_5)
+
+{
+  int iVar1;
+  char cVar2;
+  undefined1 uVar3;
+  uint uVar4;
+  undefined4 uVar5;
+  code *pcVar6;
+  void *local_10;
+  undefined1 *puStack_c;
+  undefined4 local_8;
+  
+  local_8 = 0xffffffff;
+  puStack_c = &LAB_01135e58;
+  local_10 = ExceptionList;
+  uVar4 = DAT_0165f890 ^ (uint)&stack0xfffffffc;
+  iVar1 = *param_2;
+  if (DAT_0174dab4 == iVar1) {
+    ExceptionList = &local_10;
+    FUN_00e1bcc0("refresh_value");
+    local_8 = 0;
+    FUN_00a69c90(uVar4);
+    FUN_00a69c90(param_4);
+    if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+      *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+      cVar2 = FUN_0085d000();
+      if (cVar2 != '\0') {
+        pcVar6 = (code *)swi(3);
+        uVar5 = (*pcVar6)();
+        return uVar5;
+      }
+    }
+    pcVar6 = *(code **)(*param_1 + 0x39c);
+  }
+  else {
+    if (DAT_0174d9b4 != iVar1) {
+      if (DAT_0174d9c0 != iVar1) {
+        return 0;
+      }
+      ExceptionList = &local_10;
+      FUN_00e1bcc0("show_ui");
+      local_8 = 2;
+      FUN_00a69c90();
+      FUN_00a69c90(param_4);
+      if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+        *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+        cVar2 = FUN_0085d000();
+        if (cVar2 != '\0') {
+          pcVar6 = (code *)swi(3);
+          uVar5 = (*pcVar6)();
+          return uVar5;
+        }
+      }
+      uVar3 = (**(code **)(*param_1 + 0x3a4))(param_4,param_5);
+      *param_3 = uVar3;
+      FUN_00a69c90();
+      goto LAB_009195ca;
+    }
+    ExceptionList = &local_10;
+    FUN_00e1bcc0("hide_ui");
+    local_8 = 1;
+    FUN_00a69c90();
+    FUN_00a69c90(param_4);
+    if (*(char *)(DAT_0174ef40 + 0x10a) != '\0') {
+      *(undefined1 *)(DAT_0174ef40 + 0x10a) = 0;
+      cVar2 = FUN_0085d000();
+      if (cVar2 != '\0') {
+        pcVar6 = (code *)swi(3);
+        uVar5 = (*pcVar6)();
+        return uVar5;
+      }
+    }
+    pcVar6 = *(code **)(*param_1 + 0x3a0);
+  }
+  uVar3 = (*pcVar6)(param_4,param_5);
+  *param_3 = uVar3;
+  FUN_00a69c90();
+LAB_009195ca:
+  local_8 = 0xffffffff;
+  FUN_00a69c90();
+  ExceptionList = local_10;
+  return 1;
+}
+
+
+
+##### "show_ui"
+string @ 01308744

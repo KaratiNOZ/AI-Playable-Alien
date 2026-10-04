@@ -1,0 +1,53 @@
+---- FUN_006efa40 @ 006efa40 (callers: 0)
+
+bool FUN_006efa40(void)
+
+{
+  char cVar1;
+  
+  cVar1 = FUN_0078b330();
+  return cVar1 != '\0';
+}
+
+
+---- FUN_0078b330 @ 0078b330 (callers: 44)
+
+undefined4 __fastcall FUN_0078b330(undefined4 *param_1)
+
+{
+  char cVar1;
+  int iVar2;
+  
+  iVar2 = (**(code **)(*(int *)*param_1 + 0x1c))();
+  if (*(char *)(iVar2 + 0x2cf4) != '\0') {
+    cVar1 = FUN_00679860();
+    if ((cVar1 == '\0') ||
+       (((iVar2 = *(int *)(iVar2 + 0x2f90), iVar2 != 3 && (iVar2 != 2)) && (iVar2 != 1)))) {
+      return 0;
+    }
+  }
+  return 1;
+}
+
+
+---- FUN_00679860 @ 00679860 (callers: 15)
+
+undefined4 __fastcall FUN_00679860(int param_1)
+
+{
+  if ((*(int *)(param_1 + 0x20) != 9) && (*(int *)(param_1 + 0xe4) != 9)) {
+    return 0;
+  }
+  return 1;
+}
+
+
+---- FUN_006eb060 @ 006eb060 (callers: 0)
+
+bool __thiscall FUN_006eb060(int param_1,int param_2)
+
+{
+  return *(int *)(param_2 + 0x32c) == *(int *)(param_1 + 0x14);
+}
+
+

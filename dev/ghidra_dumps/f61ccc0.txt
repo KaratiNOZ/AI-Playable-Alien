@@ -1,0 +1,82 @@
+---- FUN_0061ccc0 @ 0061ccc0 (callers: 6)
+
+void FUN_0061ccc0(undefined4 *param_1)
+
+{
+  int *piVar1;
+  int iVar2;
+  undefined4 uVar3;
+  undefined4 local_7c;
+  undefined4 local_78;
+  undefined4 local_74;
+  undefined4 local_70;
+  undefined4 local_6c;
+  undefined4 local_68;
+  undefined4 local_64;
+  undefined4 local_60;
+  undefined4 local_5c;
+  undefined4 local_58;
+  undefined4 local_54;
+  int *local_50;
+  int local_44;
+  undefined1 *local_40;
+  undefined1 local_3c [12];
+  undefined4 local_30;
+  undefined4 local_20;
+  undefined4 local_10;
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_01125188;
+  local_c = ExceptionList;
+  local_50 = &local_44;
+  local_54 = 0x61cce4;
+  ExceptionList = &local_c;
+  uVar3 = FUN_005f9810();
+  local_40 = (undefined1 *)&local_7c;
+  local_7c = DAT_01643a78;
+  local_78 = DAT_01643a7c;
+  local_74 = DAT_01643a80;
+  local_70 = DAT_01643a84;
+  local_6c = DAT_01643a88;
+  local_68 = DAT_01643a8c;
+  local_64 = DAT_01643a90;
+  local_60 = DAT_01643a94;
+  local_5c = DAT_01643a98;
+  local_58 = DAT_01643a9c;
+  local_54 = DAT_01643aa0;
+  local_50 = (int *)DAT_01643aa4;
+  local_4 = 0;
+  FUN_00404710(local_3c,uVar3);
+  local_4 = 0xffffffff;
+  if (local_44 != 0) {
+    if (*(int *)(local_44 + 4) == 1) {
+      local_50 = (int *)0x0;
+      local_54 = 0x61cdc9;
+      (**(code **)(**(int **)(local_44 + 0xc) + 0x4c))();
+    }
+    piVar1 = (int *)(local_44 + 4);
+    LOCK();
+    iVar2 = *piVar1;
+    *piVar1 = *piVar1 + -1;
+    UNLOCK();
+    if (iVar2 == 1) {
+      local_50 = (int *)0x61cde9;
+      FUN_008baa10();
+    }
+    if (local_44 == DAT_016437f4) {
+      local_50 = (int *)*piVar1;
+      local_54 = 0x61cdf9;
+      FUN_00744c80();
+    }
+  }
+  *param_1 = local_30;
+  param_1[1] = local_20;
+  param_1[2] = local_10;
+  ExceptionList = local_c;
+  return;
+}
+
+

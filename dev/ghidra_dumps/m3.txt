@@ -1,0 +1,74 @@
+006d1e61  MOVQ XMM0,qword ptr [ECX + 0x28]
+006d1e66  MOV ECX,dword ptr [EAX]
+006d1e68  PUSH ECX
+006d1e69  LEA ECX,[ESP + 0x4]
+006d1e6d  MOVQ qword ptr [ESP + 0x2c],XMM0
+006d1e73  CALL 0x00778eb0
+006d1e78  MOV ESP,EBP
+006d1e7a  POP EBP
+006d1e7b  RET 0x4
+006d1e80  PUSH EBP
+006d1e81  MOV EBP,ESP
+006d1e83  AND ESP,0xfffffff0
+006d1e86  SUB ESP,0x30
+006d1e89  MOVQ XMM0,qword ptr [ECX]
+006d1e8d  MOV EAX,dword ptr [EBP + 0x8]
+006d1e90  MOVQ qword ptr [ESP],XMM0
+006d1e95  MOVQ XMM0,qword ptr [ECX + 0x8]
+006d1e9a  MOVQ qword ptr [ESP + 0x8],XMM0
+006d1ea0  MOVQ XMM0,qword ptr [ECX + 0x10]
+006d1ea5  MOVQ qword ptr [ESP + 0x10],XMM0
+006d1eab  MOVQ XMM0,qword ptr [ECX + 0x18]
+006d1eb0  MOVQ qword ptr [ESP + 0x18],XMM0
+006d1eb6  MOVQ XMM0,qword ptr [ECX + 0x20]
+006d1ebb  MOVQ qword ptr [ESP + 0x20],XMM0
+006d1ec1  MOVQ XMM0,qword ptr [ECX + 0x28]
+006d1ec6  MOV ECX,dword ptr [EAX]
+006d1ec8  PUSH ECX
+006d1ec9  LEA ECX,[ESP + 0x4]
+006d1ecd  MOVQ qword ptr [ESP + 0x2c],XMM0
+006d1ed3  CALL 0x00778bd0
+006d1ed8  MOV ESP,EBP
+006d1eda  POP EBP
+006d1edb  RET 0x4
+006d1ee0  PUSH ECX
+006d1ee1  MOV EAX,dword ptr [ECX]
+006d1ee3  MOV ECX,dword ptr [ESP + 0x8]
+006d1ee7  MOV EDX,dword ptr [ECX]
+006d1ee9  PUSH EDX
+006d1eea  LEA ECX,[ESP + 0x4]
+006d1eee  MOV dword ptr [ESP + 0x4],EAX
+006d1ef2  CALL 0x0078a3e0
+006d1ef7  POP ECX
+006d1ef8  RET 0x4
+006d1f00  PUSH ECX
+006d1f01  MOV EAX,dword ptr [ECX]
+006d1f03  MOV ECX,dword ptr [ESP + 0x8]
+006d1f07  MOV EDX,dword ptr [ECX]
+006d1f09  PUSH EDX
+006d1f0a  LEA ECX,[ESP + 0x4]
+006d1f0e  MOV dword ptr [ESP + 0x4],EAX
+006d1f12  CALL 0x00778cb0
+006d1f17  POP ECX
+006d1f18  RET 0x4
+006d1f20  PUSH ECX
+006d1f21  MOV EAX,dword ptr [ECX]
+006d1f23  MOV ECX,dword ptr [ESP + 0x8]
+006d1f27  MOV EDX,dword ptr [ECX]
+006d1f29  PUSH EDX
+006d1f2a  LEA ECX,[ESP + 0x4]
+006d1f2e  MOV dword ptr [ESP + 0x4],EAX
+006d1f32  CALL 0x00778df0
+006d1f37  POP ECX
+006d1f38  RET 0x4
+006d1f40  PUSH ECX
+006d1f41  MOV EAX,dword ptr [ECX]
+006d1f43  MOV ECX,dword ptr [ESP + 0x8]
+006d1f47  MOV EDX,dword ptr [ECX]
+006d1f49  PUSH EDX
+006d1f4a  LEA ECX,[ESP + 0x4]
+006d1f4e  MOV dword ptr [ESP + 0x4],EAX
+006d1f52  CALL 0x00778e50
+006d1f57  POP ECX
+006d1f58  RET 0x4
+006d1f60  PUSH ECX

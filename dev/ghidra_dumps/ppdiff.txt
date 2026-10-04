@@ -1,0 +1,21 @@
+
+##### 013a1bac CATHODE::ColourSettings::vftable
+---- slot198 -> 00606920
+
+void FUN_00606920(undefined4 param_1)
+
+{
+  DAT_0174ed88 = param_1;
+  return;
+}
+
+
+---- slot199 -> 00606930
+
+undefined4 FUN_00606930(void)
+
+{
+  return DAT_0174ed88;
+}
+
+
