@@ -81,7 +81,7 @@ static UnloadResult UnloadRemote(HANDLE proc, const RemoteMod& m) {
   DWORD code = 0;
   const bool done = WaitForSingleObject(t, 20000) == WAIT_OBJECT_0 && GetExitCodeThread(t, &code);
   CloseHandle(t);
-  return !done ? UL_FAIL : code == 1 ? UL_DONE : UL_ALREADY;
+  return !done ? UL_FAIL : code == 1 ? UL_DONE : code == 2 ? UL_ALREADY : UL_FAIL;
 }
 
 // копия DLL для внедрения: live\AlienModUI-<время>.dll; старые копии, которые игра уже отпустила, удаляем

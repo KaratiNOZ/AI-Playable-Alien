@@ -82,16 +82,36 @@ static void GuidsTick() {
 }
 
 // this нужных объектов игры ловим с живых вызовов
+static int s_fpLogs = 0;
 static void OnFindParamStringEnter(Invocation& inv) {
-  if (s_eiThis) return;
-  s_eiThis = inv.ecx;
-  Log("EntityInterface %08X", unsigned(s_eiThis));
+  if (!s_eiThis) {
+    s_eiThis = inv.ecx;
+    Log("EntityInterface %08X", unsigned(s_eiThis));
+  }
+  if (s_fpLogs < 12) {
+    addr ref = inv.arg[0], obj = 0, ctrl = 0;
+    uint32_t guid = 0;
+    Safe([&] {
+      obj = rp(ref);
+      ctrl = obj ? rp(obj + 0xC) : 0;
+      guid = rd<uint32_t>(inv.arg[1]);
+    });
+    Log("FindParamString real: ei=%08X ref=%08X obj=%08X ctrl=%08X guid=%08X out=%08X", unsigned(inv.ecx),
+        unsigned(ref), unsigned(obj), unsigned(ctrl), unsigned(guid), unsigned(inv.arg[2]));
+    s_fpLogs++;
+  }
 }
+
+// Старый leave-хук резолвил каждый StringID через 0x932160. При выгрузке уровня игра очищает таблицы строк
+// раньше последних вызовов FindParamString, и резолвер обращался к освобождённым глобалам (крэш 0x00734AAC).
+// Для диагностики достаточно enter-хука; leave-хук не устанавливаем.
 // call_triggers: thiscall(this = EntityInterface, &ent, &guid, &TriggerInfo*, double) — берём живой TriggerInfo
 static void OnCallTriggersEnter(Invocation& inv) {
   s_ctEcx = inv.ecx;
   s_lastTI = rp(inv.arg[2]);
 }
+
+addr SpawnEntityInterface() { return s_ctEcx ? s_ctEcx : s_eiThis; }
 
 // ---------------- поиск по всей куче (фоновый поток) ----------------
 static DWORD WINAPI ScanThread(void* param) {

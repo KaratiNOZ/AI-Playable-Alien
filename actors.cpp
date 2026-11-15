@@ -291,7 +291,7 @@ static std::vector<addr> GatesNear() {  // все рубильники дере�
 static void AiApply() {
   ms_t t = NowMs();
   if (aiMode != 0) {
-    pathOn = false;
+    AutoDuctReset();
     vent.goUntil = vent.comeUntil = 0;
     vent.stay = false;
     attack.until = attack.startAt = 0;
@@ -355,10 +355,11 @@ void ActSetAiAll(int mode) {
 }
 void ActCycleAi() { ActSetAiAll(aiMode == 0 ? 3 : aiMode == 3 ? 2 : 0); }
 void ActPanic() {
+  ActVentCrawl(false);
   aiMode = 0;
   AiApply();
   Safe([] { AiHunt(); });
-  pathOn = false;
+  AutoDuctReset();
   vent.goUntil = vent.comeUntil = 0;
   vent.stay = false;
   Log("panic reset");
@@ -441,7 +442,7 @@ void ActTpBring(addr e) {
 // «застрял»: за кулисами / в пути — вылезти у Аманды; в мире — встать в 3.5 м позади Аманды (ближе — касание её убивает)
 void ActUnstuck() {
   if (!npc || !player) return;
-  pathOn = false;
+  AutoDuctReset();
   if (vent.stay || alienBackstage) {
     Log("unstuck: come out near Amanda");
     return ActVentExitNearAmanda();
@@ -518,10 +519,10 @@ static void StatusTick() {
   wchar_t buf[768];
   swprintf(buf, 768,
            L"Камера: %ls   Ввод: %ls\n"
-           L"Режим пути [C]: %ls   Стрейф [R]: %ls   Аманда следует [F]: %ls\n"
+           L"Стрейф [R]: %ls   Аманда следует [F]: %ls\n"
            L"Вентиляция: %ls%ls\n"
            L"ИИ [F4, F5 — сброс]: %ls   Скорость: %ls   Атака: ЛКМ   Деревьев: %u",
-           cam, cm ? L"WASD" : L"стрелки", pathOn ? L"ВКЛ" : L"выкл", !fmode ? L"выкл" : StrafeActive() ? L"вкл" : L"пауза",
+           cam, cm ? L"WASD" : L"стрелки", !fmode ? L"выкл" : StrafeActive() ? L"вкл" : L"пауза",
            amandaFollow ? L"вкл" : L"выкл", vs, ductOn ? L"   [в шахте]" : L"",
            ai, sp, unsigned(multi[G_ARROW].size()));
   OverlaySet(0, buf);

@@ -819,6 +819,30 @@ static void FpKeeperTick() {
   }
 }
 
+// Posture changes select first-person presets inside FollowUpdate, including its
+// interpolation endpoints. A timer can repair b+0x9c too late for the current frame.
+// Override the per-call options before position calculation; leave game presets intact.
+static void OnFollowCalculateEnter(Invocation& inv) {
+  if (camMode != 2 || hugger || PhotoActive() || s_killCamOn || !npc || CamTarget() != npc ||
+      !inv.args || !inv.arg[1] || inv.ecx != FollowBehRaw()) return;
+  ThreadState* ts = TS(false);
+  if (!ts || ts->depth >= kMaxFrames) return;
+  alignas(4) static thread_local uint32_t options[kMaxFrames][0x5c / 4];
+  uint32_t* copy = options[ts->depth];
+  std::memcpy(copy, reinterpret_cast<const void*>(uintptr_t(inv.arg[1])), 0x5c);
+  std::memcpy(copy, fOff, sizeof fOff);
+  std::memcpy(copy + 3, fTgt, sizeof fTgt);
+  reinterpret_cast<uint8_t*>(copy)[0x5a] = 0;  // third person for both blend endpoints
+  FpKeeperTick();  // also fix the behavior's flag before FollowUpdate computes its look target
+  inv.args[1] = addr(uintptr_t(copy));
+  static bool logged = false;
+  if (!logged) {
+    logged = true;
+    Log("follow camera: third-person options enforced before posture blend calculation");
+  }
+}
+static void OnFollowCalculateLeave(Invocation&) {}  // retain a stack frame for nested per-call buffers
+
 void CameraShutdown(bool mayCallGame) {  // отцепление мода; mayCallGame — поток игры стоит (пауза), функции игры звать можно
   if (mayCallGame && player && s_partsOf == player && !s_partOrig.empty()) Safe([] { ApplyParts(0); });  // части Аманде
   if (mayCallGame && npc && s_headOf == npc && !s_headOrig.empty()) Safe([] { ApplyAlienHead(npc, false); });  // голова Чужому
@@ -1158,6 +1182,7 @@ void InstallCamera() {
   Attach(VA(va::AnimInputUpdate), OnCamTick, nullptr);
   Attach(VA(va::LocoUpdate), OnCamTick, nullptr);
   Attach(VA(va::FollowUpdate), OnFollowUpdateEnter, OnFollowUpdateLeave);
+  Attach(VA(va::FollowCalculate), OnFollowCalculateEnter, OnFollowCalculateLeave);
   Attach(VA(va::HkWorldUse), OnHkWorldEnter, nullptr, false);  // горячий: только атомики
   Attach(VA(va::SoundListener), OnSoundListenerEnter, nullptr);
   Attach(VA(va::CamVelocity), OnKcVelocityEnter, nullptr);  // кадр атаки лицехвата (как фоторежим)

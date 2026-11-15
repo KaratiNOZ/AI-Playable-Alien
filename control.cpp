@@ -9,7 +9,13 @@
 #include <atomic>
 #include <cmath>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
+#include <fstream>
+#include <filesystem>
+const std::wstring& ModBase();
+#include <sstream>
+#include <string>
 
 static const char* const kGateText[G_COUNT] = {
   "Alien Arrow control", "Alien Go Backstage", "Alien Come Frontstage", "Alien Stay Backstage", "Alien Path control",
@@ -34,16 +40,20 @@ void SetTargetOf(addr n, addr t) {
 }
 
 static void FindAlienReset();
+static void ForgetVentCrawl();
+static void ResetTurnState();
 
 void HardReset(const char* why) {
   MpLevelReset();          // мультиплеер: ID экземпляров и TriggerInfo — у каждого уровня свои
   AlienExtraReset(false);  // уровень меняется: Аманду не двигаем, просто забываем
   CameraWorldReset();      // мир Havok у нового уровня свой (camera.cpp выберет тот, где под Амандой пол)
   gate = moveNode = npc = req = loco = player = 0;
+  ForgetVentCrawl();
+  ResetTurnState();
   camMode = 0;
   HuggerReset();  // после camMode = 0: камеру уходящего уровня не трогаем
   camSaved = 0;
-  pathOn = false;
+  AutoDuctReset();
   pathGate = pathNode = 0;
   vent.goUntil = vent.comeUntil = 0;
   vent.stay = false;
@@ -74,12 +84,14 @@ void AlienReset(const char* why) {
   // играешь за лицехвата — камера и Аманда его, их не трогаем
   if (!hugger) AlienExtraReset(true);  // до обнуления player: спрятанную Аманду вернуть домой
   npc = req = loco = player = 0;
+  ForgetVentCrawl();
+  ResetTurnState();
   lockLocoNpc = 0;
   if (!hugger) {
     camMode = 0;
     camSaved = 0;  // объекты камер могли пересоздаться — старую не активируем
   }
-  pathOn = false;
+  AutoDuctReset();
   vent.goUntil = vent.comeUntil = vent.comeAt = 0;
   vent.stay = false;
   alienBackstage = false;
@@ -142,7 +154,9 @@ void ControlShutdown() {  // все рубильники Чужого — в и�
       auto it = aiInit.find(p);
       SetGate(p, it != aiInit.end() && it->second);
     }
-  pathOn = false;
+  ActVentCrawl(false);
+  ResetTurnState();
+  AutoDuctReset();
   vent.goUntil = vent.comeUntil = 0;
   vent.stay = false;
   attack.until = attack.startAt = 0;
@@ -309,7 +323,7 @@ Input ReadInput() {
   bool shift = Down(VK_SHIFT), ctrl = Down(VK_CONTROL), space = Down(VK_SPACE);
   int dx = (rt ? 1 : 0) - (l ? 1 : 0), dy = (u ? 1 : 0) - (dn ? 1 : 0);
   r.rawAny = dx != 0 || dy != 0;
-  bool busy = VentBusy() || pathOn;  // ветки вентиляции/пути: стрелочная ветка и лицо не работают
+  bool busy = VentBusy() || autoDuctPath;  // ветки вентиляции/пути: стрелочная ветка и лицо не работают
   r.any = !busy && r.rawAny;
   r.camYaw = ViewYaw();  // курс камеры: свободный вид из головы — свой, иначе курс Аманды (её невидимый взгляд)
   if (pd.on) r.camYaw = pd.yaw;
@@ -366,7 +380,6 @@ static int PrimaryAct(bool* done = nullptr) {  // тип основного де
     });
   return r;
 }
-static bool s_kickTurn = false;   // толчок застрявшего начат (OnTurnGameTick прервёт его в следующем кадре)
 static bool s_quickTurn = false;  // идёт резкий разворот на 180 (клавиша)
 static ms_t s_quickReq = 0;        // нажали — ждём, пока он сможет начать (до 1.5 с)
 static ms_t s_moveEndAt = 0;       // когда отпустили движение: 0.4 с после этого разворот не начинаем — игра ещё
@@ -381,11 +394,11 @@ static void TurnEnd(const char* why) {
   s_turnOn = false;
   s_turnEndAt = NowMs();
 }
-static bool TurnWanted() { return camMode == 1 ? turnInPlaceFp : camMode == 2 ? turnInPlace3p : false; }
+static bool TurnWanted() { return !ventCrawl.load() && (camMode == 1 ? turnInPlaceFp : camMode == 2 ? turnInPlace3p : false); }
 static void TurnTick(const Input& in) {
   const ms_t t = NowMs();
-  const bool base = npc && loco && !photo.on && !hugger && aiMode == 0 && !VentBusy() && !vent.stay && !alienBackstage &&
-                    !pathOn && !ductOn && !alienLooking && attack.until <= t;
+  const bool base = npc && loco && !ventCrawl.load() && !photo.on && !hugger && aiMode == 0 && !VentBusy() && !vent.stay && !alienBackstage &&
+                    !autoDuctPath && !ductOn && !alienLooking && attack.until <= t;
   // резкий разворот на 180 (клавиша): стоит — анимацией, на ходу — камера сразу назад, тело развернётся по ходу
   if (camMode != 0 && g_hotkeysOn && !g_rebinding && KeyHit(K_TURN180) && base) {
     if (in.rawAny) {
@@ -403,23 +416,6 @@ static void TurnTick(const Input& in) {
     wasMoving = in.rawAny;
   }
   const bool settled = t - s_moveEndAt > 400;
-  {  // сторож: движение нажато, а Чужой стоит в «стоит» и не сдвинулся за 1.2 с — толкнуть прерванным разворотом
-    static ms_t since = 0, lastKick = 0;
-    static float sx = 0, sz = 0;
-    V3 p{};
-    const bool ok = in.any && npc && loco && aiMode == 0 && !photo.on && !hugger && !VentBusy() && !vent.stay &&
-                    !alienBackstage && !ductOn && !pathOn && !alienLooking && attack.until <= t &&
-                    Safe([&] { p = rv3(npc + 0x70); });
-    if (!ok || s_turnOn || PrimaryAct() != 1) {
-      since = 0;
-    } else if (!since || std::hypot(p.x - sx, p.z - sz) > 0.1f) {
-      since = t, sx = p.x, sz = p.z;
-    } else if (t - since > 1200 && t - lastKick > 3000) {
-      lastKick = t, since = 0;
-      s_gameReq = 3;
-      Log("stuck: movement pressed but the alien stands still — kick");
-    }
-  }
   const bool can = (TurnWanted() || s_quickTurn || s_quickReq) && base && !in.rawAny;
   bool done = false;
   const int prim = PrimaryAct(&done);
@@ -497,50 +493,25 @@ static void TurnTick(const Input& in) {
 // «удобный Чужой»: отпустил клавиши — анимацию остановки (WALK/CHARGE_TO_IDLE, действие 59) не доигрываем, а сразу
 // переводим его в «стоит» (FUN_0065bdd0) — иначе остановка шагала дальше (с корневым движением) или замирала на полпути
 static std::atomic<ms_t> s_snapIdleUntil{ 0 };
-// «Стать стоящим» (FUN_0065bdd0) пересобирает действие на месте, но бит +8 & 4 («закончено») старого действия остаётся:
-// из доигранного разворота (или остановки) выходило «стоит» с битом «закончено», и система локомоции больше не начинала
-// ходьбу — Чужой не мог пошевелиться (проверено по памяти: «стоит» с флагами 0x27, у идущего 0x23; T — разворот всегда
-// доигрывается, поэтому застревал после него). Бит снимаем сами.
-// Проверено дальше (01.10.2026, второй тест): снять бит после пересборки мало — Чужой снова стоял с флагами 0x23.
-// Ломает именно пересборка ДОИГРАННОГО разворота: прерванный (движением) ходьбу не ломал ни разу. Поэтому: событие
-// «разворот доигран» у разворотов мода перехватываем (OnTurnEventEnter) и переводим в «стоит» из незаконченного
-// разворота, а бит «закончено» снимаем ещё и до пересборки.
-static void ToIdle(addr act) {
-  wr<uint8_t>(act + 8, uint8_t(rd<uint8_t>(act + 8) & ~4));
-  Fn<PrimToIdleFn>(va::PrimToIdle)(act);
-  if (const addr a = rp(npc + 0x36c)) wr<uint8_t>(a + 8, uint8_t(rd<uint8_t>(a + 8) & ~4));
-}
-// разворот мода дошёл до конца анимации — игра шлёт действию «turnFinished»: не пускаем (дерево и действие не станут
-// «законченными»), а OnTurnGameTick в этом же кадре переводит Чужого в «стоит» — как прерванный разворот
-static std::atomic<bool> s_turnFinCut{ false };
-// id имён событий — считаем в потоке игры перед первым разворотом мода (событие может прийти из рабочего потока)
-static std::atomic<uint32_t> s_evFinA{ 0 }, s_evFinB{ 0 };
-static void TurnEventIds() {
-  if (s_evFinA.load()) return;
-  s_evFinB = Fn<EventIdFn>(va::EventIdB)("urgentTurnFinished");
-  s_evFinA = Fn<EventIdFn>(va::EventIdA)("turnFinished");
-}
-static void OnTurnEventEnter(Invocation& inv) {
-  if (!npc || !s_locoTurnMode.load()) return;  // только развороты, которые начал мод
-  const uint32_t idA = s_evFinA.load(), idB = s_evFinB.load();
-  if (!idA) return;
-  const addr act = rp(npc + 0x36c);
-  if (!act || inv.ecx != act || rd<uint8_t>(act + 0x1a) != 57 || !inv.args[0]) return;
-  const uint32_t id = rd<uint32_t>(inv.args[0] + 8);
-  if (id != idA && id != idB) return;
-  inv.skip = true, inv.skipPop = 0xc;  // RET 0xc: событие не обработано
-  s_turnFinCut = true;
+// Follow the native idle transition. In particular, do not clear the finished bit
+// on arbitrary idle actions: the locomotion FSM needs it to advance to a new request.
+static void ToIdle(addr act) { Fn<PrimToIdleFn>(va::PrimToIdle)(act); }
+static void ResetTurnState() {
+  s_turnOn = false;
+  s_locoTurnMode = false;
+  s_gameReq = 0;
+  s_quickTurn = false;
+  s_quickReq = 0;
+  s_moveEndAt = 0;
+  s_turnAt = s_turnEndAt = 0;
+  s_turnPrim = -1;
+  s_turnTries = 0;
+  s_snapIdleUntil = 0;
+  turnFollowBody = false;
 }
 // поток игры: выход интегратора движения — переходы основного действия, которые просил главный цикл
 static void OnTurnGameTick(Invocation&) {
   if (!npc || !loco) return;
-  // уже застрявший (из прошлой версии): жмёшь движение, а «стоит» помечено «закончено» — снять бит
-  if (aiMode == 0 && moving) Safe([] {
-      const addr a = rp(npc + 0x36c);
-      if (!a || rd<uint8_t>(a + 0x1a) != 1 || !(rd<uint8_t>(a + 8) & 4)) return;
-      wr<uint8_t>(a + 8, uint8_t(rd<uint8_t>(a + 8) & ~4));
-      Log("idle action was marked finished — cleared (the alien could not walk)");
-    });
   {  // резкий 180 за спиной: курс Аманды (её невидимый взгляд = курс камеры) поворачивается вместе с телом
     static float last = 0.f;
     static bool have = false;
@@ -556,35 +527,16 @@ static void OnTurnGameTick(Invocation&) {
   }
   const int want = s_gameReq.exchange(0);
   const ms_t snapUntil = s_snapIdleUntil.load();
-  if (!want && !snapUntil && !s_locoTurnMode.load() && !s_turnFinCut.load() && !s_kickTurn) return;
+  if (!want && !snapUntil && !s_locoTurnMode.load()) return;
   Safe([&] {
     addr act = rp(npc + 0x36c);
     if (!act) return;
     int prim = rd<uint8_t>(act + 0x1a);
     bool done = (rd<uint8_t>(act + 8) & 4) != 0;
-    if (s_turnFinCut.exchange(false) && prim == 57) {  // разворот доигран — в «стоит», пока он ещё не «законченный»
+    if (s_locoTurnMode.load() && prim == 57 && done) {
       ToIdle(act);
-      prim = 1, done = false;
-      Log("turn: finished — to idle before the game marks it done");
-    }
-    if (s_kickTurn && prim == 57) {  // толчок: короткий разворот сразу прерываем
-      ToIdle(act);
-      prim = 1, done = false;
-      s_kickTurn = false;
-      Log("stuck: kick done (short turn cut)");
-    }
-    if (want == 3 && prim == 1 && !s_turnOn) {  // толчок застрявшего: начать разворот на 20° — его прервём в следующем кадре
-      TurnEventIds();
-      const addr L = loco;
-      wr<uint32_t>(L + 8, 4u);
-      s_locoTurnMode = true;
-      wf(L + 0x10, 0.f), wf(L + 0x14, 0.f), wf(L + 0x18, 0.f), wf(L + 0x20, 0.f);
-      wr<uint32_t>(L + 0x24, rd<uint32_t>(VA(va::TurnConstA)));
-      wr<uint32_t>(L + 0x28, rd<uint32_t>(VA(va::TurnConstB)));
-      wf(L + 0x1c, WrapPi(rf(npc + 0x174) + 0.35f));
-      Fn<PrimToStandingTurnFn>(va::PrimToStandingTurn)(act, 0, 1);
-      s_kickTurn = true;
-      return;
+      prim = 1;
+      Log("turn: native finished event accepted; returned to idle");
     }
     if (want == 1 && prim == 59 && done) {  // доигранная остановка — сначала в «стоит» (так разворот начинает и игра)
       ToIdle(act);
@@ -593,7 +545,6 @@ static void OnTurnGameTick(Invocation&) {
       prim = rd<uint8_t>(act + 0x1a), done = (rd<uint8_t>(act + 8) & 4) != 0;
     }
     if (want == 1 && (prim == 1 || (prim == 57 && done))) {  // разворот — только из «стоит» / доигранного разворота
-      TurnEventIds();
       const addr L = loco;
       wr<uint32_t>(L + 8, 4u);
       s_locoTurnMode = true;
@@ -677,7 +628,71 @@ static void SnapHoldTick() {
   if (!Safe([&] { p = rv3(npc + 0x70); })) return;
   if (std::fabs(p.x - s_snapX) + std::fabs(p.z - s_snapZ) > 0.003f) TpMove(npc, s_snapX, p.y, s_snapZ);
 }
+// ---------- floor crawl: use the same posture transition as horizontal ducts ----------
+// Verified in Ghidra (007cae20/007cae90) and live horizontal-duct captures:
+// native locomotion is 7 while moving and 0 while idle. Do not force mode 5,
+// rebuild primary actions, or retain old modes/speeds across posture changes.
+struct FloorCrawlState {
+  addr actor = 0;
+  bool owned = false;
+};
+static FloorCrawlState s_floorCrawl;
+void ActVentCrawl(bool on) {
+  if (!on) testMoveForward.store(false);
+  const bool was = ventCrawl.exchange(on);
+  if (on && !was) {
+    s_snapHold = false;
+    s_snapIdleUntil = 0;
+  }
+  if (was != on) Log("floor-crawl: requested %s", on ? "on" : "off");
+}
+static void ForgetVentCrawl() {
+  // The old character may already be destroyed. Never write into its memory.
+  s_floorCrawl = {};
+  ventCrawl.store(false);
+  testMoveForward.store(false);
+  moving = false;
+}
+bool VentCrawlPending() { return s_floorCrawl.owned; }
+void RestoreVentCrawl() {
+  // Game thread (or a stalled game during unload), with JsLock held.
+  if (!s_floorCrawl.owned) return;
+  if (!npc || s_floorCrawl.actor != npc) {
+    s_floorCrawl = {};
+    return;
+  }
+  bool standing = false;
+  if (!Safe([&] {
+    Fn<CharacterPostureFn>(va::CrouchExit)(npc);
+    standing = rd<uint8_t>(npc + 0x2AF) == 0;
+  }) || !standing) return;  // scripted action can defer the native transition
+  s_floorCrawl = {};
+  Log("floor-crawl: native standing posture restored");
+}
+static void ApplyVentCrawl() {
+  if (s_floorCrawl.actor && s_floorCrawl.actor != npc) s_floorCrawl = {};
+  if (!npc) return;
+  if (!ventCrawl.load()) {
+    RestoreVentCrawl();
+    return;
+  }
+  // Never take ownership of posture inside a real duct or backstage transition.
+  if (VentBusy() || vent.stay || alienBackstage || ductOn) return;
+  uint8_t crouched = 0;
+  if (!Safe([&] { crouched = rd<uint8_t>(npc + 0x2AF); })) return;
+  if (crouched) return;  // native function owns the context; no duplicate pushes
+  bool applied = false;
+  if (!Safe([&] {
+    Fn<CharacterPostureFn>(va::CrouchEnter)(npc);
+    applied = rd<uint8_t>(npc + 0x2AF) != 0;
+  }) || !applied) return;
+  s_floorCrawl.actor = npc;
+  s_floorCrawl.owned = true;
+  Log("floor-crawl: native crouched posture applied");
+}
 static void OnFaceLeave(Invocation&) {
+  AutoDuctTick();
+  ApplyVentCrawl();
   ApplyFace();
   SnapHoldTick();
 }
@@ -692,12 +707,67 @@ void FindPlayer() {
   });
 }
 
+// ---------------- файловый тестовый драйвер (без фокуса игры) ----------------
+// Внешний C++-инструмент пишет команды в этот файл, а мод выполняет их на игровом потоке.
+// Это нужно для захвата кадров через PrintWindow, когда окно игры не в фокусе.
+#ifdef ALIENMOD_DEV_TOOLS
+static void TestDriverTick() {
+  static ms_t lastRead = 0;
+  static std::string prev;
+  const ms_t now = NowMs();
+  if (now - lastRead < 100) return;
+  lastRead = now;
+  std::ifstream f(std::filesystem::path(ModBase() + L".test.cmd"));
+  if (!f) return;
+  std::string all((std::istreambuf_iterator<char>(f)), {});
+  if (all == prev) return;
+  prev = all;
+  std::istringstream input(all);
+  std::string line;
+  while (std::getline(input, line)) {
+    while (!line.empty() && (line.back() == '\r' || line.back() == '\n' || line.back() == ' ' || line.back() == '\t'))
+      line.pop_back();
+    if (line.empty() || line[0] == '#') continue;
+    std::istringstream ls(line);
+    std::string cmd;
+    ls >> cmd;
+    if (cmd == "on") {
+      ActVentCrawl(true);
+      Log("test-cmd: on");
+    } else if (cmd == "off") {
+      ActVentCrawl(false);
+      Log("test-cmd: off");
+    } else if (cmd == "move") {
+      std::string value;
+      ls >> value;
+      testMoveForward.store(value == "on", std::memory_order_relaxed);
+      Log("test-cmd: move %s", value.c_str());
+    } else {
+      Log("test-cmd: unknown '%s'", line.c_str());
+    }
+  }
+}
+
+#endif
+
 // ---------------- главный цикл (alien.js, setInterval 16 мс) ----------------
 static int s_tick = 0, s_release = 0, s_startTicks = 0;
 static bool s_wasAny = false, s_strafeWas = true;
 static ms_t s_strafeKeyAt = 0;
 static void MainTick() {
-  if (!gate || !moveNode || !Alive(moveNode, va::VT_MOVE)) return;
+#ifdef ALIENMOD_DEV_TOOLS
+  TestDriverTick();
+#endif
+  {  // F6: экспериментальный animation context (ползание в комнате, без входа в вентиляцию)
+    static bool was = false;
+    const bool down = HotAdv(VK_F6);
+    if (down && !was) ActVentCrawl(!ventCrawl.load());
+    was = down;
+  }
+  if (!gate || !moveNode || !Alive(moveNode, va::VT_MOVE)) {
+    moving = false;
+    return;
+  }
   s_tick++;
   if (npc && s_tick % 30 == 0) FindPlayer();
   if (npc) Safe([] {  // объект ходьбы Чужого — прямо из персонажа (не ждать, пока он пойдёт)
@@ -719,6 +789,15 @@ static void MainTick() {
     if (fmode) Log(strafe ? "strafe resumed" : "strafe paused: %s", StrafePause());
   }
   Input in = ReadInput();
+  if (testMoveForward.load(std::memory_order_relaxed)) {
+    // Синтетический W: движение вперёд без клавиатуры и без фокуса окна.
+    in.rawAny = in.any = true;
+    in.speed = 1;
+    in.camYaw = ViewYaw();
+    in.worldYaw = in.camYaw;
+    lastInput = in;
+    moving = true;
+  }
   TurnTick(in);
   float reqYaw = (strafe && player && !photo.on) ? in.camYaw : in.worldYaw;  // курс тела: по камере в режиме стрейфа
   if (in.any != s_wasAny) {
@@ -741,13 +820,13 @@ static void MainTick() {
       wf(req + 0x24, 10.f);
       wr<uint8_t>(req + 0x34, 1);
     }
-  } else if (alienSnappy) {  // «Удобный Чужой»: сразу — запрос на месте, рубильник закрыт, узел завершается «срочно»
+  } else if (alienSnappy && !ventCrawl.load()) {  // «Удобный Чужой»: сразу — запрос на месте, рубильник закрыт, узел завершается «срочно»
     if (req && rf(req + 0x24) > 0.f) {
       wf(req + 0x24, 0.f);
       wr<uint8_t>(req + 0x34, 1);
     }
     // только что отпустил (в мире, не вентиляция/шахта/путь) — встать как вкопанный
-    if (s_release == 0 && npc && !VentBusy() && !vent.stay && !alienBackstage && !ductOn && !pathOn)
+    if (s_release == 0 && npc && !VentBusy() && !vent.stay && !alienBackstage && !ductOn && !autoDuctPath)
       Safe([&] {
         const V3 p = rv3(npc + 0x70);
         s_snapX = p.x, s_snapZ = p.z;
@@ -768,7 +847,7 @@ static void MainTick() {
   {
     static uint32_t orig = 0;
     if (!orig) orig = rd<uint32_t>(moveNode + 4);
-    const uint32_t want = alienSnappy ? 3u : (orig ? orig : 1u);
+    const uint32_t want = ventCrawl.load() ? 1u : alienSnappy ? 3u : (orig ? orig : 1u);
     if (rd<uint32_t>(moveNode + 4) != want) wr<uint32_t>(moveNode + 4, want);
     for (addr m : multiMoves)
       if (m != moveNode && Alive(m, va::VT_MOVE)) Safe([&] { if (rd<uint32_t>(m + 4) != want) wr<uint32_t>(m + 4, want); });
@@ -829,15 +908,20 @@ static bool FromPathTick(addr ra) {
 }
 static void OnPathTickEnter(Invocation& inv) {  // thiscall(узел, персонаж, состояние)
   if (HugPathFor(inv.arg[0])) return wr<uint32_t>(inv.ecx + 8, uint32_t(HugPathSpeed()));
+  if (inv.arg[0] != npc) return;
+  if (AutoDuctCancelPath(inv.ecx, inv.arg[0], inv.arg[1])) {
+    inv.skip = true;
+    inv.skipPop = 8;  // Tick(character, state); native cleanup already marked it finished
+    return;
+  }
   pathNode = inv.ecx;
-  if (pathOn) wr<uint32_t>(pathNode + 8, uint32_t(lastInput.speed));
+  if (autoDuctPath) wr<uint32_t>(pathNode + 8, uint32_t(lastInput.speed));
 }
 static void OnPathTargetLeave(Invocation& inv) {
-  if (!(pathOn || hugPathNow) || !FromPathTick(inv.ra)) return;
+  if (!(autoDuctPath || hugPathNow) || !FromPathTick(inv.ra)) return;
   addr T2 = rp(inv.arg[0]);
   if (T2 && rd<int32_t>(T2 + 0x438) == -1) wr<int32_t>(T2 + 0x438, 0);
 }
-static ms_t s_pathLogAt = 0;
 static void OnPathMoveToEnter(Invocation& inv) {  // thiscall(узел, персонаж, состояние, точка, ...)
   if (!FromPathTick(inv.ra)) return;
   V3 hp;
@@ -846,27 +930,14 @@ static void OnPathMoveToEnter(Invocation& inv) {  // thiscall(узел, перс
     inv.args[4] = 0;
     return;
   }
-  if (!pathOn || !npc || inv.arg[0] != npc) return;
-  const Input& in = lastInput;  // точка = Чужой + направление WASD * 3 м
-  V3 a = rv3(npc + 0x70);
-  float d = in.rawAny ? 3.f : 0.f;
-  wv3(inv.arg[2], a.x + std::sin(in.worldYaw) * d, a.y, a.z + std::cos(in.worldYaw) * d);
+  if (!autoDuctPath || !npc || inv.arg[0] != npc) return;
+  V3 target{};
+  if (!AutoDuctTarget(target)) return;
+  wv3(inv.arg[2], target.x, target.y, target.z);
   inv.args[4] = 0;  // ShouldAim off
-  ms_t t = NowMs();
-  if (t - s_pathLogAt > 5000) {
-    s_pathLogAt = t;
-    Log("path any=%d yaw=%.2f", int(in.rawAny), in.worldYaw);
-  }
+
 }
-static ms_t s_pathKeyAt = 0;
-static void PathKeyTick() {
-  ms_t t = NowMs();
-  if (AlienKeyAdvK(K_PATH) && t - s_pathKeyAt > 500) {  // C — режим пути (заходить в шахты)
-    s_pathKeyAt = t;
-    ActTogglePath();
-  }
-  SetGate(pathGate, pathOn);
-}
+static void DuctGateTick() { SetGate(pathGate, autoDuctPath); }
 
 // ---------------- Esc: меню паузы игры должно получать ввод, даже если играешь за Чужого ----------------
 // Блок ввода Аманды (input_block.cpp) пропускает только сам Esc — меню паузы потом не нажать. Поэтому по Esc камера
@@ -953,10 +1024,6 @@ void ActCamera(int want) {
 void ActCameraToggle(int want) { ActCamera(camMode == want ? 3 : want); }
 void ActSwap() { ActCamera(camMode == 0 ? s_alienView : 3); }
 void ActSwitchView() { ActCamera(camMode == 2 ? 1 : 2); }
-void ActTogglePath() {
-  pathOn = !pathOn;
-  Log("path mode %d", int(pathOn));
-}
 void ActSetStrafe(bool on) {
   if ((fmode != 0) == on) return;
   fmode = on ? 3 : 0;
@@ -1124,7 +1191,6 @@ void InstallControl() {
   Attach(VA(va::LocoReqUpdate), nullptr, OnFaceLeave);
   Attach(VA(va::LocoUpdate), nullptr, OnFaceLeave);
   Attach(VA(va::LocoUpdate), nullptr, OnTurnGameTick);
-  Attach(VA(va::TurnActEvent), OnTurnEventEnter, nullptr, false);  // события всех разворотов: без замка, атомики
   Attach(VA(va::PathTick), OnPathTickEnter, nullptr);
   Attach(VA(va::PathTarget), nullptr, OnPathTargetLeave);
   Attach(VA(va::PathMoveTo), OnPathMoveToEnter, nullptr);
@@ -1145,5 +1211,5 @@ void InstallControl() {
   Every(10, "esc", EscTick);
   Every(5, "validate", ValidateTick);
   Every(16, "mirror", MirrorTick);
-  Every(50, "path-key", PathKeyTick);
+  Every(50, "duct-entry-gate", DuctGateTick);
 }

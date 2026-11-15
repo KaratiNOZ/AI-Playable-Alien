@@ -123,8 +123,25 @@ bool Unload() {
   if (!s_state.compare_exchange_strong(expect, 1)) return false;  // уже отцепляется / отцеплен
   Interceptor::IgnoreCurrentThread();
   Log("unload: detaching the mod...");
+  JsLock();
+  ActVentCrawl(false);
+  JsUnlock();
+  // Keep locomotion hooks alive until the game thread restores its animation state.
+  bool crawlPending = true;
+  for (int i = 0; i < 150 && crawlPending; ++i) {
+    JsLock();
+    if (GameStalled()) Safe([] { RestoreVentCrawl(); });
+    crawlPending = VentCrawlPending();
+    JsUnlock();
+    if (crawlPending) Sleep(10);
+  }
+  if (crawlPending) {
+    Log("unload: crawl restoration pending; keeping hooks alive, retry unload");
+    s_state = 0;
+    return false;
+  }
   if (!StopScheduler()) Log("unload: the scheduler didn't stop in time");
-  MpShutdown();  // напарнику — «отключился», сеть стоп
+  MpShutdown();
 
   // 0) камеру — Аманде руками потока игры (CamDo в его хуке, camWant = 3), а мы только ждём. Из этого потока функции
   //    камер игры звать нельзя, пока игра идёт: поток игры может стоять в нашем хуке, ожидая общий замок, и держать при

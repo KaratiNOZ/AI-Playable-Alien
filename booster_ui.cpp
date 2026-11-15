@@ -83,6 +83,7 @@ static int g_frame = -1;
 struct SecFrame {
   ImGuiID id;
   bool child;   // открывали ли BeginChild (t > 0)
+  bool measure; // clipped child windows skip item layout: preserve their cached height
   bool alpha;   // пушили ли альфу
   float top;    // CursorPosY внутри child на старте
 };
@@ -691,12 +692,7 @@ bool BeginSection(const char* id, const char* label, const char* hint, bool defa
   if (filtering) {
     const bool match = CiFind(Vis(label), VisEnd(label), g_filter) || CiFind(hint, nullptr, g_filter);
     if (!match) {
-      // секция не подошла под поиск — не показываем совсем
-      SecFrame& sf = g_sec[g_secTop < 15 ? ++g_secTop : g_secTop];
-      sf.id = key;
-      sf.child = false;
-      sf.alpha = false;
-      sf.top = 0.f;
+      // Filtered sections have no body and no matching EndSection call.
       return false;
     }
     *openRef = true;  // совпавшие раскрываем сами
@@ -743,17 +739,17 @@ bool BeginSection(const char* id, const char* label, const char* hint, bool defa
 
   if (h.clicked) *openRef = !*openRef;
 
-  SecFrame& sf = g_sec[g_secTop < 15 ? ++g_secTop : g_secTop];
-  sf.id = key;
-  sf.child = false;
-  sf.alpha = false;
-  sf.top = 0.f;
-
   if (openT < 0.004f) {
     ImGui::PopID();
     ImGui::Dummy(ImVec2(1.f, M::kGap));
     return false;
   }
+  SecFrame& sf = g_sec[g_secTop < 15 ? ++g_secTop : g_secTop];
+  sf.id = key;
+  sf.child = false;
+  sf.alpha = false;
+  sf.measure = false;
+  sf.top = 0.f;
 
   // ---- тело: высота анимируется, содержимое подрезается ----
   const float measured = g_store.GetFloat(key ^ 0x8888u, 0.f);
@@ -767,6 +763,7 @@ bool BeginSection(const char* id, const char* label, const char* hint, bool defa
                     ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse |
                         ImGuiWindowFlags_AlwaysUseWindowPadding);
   sf.child = true;
+  sf.measure = !ImGui::GetCurrentWindow()->SkipItems;
   sf.top = ImGui::GetCursorPosY();
   PushAlpha(ImClamp(eOpen * 1.35f, 0.f, 1.f));
   ImGui::PushStyleVar(ImGuiStyleVar_Alpha, ImGui::GetStyle().Alpha * ImClamp(eOpen * 1.35f, 0.02f, 1.f));
@@ -777,8 +774,10 @@ bool BeginSection(const char* id, const char* label, const char* hint, bool defa
 void EndSection() {
   SecFrame& sf = g_sec[g_secTop];
   if (sf.child) {
-    const float h = ImGui::GetCursorPosY() - sf.top + M::kPad * 0.6f + ImGui::GetStyle().WindowPadding.y;
-    g_store.SetFloat(sf.id ^ 0x8888u, ImMax(h, 2.f));
+    if (sf.measure) {
+      const float h = ImGui::GetCursorPosY() - sf.top + M::kPad * 0.6f + ImGui::GetStyle().WindowPadding.y;
+      g_store.SetFloat(sf.id ^ 0x8888u, ImMax(h, 2.f));
+    }
     if (sf.alpha) {
       ImGui::PopStyleVar();  // Alpha
       PopAlpha();

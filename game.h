@@ -29,6 +29,7 @@ constexpr addr PrimToStandingTurn = 0x00657860, TurnConstA = 0x011c666c, TurnCon
 // «стать стоящим»: FUN_0065bdd0 (его thunk 0x0065bec0), fastcall(ECX = текущее основное действие), без аргументов —
 // действие пересобирается на месте в AT_IDLE (у Чужого — FUN_00401520(0)); так игра заканчивает свои переходы
 constexpr addr PrimToIdle = 0x0065bec0;
+constexpr addr PrimToLocoCycle = 0x00657900;  // fastcall(action), native walk-cycle constructor
 // событие действия-разворота (слот 2 vtable 0x012ac040): thiscall(действие, событие*, ?, ?), RET 0xc; событие +8 — id.
 // На «turnFinished»/«urgentTurnFinished» помечает дерево анимации законченным (FUN_00694fa0) и действие +8 |= 6.
 // id имён: FUN_00402cf0 / FUN_00402f40 — cdecl(const char*) -> id
@@ -67,6 +68,7 @@ constexpr addr ActiveChars = 0x01707a48;  // шаг 0xB0, 18 слотов: [+0] 
 
 // ---- камера ----
 constexpr addr CamSetEntity = 0x00429220, CamActivate = 0x00432e10, FollowUpdate = 0x0042e970;
+constexpr addr FollowCalculate = 0x0042bc50;  // thiscall(behavior, dt, options[0x5c], output), including preset blends
 // ---- столкновения камеры ----
 constexpr addr NavCtxOf = 0x004458e0, NavFilter = 0x00933190, NavRay = 0x0044b780, HkRay = 0x0068dab0, HkWorldUse = 0x00b48890;
 // ---- звук: комнатная система слушателя ----
@@ -77,6 +79,7 @@ constexpr addr SoundListener = 0x00689230, SoundListenerRet = 0x006be324;
 constexpr addr VentPickAlien = 0x004132f0, VentPickExit = 0x00413310, BackstageShutdown = 0x0040fbc0;
 // ---- режим пути (ActionMoveToMostRecentSensedPosition) ----
 constexpr addr PathTick = 0x00734a40, PathTickEnd = 0x00734c40, PathTarget = 0x004128e0, PathMoveTo = 0x0070a940;
+constexpr addr PathCancel = 0x0070a7c0;  // native path request cleanup, state+4 = 8
 // ---- Аманда: позиция физического тела (вызов из 0x8030xx..0x8034xx) ----
 constexpr addr CharPhysPos = 0x00b85150, CharPhysFrom = 0x00803000, CharPhysTo = 0x00803400;
 // ---- CATHODE / спавн ----
@@ -204,11 +207,21 @@ constexpr addr SecActOff = 0x370;
 // +0x68 корень ролика. FUN_008081e0(оверлей, "функция") — вызвать AS-функцию ролика (сам берёт замок менеджера).
 // FUN_0083a590(менеджер, dt) — покадровый апдейт всех оверлеев (поток игры) ----
 constexpr addr OverlayMgrPtr = 0x0174a78c, OverlayInvoke = 0x008081e0, OverlayUpdate = 0x0083a590;
+// ---- animation context: push/pop by FNV hash ----
+// 0x007e0400(character, hash, 0) — push context, 0x007e0460 — pop; 0x00402ac0(name) — hash of a C-string.
+// The game itself pushes "CROUCHED" here when it enters crouch/vent; this is the animation-set switch,
+// not a teleport. The context is valid for the gameplay character (`npc`), not the Cathode entity.
+constexpr addr CrouchEnter = 0x007cae20, CrouchExit = 0x007cae90;  // native posture flag + context transition
+constexpr addr AnimCtxPush = 0x007e0400, AnimCtxPop = 0x007e0460, HashString = 0x00402ac0;
 }  // namespace va
 typedef void(__thiscall* AlienVocalFn)(addr soundOwner, int type);
 typedef void(__thiscall* PrimToStandingTurnFn)(addr action, int a, int b);
 typedef void(__fastcall* PrimToIdleFn)(addr action);
 typedef uint32_t(__cdecl* EventIdFn)(const char* name);
+typedef void(__thiscall* PathCancelFn)(addr node, addr character, addr state);
+typedef void(__fastcall* CharacterPostureFn)(addr character);
+typedef void(__cdecl* AnimCtxFn)(addr character, uint32_t context, int mode);
+typedef uint32_t(__cdecl* HashStringFn)(const char* text);
 typedef addr(__thiscall* ModelInstFn)(addr anim);
 typedef addr(__thiscall* ModelInstAtFn)(addr anim, unsigned i);
 typedef addr(__fastcall* SubFlagsFn)(addr sub);
@@ -235,6 +248,7 @@ typedef int(__cdecl* NavFilterFn)(addr);
 typedef int(__cdecl* NavRayFn)(addr nav, addr from, addr to, addr hit, int filter, int zero);
 typedef void(__thiscall* HkRayFn)(addr self, addr hit, addr world, addr from4, addr to4, addr pos4, addr nrm4);
 typedef int(__thiscall* ShortGuidFn)(addr out, const char* name);
+typedef uint8_t(__thiscall* FindParamStringFn)(addr ei, addr entRef, addr guidRef, addr outRef);
 typedef void(__thiscall* CallTriggersFn)(addr entityInterface, addr entRef, addr guidRef, addr triggerInfoRef, double t);
 typedef void(__thiscall* GetEntityHandleFn)(addr entity, uint32_t* out);
 typedef addr*(__thiscall* FindEntityFn)(addr entityManager, addr* out, const uint32_t* handle);

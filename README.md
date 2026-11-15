@@ -15,10 +15,19 @@
 
 > **Beta Notice:** This mod may occasionally crash or behave unexpectedly. Please report bugs in the repository comments or issues.
 
-Designed for the Steam version of the game (`AI.exe` from `17.02.2015`). On other builds (GOG, Epic, patches), the installer will warn you, but will still install and run the mod. 
+Designed for the Steam version of the game (`AI.exe` from `17.02.2015`). On other builds (GOG, Epic, patches), the installer will warn you, but will still install and run the mod.
 
 * **OS:** Windows 10 / 11 (Windows 7 should work, but is untested).
 * **Requirements:** No extra software required — everything is packed into the mod files.
+
+### Update — 16 November 2026
+
+* **F6: floor crawling.** Uses the game's native crouched posture; normal walking speed returns after standing up.
+* **Horizontal ducts:** keep moving into an opening to enter or leave automatically. The manual C path mode has been removed; C still rolls the camera in photo mode.
+* Fixed the camera briefly jumping into the Alien's head when changing posture.
+* Removed hidden recovery turns and interference with native animation completion that could block movement.
+* Fixed menu scroll jumps, including the photo-mode film/grain controls; pages retain separate scroll positions.
+* Hot reload now restores floor-crawl posture before detaching and distinguishes failure from an already detached mod.
 
 ### 🚀 Quick Start
 
@@ -49,6 +58,8 @@ Designed for the Steam version of the game (`AI.exe` from `17.02.2015`). On othe
 | **H** | Switch to a Facehugger (*Press again for the next one; B to return to Amanda*) |
 | **Esc** | Game pause (the menu stays active, control remains with your character) |
 | **F2 / F3** | On-screen hints / Vent map |
+| **F6** | Toggle floor crawling |
+| Keep moving into an opening | Enter or leave a horizontal duct automatically |
 | **F9** | Photo mode |
 | **Delete / Insert** | Open / Close mod menu |
 
@@ -86,6 +97,15 @@ Designed for the Steam version of the game (`AI.exe` from `17.02.2015`). On othe
 * **ОС:** Windows 10 / 11 (Windows 7 должна работать, но не тестировалась).
 * **Требования:** Ничего доустанавливать не нужно — всё уже вшито в файлы мода.
 
+### Обновление — 16 ноября 2026
+
+* **F6: ползание по полу.** Использует штатную позу игры; после вставания возвращается обычная скорость ходьбы.
+* **Горизонтальная вентиляция:** продолжайте двигаться в отверстие, чтобы автоматически войти или выйти. Ручной режим пути на C убран; C в фоторежиме по-прежнему наклоняет камеру.
+* Исправлен кратковременный скачок камеры в голову Чужого при смене позы.
+* Убраны скрытые восстановительные развороты и вмешательство в завершение анимаций, способные блокировать движение.
+* Исправлены скачки прокрутки меню, в том числе при настройке зерна в фоторежиме; у страниц отдельные позиции прокрутки.
+* При горячей замене сначала восстанавливается обычная поза; ошибка отключения больше не считается успешным отключением.
+
 ### 🚀 Быстрый старт
 
 1. Распакуйте архив **куда угодно, кроме `Program Files`**.
@@ -115,6 +135,8 @@ Designed for the Steam version of the game (`AI.exe` from `17.02.2015`). On othe
 | **H** | Переключиться на Лицехвата (*Ещё раз — на следующего; B — вернуться к Аманде*) |
 | **Esc** | Пауза игры (меню активно, управление персонажем сохраняется) |
 | **F2 / F3** | Подсказки на экране / Карта вентиляции |
+| **F6** | Включить / выключить ползание по полу |
+| Продолжать движение в отверстие | Автоматический вход / выход из горизонтальной вентиляции |
 | **F9** | Фоторежим |
 | **Delete / Insert** | Открыть / Закрыть меню мода |
 

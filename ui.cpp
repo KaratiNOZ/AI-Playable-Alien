@@ -24,7 +24,7 @@ unsigned LogRingCopy(std::vector<std::string>& out, unsigned haveSeq);
 
 // ============================ команды ============================
 enum CmdId {
-  C_CAM, C_PATH, C_STRAFE, C_VENT_GO, C_VENT_COME, C_VENT_CANCEL, C_ATTACK, C_NEXT, C_AI, C_PANIC,
+  C_CAM, C_STRAFE, C_VENT_GO, C_VENT_COME, C_VENT_CANCEL, C_VENT_CRAWL, C_ATTACK, C_NEXT, C_AI, C_PANIC,
   C_CAMCFG, C_CAMRESET, C_TP_TO, C_TP_BRING, C_SCAN, C_SEL, C_SPAWN, C_AMANDA, C_AUTOOUT, C_SPAWN_HUG, C_SPAWN_WHERE,
   C_VENT_EXIT, C_VENT_EXIT_AMANDA, C_PHOTO, C_PHOTO_PARAM, C_PHOTO_TO_PLAYER, C_FREEZE, C_PHOTO_VIEW, C_TIMESCALE,
   C_PHOTO_POST, C_AMANDA_HIDE, C_VOICE, C_VOICE_AUTO, C_VOICE_EVERY, C_VOICE_KEY, C_HIDE_GAME_HUD, C_KILL_ANDROIDS, C_ANDROID_MODE,
@@ -48,13 +48,13 @@ static void Push(CmdId id, int i = 0, addr a = 0, const float* v = nullptr, int 
 static void RunCmd(const Cmd& c) {
   switch (c.id) {
     case C_CAM: ActCamera(c.i); break;
-    case C_PATH: ActTogglePath(); break;
     case C_STRAFE: ActSetStrafe(c.i != 0); break;
     case C_VENT_GO: ActVentGo(); break;
     case C_VENT_COME: ActVentCome(); break;
     case C_VENT_EXIT: ActVentExitHere(); break;
     case C_VENT_EXIT_AMANDA: ActVentExitNearAmanda(); break;
     case C_VENT_CANCEL: ActVentCancel(); break;
+    case C_VENT_CRAWL: ActVentCrawl(c.i != 0); break;
     case C_ATTACK: ActAttack(); break;
     case C_NEXT: ActNextTarget(); break;
     case C_AI: ActSetAi(c.i); break;
@@ -141,7 +141,7 @@ struct Snap {
   int cam = 0, ai = 0, fmode = 3;
   bool strafe = true, follow = false, autoOut = true;
   const char* strafePause = nullptr;  // строковый литерал из control.cpp
-  bool path = false, ventGo = false, ventCome = false, ventStay = false, duct = false, locked = false, f1menu = false;
+  bool ventGo = false, ventCome = false, ventStay = false, duct = false, locked = false, f1menu = false;
   bool ventFail = false;
   bool moving = false, attacking = false;  // для обучения
   std::string target;                      // имя цели Чужого (пусто — нет)
@@ -209,7 +209,6 @@ static void SnapTick() {  // под общим замком (планировщ�
   s.strafePause = StrafePause();
   s.follow = amandaFollow;
   s.autoOut = autoComeOut;
-  s.path = pathOn;
   ms_t now = NowMs();
   s.ventGo = vent.goUntil > now;
   s.ventCome = vent.comeUntil > now;
@@ -372,7 +371,7 @@ static float CamGet(const std::wstring& f, const wchar_t* key, float def) { retu
 static void CamSet(const std::wstring& f, const wchar_t* key, float v) { FSet(f, L"camera", key, v); }
 
 // клавиши [keys]
-static const wchar_t* const kKeyIds[K_COUNT] = { L"swap", L"view", L"vent", L"vent_amanda", L"unstuck", L"strafe", L"follow", L"path",
+static const wchar_t* const kKeyIds[K_COUNT] = { L"swap", L"view", L"vent", L"vent_amanda", L"unstuck", L"strafe", L"follow",
                                                  L"chars", L"hud", L"map", L"ai", L"panic", L"spawn_find", L"spawn", L"photo",
                                                  L"look", L"sound", L"hugger", L"menu", L"turn180" };
 static void SaveKeys() {
@@ -911,7 +910,10 @@ static void DrawContextHints(const Snap& s) {
   Hint(TR("колесо", "wheel"), s.cam == 2 ? TR("— камера ближе/дальше (Shift — выше, Ctrl — вбок)", "— camera closer/farther (Shift — height, Ctrl — sideways)")
                                          : TR("— сдвинуть камеру (Shift — выше, Ctrl — вбок)", "— move the camera (Shift — height, Ctrl — sideways)"));
   Hint(KN(K_UNSTUCK), TR("— застрял? встать рядом с Амандой", "— stuck? stand near Amanda"));
-  if (adv) Hint(KN3(K_STRAFE, K_FOLLOW, K_PATH), TR("— стрейф / Аманда следует / в шахты", "— strafe / Amanda follows / into ducts"));
+  if (adv) {
+    Hint(KN(K_STRAFE), TR("— стрейф", "— strafe"));
+    Hint(KN(K_FOLLOW), TR("— Аманда следует", "— Amanda follows"));
+  }
   Hint(KN(K_SWAP), TR("— вернуться к Аманде", "— back to Amanda"));
 }
 
@@ -1144,8 +1146,7 @@ void DrawHud() {
       Block();
       ImGui::Text("%s %s%s   ·   %s %s", TR("ИИ:", "AI:"), AiName(s.ai), s.duct ? TR("   [шахта]", "   [duct]") : "",
                   TR("стрейф:", "strafe:"), StrafeText(s).c_str());
-      ImGui::Text("%s %s   ·   %s %s", TR("Аманда следует:", "Amanda follows:"), OnOff(s.follow), TR("режим пути:", "path mode:"),
-                  OnOff(s.path));
+      ImGui::Text("%s %s", TR("Аманда следует:", "Amanda follows:"), OnOff(s.follow));
     }
     if (showHints) {
       Block();
@@ -1298,7 +1299,6 @@ static void DrawKeys() {
     { K_PHOTO, TR("Фоторежим", "Photo mode"), true },
     { K_STRAFE, TR("Стрейф вкл/выкл", "Strafe on/off"), false },
     { K_FOLLOW, TR("Аманда следует за Чужим", "Amanda follows the Alien"), false },
-    { K_PATH, TR("Режим пути — заходить в шахты", "Path mode — enter ducts"), false },
     { K_CHARS, TR("Список персонажей", "Character list"), false },
     { K_AI, TR("ИИ для всех по кругу: ручное → не на Аманду → полный", "AI for everyone, cycle: manual → not Amanda → full"), false },
     { K_PANIC, TR("Аварийный сброс", "Panic reset"), false },
@@ -1424,7 +1424,7 @@ static void PageScreen(const Snap& s) {
               "While the Alien is in the vents: vents, his trail, Amanda and the exit. Off by default"));
   CfgCheck(TR("Статус (где Чужой, камера)###status", "Status (where the Alien is, camera)###status"), &c.status);
   CfgCheck(TR("Подробный статус###details", "Detailed status###details"), &c.details,
-           TR("ИИ, стрейф, Аманда следует, режим пути", "AI, strafe, Amanda follows, path mode"));
+           TR("ИИ, стрейф, Аманда следует", "AI, strafe, Amanda follows"));
   CfgCheck(TR("Списки спавна и персонажей###spawnl", "Spawn and character lists###spawnl"), &c.spawn,
            TR("Появляются после F7/F8 и F1", "Show up after F7/F8 and F1"));
   CfgCheck(TR("Строчка «спрятать · меню»###footer", "The «hide · menu» line###footer"), &c.footer);
@@ -1625,10 +1625,8 @@ static void PageMove(const Snap& s) {
          "Let go of the keys and the Alien stops dead where you let go (the stop animation plays out in place). "
          "Off — as in the game: he walks the stop out"));
   BUI::PushDisabled(!alien);
-  bool path = s.path;
-  if (BUI::Toggle(Lbl(TR("Режим пути (шахты)", "Path mode (ducts)"), K_PATH, "pm"), &path) && alien) Push(C_PATH);
-  Tip(TR("WASD задают точку впереди, Чужой идёт по навигации — так он заходит в горизонтальные шахты",
-         "WASD set a point ahead and the Alien walks there by navigation — that's how he enters horizontal ducts"));
+  BUI::Hint("%s", TR("Вход в горизонтальную вентиляцию — продолжай двигаться в отверстие",
+                     "To enter a horizontal duct, keep moving into the opening"));
   bool follow = s.follow;
   if (BUI::Toggle(Lbl(TR("Аманда следует за Чужим", "Amanda follows the Alien"), K_FOLLOW, "af"), &follow) && alien)
     Push(C_AMANDA, follow ? 1 : 0);
@@ -1804,6 +1802,15 @@ static void PageVents(const Snap& s) {
   if (BUI::Button(Lbl(TR("Выйти у Аманды", "Come out near Amanda"), K_VENT_AMANDA, "v2"), BUI::BtnTinted,
                   alien && s.ventStay && !s.ventCome, w2))
     Push(C_VENT_EXIT_AMANDA);
+  {
+    bool crawl = ventCrawl.load();
+    BUI::PushDisabled(!alien);
+    if (BUI::Toggle(TR("Ползти по вентиляции, не входя в неё###crawl", "Vent crawl without entering a vent###crawl"), &crawl))
+      Push(C_VENT_CRAWL, crawl ? 1 : 0);
+    BUI::PopDisabled();
+    Tip(TR("F6 — включить или выключить ползание по полу. Чужой остаётся в комнате.",
+           "F6 toggles floor crawling. The Alien stays in the room."));
+  }
   bool autoOut = s.autoOut;
   if (BUI::Toggle(TR("Сразу выводить Чужого после загрузки уровня###ao", "Bring the Alien out right after a level loads###ao"), &autoOut))
     Push(C_AUTOOUT, autoOut ? 1 : 0);
@@ -1857,7 +1864,7 @@ static void PageAi(const Snap& s) {
   }
   BUI::Space(4.f);
   if (BUI::Button(Lbl(TR("Аварийный сброс", "Panic reset"), K_PANIC, "pn"), BUI::BtnDanger, lvl)) Push(C_PANIC);
-  Tip(TR("Ручное управление, выключить режим пути и вентиляцию", "Manual control, turn off path mode and vents"));
+  Tip(TR("Ручное управление, отменить вход и выход из вентиляции", "Manual control, cancel vent entry and exit"));
 }
 
 static void PageSpawn(const Snap& s) {

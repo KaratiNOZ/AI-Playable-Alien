@@ -12,7 +12,7 @@ enum GateKind { G_ARROW, G_GO, G_COME, G_STAY, G_PATH, G_ATTACK, G_NEXT, G_IDLE,
 
 inline addr gate, moveNode, npc, req, loco, player;  // управляемый Чужой и всё, что к нему относится
 inline addr pathGate, pathNode;
-inline bool inStart, pathOn;
+inline bool inStart, autoDuctPath;  // transient native assistance at horizontal duct thresholds
 inline std::vector<addr> multi[G_COUNT];  // все экземпляры рубильников (несколько деревьев) — зеркалим им значения
 inline std::vector<addr> multiMoves;
 inline bool locked;       // lockCtl: после первого спавна новые деревья (клонов) не перехватывают управление
@@ -68,6 +68,14 @@ struct Vent { ms_t goUntil, comeUntil, keyAt, comeAt, comeEnd; bool stay; addr g
 // выход не удался (Чужой так и остался за кулисами после всех попыток) — время для HUD
 inline ms_t ventComeFailedAt;
 inline Vent vent;
+// Экспериментальный режим: анимация горизонтального ползания по вентиляции в комнате, без входа в вентиляцию.
+// Меняется через ActVentCrawl(); сам push/pop контекста выполняется на игровом потоке (OnFaceLeave).
+// F10 перебирает кандидаты (IN_VENT, VENT, VENTS_CROUCH, CROUCHING, CROUCHED, VENTS_AIM).
+inline std::atomic<bool> ventCrawl{ false };
+// Тестовый драйвер (C++): файл команд + синтетическое движение вперёд, чтобы снимать кадры без фокуса игры.
+inline std::atomic<bool> testMoveForward{ false };
+inline std::atomic<int> testLocoType{ -1 };       // -1 = не трогать; иначе пишем это значение
+inline std::atomic<addr> testLocoTypePtr{ 0 };    // адрес значения LOCOMOTION_TYPE из AnimSetParams
 // Чужой сейчас за кулисами — по его дереву поведения (control.cpp), независимо от наших команд 1/2:
 // так камера за кулисами работает и сразу после загрузки уровня, и пока он выходит к Аманде
 inline bool alienBackstage;
@@ -247,18 +255,24 @@ inline bool autoOutPending;      // автовыход ещё не удался 
 
 // ---------- действия (одни и те же для клавиш и для кнопок ImGui) — зовутся под общим замком ----------
 // Раскладка: B — Чужой <-> Аманда; за Чужого: WASD, Shift бег, Ctrl тихо, ЛКМ атака, ПКМ цель, E вентиляция,
-// Q вылезти у Аманды, V вид, R стрейф, F Аманда следует, C шахты (режим пути); F1 персонажи, F4 ИИ, F5 сброс, F7/F8 спавн
+// Q вылезти у Аманды, V вид, R стрейф, F Аманда следует; F1 персонажи, F4 ИИ, F5 сброс, F7/F8 спавн
 void ActCamera(int want);        // 1 голова, 2 за спиной, 3 вернуть Аманде
 void ActCameraToggle(int want);  // включить эту камеру, повторно — вернуть Аманде
 void ActSwap();                  // B: играть за Чужого (последний вид) / вернуться к Аманде
 void ActSwitchView();            // V: вид за спиной <-> из головы
-void ActTogglePath();            // C
+void AutoDuctTick();             // game thread, checks entry intent and low opening
+void AutoDuctReset();            // clear assistance on reset/unload
+bool AutoDuctTarget(V3& target);
+bool AutoDuctCancelPath(addr node, addr character, addr state);  // native tick acknowledges handoff
 void ActSetStrafe(bool on);
 void ActToggleStrafe();          // R — вкл/выкл
 void ActSetFollow(bool on);      // F — Аманда следует за Чужим
 void ActVentGo();                // уйти за кулисы
 void ActVentCome();              // выйти у Аманды
 void ActVentCancel();
+bool VentCrawlPending();          // under JsLock
+void RestoreVentCrawl();          // game thread, or stalled game during unload
+void ActVentCrawl(bool on);      // включить/выключить анимационный контекст (ползание) без входа в вентиляцию
 void ActVentSmart();             // E — по ситуации: в мире -> уйти, за кулисами -> выйти здесь, в пути -> отменить
 void ActVentExitHere();          // выйти через ближайшую к Чужому вентиляцию
 void ActVentExitNearAmanda();    // Q: выйти у Аманды (вентиляцию выбирает игра; не нашла — ближайшая к Аманде)
@@ -324,6 +338,8 @@ std::vector<addr> ActiveChars();
 std::string CharName(addr e);
 // ---------- spawn.cpp ----------
 void SpawnReset();
+addr SpawnEntityInterface();  // this для FindParamString/CallTriggers (EntityInterface)
+void ProbeAnimSet();          // временный C++-пробник: читает параметры Character у Чужого
 // ---------- overlay.cpp ----------
 void OverlaySet(int slot, const std::wstring& text);  // 0 статус, 1 кулисы, 2 меню/спавн
 void StartOverlay();

@@ -101,7 +101,7 @@ inline bool Down(int vk) {
 // клавиши фоторежима — постоянные ----
 enum KeyAct {
   K_SWAP, K_VIEW, K_VENT, K_VENT_AMANDA, K_UNSTUCK,  // главные
-  K_STRAFE, K_FOLLOW, K_PATH,                        // за Чужого, дополнительные
+  K_STRAFE, K_FOLLOW,                        // за Чужого, дополнительные
   K_CHARS, K_HUD, K_MAP, K_AI, K_PANIC, K_SPAWN_FIND, K_SPAWN, K_PHOTO,
   K_LOOK, K_SOUND,                                   // за Чужого: держать — осматривается; звук (рык/шипение)
   K_HUGGER,                                          // играть за лицехвата (следующего)
@@ -109,9 +109,9 @@ enum KeyAct {
   K_TURN180,                                         // за Чужого: резкий разворот на 180 (анимацией, камера — вместе с телом)
   K_COUNT
 };
-inline constexpr int kKeyDefault[K_COUNT] = { 'B', 'V', 'E', 'Q', 'X', 'R', 'F', 'C',
+inline constexpr int kKeyDefault[K_COUNT] = { 'B', 'V', 'E', 'Q', 'X', 'R', 'F',
                                               VK_F1, VK_F2, VK_F3, VK_F4, VK_F5, VK_F7, VK_F8, VK_F9, 'Z', 'G', 'H', VK_DELETE, 'T' };
-inline std::atomic<int> g_keys[K_COUNT] = { 'B', 'V', 'E', 'Q', 'X', 'R', 'F', 'C',
+inline std::atomic<int> g_keys[K_COUNT] = { 'B', 'V', 'E', 'Q', 'X', 'R', 'F',
                                             VK_F1, VK_F2, VK_F3, VK_F4, VK_F5, VK_F7, VK_F8, VK_F9, 'Z', 'G', 'H', VK_DELETE, 'T' };
 // в меню ждём новую клавишу — горячие клавиши мода молчат, чтобы нажатие не сработало как действие
 inline std::atomic<bool> g_rebinding{ false };

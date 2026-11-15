@@ -332,6 +332,7 @@ static void DrawMain(float openT) {
   snprintf(sub, sizeof sub, TR("SEEGSON TERMINAL  ·  %s / Insert — меню", "SEEGSON TERMINAL  ·  %s / Insert — menu"), MenuKeyName());
   if (BUI::BeginWindow("###AlienPlayable", "ALIEN PLAYABLE", sub, ImVec2(900.f, 700.f), &open, openT)) {
     BUI::Sidebar("##nav", nav, P_COUNT, &page, 190.f);
+    ImGui::PushID(page);  // independent scroll position/content history for every page
     if (BUI::BeginContent("##page")) {
       if (s_devtools)
         BUI::TextWrappedCol(BUI::P().danger, "%s",
@@ -356,6 +357,7 @@ static void DrawMain(float openT) {
       }
     }
     BUI::EndContent();
+    ImGui::PopID();
   }
   BUI::EndWindow();
   if (!open && s_show) {  // крестик в заголовке
@@ -800,8 +802,11 @@ static void ExtraInstall() {
   InstallPresentHook();
 }
 
-// Инжектор зовёт это в игре (CreateRemoteThread) перед внедрением новой версии: 1 — отцепили, 2 — уже был отцеплен.
-extern "C" __declspec(dllexport) DWORD WINAPI AlienModUnload(LPVOID) { return AlienMod::Unload() ? 1 : 2; }
+// 0 — ошибка/отцепление ещё идёт, 1 — отцепили, 2 — уже был отцеплен.
+extern "C" __declspec(dllexport) DWORD WINAPI AlienModUnload(LPVOID) {
+  if (AlienMod::Unload()) return 1;
+  return AlienMod::Unloaded() ? 2 : 0;
+}
 #ifdef _MSC_VER
 #pragma comment(linker, "/EXPORT:AlienModUnload=_AlienModUnload@4")
 #endif

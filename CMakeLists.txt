@@ -48,3 +48,8 @@ endforeach()
 if(NOT MSVC)
   target_link_options(AlienMod PRIVATE -Wl,--kill-at)  # экспорт AlienModUnload без @4 (его зовёт инжектор)
 endif()
+
+option(ALIENMOD_DEV_TOOLS "Enable experimental probes and file test driver" OFF)
+if(ALIENMOD_DEV_TOOLS)
+  target_compile_definitions(AlienMod PRIVATE ALIENMOD_DEV_TOOLS)
+endif()
