@@ -39,8 +39,9 @@ Gagen's Playable Alien is a mod that lets you take control of different creature
 
 ### Update — 17 November 2026
 
-**0.22-beta**
+**0.22.1-beta**
 
+- **Horizontal ducts: crash and entry fix.** Entering a low duct no longer freezes the game when the Alien has no sensed target, and entry assistance works in that case again: a valid target record from a neighboring manager slot is borrowed for the path node's tick and restored afterwards. Verified in-game with full enter/exit cycles.
 - **F: hiding-place inspection.** Hold F near a locker to play the native inspection sequence; the progress bar shows its actual stages. Releasing F, moving, or disabling actions cancels the attempt. A catalog of 4192 inspection points across 35 levels is built in. Tall lockers are confirmed working; small lockers and tables are not detected yet.
 - **Forced flamethrower retreat.** The native retreat gauge sends the Alien backstage; movement, attacks, crawling, unstuck, teleport and character switching are locked during the retreat. In multiplayer a human player can trigger the Alien owner's retreat through the new W_RETREAT packet (host-relayed, with participant, role and level checks); all participants need updated builds.
 - The T camera follows the Alien's actual turn motion; only the initial camera/body offset eases out by cubic Bézier, and the final course aligns with the model. Turn transitions are driven only by the Alien's own locomotion, not by other NPCs.
@@ -105,8 +106,9 @@ Gagen's Playable Alien — мод, позволяющий управлять р�
 
 ### Обновление — 17 ноября 2026
 
-**0.22-beta**
+**0.22.1-beta**
 
+- **Исправлен вход в горизонтальные шахты.** Игра больше не виснет, когда Чужой входит в низкую шахту без «почувствованной» цели, и помощь при входе снова работает в этом случае: годная запись цели временно берётся из соседнего слота менеджера на время тика узла пути и возвращается обратно. Проверено в игре полными циклами вход/выход.
 - **F: осмотр укрытий.** Удерживайте F рядом со шкафом, чтобы прошла нативная последовательность осмотра; полоса прогресса показывает её реальные этапы. Отпускание F, движение или отключение действий отменяет попытку. Каталог из 4192 точек осмотра на 35 уровнях встроен в мод. Высокие шкафы подтверждены игроком; малые шкафы и столы пока не определяются.
 - **Неотменяемое отступление от огнемёта.** Нативная шкала отступления уводит Чужого за кулисы; на время ухода заблокированы движение, атака, ползание, unstuck, телепорт и смена персонажа. В мультиплеере человек может запросить отступление владельцу Чужого новым пакетом W_RETREAT (ретрансляция хостом, проверка участников, ролей и уровня); всем участникам нужны обновлённые сборки.
 - Камера T следует фактическому движению разворота Чужого; по Bézier сглаживается только начальное смещение камеры относительно тела, в конце курс выравнивается по модели. Переходы разворота запускаются только собственной локомоцией Чужого, а не чужими NPC.
