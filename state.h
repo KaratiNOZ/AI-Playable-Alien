@@ -284,6 +284,7 @@ void AutoDuctTick();             // game thread, checks entry intent and low ope
 void AutoDuctReset();            // clear assistance on reset/unload
 bool AutoDuctTarget(V3& target);
 bool AutoDuctCancelPath(addr node, addr character, addr state);  // native tick acknowledges handoff
+void AutoDuctGiveUp(const char* why);  // assistance impossible (e.g. no sensed target); cooldown before retry
 void ActSetStrafe(bool on);
 void ActToggleStrafe();          // R — вкл/выкл
 void ActSetFollow(bool on);      // F — Аманда следует за Чужим

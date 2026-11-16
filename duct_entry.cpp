@@ -70,6 +70,11 @@ void AutoDuctReset() {
   s_entry = {};
 }
 
+void AutoDuctGiveUp(const char* why) {
+  autoDuctPath = false;
+  FinishEntry(why);
+}
+
 bool AutoDuctTarget(V3& target) {
   if (!autoDuctPath || s_entry.actor != npc) return false;
   target = s_entry.goal;

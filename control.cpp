@@ -942,17 +942,70 @@ static bool FromPathTick(addr ra) {
   addr v = ToVA(ra);
   return v >= va::PathTick && v <= va::PathTickEnd;
 }
+// 0x4128e0 (PathTarget) отдаёт текущую запись цели, только пока персонаж кого-то чувствует:
+// *(персонаж+0x34a8)+0x10 существует, её цель +0x42c жива, глобальный флаг ИИ стоит и +0x430
+// совпадает с *(цель+0x50). PathTick читает +0x438 результата без проверки на null (краш 0x734aac).
+static bool RecordUsable(addr rec) {
+  const addr target = rec ? rp(rec + 0x42c) : 0;
+  if (!target || !rd<uint8_t>(VA(0x016f0c8c))) return false;
+  return rd<uint32_t>(rec + 0x430) == rd<uint32_t>(target + 0x50);
+}
+static bool PathTargetReady(addr ch) {
+  const addr brain = rp(ch + 0x34a8);
+  return brain && RecordUsable(rp(brain + 0x10));
+}
+// Годная запись может лежать не в текущем слоте +0x10, а в соседнем (Аманда на +0x14, пока Чужой
+// её не «чувствует»). На время тика ставим её в +0x10: нативный PathTarget сам проверит запись и
+// передаст узлу со своим учётом ссылок (+0x14), узел отпустит в конце тика; после — возвращаем слот.
+static addr s_promBrain = 0, s_promSaved = 0, s_promRec = 0;
+static void RestorePromotion() {
+  if (s_promBrain && rp(s_promBrain + 0x10) == s_promRec)
+    wr<uint32_t>(s_promBrain + 0x10, uint32_t(s_promSaved));
+  s_promBrain = 0;
+}
+static bool PromoteSpareRecord(addr ch) {
+  const addr brain = rp(ch + 0x34a8);
+  if (!brain) return false;
+  for (uint32_t off : { 0x0cu, 0x14u }) {
+    const addr rec = rp(brain + off);
+    if (!RecordUsable(rec)) continue;
+    s_promBrain = brain;
+    s_promSaved = rp(brain + 0x10);
+    s_promRec = rec;
+    wr<uint32_t>(brain + 0x10, uint32_t(rec));
+    return true;
+  }
+  return false;
+}
+static void CancelPathNoTarget(Invocation& inv, addr ch, bool duct) {
+  // записи цели нет вовсе — завершаем узел его же нативной очисткой, как ветка -1 в самом тике
+  Fn<PathCancelFn>(va::PathCancel)(inv.ecx, ch, inv.arg[1]);
+  inv.skip = true;
+  inv.skipPop = 8;
+  if (duct) { AutoDuctGiveUp("no sensed target"); SetGate(pathGate, false); }
+  static std::atomic<unsigned> n{ 0 };
+  if (n.fetch_add(1) < 5) Log("path tick: no target record anywhere — node cancelled");
+}
 static void OnPathTickEnter(Invocation& inv) {  // thiscall(узел, персонаж, состояние)
-  if (HugPathFor(inv.arg[0])) return wr<uint32_t>(inv.ecx + 8, uint32_t(HugPathSpeed()));
-  if (inv.arg[0] != npc) return;
-  if (AutoDuctCancelPath(inv.ecx, inv.arg[0], inv.arg[1])) {
+  const addr ch = inv.arg[0];
+  if (HugPathFor(ch)) {
+    if (!PathTargetReady(ch)) return CancelPathNoTarget(inv, ch, false);
+    return wr<uint32_t>(inv.ecx + 8, uint32_t(HugPathSpeed()));
+  }
+  if (ch != npc) return;
+  if (AutoDuctCancelPath(inv.ecx, ch, inv.arg[1])) {
     inv.skip = true;
     inv.skipPop = 8;  // Tick(character, state); native cleanup already marked it finished
     return;
   }
   pathNode = inv.ecx;
-  if (autoDuctPath) wr<uint32_t>(pathNode + 8, uint32_t(lastInput.speed));
+  if (!autoDuctPath) return;
+  wr<uint32_t>(pathNode + 8, uint32_t(lastInput.speed));
+  RestorePromotion();  // прошлый тик мог уйти исключением, не дойдя до leave
+  if (PathTargetReady(ch) || PromoteSpareRecord(ch)) return;
+  CancelPathNoTarget(inv, ch, true);
 }
+static void OnPathTickLeave(Invocation&) { RestorePromotion(); }
 static void OnPathTargetLeave(Invocation& inv) {
   if (!(autoDuctPath || hugPathNow) || !FromPathTick(inv.ra)) return;
   addr T2 = rp(inv.arg[0]);
@@ -1228,7 +1281,7 @@ void InstallControl() {
   Attach(VA(va::LocoReqUpdate), nullptr, OnFaceLeave);
   Attach(VA(va::LocoUpdate), nullptr, OnFaceLeave);
   Attach(VA(va::LocoUpdate), OnTurnLocoEnter, OnTurnGameTick);
-  Attach(VA(va::PathTick), OnPathTickEnter, nullptr);
+  Attach(VA(va::PathTick), OnPathTickEnter, OnPathTickLeave);
   Attach(VA(va::PathTarget), nullptr, OnPathTargetLeave);
   Attach(VA(va::PathMoveTo), OnPathMoveToEnter, nullptr);
   Attach(VA(va::MenuLoadLevel), OnLevel<0>, nullptr);
