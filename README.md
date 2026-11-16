@@ -1,3 +1,4 @@
+
 # Alien Playable
 
 <p align="center">
@@ -89,6 +90,12 @@ Designed for the Steam version of the game (`AI.exe` from `17.02.2015`). On othe
 * **Post-Processing (in menu):** Presets (Noir, Warm, Cold, 1979 film look), exposure, glow, grain, vignette, chromatic aberration, lens distortion, and aspect ratio crops (2.39:1, 4:3, 1:1, etc.).
 * **Machinima tip:** You can move the Alien, Facehugger, or Android using arrow keys while in Photo Mode to set up custom scenes.
 
+### 💬 Discord Community
+
+Join the official Gagen's Playable Alien Discord server to discuss the mod, share feedback, report bugs and follow development.
+
+[**Join the Discord Server**](https://discord.gg/tNUWtQ6m9m)
+
 ---
 ---
 
@@ -174,3 +181,9 @@ Designed for the Steam version of the game (`AI.exe` from `17.02.2015`). On othe
 
 * **Постобработка (в меню):** Пресеты (нуар, тёплый, холодный, плёнка 1979 года), экспозиция, свечение, зерно, виньетка, хроматическая аберрация, искажение линзы и обрезка кадра (каше 2.39:1, 4:3, 1:1 и т.д.).
 * **Совет по мачиниме:** Находясь в фоторежиме, вы можете двигать Чужого, Лицехвата или Андроида с помощью клавиш со стрелками для настройки сцен.
+
+### 💬 Сообщество в Discord
+
+Присоединяйтесь к официальному Discord-серверу Gagen's Playable Alien, чтобы обсуждать мод, делиться отзывами, сообщать об ошибках и следить за разработкой.
+
+[**Присоединиться к Discord-серверу**](https://discord.gg/tNUWtQ6m9m)
