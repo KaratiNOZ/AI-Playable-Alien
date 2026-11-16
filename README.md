@@ -1,4 +1,3 @@
-
 # Alien Playable
 
 <p align="center">
@@ -38,17 +37,17 @@ Gagen's Playable Alien is a mod that lets you take control of different creature
 - Steam version recommended (`AI.exe` from `17.02.2015`)
 - No additional software required
 
-### Update — 16 November 2026
+### Update — 17 November 2026
 
-**0.21-beta (interim build)**
+**0.22-beta**
 
-- Improved Alien turning animations and movement.
-- Updated third-person and first-person camera behavior.
-- Added automatic entry and exit for horizontal vents.
-- Improved floor crawling and menu behavior.
-- Multiplayer menus temporarily hidden; network backend retained.
+- **F: hiding-place inspection.** Hold F near a locker to play the native inspection sequence; the progress bar shows its actual stages. Releasing F, moving, or disabling actions cancels the attempt. A catalog of 4192 inspection points across 35 levels is built in. Tall lockers are confirmed working; small lockers and tables are not detected yet.
+- **Forced flamethrower retreat.** The native retreat gauge sends the Alien backstage; movement, attacks, crawling, unstuck, teleport and character switching are locked during the retreat. In multiplayer a human player can trigger the Alien owner's retreat through the new W_RETREAT packet (host-relayed, with participant, role and level checks); all participants need updated builds.
+- The T camera follows the Alien's actual turn motion; only the initial camera/body offset eases out by cubic Bézier, and the final course aligns with the model. Turn transitions are driven only by the Alien's own locomotion, not by other NPCs.
+- First-person free view: the neck limit applies only when body turns are enabled; with turns off or in a duct the view rotates freely.
+- Hiding-place context hints are independent of the status HUD; F2 hides both.
 
-**Known Issues:** Third-person camera jitter, unfinished Bézier synchronization, experimental duct visibility and lighting. Audio and NPC reactions are still in development.
+**Known Issues:** The Alien model can jitter during T turns (cause not yet proven). Small lockers/tables are not inspected. Multiplayer retreat has not been tested in a live two-player session. Duct visibility and lighting remain experimental. The stereo listener, audio and NPC reactions are still in development.
 
 ### 🚀 Quick Start
 
@@ -75,6 +74,7 @@ Gagen's Playable Alien is a mod that lets you take control of different creature
 | **G** | Alien voice |
 | **H** | Switch to Facehugger / Android |
 | **F6** | Toggle floor crawling |
+| **F (hold)** | Inspect a hiding place (locker) |
 | **F9** | Photo mode |
 | **Delete / Insert** | Open / Close mod menu |
 
@@ -103,17 +103,17 @@ Gagen's Playable Alien — мод, позволяющий управлять р�
 - Рекомендуется Steam-версия (`AI.exe` от `17.02.2015`)
 - Дополнительное ПО не требуется
 
-### Обновление — 16 ноября 2026
+### Обновление — 17 ноября 2026
 
-**0.21-beta — промежуточная сборка**
+**0.22-beta**
 
-- Улучшены анимации разворота и передвижение Чужого.
-- Доработано поведение камеры от первого и третьего лица.
-- Добавлен автоматический вход и выход из горизонтальной вентиляции.
-- Улучшены ползание по полу и работа меню.
-- Мультиплеер временно скрыт из меню, сетевой код сохранён.
+- **F: осмотр укрытий.** Удерживайте F рядом со шкафом, чтобы прошла нативная последовательность осмотра; полоса прогресса показывает её реальные этапы. Отпускание F, движение или отключение действий отменяет попытку. Каталог из 4192 точек осмотра на 35 уровнях встроен в мод. Высокие шкафы подтверждены игроком; малые шкафы и столы пока не определяются.
+- **Неотменяемое отступление от огнемёта.** Нативная шкала отступления уводит Чужого за кулисы; на время ухода заблокированы движение, атака, ползание, unstuck, телепорт и смена персонажа. В мультиплеере человек может запросить отступление владельцу Чужого новым пакетом W_RETREAT (ретрансляция хостом, проверка участников, ролей и уровня); всем участникам нужны обновлённые сборки.
+- Камера T следует фактическому движению разворота Чужого; по Bézier сглаживается только начальное смещение камеры относительно тела, в конце курс выравнивается по модели. Переходы разворота запускаются только собственной локомоцией Чужого, а не чужими NPC.
+- Свободный вид от первого лица: предел шеи действует только при включённых разворотах тела; при выключенных разворотах или в шахте взгляд вращается свободно.
+- Контекстные подсказки укрытий независимы от статусного HUD; F2 скрывает обе.
 
-**Известные проблемы:** Подёргивания камеры от третьего лица, незавершённая синхронизация Bézier, экспериментальные видимость и освещение вентиляции. Звук и реакции NPC ещё в разработке.
+**Известные проблемы:** Модель Чужого может дрожать при разворотах T (причина пока не доказана). Малые шкафы/столы не осматриваются. Отступление в мультиплеере не проверено в живой игре с двумя игроками. Видимость и освещение в шахтах остаются экспериментальными. Стереослушатель, звук и реакции NPC ещё в разработке.
 
 ### 🚀 Быстрый старт
 
@@ -140,6 +140,7 @@ Gagen's Playable Alien — мод, позволяющий управлять р�
 | **G** | Голос Чужого |
 | **H** | Переключение на Лицехвата / Андроида |
 | **F6** | Включить / выключить ползание по полу |
+| **F (удерживать)** | Осмотр укрытия (шкаф) |
 | **F9** | Фоторежим |
 | **Delete / Insert** | Открыть / закрыть меню мода |
 

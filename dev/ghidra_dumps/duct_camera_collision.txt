@@ -1,0 +1,79 @@
+==== FUN_0042cfd0 @ 0042cfd0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void __thiscall FUN_0042cfd0(int param_1,undefined4 param_2,char param_3)
+
+{
+  char cVar1;
+  int iVar2;
+  float unaff_EDI;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  undefined4 uStack_28;
+  float fStack_24;
+  float fStack_20;
+  float fStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  undefined4 uStack_8;
+  undefined4 uStack_4;
+  
+  fStack_1c = _DAT_011bed34;
+  if (*(float *)(param_1 + 0x238) <= _DAT_011c68a8) {
+    *(undefined1 *)(param_1 + 0x26e) = 0;
+    return;
+  }
+  if (param_3 == '\0') {
+    iVar2 = (-(uint)(*(char *)(param_1 + 600) != '\0') & 3) + 0x2a;
+  }
+  else {
+    iVar2 = (-(uint)(*(char *)(param_1 + 600) != '\0') & 3) + 0x2b;
+  }
+  iVar2 = iVar2 * 0x5c + *(int *)(param_1 + 0x250);
+  if ((_DAT_016a68b0 & 1) == 0) {
+    _DAT_016a68b0 = _DAT_016a68b0 | 1;
+    _DAT_016a68ac = _DAT_011c6660;
+  }
+  fVar4 = (*(float *)(param_1 + 0x238) - _DAT_011c665c) * _DAT_016a68ac;
+  fVar5 = _DAT_011bed34;
+  if ((fVar4 <= _DAT_011bed34) && (fVar5 = fVar4, fVar4 < 0.0)) {
+    fVar5 = 0.0;
+  }
+  uStack_28 = 0;
+  fStack_24 = 0.0;
+  fStack_20 = 0.0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  uStack_10 = 0;
+  uStack_c = _DAT_011bbd9c;
+  uStack_8 = _DAT_012b3f24;
+  uStack_4 = _DAT_011c71e4;
+  *(float *)(param_1 + 0x200) = fVar5 * _DAT_013e4628 + *(float *)(param_1 + 0x200);
+  func_0x0042bc50(param_2);
+  fVar4 = *(float *)(param_1 + 0x1c4) + *(float *)(iVar2 + 4);
+  fVar5 = fStack_20;
+  if (fVar4 <= fStack_20) {
+    fVar5 = fVar4;
+  }
+  fVar4 = *(float *)(param_1 + 0x238);
+  *(undefined4 *)(param_1 + 0x200) = uStack_4;
+  fVar3 = fStack_24 - (float)&uStack_28;
+  if ((*(int *)(param_1 + 0x34) != 0) && (*(int *)(*(int *)(param_1 + 0x34) + 0x144) != 0)) {
+    func_0x0042b4c0(param_1 + 0xc);
+    *(int *)(param_1 + 0x1c) = iVar2;
+    *(float *)(param_1 + 0x20) = fVar3 * fVar4 + (float)&uStack_28;
+    *(float *)(param_1 + 0x24) = (fVar5 - unaff_EDI) * fVar4 + unaff_EDI;
+  }
+  cVar1 = *(char *)(param_1 + 0x26e);
+  if (cVar1 == '\0') {
+    cVar1 = '\x01';
+  }
+  *(char *)(param_1 + 0x26e) = cVar1;
+  return;
+}
+
+

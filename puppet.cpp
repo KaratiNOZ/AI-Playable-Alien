@@ -1048,6 +1048,12 @@ bool PupIsBody(addr ch) {
     if (s_animKey[i].load(std::memory_order_relaxed) == a) return true;
   return false;
 }
+uint64_t PupAlienOwner(addr ch) {
+  Excl l;
+  for (int i = 0; i < kSlots; ++i)
+    if (s_slot[i].body == ch && s_slot[i].kind == BK_ALIEN && !s_slot[i].ghost) return s_slot[i].who;
+  return 0;
+}
 void PupRemoteAttack(uint64_t who) {
   Excl l;
   const int i = SlotOf(who, false);

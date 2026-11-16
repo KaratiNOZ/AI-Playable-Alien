@@ -316,6 +316,7 @@ static void WantNone() {
 static addr s_ctl = 0;  // за кого играли в прошлый тик
 static ms_t s_ctlAt = 0;
 void ActHugger(addr e) {
+  if (ForcedRetreatActive()) return;
   if (e && (!IsPlayableNpc(e) || !HugPlayable(e))) return;
   if (e == hugger) return;
   if (e && camMode == 0 && CamCutsceneActive()) {  // катсцена: камеру не отдаём (camera.cpp)
@@ -1117,6 +1118,38 @@ static void DevCmdTick() {
       if (who) NpcVoiceSay(who, int(a));
     }
     else if (!strcmp(cmd, "pindy") && k >= 2) s_pinDy = a;
+    else if (!strcmp(cmd, "entityhandle")) {  // CATHODE entity address -> persistent handle, no game action
+      const addr ent = strtoul(line + 12, nullptr, 16);
+      Safe([&] {
+        uint32_t key[2]{};
+        if (ent) Fn<GetEntityHandleFn>(va::GetEntityHandle)(ent, key);
+        Log("entityhandle: %08X -> %08X:%08X", unsigned(ent), key[0], key[1]);
+      });
+    }
+    else if (!strcmp(cmd, "inspectdata") || !strcmp(cmd, "entitydata")) {  // read-only lookup, no animation submission
+      unsigned id = 0, instance = 0;
+      if (sscanf(line, "%*s %x %x", &id, &instance) == 2) {
+        addr ref = 0, spec = 0, entity = 0;
+        const uint32_t key[2] = { id, instance };
+        Safe([&] {
+          const addr em = rp(VA(va::EntityManagerPtr));
+          if (em) Fn<FindEntityFn>(va::FindEntity)(em, &ref, key);
+          if (ref) {
+            entity = rp(ref + 0xc);
+            if (!strcmp(cmd, "inspectdata")) spec = Fn<addr(__cdecl*)(const addr*)>(0x008b57e0)(&ref);
+            Log("inspectdata: %08X:%08X entity=%08X spec=%08X", id, instance, unsigned(entity), unsigned(spec));
+            if (spec) for (int i = 0; i < 22; i += 2)
+              Log("inspectdata: +%02X %08X %08X", i*4, rd<uint32_t>(spec+i*4), rd<uint32_t>(spec+i*4+4));
+          } else Log("inspectdata: %08X:%08X not found", id, instance);
+        });
+        if (ref) {
+          volatile LONG* rc = reinterpret_cast<volatile LONG*>(ref + 4);
+          for (LONG v = *rc; v > 1; v = *rc)
+            if (InterlockedCompareExchange(rc, v-1, v) == v) break;
+        }
+      }
+    }
+    else if (!strcmp(cmd, "inspectactions") && k >= 2) InspectionSetActions(int(a) != 0);
     else if (!strcmp(cmd, "mpself")) MpCmd(MPA_SELFTEST, 0, 0);  // мультиплеер: пакет самому себе через Steam
     else if (!strcmp(cmd, "mpcmd") && k >= 2) MpCmd(int(a), int(b), 0);  // mpcmd <MpAction> [arg] — как кнопка меню
     else if (!strcmp(cmd, "mptap") && k >= 2) MpCmd(MPA_TAP, int(a), 0);
@@ -1461,5 +1494,7 @@ void InstallHugger() {
   Attach(VA(va::LocoReqUpdate), nullptr, OnHugFaceLeave, false);
   Attach(VA(va::LocoUpdate), nullptr, OnHugFaceLeave, false);
   Every(16, "hugger", HuggerTick);
+#ifdef ALIENMOD_DEV_TOOLS
   Every(100, "hugger-dev", DevCmdTick);
+#endif
 }

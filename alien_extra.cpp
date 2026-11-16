@@ -138,7 +138,7 @@ static void LookTick() {  // 30 мс, под общим замком
   const bool network = MpAlienGameplay();
   const bool walk = Down('W') || Down('A') || Down('S') || Down('D') || Down(VK_UP) || Down(VK_DOWN) || Down(VK_LEFT) || Down(VK_RIGHT);
   const bool autoLook = network && !walk && !HeldK(K_TURN180) && !turnFollowBody && !ductOn && !ventCrawl && !autoDuctPath;
-  const bool want = npc && !hugger && camMode != 0 && !photo.on && aiMode == 0 && !alienBackstage && !vent.stay && !VentBusy() &&
+  const bool want = npc && !hugger && camMode != 0 && !photo.on && aiMode == 0 && !InspectionActive() && !alienBackstage && !vent.stay && !VentBusy() &&
                     (!network || !walk) && (autoLook || HeldK(K_LOOK) || NowMs() < devLookUntil.load());
   if (!want) {
     if (s_lookOn) LookRestore("key released");

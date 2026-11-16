@@ -19,6 +19,8 @@ namespace va { constexpr addr CrouchEnter=1,CrouchExit=2; }
 std::map<addr,uint32_t> mem;
 addr npc=0x1000;
 bool moving=false,alienBackstage=false,ductOn=false,busy=false,blocked=false;
+bool forcedRetreat=false;
+bool ForcedRetreatActive(){return forcedRetreat;}
 struct { bool stay=false; } vent;
 std::atomic<bool> ventCrawl{false},testMoveForward{false},s_snapHold{false};
 std::atomic<uint64_t> s_snapIdleUntil{0};
@@ -35,7 +37,7 @@ tests = r"""
 void reset(){
   npc=0x1000; mem.clear(); mem[npc+0x2af]=0;
   mem[0x2008]=7; mem[0x200c]=7; mem[0x2050]=0x4005c960; mem[0x301a]=56; mem[0x3008]=0x27;
-  busy=ductOn=alienBackstage=blocked=false; vent.stay=false;
+  busy=ductOn=alienBackstage=blocked=forcedRetreat=false; vent.stay=false;
   ForgetVentCrawl(); enters=exits=writes=0;
 }
 int main(){
@@ -54,6 +56,7 @@ int main(){
   ActVentCrawl(false); ApplyVentCrawl(); assert(writes==0&&mem[npc+0x2af]==1);
   reset(); busy=true; ActVentCrawl(true); ApplyVentCrawl(); assert(writes==0);
   busy=false; ductOn=true; ApplyVentCrawl(); assert(writes==0);
+  reset(); forcedRetreat=true; ActVentCrawl(true); ApplyVentCrawl(); assert(!ventCrawl&&writes==0);
   reset(); ActVentCrawl(true); ApplyVentCrawl(); int before=writes;
   npc=0; ApplyVentCrawl(); assert(writes==before&&!VentCrawlPending());
   reset(); ActVentCrawl(true); ApplyVentCrawl(); testMoveForward=true;

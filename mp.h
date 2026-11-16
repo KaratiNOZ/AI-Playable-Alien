@@ -123,6 +123,8 @@ bool MpGameMenuOn();   // gamemenu.cpp: вставлять ли пункт в м
 // в игре по сети играю не человеком и персонажа уже получил — переключиться на Аманду нельзя (B, «вернуть Аманде»)
 bool MpAvatarLocked();
 bool MpAlienGameplay();  // active network match, local player controls the Alien
+bool MpMatchActive();
+void MpRequestRetreat(uint64_t alienOwner);  // native retreat gauge reached on a local replica
 void MpSetSurvivorMap(const std::string& id);  // хост: карта выживания
 void MpCmd(int action, int arg, uint64_t id);
 

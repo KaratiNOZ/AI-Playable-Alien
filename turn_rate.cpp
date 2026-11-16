@@ -11,7 +11,7 @@ DeltaFn originalDelta = nullptr;
 thread_local bool fastTurnPhase = false;
 double __cdecl TurnDelta() {
   const double dt = originalDelta();
-  return fastTurnPhase ? dt * 1.8f : dt;
+  return fastTurnPhase ? dt * 1.8 : dt;
 }
 void PhaseEnter(Invocation& inv) {
   inv.text[0] = fastTurnPhase ? 1 : 0;

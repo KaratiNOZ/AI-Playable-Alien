@@ -1,0 +1,295 @@
+==== FUN_0042e970 @ 0042e970
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void __thiscall FUN_0042e970(int param_1,float *param_2)
+
+{
+  undefined4 uVar1;
+  float *pfVar2;
+  char cVar3;
+  int iVar4;
+  undefined4 *puVar5;
+  int iVar6;
+  undefined4 uVar7;
+  float unaff_EBX;
+  float unaff_EDI;
+  float10 fVar8;
+  float fVar9;
+  float fVar10;
+  float *pfStack_1fc;
+  float *pfStack_1f8;
+  float *pfStack_1f4;
+  float fStack_1f0;
+  float fStack_1ec;
+  undefined1 *puStack_1e8;
+  undefined1 *puStack_1e4;
+  float *pfStack_1e0;
+  undefined4 uStack_1dc;
+  undefined4 uStack_1d8;
+  undefined1 *puStack_1d4;
+  float fStack_1c4;
+  float fStack_1c0;
+  float fStack_1bc;
+  float fStack_1b8;
+  float fStack_1b4;
+  float fStack_1b0;
+  float fStack_1ac;
+  float *pfStack_1a8;
+  undefined4 uStack_1a4;
+  float fStack_1a0;
+  float fStack_19c;
+  float fStack_198;
+  float fStack_194;
+  float fStack_190;
+  float fStack_18c;
+  float fStack_188;
+  float fStack_184;
+  undefined4 uStack_180;
+  undefined4 uStack_17c;
+  float *pfStack_178;
+  float fStack_174;
+  undefined4 uStack_170;
+  undefined4 uStack_16c;
+  float fStack_168;
+  float fStack_164;
+  float fStack_160;
+  float fStack_154;
+  float fStack_150;
+  float fStack_14c;
+  float fStack_148;
+  float fStack_144;
+  float fStack_140;
+  float fStack_13c;
+  float fStack_138;
+  float fStack_134;
+  float fStack_130;
+  undefined1 auStack_110 [20];
+  undefined1 auStack_fc [8];
+  float fStack_f4;
+  float fStack_f0;
+  float fStack_ec;
+  float fStack_e8;
+  float fStack_e4;
+  float fStack_e0;
+  float fStack_dc;
+  float fStack_d8;
+  float fStack_d4;
+  float fStack_d0;
+  undefined1 auStack_ac [40];
+  undefined1 auStack_84 [36];
+  undefined1 auStack_60 [48];
+  undefined1 auStack_30 [44];
+  
+  if (((*(int *)(param_1 + 0x250) == 0) || (iVar6 = *(int *)(param_1 + 0x34), iVar6 == 0)) ||
+     (*(int *)(iVar6 + 0x148) == 0)) {
+    *(undefined2 *)(param_1 + 0x270) = 0x100;
+    return;
+  }
+  iVar6 = *(int *)(iVar6 + 0x148);
+  uVar7 = *(undefined4 *)(iVar6 + 0x74);
+  uVar1 = *(undefined4 *)(iVar6 + 0x78);
+  puStack_1d4 = auStack_60;
+  *(undefined4 *)(param_1 + 0x1c0) = *(undefined4 *)(iVar6 + 0x70);
+  *(undefined4 *)(param_1 + 0x1c4) = uVar7;
+  *(undefined4 *)(param_1 + 0x1c8) = uVar1;
+  uStack_1dc = *(undefined4 *)(param_1 + 0x248);
+  uStack_1d8 = 7;
+  pfStack_1e0 = (float *)0x42e9ef;
+  func_0x006a2fb0();
+  pfStack_1e0 = &fStack_1bc;
+  puStack_1e4 = (undefined1 *)0x42ea00;
+  func_0x0042b510();
+  puStack_1e4 = auStack_30;
+  puStack_1e8 = (undefined1 *)0x42ea1e;
+  iVar4 = func_0x0042b510();
+  fVar10 = *(float *)(iVar4 + 4);
+  puStack_1e8 = auStack_84;
+  fStack_1ec = 6.145172e-39;
+  iVar4 = func_0x0042b510();
+  uVar7 = *(undefined4 *)(iVar4 + 8);
+  *(undefined1 **)(param_1 + 0x1cc) = puStack_1d4;
+  *(float *)(param_1 + 0x1d0) = unaff_EDI;
+  *(undefined4 *)(param_1 + 0x1d4) = uVar7;
+  fStack_1ec = 6.145247e-39;
+  fVar8 = (float10)(**(code **)(**(int **)(iVar6 + 0x36c) + 0x40))();
+  *(float *)(param_1 + 0x1d8) = (float)fVar8;
+  fStack_1ec = 6.145265e-39;
+  func_0x0042d600();
+  if (*(char *)(param_1 + 0x26c) != '\0') {
+    fVar9 = *(float *)(param_1 + 0x214) + (float)param_2;
+    *(float *)(param_1 + 0x214) = fVar9;
+    if (fVar9 < *(float *)(param_1 + 0x154)) {
+      if (*(char *)(param_1 + 0x26b) == '\0') {
+        fStack_1ec = (float)(*(int *)(param_1 + 0x1e8) * 0x5c + *(int *)(param_1 + 0x250));
+      }
+      else {
+        fStack_1ec = (float)(param_1 + 0xf8);
+      }
+      fStack_1f0 = 6.1454e-39;
+      func_0x0042b0b0();
+      fStack_1f0 = (float)(*(int *)(param_1 + 0x1ec) * 0x5c + *(int *)(param_1 + 0x250));
+      pfStack_1f4 = (float *)0x42eafc;
+      func_0x0042b0b0();
+      pfStack_1f4 = &fStack_1b4;
+      pfStack_1f8 = &fStack_150;
+      fStack_1b4 = 0.0;
+      fStack_1b0 = 0.0;
+      fStack_1ac = 0.0;
+      uStack_1a4 = 0;
+      fStack_1a0 = 0.0;
+      fStack_19c = 0.0;
+      fStack_184 = 0.0;
+      uStack_180 = 0;
+      uStack_17c = 0;
+      fStack_174 = 0.0;
+      uStack_170 = 0;
+      uStack_16c = 0;
+      pfStack_1a8 = _DAT_011bed34;
+      fStack_198 = _DAT_011bbd9c;
+      fStack_194 = _DAT_012b3f24;
+      fStack_190 = _DAT_011c71e4;
+      pfStack_178 = _DAT_011bed34;
+      fStack_168 = _DAT_011bbd9c;
+      fStack_164 = _DAT_012b3f24;
+      fStack_160 = _DAT_011c71e4;
+      pfStack_1fc = param_2;
+      func_0x0042bc50();
+      func_0x0042bc50(param_2,auStack_fc,&fStack_190);
+      fVar8 = (float10)func_0x00435d50(*(undefined4 *)(param_1 + 0x214));
+      pfStack_1fc = (float *)(float)fVar8;
+      if (fStack_1a0 * unaff_EDI + fStack_19c * fVar10 + fStack_198 * unaff_EBX +
+          fStack_194 * fStack_1c4 < 0.0) {
+        fStack_1a0 = (float)((uint)fStack_1a0 ^ _DAT_015c6340);
+        fStack_19c = (float)((uint)fStack_19c ^ _DAT_015c6340);
+        fStack_198 = (float)((uint)fStack_198 ^ _DAT_015c6340);
+        fStack_194 = (float)((uint)fStack_194 ^ _DAT_015c6340);
+      }
+      *(float *)(param_1 + 0x1c) = (fStack_190 - fStack_1c0) * (float)pfStack_1fc + fStack_1c0;
+      *(float *)(param_1 + 0x20) = (fStack_18c - fStack_1bc) * (float)pfStack_1fc + fStack_1bc;
+      *(float *)(param_1 + 0x24) = (fStack_188 - fStack_1b8) * (float)pfStack_1fc + fStack_1b8;
+      puVar5 = (undefined4 *)func_0x0042ac80(auStack_ac,pfStack_1fc,&stack0xfffffe30,&fStack_1a0);
+      *(undefined4 *)(param_1 + 0xc) = *puVar5;
+      *(undefined4 *)(param_1 + 0x10) = puVar5[1];
+      *(undefined4 *)(param_1 + 0x14) = puVar5[2];
+      *(undefined4 *)(param_1 + 0x18) = puVar5[3];
+      *(float *)(param_1 + 0x28) = (fStack_184 - fStack_1b4) * (float)pfStack_1fc + fStack_1b4;
+      *(float *)(param_1 + 0xc4) = (fStack_e4 - fStack_144) * (float)pfStack_1fc + fStack_144;
+      *(float *)(param_1 + 200) = (fStack_e0 - fStack_140) * (float)pfStack_1fc + fStack_140;
+      *(float *)(param_1 + 0xcc) = (fStack_dc - fStack_13c) * (float)pfStack_1fc + fStack_13c;
+      *(float *)(param_1 + 0xd0) = (fStack_d8 - fStack_138) * (float)pfStack_1fc + fStack_138;
+      *(float *)(param_1 + 0xd4) = (fStack_d4 - fStack_134) * (float)pfStack_1fc + fStack_134;
+      *(float *)(param_1 + 0xb4) = (fStack_f4 - fStack_154) * (float)pfStack_1fc + fStack_154;
+      *(float *)(param_1 + 0xb8) = (fStack_f0 - fStack_150) * (float)pfStack_1fc + fStack_150;
+      *(float *)(param_1 + 0xbc) = (fStack_ec - fStack_14c) * (float)pfStack_1fc + fStack_14c;
+      *(float *)(param_1 + 0xc0) = (fStack_e8 - fStack_148) * (float)pfStack_1fc + fStack_148;
+      *(float *)(param_1 + 0xd8) = (fStack_d0 - fStack_130) * (float)pfStack_1fc + fStack_130;
+      goto LAB_0042ef33;
+    }
+    fStack_1ec = (float)(*(int *)(param_1 + 0x1ec) * 0x5c + *(int *)(param_1 + 0x250));
+    fStack_1f0 = 6.146845e-39;
+    func_0x0041ba80();
+    *(undefined4 *)(param_1 + 0x1f0) = *(undefined4 *)(param_1 + 0x1e8);
+    *(undefined4 *)(param_1 + 0x1e8) = *(undefined4 *)(param_1 + 0x1ec);
+    *(undefined1 *)(param_1 + 0x259) = 0;
+    *(undefined2 *)(param_1 + 0x26b) = 0;
+  }
+  fStack_1ec = (float)(param_1 + 0xc);
+  fStack_1f0 = (float)(param_1 + 0x9c);
+  pfStack_1f4 = param_2;
+  pfStack_1f8 = (float *)0x42ef33;
+  func_0x0042bc50();
+LAB_0042ef33:
+  pfVar2 = _DAT_011bed34;
+  if ((*(char *)(param_1 + 600) == '\0') && (*(char *)(param_1 + 0x259) == '\0')) {
+    *(undefined4 *)(param_1 + 0x234) = *(undefined4 *)(param_1 + 0x22c);
+  }
+  else {
+    fStack_1bc = 0.0;
+    fStack_1b8 = 0.0;
+    fStack_1b4 = _DAT_011bbd9c;
+    fStack_1b0 = _DAT_012b3f24;
+    fStack_1ac = _DAT_011c71e4;
+    if ((*(char *)(param_1 + 0x259) == '\0') ||
+       ((*(char *)(param_1 + 600) == '\0' || (*(char *)(param_1 + 0x26c) == '\0')))) {
+      if (*(char *)(param_1 + 0x26b) == '\0') {
+        iVar6 = *(int *)(param_1 + 500) * 0x5c + *(int *)(param_1 + 0x250);
+      }
+      else {
+        iVar6 = param_1 + 0xf8;
+      }
+      func_0x0042b0b0(iVar6);
+      func_0x0042bc50(param_2,&uStack_170,&puStack_1d4);
+    }
+    else {
+      func_0x00428990((float *)(param_1 + 0xc));
+    }
+    fVar10 = *(float *)(param_1 + 0x234);
+    fStack_1f0 = ((_DAT_013e3d28 * 0.0 * 0.0 + (float)puStack_1d4 * _DAT_013e3d28 * 0.0) * fVar10 +
+                 (float)pfVar2) - *(float *)(param_1 + 0x1c);
+    fStack_1ec = ((_DAT_013e3d28 * 0.0 * 0.0 - (float)puStack_1d4 * _DAT_013e3d28 * 0.0) * fVar10 +
+                 0.0) - *(float *)(param_1 + 0x20);
+    fVar10 = (fVar10 * (((float)_DAT_011bed34 -
+                        (float)puStack_1d4 * (float)puStack_1d4 * _DAT_013e3d28) -
+                       _DAT_013e3d28 * 0.0 * 0.0) + fStack_1bc) - *(float *)(param_1 + 0x24);
+    fVar9 = SQRT(fStack_1ec * fStack_1ec + fStack_1f0 * fStack_1f0 + fVar10 * fVar10);
+    if (fVar9 <= _DAT_011becb0) {
+      fVar9 = 0.0;
+    }
+    else {
+      fVar9 = (float)_DAT_011bed34 / fVar9;
+    }
+    fStack_1f0 = fStack_1f0 * fVar9;
+    fStack_1ec = fStack_1ec * fVar9;
+    puStack_1e8 = (undefined1 *)(fVar10 * fVar9);
+    pfStack_1fc = (float *)0x0;
+    pfStack_1f8 = _DAT_011bed34;
+    pfStack_1f4 = (float *)0x0;
+    func_0x00428b70(&puStack_1d4,&fStack_1f0,&pfStack_1fc);
+    fVar10 = *(float *)(param_1 + 0x1d8);
+    fVar9 = fVar10;
+    func_0x00a6bf39();
+    fStack_174 = fVar10;
+    func_0x00a6bde2();
+    fStack_1ec = fStack_174 * _DAT_016366b8 + fVar9 * _DAT_016366bc;
+    puStack_1e8 = _DAT_016366c0;
+    pfStack_1fc = (float *)0x0;
+    pfStack_1f8 = (float *)0x0;
+    fStack_1f0 = fVar9 * _DAT_016366b8 - fStack_174 * _DAT_016366bc;
+    pfStack_1f4 = _DAT_011bed34;
+    func_0x00428b70(&uStack_1a4,&pfStack_1fc,&fStack_1f0);
+    uVar7 = func_0x004059e0(auStack_110,&puStack_1d4);
+    func_0x0041cb80(uVar7);
+    *(float *)(param_1 + 0xc) = fStack_1ec;
+    *(undefined1 **)(param_1 + 0x10) = puStack_1e8;
+    *(undefined1 **)(param_1 + 0x14) = puStack_1e4;
+    *(float **)(param_1 + 0x18) = pfStack_1e0;
+  }
+  if (((*(char *)(param_1 + 0x260) == '\0') && (*(char *)(param_1 + 0x262) == '\0')) &&
+     (*(int *)(param_1 + 0x1e8) != 0x2c)) {
+    cVar3 = '\0';
+  }
+  else {
+    cVar3 = '\x01';
+  }
+  pfStack_1fc = (float *)CONCAT31(pfStack_1fc._1_3_,cVar3);
+  if (*(char *)(param_1 + 0xf6) == '\0') {
+    fVar10 = *(float *)(param_1 + 0x1c4);
+    uVar7 = *(undefined4 *)(param_1 + 0x1c8);
+    fVar9 = _DAT_011c666c;
+    if (cVar3 != '\0') {
+      fVar9 = _DAT_011bc088;
+    }
+    iVar6 = *(int *)(param_1 + 0x34);
+    *(undefined4 *)(iVar6 + 0x10c) = *(undefined4 *)(param_1 + 0x1c0);
+    *(float *)(iVar6 + 0x110) = fVar9 + fVar10;
+    *(undefined4 *)(iVar6 + 0x114) = uVar7;
+    *(undefined1 *)(iVar6 + 0x153) = 1;
+  }
+  func_0x0042cfd0(param_2,pfStack_1fc);
+  *(undefined1 *)(param_1 + 0x271) = 1;
+  *(undefined1 *)(param_1 + 0x270) = 0;
+  return;
+}
+
+

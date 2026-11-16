@@ -47,3 +47,25 @@ cmd //c "C:\Users\lelil\Downloads\ghidra_12.1.3_PUBLIC\support\analyzeHeadless.b
 
 Остальные файлы — дампы прошлых сессий (камера, время/пауза, вентиляция, постобработка, Havok-лучи и т. д.), их разбор —
 в `DEVELOPERS.md`.
+
+## Нативная подсказка взаимодействия (сессия 16.11.2026)
+
+Проект: `build-ghidra\CrawlState.gpr` (AI.exe, md5 bb0d932f… — тот же, что в игре). Проект `%TEMP%\claude\ghidra_ai\AlienSteam`
+опустел (программа удалена). В базе CrawlState нет operand-ссылок — `StrRefs2`/`Callers` молчат; искать через `RefScan`
+(побайтовый поиск LE-адреса в коде) или `DecompForce` (создаёт функцию, если её нет). Новые скрипты: `StrSub` (строки по
+подстроке), `DecompForce`, `RefScan`.
+
+| файл | что |
+|---|---|
+| `prompt_strsub.txt` | AS-имена с «Interaction_Prompt»: только `Set_Interaction_Prompt_Visible` (012fb300) и `Set_Interaction_Prompt_Invisible_no_anim` (012fb478). Сеттера текста/клавиши/прогресса среди AS-вызовов НЕТ |
+| `prompt_strings.txt` | все строки «Prompt/prompt/hold_time»: `prompt_text` (013de2c4), `push_hold_time` (013de3dc), `SetControllerPrompt` (012ff1b4), `set_scripted_mash_prompt_percentage`, `set_breathing_game_prompt_text/progress` |
+| `prompt_invokers.txt` | обёртки AS-вызова — thiscall НА ОВЕРЛЕЙ: `008081e0`(o,name) 0 арг; `00534240`(o,name,float); `005341a0`(o,name,int); `0082a730`(o,name,str); `0082b010`(o,name,str,str,float). Все берут CS менеджера +0x40174a78c и закрепляют Movie |
+| `prompt_refscan.txt` | `prompt_text`/`push_hold_time` регистрируются в GUID через `FUN_008bf7f0(out*,str)` (инициализаторы `01163020`/`011631d0`); прямых потребителей GUID в коде нет (доступ через структуру). Visible зовут `FUN_0083e32e`/`0084bef8` (куска апдейта HUD `0084bbe0`) — только видимость, не текст |
+| `prompt_reg.txt` | `FUN_008bf7f0` = строка→GUID (CATHODE ShortGuid), результат пишется по месту строки в .data |
+
+AS3-сторона (`dev/ui_extract/PICKUPOVERLAY.GFX` из `DATA\UI.PAK`, парсер `abc_strings.py`): корень `PickupOverlay`,
+члены `staticPrompt_mc` (mcStaticPromptAnim_6), `spinner_mc`/`mc_prompt_spinner` (mcSpinnerProgressMeter_19), `legend_mc`,
+`text_mc`, `glyph_txt`, `continueGlyph`; методы `SetText`, `SetControllerPrompt` (клавиша), `Set_Interaction_Prompt_Visible/Invisible`.
+Текст подсказки нативный контроллер ставит GFx-членом `prompt_text`, прогресс удержания — `push_hold_time` (не AS-вызов).
+Вывод: готового AS-сеттера текста нет; для нативной подсказки мода нужно либо звать GFx SetMember на клипе
+(`staticPrompt_mc`/`glyph_txt` + `push_hold_time`), либо оставить мод-HUD. Решение — за пользователем.

@@ -213,6 +213,10 @@ static DWORD WINAPI InitThread(LPVOID) {
 #endif
   InstallCamera();
   InstallVent();
+  InstallRetreat();
+  // Main-loop, unlocked entity queries only (lock-inversion fix). Submission can
+  // be toggled live with the dev command "inspectactions 0/1".
+  InstallInspection(true);
   InstallActors();
   InstallSpawn();
   InstallPhoto();

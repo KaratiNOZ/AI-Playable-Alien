@@ -112,6 +112,7 @@ void QueueKill(addr victim, addr attacker, ms_t delayMs) {
 }
 
 void ActAttack() {
+  if (ForcedRetreatActive() || InspectionActive()) return;
   ms_t t = NowMs();
   Attack& A = attack;
   A.keyAt = t;
@@ -158,6 +159,7 @@ void ActAttack() {
 // Как удар по андроиду: цель подставляет хук теста рубильника атаки (forceTarget), обычная проверка «цель — Аманда» молчит
 static ms_t s_remoteUntil = 0;
 void ActAttackTarget(addr target) {
+  if (ForcedRetreatActive() || InspectionActive()) return;
   ms_t t = NowMs();
   Attack& A = attack;
   A.nextUntil = 0;
@@ -326,6 +328,7 @@ static void AiHunt() {
   }
 }
 void ActSetAi(int mode) {
+  if (ForcedRetreatActive()) return;
   if (mode != 0 && mode != 2 && mode != 3) return;
   aiMode = mode;
   Log("AI mode %d (0 manual, 3 hunt others, 2 full)", aiMode);
@@ -343,6 +346,7 @@ static void AiTick() {
 }
 // «ИИ для всех»: один режим Чужому и лицехватам; F4 — по кругу ручное -> не на Аманду -> полный
 void ActSetAiAll(int mode) {
+  if (ForcedRetreatActive()) return;
   if (mode != 0 && mode != 2 && mode != 3) return;
   ActSetAi(mode);
   hugAi = mode;
@@ -351,6 +355,7 @@ void ActSetAiAll(int mode) {
 }
 void ActCycleAi() { ActSetAiAll(aiMode == 0 ? 3 : aiMode == 3 ? 2 : 0); }
 void ActPanic() {
+  if (ForcedRetreatActive()) return;
   ActVentCrawl(false);
   aiMode = 0;
   AiApply();
@@ -421,6 +426,7 @@ static bool IsActive(addr e) {
   return std::find(A.begin(), A.end(), e) != A.end();
 }
 void ActTpAlienTo(addr e) {
+  if (ForcedRetreatActive()) return;
   if (!npc || !e || !IsActive(e)) return;  // из ImGui адрес мог устареть за время до выполнения команды
   V3 p{};
   if (!Safe([&] { p = rv3(e + 0x70); })) return;
@@ -428,6 +434,7 @@ void ActTpAlienTo(addr e) {
   Log("TP alien -> %s", CharName(e).c_str());
 }
 void ActTpBring(addr e) {
+  if (ForcedRetreatActive() && e == npc) return;
   if (!npc || !e || e == npc || !IsActive(e)) return;
   V3 a{};
   if (!Safe([&] { a = rv3(npc + 0x70); })) return;
@@ -437,6 +444,7 @@ void ActTpBring(addr e) {
 
 // «застрял»: за кулисами / в пути — вылезти у Аманды; в мире — встать в 3.5 м позади Аманды (ближе — касание её убивает)
 void ActUnstuck() {
+  if (ForcedRetreatActive()) return;
   if (!npc || !player) return;
   AutoDuctReset();
   if (vent.stay || alienBackstage) {

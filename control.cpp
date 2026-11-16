@@ -50,6 +50,7 @@ void HardReset(const char* why) {
   CameraWorldReset();      // мир Havok у нового уровня свой (camera.cpp выберет тот, где под Амандой пол)
   gate = moveNode = npc = req = loco = player = 0;
   ForgetVentCrawl();
+  InspectionReset();
   ResetTurnState();
   camMode = 0;
   HuggerReset();  // после camMode = 0: камеру уходящего уровня не трогаем
@@ -82,6 +83,7 @@ void HardReset(const char* why) {
 // фабрика), а потом уничтожает старого Чужого — прежний полный сброс стирал и новые рубильники, и мод замолкал.
 // Мёртвые узлы убирает OnTreeDestroy поштучно, нового Чужого находит FindAlienTick.
 void AlienReset(const char* why) {
+  InspectionReset();
   // играешь за лицехвата — камера и Аманда его, их не трогаем
   if (!hugger) AlienExtraReset(true);  // до обнуления player: спрятанную Аманду вернуть домой
   npc = req = loco = player = 0;
@@ -335,7 +337,7 @@ Input ReadInput() {
   moveYaw = r.worldYaw;
   moving = r.any;
   // ИИ ведёт сам / фоторежим / Чужой осматривается / играешь за лицехвата — Чужому движение не запрашиваем
-  if (aiMode != 0 || (photo.on && !pd.on) || alienLooking || (hugger && !pd.on)) {
+  if (aiMode != 0 || (photo.on && !pd.on) || alienLooking || InspectionActive() || (hugger && !pd.on)) {
     r.any = r.rawAny = false;
     moving = false;
   }
@@ -386,6 +388,7 @@ static ms_t s_quickReq = 0;        // нажали — ждём, пока он �
 static ms_t s_moveEndAt = 0;       // когда отпустили движение: 0.4 с после этого разворот не начинаем — игра ещё
                                    // дообрабатывает запрос остановки и тут же возвращает разворот в «стоит» (57 -> 1, 0°)
 static void TurnEnd(const char* why) {
+  if (turnFollowBody) CameraBodyTurnEnd();
   turnFollowBody = false;
   s_quickTurn = false;
   if (!s_turnOn) return;
@@ -400,7 +403,7 @@ static bool TurnWanted() { return !ventCrawl.load() && (camMode == 1 ? turnInPla
 static void TurnTick(const Input& in) {
   const ms_t t = NowMs();
   const bool available = npc && loco && !photo.on && !hugger && aiMode == 0 && !VentBusy() && !vent.stay && !alienBackstage &&
-                    !autoDuctPath && !alienLooking && attack.until <= t;
+                    !autoDuctPath && !alienLooking && !InspectionActive() && attack.until <= t;
   const bool crouch = ventCrawl.load() || ductOn;
   const bool base = available && (!crouch || (camMode == 2 && (s_quickReq || s_quickTurn)));
   // резкий разворот на 180 (клавиша): стоит — анимацией, на ходу — камера сразу назад, тело развернётся по ходу
@@ -484,6 +487,7 @@ static void TurnTick(const Input& in) {
       return;
     }
     s_quickTurn = false;
+    CameraBodyTurnEnd();
     turnFollowBody = false;
     Log("turn 180: done, body turned %.0f deg", turned * 57.3f);
     if (!TurnWanted()) {
@@ -520,9 +524,27 @@ static void ResetTurnState() {
   s_snapIdleUntil = 0;
   turnFollowBody = false;
 }
-// поток игры: выход интегратора движения — переходы основного действия, которые просил главный цикл
-static void OnTurnGameTick(Invocation&) {
+// 44d4f0 integrates one entry of a manager's MemoryPtr array: ECX is the
+// manager and arg[0] the entry index. Other NPCs must not drive our transitions
+// or advance the camera while their own locomotion is being updated.
+static void OnTurnLocoEnter(Invocation& inv) {
+  inv.text[0] = 0;
+  if (!loco || !inv.ecx) return;
+  const addr begin = rp(inv.ecx), end = rp(inv.ecx + 4);
+  if (begin && end >= begin && inv.arg[0] < (end - begin) / 8 &&
+      rp(begin + inv.arg[0] * 8) == loco) inv.text[0] = 1;
+}
+// поток игры: выход собственного интегратора движения — переходы основного действия
+static void OnTurnGameTick(Invocation& inv) {
+  if (!inv.text[0]) return;
   if (!npc || !loco) return;
+  if (ForcedRetreatActive() || InspectionActive()) {
+    // A queued turn/instant stop must not replace the retreat's native action.
+    s_gameReq = 0;
+    s_snapIdleUntil = 0;
+    g_fastTurnActor = 0;
+    return;
+  }
   CameraBodyTurnTick();
   const int want = s_gameReq.exchange(0);
   const ms_t snapUntil = s_snapIdleUntil.load();
@@ -618,6 +640,10 @@ static std::atomic<ms_t> s_snapUntil{ 0 };
 static float s_snapX = 0, s_snapZ = 0;
 static void SnapHoldTick() {
   if (!s_snapHold.load(std::memory_order_relaxed)) return;
+  if (ForcedRetreatActive() || InspectionActive() || VentBusy() || autoDuctPath) {
+    s_snapHold = false;
+    return;
+  }
   // держим, пока он не встал в «стоит» (действие 1) и ещё 0.15 с после — но не дольше 2 с
   static ms_t idleAt = 0;
   const ms_t now = NowMs();
@@ -647,6 +673,7 @@ struct FloorCrawlState {
 };
 static FloorCrawlState s_floorCrawl;
 void ActVentCrawl(bool on) {
+  if (ForcedRetreatActive()) return;
   if (!on) testMoveForward.store(false);
   const bool was = ventCrawl.exchange(on);
   if (on && !was) {
@@ -1200,7 +1227,7 @@ void InstallControl() {
   Attach(VA(va::LocoReqStart), nullptr, OnFaceLeave);
   Attach(VA(va::LocoReqUpdate), nullptr, OnFaceLeave);
   Attach(VA(va::LocoUpdate), nullptr, OnFaceLeave);
-  Attach(VA(va::LocoUpdate), nullptr, OnTurnGameTick);
+  Attach(VA(va::LocoUpdate), OnTurnLocoEnter, OnTurnGameTick);
   Attach(VA(va::PathTick), OnPathTickEnter, nullptr);
   Attach(VA(va::PathTarget), nullptr, OnPathTargetLeave);
   Attach(VA(va::PathMoveTo), OnPathMoveToEnter, nullptr);

@@ -1,0 +1,6 @@
+
+##### "Set_Interaction_Prompt_Visible"
+string @ 012fb300
+
+##### "Set_Interaction_Prompt_Invisible_no_anim"
+string @ 012fb478

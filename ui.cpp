@@ -137,6 +137,10 @@ struct Radar {  // карта вентиляции: всё относитель�
   int exitVent = -1;           // через какую вентиляцию он выйдет по E
 };
 struct Snap {
+  int inspectionHint = 0;
+  int inspectionCooldown = 0;
+  bool inspectionActions = false;
+  float inspectionProgress = 0;
   bool ready = false, level = false, hasNpc = false, hasPlayer = false, hasLoco = false;
   int cam = 0, ai = 0, fmode = 3;
   bool strafe = true, follow = false, autoOut = true;
@@ -197,6 +201,10 @@ static std::string Utf8(const std::wstring& w) {
 
 static void SnapTick() {  // под общим замком (планировщик)
   Snap s;
+  s.inspectionHint = g_inspectionHint.load();
+  s.inspectionCooldown = g_inspectionCooldown.load();
+  s.inspectionActions = g_inspectionActions.load();
+  s.inspectionProgress = g_inspectionProgress.load();
   s.ready = true;
   s.level = gate != 0;
   s.hasNpc = npc != 0;
@@ -335,6 +343,7 @@ static Snap GetSnap() {
 // ============================ что показывать на экране (сохраняется в .ini рядом с DLL) ============================
 struct HudCfg {
   bool hud = true;        // вообще весь HUD (F2)
+  bool interactions = true;  // contextual interaction hints, separate from status panels
   bool status = true;     // короткий статус: где Чужой, какая камера
   bool details = false;   // подробный статус: стрейф, Аманда следует, режим пути, ИИ
   bool hints = true;      // подсказки «что нажимать сейчас»
@@ -490,6 +499,7 @@ static void LoadCfg() {
   const std::wstring f = CfgPath();
   HudCfg& c = s_cfg;
   c.hud = CfgGet(f, L"hud", c.hud) != 0;
+  c.interactions = CfgGet(f, L"interactions", c.interactions) != 0;
   c.status = CfgGet(f, L"status", c.status) != 0;
   c.details = CfgGet(f, L"details", c.details) != 0;
   c.hints = CfgGet(f, L"hints", c.hints) != 0;
@@ -525,6 +535,7 @@ static void SaveCfg() {
   const std::wstring f = CfgPath();
   const HudCfg& c = s_cfg;
   CfgSet(f, L"hud", c.hud);
+  CfgSet(f, L"interactions", c.interactions);
   CfgSet(f, L"status", c.status);
   CfgSet(f, L"details", c.details);
   CfgSet(f, L"hints", c.hints);
@@ -842,7 +853,11 @@ bool HudEnabled() { return true; }
 static void HudKeys() {
   static bool f2, f3;
   const bool k2 = HotK(K_HUD), k3 = HotK(K_MAP);
-  if (k2 && !f2) s_cfg.hud = !s_cfg.hud, SaveCfg();
+  if (k2 && !f2) {
+    const bool show=!(s_cfg.hud || s_cfg.interactions);
+    s_cfg.hud=s_cfg.interactions=show;
+    SaveCfg();
+  }
   if (k3 && !f3) s_cfg.radar = !s_cfg.radar, SaveCfg();
   f2 = k2, f3 = k3;
 }
@@ -1105,8 +1120,27 @@ void DrawHud() {
   }
   if (s_cfg.hud) DrawTutorial(s);
   const HudCfg& c = s_cfg;
-  if (!c.hud) return;
   if (s.photoOn) return;  // в кадре фоторежима — ничего лишнего
+  if (c.interactions && s.inspectionHint) {
+    const std::string text = s.inspectionHint == 4 ?
+        std::string(TR("Уже осмотрено. Повтор через ", "Already inspected. Retry in ")) +
+          std::to_string(s.inspectionCooldown) + TR(" с", " s") : s.inspectionHint == 3 ?
+        std::string(TR("Осмотр укрытия", "Inspecting hiding place")) :
+        s.inspectionActions ? std::string(KN(K_SEARCH)) + "  " + (s.inspectionHint == 1 ?
+          TR("Удерживать: осмотреть шкаф", "Hold: inspect locker") : TR("Удерживать: осмотреть укрытие", "Hold: inspect hiding place")) :
+        std::string(s.inspectionHint == 1 ? TR("Шкаф рядом", "Locker nearby") : TR("Укрытие рядом", "Hiding place nearby"));
+    const ImVec2 display = ImGui::GetIO().DisplaySize, size = ImGui::CalcTextSize(text.c_str());
+    const ImVec2 pos(display.x*.5f-size.x*.5f, display.y*.72f);
+    ImDrawList* draw = ImGui::GetForegroundDrawList();
+    draw->AddRectFilled(ImVec2(pos.x-12,pos.y-7), ImVec2(pos.x+size.x+12,pos.y+size.y+7), IM_COL32(8,15,13,210), 3.f);
+    draw->AddText(pos, IM_COL32(190,235,210,255), text.c_str());
+    if (s.inspectionHint == 3) {  // удержание F: полоса прогресса под подсказкой
+      const float w = std::max(size.x + 24, 180.f), x0 = display.x*.5f - w*.5f, y0 = pos.y + size.y + 12;
+      draw->AddRectFilled(ImVec2(x0,y0), ImVec2(x0+w,y0+6), IM_COL32(8,15,13,210), 3.f);
+      draw->AddRectFilled(ImVec2(x0,y0), ImVec2(x0+w*s.inspectionProgress,y0+6), IM_COL32(140,220,170,235), 3.f);
+    }
+  }
+  if (!c.hud) return;
   DrawAlienHud(s);        // за Чужого — свой HUD внизу по центру
   const SpawnInfo& sp = s.spawn;
   const bool showStatus = s.level && c.status, showDetails = s.level && s.hasNpc && c.details, showHints = c.hints;
@@ -1292,6 +1326,7 @@ static void DrawKeys() {
     { K_VENT, TR("Вентиляция: спрятаться / вылезти здесь / отменить", "Vents: hide / come out here / cancel"), true },
     { K_VENT_AMANDA, TR("Вылезти из вентиляции рядом с Амандой", "Come out of the vents near Amanda"), true },
     { K_VIEW, TR("Вид: из-за спины / из головы", "View: from behind / from the head"), true },
+    { K_SEARCH, TR("Осмотреть шкаф или укрытие рядом", "Inspect a nearby locker or hiding place"), true },
     { K_UNSTUCK, TR("Застрял — встать рядом с Амандой", "Stuck — stand near Amanda"), true },
     { K_HUD, TR("Спрятать / показать всё на экране", "Hide / show everything on screen"), true },
     { K_MAP, TR("Карта вентиляции", "Vent map"), true },
@@ -1413,8 +1448,11 @@ static void PageScreen(const Snap& s) {
   const bool busy = s.ventGo || s.ventCome;
   (void)lvl, (void)alien, (void)pal, (void)busy;
   HudCfg& c = s_cfg;
-  CfgCheck(Lbl(TR("Показывать всё поверх игры", "Show anything over the game"), K_HUD, "hud"), &c.hud,
-           TR("Главный выключатель: без него на экране ничего нет", "Master switch: without it nothing is drawn"));
+  CfgCheck(Lbl(TR("Статус и панели мода", "Mod status and panels"), K_HUD, "hud"), &c.hud,
+           TR("Показывать статус, карту и обычные подсказки мода", "Show mod status, radar and general hints"));
+  CfgCheck(TR("Подсказки у укрытий###interactions", "Hiding-place prompts###interactions"), &c.interactions,
+           TR("Отдельная подсказка рядом со шкафом или столом. F2 скрывает и её; в фоторежиме она выключена",
+              "A separate prompt near a locker or desk. F2 hides it too; photo mode hides it automatically"));
   BUI::PushDisabled(!c.hud);
   CfgCheck(TR("Подсказки клавиш###hints", "Key hints###hints"), &c.hints, TR("Что нажимать прямо сейчас", "What to press right now"));
   CfgCheck(Lbl(TR("Карта вентиляции", "Vent map"), K_MAP, "radar"), &c.radar,

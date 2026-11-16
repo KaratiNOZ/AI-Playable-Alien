@@ -149,8 +149,9 @@ HMODULE s_steamDll = nullptr;
 #pragma pack(push, 1)
 struct WHdr { uint32_t magic; uint8_t ver, type; uint16_t n; };
 struct WTrig { uint32_t ent, inst, out; float delay; };
+struct WRetreat { uint64_t target; uint16_t level; };
 #pragma pack(pop)
-enum { W_HELLO = 1, W_PING = 2, W_PONG = 3, W_TRIG = 4, W_BYE = 5, W_SELF = 6, W_FORGET = 7, W_LOBBY = 8, W_KICK = 9, W_STATE = 10, W_ACT = 11 };
+enum { W_HELLO = 1, W_PING = 2, W_PONG = 3, W_TRIG = 4, W_BYE = 5, W_SELF = 6, W_FORGET = 7, W_LOBBY = 8, W_KICK = 9, W_STATE = 10, W_ACT = 11, W_RETREAT = 12 };
 enum { ACT_ATTACK = 1 };  // W_ACT клиент -> хост: [что]; удар Чужого по кнопке — Чужой-кукла хоста бьёт (puppet.cpp)
 enum { KICK_KICKED = 0, KICK_BANNED = 1, KICK_CLOSED = 2, KICK_FULL = 3 };
 constexpr uint32_t kMagic = 0x504D4941;  // "AIMP"
@@ -1119,6 +1120,8 @@ void Handle(uint64_t from, const uint8_t* d, uint32_t n, int chan) {  // сет�
   uint16_t lvl = 0;
   uint64_t me = 0;
   std::vector<uint64_t> relay;
+  WRetreat retreat{};
+  uint64_t retreatRelay = 0;
   {
     Lk l;
     if (h.ver != kVer) {
@@ -1141,7 +1144,24 @@ void Handle(uint64_t from, const uint8_t* d, uint32_t n, int chan) {  // сет�
     }
     if (s_seenFrom.insert(from).second)
       MpLog("first packet from %llu: type %d, %u bytes", static_cast<unsigned long long>(from), int(h.type), unsigned(n));
-    if (h.type == W_STATE) {
+    if (h.type == W_RETREAT) {
+      if (bn == sizeof(WRetreat) && s_started && !s_myLevel.empty()) {
+        memcpy(&retreat, body, sizeof retreat);
+        if (retreat.level == PupLevelHash(s_myLevel)) {
+          if (s_role == MP_HOST && s_lobbyOpen) {
+            const Member* source = MemberLocked(from);
+            const Member* target = MemberLocked(retreat.target);
+            if (source && source->avatar == AV_HUMAN && !BannedLocked(from)) {
+              if (retreat.target == s_me && s_avatar == AV_ALIEN) g_forceRetreatRequested = true;
+              else if (target && target->avatar == AV_ALIEN) retreatRelay = retreat.target;
+            }
+          } else if (s_role == MP_CLIENT && from == s_peer && s_state == MPS_CONNECTED &&
+                     retreat.target == s_me && s_avatar == AV_ALIEN) {
+            g_forceRetreatRequested = true;
+          }
+        }
+      }
+    } else if (h.type == W_STATE) {
       if (s_role == MP_HOST && s_lobbyOpen && !BannedLocked(from)) {
         if (Member* m = MemberLocked(from)) {
           m->lastRecv = now;
@@ -1165,6 +1185,7 @@ void Handle(uint64_t from, const uint8_t* d, uint32_t n, int chan) {  // сет�
     for (uint64_t id : relay) Send(id, W_STATE, body, bn, P2P_UNRELIABLE);
   }
   if (replyPong) Send(from, W_PONG, &pongT, 4, P2P_UNRELIABLE);
+  if (retreatRelay) Send(retreatRelay, W_RETREAT, &retreat, sizeof retreat, P2P_RELIABLE);
 }
 
 // ---------------- сеть: такт ----------------
@@ -1606,6 +1627,28 @@ std::string MpMapName(const std::string& id) {
   return id;
 }
 bool MpGameMenuOn() { return false; }  // parked: retain the backend, expose no multiplayer menus
+bool MpMatchActive() {
+  Lk l;
+  return s_started && !s_myLevel.empty() &&
+      (s_role == MP_HOST ? s_lobbyOpen.load() : s_role == MP_CLIENT && s_state == MPS_CONNECTED);
+}
+void MpRequestRetreat(uint64_t target) {
+  WRetreat packet{};
+  uint64_t to = 0;
+  {
+    Lk l;
+    if (!s_started || s_myLevel.empty() || !target || s_avatar != AV_HUMAN) return;
+    packet = {target, PupLevelHash(s_myLevel)};
+    if (s_role == MP_HOST && s_lobbyOpen) {
+      const Member* m = MemberLocked(target);
+      if (m && m->avatar == AV_ALIEN) to = target;
+    } else if (s_role == MP_CLIENT && s_state == MPS_CONNECTED) to = s_peer;
+  }
+  if (to) {
+    Send(to, W_RETREAT, &packet, sizeof packet, P2P_RELIABLE);
+    MpLog("native fire retreat -> Alien owner %llu", static_cast<unsigned long long>(target));
+  }
+}
 bool MpAlienGameplay() {
   Lk l;
   return s_avatarDone && s_started && s_avatar == AV_ALIEN && !s_myLevel.empty() &&

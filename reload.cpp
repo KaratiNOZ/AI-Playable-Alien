@@ -124,14 +124,15 @@ bool Unload() {
   Interceptor::IgnoreCurrentThread();
   Log("unload: detaching the mod...");
   JsLock();
+  InspectionPrepareUnload();
   ActVentCrawl(false);
   JsUnlock();
   // Keep locomotion hooks alive until the game thread restores its animation state.
   bool crawlPending = true;
   for (int i = 0; i < 150 && crawlPending; ++i) {
     JsLock();
-    if (GameStalled()) Safe([] { RestoreVentCrawl(); });
-    crawlPending = VentCrawlPending();
+    if (GameStalled()) Safe([] { RestoreVentCrawl(); InspectionRestorePaused(); });
+    crawlPending = VentCrawlPending() || InspectionActive();
     JsUnlock();
     if (crawlPending) Sleep(10);
   }

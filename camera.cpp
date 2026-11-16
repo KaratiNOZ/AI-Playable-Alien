@@ -31,23 +31,44 @@ static bool s_kcHave = false;
 static addr s_turnCameraActor = 0;
 static float s_turnCameraBody = 0, s_turnCameraTravel = 0, s_turnCameraApplied = 0;
 static float s_turnCameraOrbit = 0;
+static float s_turnCameraInitialOffset = 0;
 void CameraBodyTurnBegin() {
   s_turnCameraActor = npc;
   s_turnCameraBody = npc ? rf(npc + 0x174) : 0.f;
+  s_turnCameraOrbit = camMode == 1 && fpHave ? fpYaw : s_turnCameraBody;
   s_turnCameraTravel = s_turnCameraApplied = 0.f;
-  if (camMode == 2) if (const addr b = FollowBeh()) s_turnCameraOrbit = rf(b + 0x20c);
+  if (camMode == 2) if (const addr b = FollowBeh())
+    s_turnCameraOrbit = rf(b + 0x20c) + rf(b + 0x1fc) * rf(VA(0x0145b2d4));
+  s_turnCameraInitialOffset = WrapPi(s_turnCameraOrbit - s_turnCameraBody);
+}
+static void ApplyTurnOrbit(addr b) {
+  // 42dd50 rebases the camera against the actor's yaw every frame. 20c is that
+  // reference, 1fc is current relative yaw in degrees, 204 its smoothed target.
+  // Keep both relative fields coherent; changing only the reference snaps back.
+  const float degrees = WrapPi(s_turnCameraOrbit + s_turnCameraApplied - rf(b + 0x20c)) * rf(VA(0x011c65e8));
+  wf(b + 0x1fc, degrees);
+  wf(b + 0x204, degrees);
 }
 void CameraBodyTurnTick() {
   if (!turnFollowBody || !npc || npc != s_turnCameraActor) return;
   const float body = rf(npc + 0x174);
   s_turnCameraTravel += WrapPi(body - s_turnCameraBody);
   s_turnCameraBody = body;
-  const float angle = std::copysign(kPi * TurnEase(std::fabs(s_turnCameraTravel) / kPi), s_turnCameraTravel);
+  // Follow actual model motion, easing out only the initial camera/body offset.
+  // This keeps animation and camera synchronized even if the authored turn has
+  // nonuniform angular speed or finishes a little short of 180 degrees.
+  const float angle = s_turnCameraTravel - s_turnCameraInitialOffset * TurnEase(std::fabs(s_turnCameraTravel) / kPi);
   const float step = angle - s_turnCameraApplied;
   s_turnCameraApplied = angle;
-  if (camMode == 2) if (const addr b = FollowBeh()) wf(b + 0x20c, s_turnCameraOrbit + angle);
+  if (camMode == 2) if (const addr b = FollowBeh()) ApplyTurnOrbit(b);
   if (camMode == 1 && fpFree && fpHave) fpYaw = WrapPi(fpYaw + step);
   else if (player && camMode != 0) wf(player + 0x174, WrapPi(rf(player + 0x174) + step));
+}
+void CameraBodyTurnEnd() {
+  if (!npc || npc != s_turnCameraActor || camMode != 2) return;
+  s_turnCameraApplied = WrapPi(rf(npc + 0x174) - s_turnCameraOrbit);
+  if (const addr b = FollowBeh()) ApplyTurnOrbit(b);
+  if (player) wf(player + 0x174, WrapPi(rf(npc + 0x174)));
 }
 static void DuctLightTick();
 static void DuctLightRestore();
@@ -461,6 +482,10 @@ bool FpFreeActive() { return camMode == 1 && fpFree.load() && !photo.on && !hugg
 static bool FpNearActive() { return camMode == 1 && fpHideHead && !photo.on && !hugger && npc; }  // вид из головы Чужого
 float ViewYaw() {
   if (FpFreeActive() && fpHave) return fpYaw;
+  if (camMode == 2 && !photo.on) {
+    V3 from{}, dir{};
+    if (ViewDir(from, dir)) return std::atan2(dir.x, dir.z);
+  }
   float y = 0;
   if (player) Safe([&] { y = rf(player + 0x174); });
   return y;
@@ -492,7 +517,11 @@ static void FpFreeUpdate(addr cam) {  // раз в кадр: мышь -> взг�
   if (fpFlipReq.exchange(false)) fpYaw = WrapPi(fpYaw + kPi), s_flipUntil = NowMs() + 2000;
   // как у Аманды: шея не крутится на 360 — дальше предела от курса тела взгляд не уходит, ждём, пока довернётся тело
   // (разворот на месте); при осмотре (LOOK) голова уходит почти назад
-  const float lim = (alienLooking ? 170.f : std::clamp(fpYawLimit, 30.f, 180.f)) / 57.2958f;
+  // A neck limit only works if standing turns can actually bring the body
+  // after the view. With turns disabled (or in a duct/crawl), clamping against
+  // a stationary body otherwise traps mouse look at the same angle forever.
+  const bool bodyCanFollow = turnInPlaceFp && !ventCrawl.load() && !ductOn;
+  const float lim = (alienLooking ? 170.f : bodyCanFollow ? std::clamp(fpYawLimit, 30.f, 180.f) : 180.f) / 57.2958f;
   if (s_flipUntil && (NowMs() > s_flipUntil || std::fabs(WrapPi(fpYaw - body)) <= lim)) s_flipUntil = 0;
   if (lim < 3.1f && !s_flipUntil) {
     const float rel = WrapPi(fpYaw - body);
@@ -858,7 +887,7 @@ static void OnFollowCalculateEnter(Invocation& inv) {
   if (camMode != 2 || hugger || PhotoActive() || s_killCamOn || !npc || CamTarget() != npc ||
       !inv.args || !inv.arg[1] || inv.ecx != FollowBehRaw()) return;
   if (turnFollowBody && s_turnCameraActor == npc)
-    wf(inv.ecx + 0x20c, s_turnCameraOrbit + s_turnCameraApplied);
+    ApplyTurnOrbit(inv.ecx);
   ThreadState* ts = TS(false);
   if (!ts || ts->depth >= kMaxFrames) return;
   alignas(4) static thread_local uint32_t options[kMaxFrames][0x5c / 4];

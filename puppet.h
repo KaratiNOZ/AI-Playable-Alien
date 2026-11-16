@@ -51,6 +51,7 @@ bool PupGhostOn();
 
 // ---- для других частей мода ----
 bool PupIsBody(addr ch);   // этот персонаж — чья-то кукла (hugger.cpp: ИИ андроида молчит)
+uint64_t PupAlienOwner(addr ch);
 bool PupOwnsPlayer();      // своя Аманда отдана под куклу (alien_extra.cpp не прячет её, camera.cpp прячет только FP-руки)
 // camera.cpp: правка палитры «из головы» (шея Чужого в позе слоя 7 на время вызова) — нечётное значение, пока правит
 inline std::atomic<uint32_t> g_palEditSeq{ 0 };

@@ -173,6 +173,7 @@ static void OnVentPickExitLeave(Invocation& inv) {
 }
 
 static void ComeStart(int mode, bool retry) {
+  if (ForcedRetreatActive()) return;
   const ms_t t = NowMs();
   vent.keyAt = t;
   vent.comeAt = t;
@@ -199,6 +200,7 @@ static void ExitEnd() {
   s_gameRefused = false;
 }
 static void CancelVent(const char* by) {
+  if (ForcedRetreatActive()) return;
   const bool exiting = s_exitMode != EXIT_NONE;
   autoOutPending = false;
   ExitEnd();
@@ -210,6 +212,7 @@ static void CancelVent(const char* by) {
 }
 
 void ActVentGo() {
+  if (ForcedRetreatActive()) return;
   ms_t t = NowMs();
   autoOutPending = false;
   ExitEnd();
@@ -262,6 +265,8 @@ static void ExitTick() {  // 50 мс, под общим замком
 
 bool ExitBusy() { return s_exitMode != EXIT_NONE; }
 void ExitReset() {  // смена уровня / новый Чужой
+  g_forcedRetreat = false;
+  g_forceRetreatRequested = false;
   ExitEnd();
   s_exitTried.clear();
   vent.comeAt = vent.comeEnd = 0;
@@ -287,11 +292,11 @@ static void VentTick() {
   const bool e = AlienKeyK(K_VENT), q = AlienKeyK(K_VENT_AMANDA);
   const bool k1 = e && !s_e, k2 = q && !s_q;
   s_e = e, s_q = q;
-  if (VentBusy() && t - vent.keyAt >= 400) {
+  if (!ForcedRetreatActive() && VentBusy() && t - vent.keyAt >= 400) {
     // отмена: уход в вентиляцию — любой клавишей движения или E/Q; выход — только E/Q, чтобы WASD его не сбивали
     const bool mv = vent.goUntil > t && MoveKeys();
     if (mv || k1 || k2) CancelVent(mv ? "move" : "key");
-  } else if (!VentBusy() && t - vent.keyAt > 300) {
+  } else if (!ForcedRetreatActive() && !VentBusy() && t - vent.keyAt > 300) {
     if (k1) ActVentSmart();
     else if (k2 && (vent.stay || alienBackstage || ExitBusy())) ExitBusy() ? CancelVent("key") : ActVentExitNearAmanda();
   }
@@ -324,7 +329,7 @@ static float BsViewYaw() {  // куда смотрит камера: за спи
   if (player) Safe([&] { y = rf(player + 0x174); });
   return y;
 }
-static bool BackstageControl() { return npc && vent.stay && aiMode == 0 && !VentBusy() && !photo.on && !hugger; }
+static bool BackstageControl() { return npc && vent.stay && aiMode == 0 && !VentBusy() && !ForcedRetreatActive() && !photo.on && !hugger; }
 
 static ms_t s_bsLast = 0, s_bsLogAt = 0;
 static int s_bsViaBody = -1;

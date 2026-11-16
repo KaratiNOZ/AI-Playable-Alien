@@ -1,0 +1,217 @@
+---- FUN_00450560 @ 00450560 (callers: 0)
+
+undefined4 FUN_00450560(void)
+
+{
+  int *piVar1;
+  int iVar2;
+  char cVar3;
+  int unaff_ESI;
+  undefined4 *unaff_FS_OFFSET;
+  int *piStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  undefined *puStack_8;
+  undefined4 uStack_4;
+  
+  uStack_4 = 0xffffffff;
+  puStack_8 = &DAT_01129758;
+  uStack_c = *unaff_FS_OFFSET;
+  *unaff_FS_OFFSET = &uStack_c;
+  func_0x00402080(&piStack_14);
+  puStack_8 = (undefined *)0x0;
+  if (unaff_ESI != 0) {
+    cVar3 = func_0x0077a300();
+    if (cVar3 != '\0') {
+      *(undefined4 *)(unaff_ESI + 8) = 5;
+    }
+  }
+  puStack_8 = (undefined *)0xffffffff;
+  if (piStack_14 != (int *)0x0) {
+    piVar1 = piStack_14 + 1;
+    LOCK();
+    iVar2 = *piVar1;
+    *piVar1 = *piVar1 + -1;
+    UNLOCK();
+    if (iVar2 == 1) {
+      (**(code **)*piStack_14)();
+      piVar1 = piStack_14 + 2;
+      LOCK();
+      iVar2 = *piVar1;
+      *piVar1 = *piVar1 + -1;
+      UNLOCK();
+      if (iVar2 == 1) {
+        (**(code **)(*piStack_14 + 4))();
+      }
+    }
+  }
+  *unaff_FS_OFFSET = uStack_10;
+  return 0;
+}
+
+
+---- FUN_00450710 @ 00450710 (callers: 0)
+
+undefined4 FUN_00450710(undefined4 param_1,undefined4 *param_2)
+
+{
+  int *piVar1;
+  int iVar2;
+  int unaff_ESI;
+  undefined4 *unaff_FS_OFFSET;
+  int *piStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  undefined *puStack_8;
+  undefined4 uStack_4;
+  
+  uStack_4 = 0xffffffff;
+  puStack_8 = &DAT_01129758;
+  uStack_c = *unaff_FS_OFFSET;
+  *unaff_FS_OFFSET = &uStack_c;
+  func_0x00402080(&piStack_14);
+  puStack_8 = (undefined *)0x0;
+  if (unaff_ESI != 0) {
+    if ((((undefined4 *)param_2[1])[1] == 0) ||
+       (*(int *)(*(int *)(**(int **)param_2[1] + 8) + 0x10) != 9)) {
+      if (*(int *)(unaff_ESI + 0xd0) == *(int *)(unaff_ESI + 0xc4)) goto LAB_004507c3;
+      *(undefined4 *)(unaff_ESI + 8) = 2;
+    }
+    else {
+      *(undefined4 *)(unaff_ESI + 8) = 7;
+    }
+    if (*(char *)(*(int *)(*(int *)*param_2 + 0x36c) + 0x1a) != '8') {
+      func_0x00657900();
+    }
+    puStack_8 = (undefined *)0xffffffff;
+    func_0x0040d770();
+    *unaff_FS_OFFSET = uStack_10;
+    return 0;
+  }
+LAB_004507c3:
+  puStack_8 = (undefined *)0xffffffff;
+  if (piStack_14 != (int *)0x0) {
+    piVar1 = piStack_14 + 1;
+    LOCK();
+    iVar2 = *piVar1;
+    *piVar1 = *piVar1 + -1;
+    UNLOCK();
+    if (iVar2 == 1) {
+      (**(code **)*piStack_14)();
+      piVar1 = piStack_14 + 2;
+      LOCK();
+      iVar2 = *piVar1;
+      *piVar1 = *piVar1 + -1;
+      UNLOCK();
+      if (iVar2 == 1) {
+        (**(code **)(*piStack_14 + 4))();
+      }
+    }
+  }
+  *unaff_FS_OFFSET = uStack_10;
+  return 1;
+}
+
+
+---- FUN_006881b0 @ 006881b0 (callers: 0)
+
+undefined4 * __fastcall FUN_006881b0(undefined4 *param_1)
+
+{
+  int *piVar1;
+  undefined4 uVar2;
+  undefined4 *puVar3;
+  int iVar4;
+  undefined4 *unaff_FS_OFFSET;
+  undefined4 uVar5;
+  undefined4 uStack_c;
+  undefined *puStack_8;
+  undefined4 uStack_4;
+  
+  uStack_4 = 0xffffffff;
+  puStack_8 = &DAT_01127284;
+  uStack_c = *unaff_FS_OFFSET;
+  *unaff_FS_OFFSET = &uStack_c;
+  *param_1 = 0;
+  param_1[2] = 0;
+  piVar1 = (int *)func_0x00976070(4);
+  uVar5 = 4;
+  uVar2 = (**(code **)(*piVar1 + 0xc))(0x10);
+  param_1[1] = uVar2;
+  *(undefined4 *)uVar2 = uVar2;
+  *(undefined4 *)(param_1[1] + 4) = param_1[1];
+  uStack_c = 0;
+  param_1[5] = 0;
+  piVar1 = (int *)func_0x00976070(4);
+  uVar2 = (**(code **)(*piVar1 + 0xc))(0x10,4);
+  param_1[4] = uVar2;
+  *(undefined4 *)uVar2 = uVar2;
+  *(undefined4 *)(param_1[4] + 4) = param_1[4];
+  param_1[7] = 0;
+  *(undefined1 *)(param_1 + 9) = 0;
+  param_1[10] = 0;
+  param_1[0xb] = 0;
+  param_1[0xc] = 0;
+  puVar3 = param_1 + 0x18;
+  iVar4 = 0xb;
+  do {
+    puVar3[-0xb] = 0;
+    *puVar3 = 0;
+    puVar3[0xb] = 0;
+    puVar3[0x16] = 0;
+    puVar3 = puVar3 + 1;
+    iVar4 = iVar4 + -1;
+  } while (iVar4 != 0);
+  param_1[0x39] = 0;
+  func_0x00465440();
+  func_0x004569e0();
+  func_0x00439990();
+  param_1[199] = 1;
+  param_1[200] = 1;
+  param_1[0xc9] = 0;
+  param_1[0xca] = 0;
+  param_1[0x18] = &UNK_00a69c90;
+  param_1[0xd] = &UNK_00469780;
+  param_1[0x23] = &UNK_00677780;
+  param_1[0x2e] = &UNK_00680c00;
+  param_1[0x19] = &UNK_00687690;
+  param_1[0xe] = &UNK_00469780;
+  param_1[0x24] = &UNK_00687190;
+  param_1[0x2f] = &UNK_006798c0;
+  param_1[0x1a] = &UNK_00a69c90;
+  param_1[0xf] = &UNK_00469780;
+  param_1[0x25] = &UNK_00677780;
+  param_1[0x30] = &UNK_00679910;
+  param_1[0x1c] = &UNK_00a69c90;
+  param_1[0x11] = &UNK_00469780;
+  param_1[0x27] = &UNK_00679990;
+  param_1[0x32] = &UNK_00677760;
+  param_1[0x1d] = &UNK_00687a20;
+  param_1[0x12] = &UNK_00469780;
+  param_1[0x28] = &UNK_00680d20;
+  param_1[0x33] = &UNK_00687af0;
+  param_1[0x1e] = &UNK_00a69c90;
+  param_1[0x13] = &UNK_00469780;
+  param_1[0x29] = &UNK_00680e90;
+  param_1[0x34] = &UNK_006799d0;
+  param_1[0x22] = &UNK_00687b40;
+  param_1[0x17] = &UNK_00469780;
+  param_1[0x2d] = &UNK_00677780;
+  param_1[0x38] = &UNK_00677780;
+  param_1[0x1f] = &UNK_00687c50;
+  param_1[0x14] = &UNK_00469780;
+  param_1[0x2a] = &UNK_00687b60;
+  param_1[0x35] = &UNK_00677780;
+  param_1[0x20] = &UNK_00687d50;
+  param_1[0x15] = &UNK_00469780;
+  param_1[0x2b] = &UNK_00680f50;
+  param_1[0x36] = &UNK_006811c0;
+  param_1[0x21] = &UNK_00a69c90;
+  param_1[0x16] = &UNK_00677790;
+  param_1[0x2c] = &UNK_00680e90;
+  param_1[0x37] = &UNK_00677780;
+  *unaff_FS_OFFSET = uVar5;
+  return param_1;
+}
+
+

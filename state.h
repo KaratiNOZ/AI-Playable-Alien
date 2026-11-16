@@ -80,6 +80,20 @@ inline std::atomic<addr> testLocoTypePtr{ 0 };    // адрес значения
 // Чужой сейчас за кулисами — по его дереву поведения (control.cpp), независимо от наших команд 1/2:
 // так камера за кулисами работает и сразу после загрузки уровня, и пока он выходит к Аманде
 inline bool alienBackstage;
+inline std::atomic<bool> g_forcedRetreat{ false }, g_forceRetreatRequested{ false };
+inline bool ForcedRetreatActive() { return g_forcedRetreat.load(); }
+void InstallRetreat();
+inline std::atomic<bool> g_inspecting{ false };
+inline std::atomic<int> g_inspectionHint{ 0 };  // 0 none, 1 locker, 2 low hiding place, 3 active
+inline std::atomic<int> g_inspectionCooldown{ 0 }; // MP: seconds until this hiding place can be inspected again
+inline bool InspectionActive() { return g_inspecting.load(); }
+inline std::atomic<bool> g_inspectionActions{ false };
+inline std::atomic<float> g_inspectionProgress{ 0 };  // 0..1 — прогресс удержания F
+void InstallInspection(bool actions=false);
+void InspectionSetActions(bool on);
+void InspectionReset();
+void InspectionPrepareUnload();
+void InspectionRestorePaused();
 inline float bsViewYaw;     // курс камеры за кулисами (camera.cpp, из орбиты follow-камеры) — для WASD в вентиляции
 inline bool bsViewValid;
 
@@ -233,6 +247,7 @@ inline float fpHeadInfluence = 0.2f;  // 0..1: насколько позиция
 inline std::atomic<bool> turnFollowBody{ false }, fpFlipReq{ false };
 void CameraBodyTurnBegin();
 void CameraBodyTurnTick();
+void CameraBodyTurnEnd();
 inline std::atomic<addr> g_fastTurnActor{ 0 };
 void InstallTurnRate();
 inline float fpYawLimit = 100.f;      // градусов: дальше этого от курса тела взгляд не повернуть — сначала довернётся тело
