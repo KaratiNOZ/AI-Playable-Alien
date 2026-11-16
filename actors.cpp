@@ -251,10 +251,6 @@ static void AmandaTick() {
   // вентиляция и шахта: Аманду за Чужим не водим — в шахте она была в 1 м позади, а касание Чужого для игры — её смерть
   // (тестер: вылез из шахты — game over)
   if (VentBusy() || vent.stay || ductOn) amandaPauseUntil = std::max(amandaPauseUntil, t + 3000);
-  if (AlienKeyAdvK(K_FOLLOW) && t - s_followKeyAt > 500) {  // F — вкл/выкл (нужно для зон, звука, триггеров уровня)
-    s_followKeyAt = t;
-    ActSetFollow(!amandaFollow);
-  }
   if (!amandaFollow || !amandaRB || !npc || !player || camMode == 0 || hugger || t < amandaPauseUntil) return;
   if (amandaHidden || amandaStay) return;  // спрятана под/над картой — её держит alien_extra.cpp; пригнулась — стоит
   // Аманда позади Чужого: касание = смерть (логика игры); в шахте — 1 м, при атаке — 7 м
@@ -519,7 +515,7 @@ static void StatusTick() {
   wchar_t buf[768];
   swprintf(buf, 768,
            L"Камера: %ls   Ввод: %ls\n"
-           L"Стрейф [R]: %ls   Аманда следует [F]: %ls\n"
+           L"Стрейф [R]: %ls   Аманда следует: %ls\n"
            L"Вентиляция: %ls%ls\n"
            L"ИИ [F4, F5 — сброс]: %ls   Скорость: %ls   Атака: ЛКМ   Деревьев: %u",
            cam, cm ? L"WASD" : L"стрелки", !fmode ? L"выкл" : StrafeActive() ? L"вкл" : L"пауза",

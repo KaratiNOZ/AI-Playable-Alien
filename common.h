@@ -101,7 +101,7 @@ inline bool Down(int vk) {
 // клавиши фоторежима — постоянные ----
 enum KeyAct {
   K_SWAP, K_VIEW, K_VENT, K_VENT_AMANDA, K_UNSTUCK,  // главные
-  K_STRAFE, K_FOLLOW,                        // за Чужого, дополнительные
+  K_STRAFE, K_SEARCH,                        // follow is menu-only; F searches hiding places
   K_CHARS, K_HUD, K_MAP, K_AI, K_PANIC, K_SPAWN_FIND, K_SPAWN, K_PHOTO,
   K_LOOK, K_SOUND,                                   // за Чужого: держать — осматривается; звук (рык/шипение)
   K_HUGGER,                                          // играть за лицехвата (следующего)

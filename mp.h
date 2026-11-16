@@ -122,6 +122,7 @@ enum MpAction {
 bool MpGameMenuOn();   // gamemenu.cpp: вставлять ли пункт в меню игры
 // в игре по сети играю не человеком и персонажа уже получил — переключиться на Аманду нельзя (B, «вернуть Аманде»)
 bool MpAvatarLocked();
+bool MpAlienGameplay();  // active network match, local player controls the Alien
 void MpSetSurvivorMap(const std::string& id);  // хост: карта выживания
 void MpCmd(int action, int arg, uint64_t id);
 

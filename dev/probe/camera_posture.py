@@ -42,7 +42,13 @@ try:
         count = min(rd(follow + 0xC0), 256)
         b = next((p for i in range(count) if (p := rd(arr + i * 4)) and rd(p + 8) == hash_follow), 0)
         if b:
+            mgr = rd(base + 0x01766A00 - 0x400000)
+            pov = rd(mgr + 0x8C) if mgr else 0
             rows.append({"t": time.monotonic() - t0, "crouch": rd(npc + 0x2AF, "<B"),
+                         "room": rd(npc + 0x1B0),
+                         "render_room": rd(base + 0x01758140 - 0x400000),
+                         "room_flags": rd(base + 0x01758144 - 0x400000, "<2B"),
+                         "pov_zone": rd(pov + 0x330) if pov else None,
                          "npc": rd(npc + 0x70, "<3f"), "current": current, "follow": follow,
                          "bpos": rd(b + 0x1C, "<3f"), "base": rd(b + 0x1C0, "<3f"),
                          "offset": rd(b + 0x9C, "<3f"), "target": rd(b + 0xA8, "<3f"),

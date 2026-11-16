@@ -8,6 +8,7 @@
 #include "interceptor.h"
 #include "puppet.h"
 #include "state.h"
+#include "mp.h"
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
@@ -134,8 +135,11 @@ static void LookRestore(const char* why) {
   alienLooking = false;
 }
 static void LookTick() {  // 30 мс, под общим замком
+  const bool network = MpAlienGameplay();
+  const bool walk = Down('W') || Down('A') || Down('S') || Down('D') || Down(VK_UP) || Down(VK_DOWN) || Down(VK_LEFT) || Down(VK_RIGHT);
+  const bool autoLook = network && !walk && !HeldK(K_TURN180) && !turnFollowBody && !ductOn && !ventCrawl && !autoDuctPath;
   const bool want = npc && !hugger && camMode != 0 && !photo.on && aiMode == 0 && !alienBackstage && !vent.stay && !VentBusy() &&
-                    (HeldK(K_LOOK) || NowMs() < devLookUntil.load());
+                    (!network || !walk) && (autoLook || HeldK(K_LOOK) || NowMs() < devLookUntil.load());
   if (!want) {
     if (s_lookOn) LookRestore("key released");
     return;
@@ -154,7 +158,7 @@ static void LookTick() {  // 30 мс, под общим замком
         s_lookFlagWas = rd<uint8_t>(s_lookFlag);
         wr<uint8_t>(s_lookFlag, 1);
       }
-      s_lookType = lookMode == 1 ? kLookAt : kLookAround;
+      s_lookType = (autoLook || lookMode == 1) ? kLookAt : kLookAround;
       if (s_lookType == kLookAt) {  // «смотреть можно» (его же ставит разворот на месте, FUN_00675b10)
         s_lookAtFlagWas = rd<uint8_t>(npc + 0x2c8);
         wr<uint8_t>(npc + 0x2c8, 1);

@@ -221,7 +221,7 @@ static DWORD WINAPI InitThread(LPVOID) {
   InstallInputBlock();
   InstallMp();
   InstallPuppet();
-  InstallGameMenu();
+  // Multiplayer screens remain in gamemenu.cpp for future work; no UI hooks for now.
   InstallUi();
   if (s_extraInstall) s_extraInstall();
   InstallReload();  // узлы и камера от прошлой версии (если её отцепили посреди уровня)

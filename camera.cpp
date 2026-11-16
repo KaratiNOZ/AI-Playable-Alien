@@ -5,6 +5,7 @@
 #include "interceptor.h"
 #include "puppet.h"
 #include "state.h"
+#include "motion_math.h"
 #include <algorithm>
 #include <cmath>
 #include <cstring>
@@ -27,6 +28,29 @@ static addr s_killCamOn = 0;
 static V3 s_kcPos{};
 static float s_kcYaw = 0, s_kcPitch = 0;
 static bool s_kcHave = false;
+static addr s_turnCameraActor = 0;
+static float s_turnCameraBody = 0, s_turnCameraTravel = 0, s_turnCameraApplied = 0;
+static float s_turnCameraOrbit = 0;
+void CameraBodyTurnBegin() {
+  s_turnCameraActor = npc;
+  s_turnCameraBody = npc ? rf(npc + 0x174) : 0.f;
+  s_turnCameraTravel = s_turnCameraApplied = 0.f;
+  if (camMode == 2) if (const addr b = FollowBeh()) s_turnCameraOrbit = rf(b + 0x20c);
+}
+void CameraBodyTurnTick() {
+  if (!turnFollowBody || !npc || npc != s_turnCameraActor) return;
+  const float body = rf(npc + 0x174);
+  s_turnCameraTravel += WrapPi(body - s_turnCameraBody);
+  s_turnCameraBody = body;
+  const float angle = std::copysign(kPi * TurnEase(std::fabs(s_turnCameraTravel) / kPi), s_turnCameraTravel);
+  const float step = angle - s_turnCameraApplied;
+  s_turnCameraApplied = angle;
+  if (camMode == 2) if (const addr b = FollowBeh()) wf(b + 0x20c, s_turnCameraOrbit + angle);
+  if (camMode == 1 && fpFree && fpHave) fpYaw = WrapPi(fpYaw + step);
+  else if (player && camMode != 0) wf(player + 0x174, WrapPi(rf(player + 0x174) + step));
+}
+static void DuctLightTick();
+static void DuctLightRestore();
 
 
 addr CamG() { return rp(rp(VA(va::GameGlobals)) + 0x58); }
@@ -92,6 +116,8 @@ bool CamCutsceneActive() {
   return r;
 }
 void CamRestore(const char* why) {
+  g_ductVisibility = false;
+  DuctLightRestore();
   if (player && !CamEntityOk(player)) {  // уровень разбирается: камеры не трогаем, игра поставит свои
     camMode = 0;
     camSaved = 0;
@@ -134,6 +160,7 @@ void CamDo() {
   if (hugger && w == 1) w = 2;  // у лицехвата вида из головы нет — только за спиной
   camWant = 0;
   camMode = (w == 3) ? 0 : w;
+  if (camMode != 2) g_ductVisibility = false;
   addr G = CamG(), cur = rp(G + 0x1d8), follow = rp(G + 0x1dc), code = rp(G + 0x1e0);
   if (!camSaved) camSaved = cur;
   if (w == 1) {
@@ -328,6 +355,7 @@ static void OnCamTick(Invocation&) {
   FpArmsTick();
   CamDo();
   KillCamTick();
+  if (camMode != 2 || photo.on || hugger || !npc || s_killCamOn) g_ductVisibility = false;
   if (const addr e = g_devCodeCam.exchange(0)) Safe([&] {
       const addr G = CamG(), code = rp(G + 0x1e0);
       SetBoneTarget(code, e);
@@ -460,16 +488,6 @@ static void FpFreeUpdate(addr cam) {  // раз в кадр: мышь -> взг�
   }
   fpYaw = WrapPi(fpYaw + mx * fpSens * 0.0022f);
   fpPitch = std::clamp(fpPitch - my * fpSens * 0.0022f, -1.35f, 1.35f);
-  {  // резкий разворот на 180 (control.cpp): камера поворачивается вместе с телом
-    static float last = 0.f;
-    static bool have = false;
-    if (turnFollowBody.load()) {
-      if (have) fpYaw = WrapPi(fpYaw + WrapPi(body - last));
-      last = body, have = true;
-    } else {
-      have = false;
-    }
-  }
   static ms_t s_flipUntil = 0;  // на ходу — камеру сразу назад; предел поворота снят, пока тело не догонит (до 2 с)
   if (fpFlipReq.exchange(false)) fpYaw = WrapPi(fpYaw + kPi), s_flipUntil = NowMs() + 2000;
   // как у Аманды: шея не крутится на 360 — дальше предела от курса тела взгляд не уходит, ждём, пока довернётся тело
@@ -481,7 +499,14 @@ static void FpFreeUpdate(addr cam) {  // раз в кадр: мышь -> взг�
     if (rel > lim) fpYaw = WrapPi(body + lim);
     else if (rel < -lim) fpYaw = WrapPi(body - lim);
   }
-  const V3 b = rv3(cam + 0x28 + 0x14);  // блок 1: позиция, которую только что поставила кость (с поправками из меню)
+  V3 b = rv3(cam + 0x28 + 0x14);
+  // Read the actual head, not an interpolated transition from the previous camera.
+  if (!(g_palEditSeq.load() & 1) && rd<uint8_t>(npc + 0x3f0 + 0xb5c)) {
+    const int bone = Fn<BoneIndexFn>(va::BoneIndex)(npc + 0x3f0, "Head1", 7);
+    alignas(16) float frame[16]{};
+    if (bone >= 0 && Fn<BoneMatrixFn>(va::BoneMatrix)(npc + 0x3f0, bone, 7, frame))
+      b = {frame[12], frame[13], frame[14]};
+  }
   const V3 p = rv3(npc + 0x70);
   if (!std::isfinite(b.x) || !std::isfinite(p.x)) return;
   s_fpBone = b;
@@ -492,7 +517,7 @@ static void FpFreeUpdate(addr cam) {  // раз в кадр: мышь -> взг�
   static float lastHead[3] = { 1e9f, 1e9f, 1e9f };
   if (lastHead[0] != camCfg.head[0] || lastHead[1] != camCfg.head[1] || lastHead[2] != camCfg.head[2]) {
     for (int i = 0; i < 3; i++) lastHead[i] = camCfg.head[i];
-    s_fpLocalHave = false;  // при влиянии 0 точка замерла — без этого ползунки «вперёд/вверх/вбок» ничего не меняли
+    // Offsets are applied after the anchor, so editing never reanchors the head.
   }
   if (!s_fpLocalHave) {
     s_fpLocalAvg = local;
@@ -506,16 +531,11 @@ static void FpFreeUpdate(addr cam) {  // раз в кадр: мышь -> взг�
   const float ay = WrapPi(fpYaw + WrapPi(body - fpYaw) * w);  // курс для смещения: 0 — взгляд камеры, 1 — тело
   const float afx = std::sin(ay), afz = std::cos(ay), arx = std::cos(ay), arz = -std::sin(ay);
   const V3 anchor{ p.x + arx * s_fpLocalAvg.x + afx * s_fpLocalAvg.z, p.y + s_fpLocalAvg.y, p.z + arz * s_fpLocalAvg.x + afz * s_fpLocalAvg.z };
-  const V3 t{ anchor.x + (b.x - anchor.x) * w, anchor.y + (b.y - anchor.y) * w, anchor.z + (b.z - anchor.z) * w };
-  const float dx = t.x - s_fpPos.x, dy = t.y - s_fpPos.y, dz = t.z - s_fpPos.z;
-  if (!s_fpPosHave || dx * dx + dy * dy + dz * dz > 4.f) {
-    s_fpPos = t;
-    s_fpPosHave = true;
-  } else {  // лёгкое сглаживание того, что пришло от кости
-    s_fpPos.x += dx * 0.7f;
-    s_fpPos.z += dz * 0.7f;
-    s_fpPos.y += dy * 0.4f;
-  }
+  // Settings use fixed character axes, never the rotating animated Head1 axes.
+  s_fpPos = { anchor.x + (b.x-anchor.x)*w + rx*camCfg.head[0] + fx*camCfg.head[2],
+              anchor.y + (b.y-anchor.y)*w + camCfg.head[1],
+              anchor.z + (b.z-anchor.z)*w + rz*camCfg.head[0] + fz*camCfg.head[2] };
+  s_fpPosHave = true;
 }
 static void FpFreeWrite(addr cam, int from, int to) {
   const float sy = std::sin(fpYaw / 2), cy = std::cos(fpYaw / 2), sp = std::sin(-fpPitch / 2), cp = std::cos(-fpPitch / 2);
@@ -675,7 +695,18 @@ static void NearClipTick(addr G) {
 // позиции камеры — а камера внутри его головы. За спиной (камера следования) комната — его (+0x1b0). Из головы звук был
 // глухой (тестер): ставим ту же комнату, что за спиной, и пишем в лог, отличалась ли найденная зона.
 static void OnKcSubmitLeave(Invocation& inv) {
-  if (camMode != 1 || photo.on || hugger || !npc || s_killCamOn || inv.ecx != CamG()) return;
+  if (inv.ecx == CamG()) DuctLightTick();
+  if (photo.on || hugger || !npc || s_killCamOn || inv.ecx != CamG()) return;
+  if (camMode == 2) {
+    // The follow camera can cross a duct portal before its actor. During the
+    // native traversal the actor's room also temporarily becomes 0/1. Forcing
+    // that room makes the level vanish while dynamic characters stay visible.
+    // Like the photo camera, resolve visibility from the actual camera position.
+    wr<uint8_t>(VA(va::RenderRoomForced), 0);
+    wr<uint8_t>(VA(va::RenderNoZoneMatch), 0);
+    return;
+  }
+  if (camMode != 1) return;
   const uint32_t room = rd<uint32_t>(npc + 0x1b0);
   if (!room || room == 0xFFFFFFFFu) return;
   static int s_last = -1;
@@ -726,9 +757,9 @@ static void FollowFromCfg() {  // вне шахты: fOff/fTgt из настро
 }
 static void HeadFromCfg() {
   if (addr b = BoneBeh()) {
-    wf(b + 0xac, camCfg.head[0]);
-    wf(b + 0xb0, camCfg.head[1]);
-    wf(b + 0xb4, camCfg.head[2]);
+    wf(b + 0xac, fpFree ? 0.f : camCfg.head[0]);
+    wf(b + 0xb0, fpFree ? 0.f : camCfg.head[1]);
+    wf(b + 0xb4, fpFree ? 0.f : camCfg.head[2]);
   }
 }
 void CamCfgApply() {
@@ -740,7 +771,8 @@ void CamCfgApply() {
   // за спиной — доедет плавно (SmoothFollow), из головы — сразу
   if (camMode == 1) {
     Safe([] { HeadFromCfg(); });
-    camWant = 1, camKeyAt = NowMs();  // переактивировать, чтобы поведение перечитало параметры
+    // Free view reads its offsets directly, without reactivating a blended camera.
+    if (!fpFree) camWant = 1, camKeyAt = NowMs();
   }
 }
 void ActCamCfg(const CamCfg& c) {
@@ -825,6 +857,8 @@ static void FpKeeperTick() {
 static void OnFollowCalculateEnter(Invocation& inv) {
   if (camMode != 2 || hugger || PhotoActive() || s_killCamOn || !npc || CamTarget() != npc ||
       !inv.args || !inv.arg[1] || inv.ecx != FollowBehRaw()) return;
+  if (turnFollowBody && s_turnCameraActor == npc)
+    wf(inv.ecx + 0x20c, s_turnCameraOrbit + s_turnCameraApplied);
   ThreadState* ts = TS(false);
   if (!ts || ts->depth >= kMaxFrames) return;
   alignas(4) static thread_local uint32_t options[kMaxFrames][0x5c / 4];
@@ -843,7 +877,9 @@ static void OnFollowCalculateEnter(Invocation& inv) {
 }
 static void OnFollowCalculateLeave(Invocation&) {}  // retain a stack frame for nested per-call buffers
 
-void CameraShutdown(bool mayCallGame) {  // отцепление мода; mayCallGame — поток игры стоит (пауза), функции игры звать можно
+void CameraShutdown(bool mayCallGame) {
+  g_ductVisibility = false;  // отцепление мода; mayCallGame — поток игры стоит (пауза), функции игры звать можно
+  if (mayCallGame) Safe([] { DuctLightRestore(); });
   if (mayCallGame && player && s_partsOf == player && !s_partOrig.empty()) Safe([] { ApplyParts(0); });  // части Аманде
   if (mayCallGame && npc && s_headOf == npc && !s_headOrig.empty()) Safe([] { ApplyAlienHead(npc, false); });  // голова Чужому
   if (s_nearCam) Safe([] { wf(s_nearCam + 0x4c, s_nearOrig); }), s_nearCam = 0;  // ближняя плоскость камеры — как была
@@ -883,19 +919,78 @@ static void DuctUpdate() {
   if (t - s_ductAt < 150 || !hkWorld) return;
   s_ductAt = t;
   V3 a = rv3(npc + 0x70);
-  bool raw = HkRayHit(a.x, a.y + 0.4f, a.z, a.x, a.y + 1.9f, a.z);
+  bool raw = HkRayHit(a.x, a.y + 0.2f, a.z, a.x, a.y + 1.9f, a.z);
+  // Roof meshes have gaps. Native duct crouching must keep the duct camera on
+  // through them; floor-crawl is owned separately and must not latch this mode.
+  raw = raw || (rd<uint8_t>(npc + 0x2af) && !ventCrawl.load());
   if (raw == s_ductState) s_ductRun = 0;
   else if (++s_ductRun >= 5) s_ductState = raw, s_ductRun = 0;
   if (s_ductState == ductOn) return;
   ductOn = s_ductState;
   Log("duct %d", int(ductOn));
-  const float inOff[3] = { 0, 0.35f, -0.9f }, inTgt[3] = { 0, 0.3f, 1.5f };
+  const float inOff[3] = { 0, 0.55f, -0.85f }, inTgt[3] = { 0, 0.4f, 1.5f };
   if (ductOn) {
     memcpy(fOff, inOff, sizeof fOff);
     memcpy(fTgt, inTgt, sizeof fTgt);
   }
   FollowFromCfg();  // из шахты — обратно к настройке игрока
   ApplyFollow();
+}
+
+static addr s_ductLightManager = 0, s_ductLightPlayer = 0;
+static bool s_ductLightWasOn = false;
+using TorchSwitchFn = void(__thiscall*)(addr);
+using EntityMatrixFn = void(__cdecl*)(addr*, const float*);
+
+static void DuctLightRestore() {
+  const addr mgr = s_ductLightManager, owner = s_ductLightPlayer;
+  s_ductLightManager = s_ductLightPlayer = 0;
+  if (!mgr || !owner || player != owner || rp(owner + 0x1100) != mgr) return;
+  Fn<TorchSwitchFn>(s_ductLightWasOn ? 0x007c3700 : 0x007c3840)(mgr);
+  // The native update puts an originally enabled torch back on Amanda.
+  if (s_ductLightWasOn) Fn<TorchSwitchFn>(0x007abfb0)(mgr);
+  Log("duct light: native torch restored");
+}
+
+static void DuctLightTick() {
+  const bool active = camMode == 2 && ductOn && npc && player && !hugger && !photo.on && !s_killCamOn;
+  if (!active) { DuctLightRestore(); return; }
+  const addr mgr = rp(player + 0x1100);
+  if (!mgr || rp(mgr + 0x1528) != player || !rp(mgr + 0x156c)) { DuctLightRestore(); return; }
+  if (s_ductLightManager != mgr || s_ductLightPlayer != player) {
+    DuctLightRestore();
+    s_ductLightWasOn = rd<uint8_t>(mgr + 0x1574) != 0;
+    s_ductLightManager = mgr;
+    s_ductLightPlayer = player;
+    Log("duct light: native torch borrowed (was on %d)", int(s_ductLightWasOn));
+  }
+  Fn<TorchSwitchFn>(0x007c3700)(mgr);
+  const addr cam = rp(CamG() + 0x1d8);
+  if (!cam) return;
+  const float x = rf(cam + 0x2c), y = rf(cam + 0x30), z = rf(cam + 0x34), w = rf(cam + 0x38);
+  const V3 p = rv3(cam + 0x3c);
+  alignas(16) float matrix[12] = {
+    1-2*(y*y+z*z), 2*(x*y-z*w), 2*(x*z+y*w), p.x,
+    2*(x*y+z*w), 1-2*(x*x+z*z), 2*(y*z-x*w), p.y,
+    2*(x*z-y*w), 2*(y*z+x*w), 1-2*(x*x+y*y), p.z
+  };
+  addr ref = rp(mgr + 0x156c);
+  Fn<EntityMatrixFn>(0x008bc500)(&ref, matrix);
+}
+
+static void DuctCameraPosition(addr b) {
+  if (!ductOn || !npc) return;
+  const V3 a = rv3(npc + 0x70), p = rv3(b + 0x1c);
+  float dx = p.x - a.x, dz = p.z - a.z;
+  const float len = std::hypot(dx, dz);
+  if (len < 0.01f) return;
+  // FollowCalculate adds native posture/bob offsets after our preset. In a
+  // low shaft that puts the camera above its ceiling. Use actor-relative height
+  // here, after those offsets, while preserving the mouse-controlled orbit.
+  const V3 pos{a.x + dx / len * 1.65f, a.y + 0.42f, a.z + dz / len * 1.65f};
+  wv3(b + 0x1c, pos.x, pos.y, pos.z);
+  const addr cam = rp(b + 0x34);
+  if (cam) for (addr o : { 0x14, 0x3c, 0x64 }) wv3(cam + o, pos.x, pos.y, pos.z);
 }
 
 // ---------------- столкновения камеры ----------------
@@ -908,7 +1003,7 @@ static float s_sNav = 1, s_sPhys = 1;
 static ms_t s_colLog = 0;
 static unsigned s_colN = 0, s_colNav = 0, s_colPhys = 0;
 static void Collide(addr b) {
-  if (camCollide == 0) {
+  if (camCollide == 0 || (!hugger && ductOn)) {
     s_sNav = s_sPhys = 1;
     return;
   }
@@ -1020,17 +1115,21 @@ static void OnFollowUpdateEnter(Invocation& inv) {
 static void OnFollowUpdateLeave(Invocation& inv) {
   addr b = inv.ecx;
   if (b != FollowBehRaw()) return;
-  if (PhotoActive()) {  // фоторежим (photo.cpp) — камера полностью наша
+  if (PhotoActive()) {
+    g_ductVisibility = false;  // фоторежим (photo.cpp) — камера полностью наша
     if (!Safe([&] { PhotoCamera(b); })) Log("err photo cam");
     return;
   }
-  if (camMode != 2 || !CamTarget()) return;
+  if (camMode != 2 || !CamTarget()) { g_ductVisibility = false; return; }
   if (!hugger && Backstage()) {
+    g_ductVisibility = false;
     if (!Safe([&] { BackstageCamera(b); })) Log("err backstage cam");
     return;
   }
   if (!hugger && !Safe([&] { DuctUpdate(); })) Log("err duct");  // шахты — только у Чужого
+  g_ductVisibility = !hugger && ductOn && npc && !s_killCamOn;
   if (!Safe([&] { Collide(b); })) Log("err col");
+  if (!hugger && !Safe([&] { DuctCameraPosition(b); })) Log("err duct position");
 }
 
 // ---------------- лучи для выхода из вентиляции (vent.cpp) — только из потока игры ----------------
@@ -1086,7 +1185,9 @@ static bool WorldLive(addr w) {  // встречался недавно (30 с):
     if (w && s_world[i].load() == w && now - s_worldSeen[i].load() < 30000) return true;
   return false;
 }
-void CameraWorldReset() {  // смена уровня: миры старого освобождаются
+void CameraWorldReset() {
+  s_ductLightManager = s_ductLightPlayer = 0;  // old level owns/frees its torch
+  g_ductVisibility = false;  // смена уровня: миры старого освобождаются
   for (int i = 0; i < kWorlds; i++) s_world[i] = 0, s_worldSeen[i] = 0;
   hkWorld = 0;
 }

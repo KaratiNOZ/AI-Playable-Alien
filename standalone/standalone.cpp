@@ -409,7 +409,7 @@ static void SwitchToVtable(IDXGISwapChain* sc) {
   Log("ImGui: Present перехвачен через vtable swapchain");
 }
 
-static void Sharpen(ID3D11Texture2D* bb, float k);  // ниже: резкость фоторежима
+static void Sharpen(ID3D11Texture2D* bb, float k, float ductLift);  // ниже: резкость фоторежима
 static void SharpenRelease();
 // отцепление мода (reload.cpp): в потоке рендера — выключить ImGui, вернуть Present в vtable и WndProc окна
 static void UiShutdown() {
@@ -533,7 +533,13 @@ static void Frame(IDXGISwapChain* sc) {
   ID3D11Texture2D* bb = nullptr;
   bool drawn = false;
   if (SUCCEEDED(sc->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&bb))) && bb) {
-    if (const float k = PhotoSharpen(); k > 0.001f) Sharpen(bb, k);  // резкость фоторежима — под меню и HUD
+    const float k = PhotoSharpen();
+    static float ductLift = 0.f;
+    const float wantLift = g_ductVisibility.load() && !PhotoActive() ? 1.f : 0.f;
+    if (PhotoActive()) ductLift = 0.f;
+    else ductLift += (wantLift - ductLift) * std::min(1.f, io.DeltaTime * 10.f);
+    if (std::fabs(ductLift - wantLift) < 0.001f) ductLift = wantLift;
+    if (k > 0.001f || ductLift > 0.f) Sharpen(bb, k, ductLift);  // before UI: lift shadows only inside ducts
     ID3D11RenderTargetView* rtv = nullptr;  // каждый кадр заново: так не нужен хук ResizeBuffers
     if (SUCCEEDED(s_dev->CreateRenderTargetView(bb, nullptr, &rtv)) && rtv) {
       s_ctx->OMSetRenderTargets(1, &rtv, nullptr);
@@ -577,7 +583,9 @@ static const char kSharpenHlsl[] =
     " float3 n = t0.Sample(s0, i.uv + float2(p.y, 0)).rgb + t0.Sample(s0, i.uv - float2(p.y, 0)).rgb"
     " + t0.Sample(s0, i.uv + float2(0, p.z)).rgb + t0.Sample(s0, i.uv - float2(0, p.z)).rgb;"
     " float3 d = c - n * 0.25; d = clamp(d, -0.2, 0.2);"
-    " return float4(saturate(c + d * p.x), 1); }\n";
+    " c = saturate(c + d * p.x);"
+    " if (p.w > 0) { float3 lit = sqrt(c) * 0.95; c = lerp(c, lit, p.w); }"
+    " return float4(saturate(c), 1); }\n";
 static DXGI_FORMAT ViewFormat(DXGI_FORMAT f) {
   switch (f) {
     case DXGI_FORMAT_R8G8B8A8_TYPELESS: return DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -631,7 +639,7 @@ static void SharpenRelease() {
     if (o) o->Release();
   s_shVs = nullptr, s_shPs = nullptr, s_shCb = nullptr, s_shSmp = nullptr, s_shSrv = nullptr, s_shCopy = nullptr;
 }
-static void Sharpen(ID3D11Texture2D* bb, float k) {
+static void Sharpen(ID3D11Texture2D* bb, float k, float ductLift) {
   D3D11_TEXTURE2D_DESC d;
   bb->GetDesc(&d);
   if (d.SampleDesc.Count > 1 || !SharpenInit()) return;
@@ -659,7 +667,7 @@ static void Sharpen(ID3D11Texture2D* bb, float k) {
   D3D11_MAPPED_SUBRESOURCE m;
   if (SUCCEEDED(s_ctx->Map(s_shCb, 0, D3D11_MAP_WRITE_DISCARD, 0, &m))) {
     float* f = static_cast<float*>(m.pData);
-    f[0] = k * 1.5f, f[1] = 1.f / float(d.Width), f[2] = 1.f / float(d.Height), f[3] = 0;
+    f[0] = k * 1.5f, f[1] = 1.f / float(d.Width), f[2] = 1.f / float(d.Height), f[3] = ductLift;
     s_ctx->Unmap(s_shCb, 0);
   }
   // сохранить то, что трогаем (ImGui дальше сохраняет уже наше состояние — возвращаем игре её собственное)

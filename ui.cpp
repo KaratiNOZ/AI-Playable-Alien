@@ -371,7 +371,7 @@ static float CamGet(const std::wstring& f, const wchar_t* key, float def) { retu
 static void CamSet(const std::wstring& f, const wchar_t* key, float v) { FSet(f, L"camera", key, v); }
 
 // клавиши [keys]
-static const wchar_t* const kKeyIds[K_COUNT] = { L"swap", L"view", L"vent", L"vent_amanda", L"unstuck", L"strafe", L"follow",
+static const wchar_t* const kKeyIds[K_COUNT] = { L"swap", L"view", L"vent", L"vent_amanda", L"unstuck", L"strafe", L"search",
                                                  L"chars", L"hud", L"map", L"ai", L"panic", L"spawn_find", L"spawn", L"photo",
                                                  L"look", L"sound", L"hugger", L"menu", L"turn180" };
 static void SaveKeys() {
@@ -912,7 +912,6 @@ static void DrawContextHints(const Snap& s) {
   Hint(KN(K_UNSTUCK), TR("— застрял? встать рядом с Амандой", "— stuck? stand near Amanda"));
   if (adv) {
     Hint(KN(K_STRAFE), TR("— стрейф", "— strafe"));
-    Hint(KN(K_FOLLOW), TR("— Аманда следует", "— Amanda follows"));
   }
   Hint(KN(K_SWAP), TR("— вернуться к Аманде", "— back to Amanda"));
 }
@@ -1298,7 +1297,6 @@ static void DrawKeys() {
     { K_MAP, TR("Карта вентиляции", "Vent map"), true },
     { K_PHOTO, TR("Фоторежим", "Photo mode"), true },
     { K_STRAFE, TR("Стрейф вкл/выкл", "Strafe on/off"), false },
-    { K_FOLLOW, TR("Аманда следует за Чужим", "Amanda follows the Alien"), false },
     { K_CHARS, TR("Список персонажей", "Character list"), false },
     { K_AI, TR("ИИ для всех по кругу: ручное → не на Аманду → полный", "AI for everyone, cycle: manual → not Amanda → full"), false },
     { K_PANIC, TR("Аварийный сброс", "Panic reset"), false },
@@ -1628,7 +1626,7 @@ static void PageMove(const Snap& s) {
   BUI::Hint("%s", TR("Вход в горизонтальную вентиляцию — продолжай двигаться в отверстие",
                      "To enter a horizontal duct, keep moving into the opening"));
   bool follow = s.follow;
-  if (BUI::Toggle(Lbl(TR("Аманда следует за Чужим", "Amanda follows the Alien"), K_FOLLOW, "af"), &follow) && alien)
+  if (BUI::Toggle(TR("Аманда следует за Чужим###af", "Amanda follows the Alien###af"), &follow) && alien)
     Push(C_AMANDA, follow ? 1 : 0);
   Tip(TR("Аманда держится в 3.5 м позади Чужого — нужно, чтобы работали зоны уровня, звук и триггеры. В шахтах и "
          "вентиляции — на паузе. По умолчанию выключено",
@@ -2335,7 +2333,6 @@ static const PageDef kPages[PP_COUNT] = {
   { PageHuggers, "Лицехваты", "Facehuggers", "лицехваты и андроиды", "facehuggers and androids", BUI::ICO_BUG },
   { PageVents, "Вентиляция", "Vents", "спрятаться, вылезти", "hide, come out", BUI::ICO_WIND },
   { PageSpawn, "Спавн", "Spawn", "персонажи уровня, спавн", "level characters, spawn", BUI::ICO_SPAWN },
-  { PageMp, "Мультиплеер", "Multiplayer", "лобби, карта, кто за кого играет", "lobby, map, who plays whom", BUI::ICO_NET },
   { PageScreen, "Экран", "Screen", "подсказки, статус, карта", "hints, status, map", BUI::ICO_EYE },
   { PageKeys, "Клавиши", "Keys", "переназначить", "rebind", BUI::ICO_KEY },
   { PageMod, "Мод", "Mod", "обновить, отцепить", "update, detach", BUI::ICO_GEAR },

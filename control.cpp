@@ -5,6 +5,7 @@
 #include "interceptor.h"
 #include "state.h"
 #include "mp.h"
+#include "motion_math.h"
 #include <algorithm>
 #include <atomic>
 #include <cmath>
@@ -392,15 +393,23 @@ static void TurnEnd(const char* why) {
   if (npc) Safe([&] { y = rf(npc + 0x174); });
   Log("turn: end (%s), body turned %.0f deg", why, WrapPi(y - s_turnFrom) * 57.3f);
   s_turnOn = false;
+  g_fastTurnActor = 0;
   s_turnEndAt = NowMs();
 }
 static bool TurnWanted() { return !ventCrawl.load() && (camMode == 1 ? turnInPlaceFp : camMode == 2 ? turnInPlace3p : false); }
 static void TurnTick(const Input& in) {
   const ms_t t = NowMs();
-  const bool base = npc && loco && !ventCrawl.load() && !photo.on && !hugger && aiMode == 0 && !VentBusy() && !vent.stay && !alienBackstage &&
-                    !autoDuctPath && !ductOn && !alienLooking && attack.until <= t;
+  const bool available = npc && loco && !photo.on && !hugger && aiMode == 0 && !VentBusy() && !vent.stay && !alienBackstage &&
+                    !autoDuctPath && !alienLooking && attack.until <= t;
+  const bool crouch = ventCrawl.load() || ductOn;
+  const bool base = available && (!crouch || (camMode == 2 && (s_quickReq || s_quickTurn)));
   // резкий разворот на 180 (клавиша): стоит — анимацией, на ходу — камера сразу назад, тело развернётся по ходу
-  if (camMode != 0 && g_hotkeysOn && !g_rebinding && KeyHit(K_TURN180) && base) {
+  if (camMode != 0 && g_hotkeysOn && !g_rebinding && KeyHit(K_TURN180) && available) {
+    if (crouch && camMode == 2 && !in.rawAny && !s_quickTurn) {
+      s_quickReq = t;  // native action uses the active crouched/vent animation context
+      return;
+    }
+    if (!base) return;
     if (in.rawAny) {
       if (camMode == 1) fpFlipReq = true;
       else if (player) Safe([] { wf(player + 0x174, WrapPi(rf(player + 0x174) + kPi)); });
@@ -437,6 +446,7 @@ static void TurnTick(const Input& in) {
     s_quickReq = 0;
     s_quickTurn = true;
     turnFollowBody = true;  // камера поворачивается вместе с телом
+    CameraBodyTurnBegin();
     s_turnOn = true, s_turnYaw = WrapPi(body + kPi), s_turnFrom = body, s_turnAt = t, s_turnPrim = prim, s_turnTries = 0;
     s_gameReq = 1;
     Log("turn 180: start (from action %d)", prim);
@@ -497,6 +507,7 @@ static std::atomic<ms_t> s_snapIdleUntil{ 0 };
 // on arbitrary idle actions: the locomotion FSM needs it to advance to a new request.
 static void ToIdle(addr act) { Fn<PrimToIdleFn>(va::PrimToIdle)(act); }
 static void ResetTurnState() {
+  g_fastTurnActor = 0;
   s_turnOn = false;
   s_locoTurnMode = false;
   s_gameReq = 0;
@@ -512,27 +523,22 @@ static void ResetTurnState() {
 // поток игры: выход интегратора движения — переходы основного действия, которые просил главный цикл
 static void OnTurnGameTick(Invocation&) {
   if (!npc || !loco) return;
-  {  // резкий 180 за спиной: курс Аманды (её невидимый взгляд = курс камеры) поворачивается вместе с телом
-    static float last = 0.f;
-    static bool have = false;
-    if (turnFollowBody.load() && camMode == 2 && player) {
-      Safe([] {
-        const float b = rf(npc + 0x174);
-        if (have) wf(player + 0x174, WrapPi(rf(player + 0x174) + WrapPi(b - last)));
-        last = b, have = true;
-      });
-    } else {
-      have = false;
-    }
-  }
+  CameraBodyTurnTick();
   const int want = s_gameReq.exchange(0);
   const ms_t snapUntil = s_snapIdleUntil.load();
-  if (!want && !snapUntil && !s_locoTurnMode.load()) return;
+  if (!want && !snapUntil && !s_locoTurnMode.load() && !(alienSnappy && moving && req)) return;
   Safe([&] {
     addr act = rp(npc + 0x36c);
     if (!act) return;
     int prim = rd<uint8_t>(act + 0x1a);
     bool done = (rd<uint8_t>(act + 8) & 4) != 0;
+    // Skip only our direct movement's native start, never duct navigation or AI.
+    if (alienSnappy && moving && req && !VentBusy() && !autoDuctPath && !ductOn && !ventCrawl &&
+        !alienLooking && aiMode == 0 && prim == 55) {
+      Fn<void(__fastcall*)(addr)>(va::PrimToLocoCycle)(act);
+      prim = 56;
+      Log("snappy: native movement start skipped");
+    }
     if (s_locoTurnMode.load() && prim == 57 && done) {
       ToIdle(act);
       prim = 1;
@@ -553,6 +559,7 @@ static void OnTurnGameTick(Invocation&) {
       wr<uint32_t>(L + 0x28, rd<uint32_t>(VA(va::TurnConstB)));
       wf(L + 0x1c, s_turnYaw);
       Fn<PrimToStandingTurnFn>(va::PrimToStandingTurn)(act, 0, 1);
+      g_fastTurnActor = npc;
       s_turnAt = NowMs();
       prim = 57;
     } else if (want == 2 && prim == 57) {
@@ -561,10 +568,12 @@ static void OnTurnGameTick(Invocation&) {
     }
     // разворот кончился — режим ходьбы обратно в 0 (как FUN_00451040), иначе Чужой не может пойти
     if (s_locoTurnMode.load() && prim != 57 && rd<uint32_t>(loco + 8) == 4u) {
+      g_fastTurnActor = 0;
       wr<uint32_t>(loco + 8, 0u);
       s_locoTurnMode = false;
       Log("turn: loco mode 4 -> 0 (action %d)", prim);
     } else if (s_locoTurnMode.load() && prim != 57) {
+      g_fastTurnActor = 0;
       s_locoTurnMode = false;  // режим уже сменила сама игра (пошёл)
     }
     if (snapUntil) {
@@ -808,7 +817,7 @@ static void MainTick() {
   bool sideways = strafe && in.any && player && std::fabs(WrapPi(in.worldYaw - in.camYaw)) > 0.6f;
   if (in.any && sideways && s_startTicks < 20) s_startTicks++;
   if (!in.any) s_startTicks = 0;
-  wr<uint32_t>(moveNode + 8, uint32_t(in.speed == 1 && sideways && s_startTicks < 20 ? 0 : in.speed));
+  wr<uint32_t>(moveNode + 8, uint32_t(!alienSnappy && in.speed == 1 && sideways && s_startTicks < 20 ? 0 : in.speed));
   if (npc) wf(moveNode + 0xc, WrapPi(reqYaw - rf(npc + 0x174)));
   if (in.any) {
     s_release = 0;
@@ -1179,6 +1188,7 @@ static void OnTreeDestroy(Invocation& inv) {
 }
 
 void InstallControl() {
+  InstallTurnRate();
   using Interceptor::Attach;
   Attach(VA(va::FactoryMenuLink), OnFactoryEnter, OnFactoryLeave);
   Attach(VA(va::MoveParams), nullptr, OnMoveParamsLeave);

@@ -22,6 +22,15 @@ Designed for the Steam version of the game (`AI.exe` from `17.02.2015`). On othe
 
 ### Update — 16 November 2026
 
+**0.21-beta (interim build)**
+
+* T camera rotation follows the Alien's actual turn direction using cubic Bézier ease-in-out; third-person crawling also supports T.
+* Faster owned standing-turn animations; “snappy Alien” skips the native walking start as well as the stop.
+* Free first-person view reads the head position directly. Camera offsets use fixed character axes and apply immediately.
+* Multiplayer menus are temporarily hidden. The backend is retained; network Alien idle look follows the camera and releases on movement input.
+* Amanda following is now menu-only. F is reserved for hiding-place inspection, which is not implemented in this interim build.
+* Known issues: the third-person T camera can jitter and reset its orbit after turning; Bézier synchronization is unfinished. Duct visibility and lighting remain experimental. Forced flamethrower retreat, hiding-place inspection and the audio/NPC work are still pending.
+
 * **F6: floor crawling.** Uses the game's native crouched posture; normal walking speed returns after standing up.
 * **Horizontal ducts:** keep moving into an opening to enter or leave automatically. The manual C path mode has been removed; C still rolls the camera in photo mode.
 * Fixed the camera briefly jumping into the Alien's head when changing posture.
@@ -98,6 +107,15 @@ Designed for the Steam version of the game (`AI.exe` from `17.02.2015`). On othe
 * **Требования:** Ничего доустанавливать не нужно — всё уже вшито в файлы мода.
 
 ### Обновление — 16 ноября 2026
+
+**0.21-beta — промежуточная сборка**
+
+* Камера при T следует направлению разворота Чужого по кривой Bézier ease-in-out. T доступна и при ползании от третьего лица.
+* Ускорены собственные анимации разворота. «Удобный Чужой» пропускает начало ходьбы, как и остановку.
+* Свободный вид от первого лица берёт позицию головы напрямую. Смещения задаются в постоянных осях тела и применяются сразу.
+* Мультиплеер временно скрыт из меню, его код сохранён. В сетевой игре осмотр Чужого включается в покое и отключается кнопкой движения.
+* Следование Аманды осталось только в меню. F освобождена для осмотра укрытий; сам осмотр в эту сборку ещё не вошёл.
+* Известные ограничения: камера T за спиной может дёргаться и сбрасывать ракурс после разворота; синхронизация Bézier ещё не закончена. Видимость и освещение в шахтах остаются экспериментальными. Неотменяемое отступление от огнемёта, осмотр укрытий, звук и реакции NPC ещё в работе.
 
 * **F6: ползание по полу.** Использует штатную позу игры; после вставания возвращается обычная скорость ходьбы.
 * **Горизонтальная вентиляция:** продолжайте двигаться в отверстие, чтобы автоматически войти или выйти. Ручной режим пути на C убран; C в фоторежиме по-прежнему наклоняет камеру.

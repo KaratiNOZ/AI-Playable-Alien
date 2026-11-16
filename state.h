@@ -59,6 +59,7 @@ void CamUseHuggerCfg(bool on);
 inline std::atomic<int> camWheel{ 0 };  // колесо мыши, пока камера у Чужого (input_block.cpp, Raw Input)
 void CamCfgApply();                     // пересчитать и записать в камеру (под общим замком)
 inline bool ductOn;
+inline std::atomic<bool> g_ductVisibility{ false };  // render-thread shadow lift, only in horizontal duct follow view
 inline int camCollide = 1;  // столкновения камеры за спиной: 0 выкл, 1 мягкие (физика, 3 луча), 2 строгие (как раньше + навмеш)
 inline addr hkWorld;
 
@@ -230,6 +231,10 @@ inline float fpHeadInfluence = 0.2f;  // 0..1: насколько позиция
 // резкий разворот на 180 (control.cpp): пока идёт, камера поворачивается вместе с телом (из головы — fpYaw в camera.cpp,
 // за спиной — курс Аманды в OnTurnGameTick); на ходу из головы — камеру сразу назад, предел поворота головы на время снят
 inline std::atomic<bool> turnFollowBody{ false }, fpFlipReq{ false };
+void CameraBodyTurnBegin();
+void CameraBodyTurnTick();
+inline std::atomic<addr> g_fastTurnActor{ 0 };
+void InstallTurnRate();
 inline float fpYawLimit = 100.f;      // градусов: дальше этого от курса тела взгляд не повернуть — сначала довернётся тело
 inline bool fpHideHead = true;        // из головы не рисовать свою голову: череп SKULL01, купол SHELL01, crusher
 inline float fpNearClip = 0.35f;      // из головы: ближняя плоскость отсечения, м (шея и пасть у самой камеры не рисуются)

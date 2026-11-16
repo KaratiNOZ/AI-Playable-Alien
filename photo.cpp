@@ -158,6 +158,15 @@ static void OnPhysicsStepEnter(Invocation& inv) {  // FUN_00b42850(this, оче�
 //   +0x19e0 виньетка: +8 сила, +0xc хром. аберрация по краям    +0x1a04 резкость: +8 local_contrast_factor
 //   +0x1a2c размытие кадра: +8 contribution    +0x1a58 хроматическая аберрация: +8 aberration_scalar
 static void OnPostBlendLeave(Invocation& inv) {
+  if (!photo.on && g_ductVisibility.load()) {
+    // Native colour/exposure is applied before the final frame is quantized.
+    // Lifting only the back buffer cannot recover detail already crushed there.
+    // PostBlend rebuilds this packet each frame; no saved level settings to restore.
+    const addr c = inv.ecx + 0x190c;
+    for (addr o : { 0x14, 0x18, 0x1c }) wf(c + o, rf(c + o) * 2.f);
+    wf(inv.ecx + 0x19e0 + 0x08, 0.f);
+    for (addr o : { 0x08, 0x0c, 0x10, 0x28, 0x2c, 0x30 }) wf(inv.ecx + 0x19a8 + o, 0.f);
+  }
   if (!photo.on || !photoPost.on) return;
   const PhotoPost p = photoPost;
   const addr m = inv.ecx;

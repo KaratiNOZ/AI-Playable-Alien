@@ -32,18 +32,28 @@ def imports(path):
     out = run([os.path.join(MINGW, "objdump.exe"), "-p", path])
     return [l.split(":", 1)[1].strip().lower() for l in out.splitlines() if "DLL Name:" in l]
 
-run(["cmake", "--build", "build-mingw32"])
+BUILD = os.path.join(ROOT, "build-package")
+BIN = os.path.join(BUILD, "bin")
+run(["cmake", "-S", ROOT, "-B", BUILD, "-G", "Ninja", "-DCMAKE_BUILD_TYPE=Release",
+     "-DCMAKE_C_COMPILER=" + os.path.join(MINGW, "gcc.exe"),
+     "-DCMAKE_CXX_COMPILER=" + os.path.join(MINGW, "g++.exe"),
+     "-DALIENMOD_BINARY_DIR=" + BIN, "-DALIENMOD_DEV_TOOLS=OFF"])
+run(["cmake", "--build", BUILD])
 for exe in ("AlienModSetup.exe", "AlienInjectorUI.exe", "AlienModUI.dll"):
-    extra = [d for d in imports(os.path.join(ROOT, exe)) if d not in SYSTEM_DLLS]
+    extra = [d for d in imports(os.path.join(BIN, exe)) if d not in SYSTEM_DLLS]
     if extra:
         sys.exit("%s зависит не только от системных DLL: %s" % (exe, ", ".join(extra)))
 
 name = "AlienPlayableMod-" + VERSION
 dst = os.path.join(ROOT, "release", name)
 if os.path.isdir(dst):
-    shutil.rmtree(dst)
+    if "--replace" not in sys.argv[2:]:
+        sys.exit("папка релиза уже существует: " + dst)
+    existing = {os.path.relpath(os.path.join(base, f), dst) for base, _, files in os.walk(dst) for f in files}
+    if existing - set(FILES):
+        sys.exit("в папке релиза есть посторонние файлы — замена остановлена")
 for f in FILES:
-    src = os.path.join(ROOT, f)
+    src = os.path.join(BIN if f.endswith((".exe", ".dll")) else ROOT, f)
     if not os.path.isfile(src):
         sys.exit("нет файла " + f)
     os.makedirs(os.path.dirname(os.path.join(dst, f)), exist_ok=True)

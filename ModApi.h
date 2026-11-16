@@ -35,7 +35,7 @@ namespace AlienMod
 	// содержимое тех же окон без Begin/End — чтобы встроить во вкладки своего окна
 	void DrawPanelBody();   // все страницы управления подряд
 	// страницы управления для бокового меню (standalone.cpp): иконка — BUI::Icon, badge — метка справа (может быть nullptr)
-	enum PanelPageId { PP_MAIN, PP_CAMERA, PP_MOVE, PP_ALIEN, PP_AI, PP_HUGGERS, PP_VENTS, PP_SPAWN, PP_MP, PP_SCREEN, PP_KEYS, PP_MOD, PP_COUNT };
+	enum PanelPageId { PP_MAIN, PP_CAMERA, PP_MOVE, PP_ALIEN, PP_AI, PP_HUGGERS, PP_VENTS, PP_SPAWN, PP_SCREEN, PP_KEYS, PP_MOD, PP_COUNT };
 	struct PanelPageInfo { const char* name; const char* sub; int icon; const char* badge; };
 	PanelPageInfo PanelPage(int i);
 	void DrawPanelPage(int i);

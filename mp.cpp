@@ -1605,7 +1605,12 @@ std::string MpMapName(const std::string& id) {
     if (m.id == id) return m.name;
   return id;
 }
-bool MpGameMenuOn() { return s_gameMenu; }
+bool MpGameMenuOn() { return false; }  // parked: retain the backend, expose no multiplayer menus
+bool MpAlienGameplay() {
+  Lk l;
+  return s_avatarDone && s_started && s_avatar == AV_ALIEN && !s_myLevel.empty() &&
+      (s_role == MP_HOST ? s_lobbyOpen.load() : s_role == MP_CLIENT && s_state == MPS_CONNECTED);
+}
 bool MpAvatarLocked() {
   if (!s_avatarDone || !s_started) return false;
   const int role = s_role;

@@ -16,7 +16,8 @@ public class VtSlots extends GhidraScript {
         PrintWriter out = new PrintWriter(a[2]);
         DecompInterface dec = new DecompInterface(); dec.openProgram(currentProgram);
         Set<Address> done = new HashSet<>();
-        for (int i = 0; i < n; i++) {
+        int start = a.length > 3 ? Integer.parseInt(a[3]) : 0;
+        for (int i = start; i < n; i++) {
             Address fa = toAddr(getInt(vt.add(i * 4)) & 0xffffffffL);
             Function f = getFunctionAt(fa);
             if (f == null) { try { disassemble(fa); f = createFunction(fa, null); } catch (Exception e) {} }
