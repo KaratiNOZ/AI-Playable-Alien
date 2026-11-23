@@ -1,9 +1,6 @@
-// AlienModSetup — установщик мода.
-// Сам ищет Alien: Isolation (Steam: реестр, libraryfolders.vdf, манифест игры 214490; GOG; Epic; типовые папки на всех
-// дисках), показывает найденную папку, «Обзор…» открывает обычный выбор папки Проводника. «Установить» кладёт в игру
-// дерево поведения мода (DATA\BINARY_BEHAVIOR\_DIRECTORY_CONTENTS.BML — ветки управления Чужим и лицехватами), оригинал
-// сохраняется рядом (.bak); «Удалить из игры» возвращает оригинал. Нет прав на папку игры — перезапуск от администратора.
-//   AlienModSetup.exe [--install <папка игры>] [--uninstall <папка игры>]   — без окна (так он зовёт сам себя с правами)
+// AlienModSetup entry point and game discovery.
+// The same operations are available in the window and the --install,
+// --uninstall and --verify modes used for headless work.
 #ifndef UNICODE
 #define UNICODE
 #endif
@@ -14,22 +11,21 @@
 #define WIN32_LEAN_AND_MEAN
 #endif
 #include <windows.h>
-#include <commctrl.h>
 #include <shellapi.h>
 #include <shlobj.h>
 #include <shobjidl.h>
 #include <tlhelp32.h>
 #include <algorithm>
+#include <cstring>
 #include <cwctype>
 #include <string>
 #include <vector>
 
-// ---------------- язык ----------------
-static bool Ru() {
-  static const bool ru = PRIMARYLANGID(GetUserDefaultUILanguage()) == LANG_RUSSIAN;
-  return ru;
+#include "strings.h"
+
+static const wchar_t* T(Text text, int language) {
+  return kText[static_cast<size_t>(text)][language];
 }
-static const wchar_t* TR(const wchar_t* ru, const wchar_t* en) { return Ru() ? ru : en; }
 
 // ---------------- файлы и пути ----------------
 static bool Exists(const std::wstring& p) { return GetFileAttributesW(p.c_str()) != INVALID_FILE_ATTRIBUTES; }
@@ -68,13 +64,18 @@ static std::wstring Normalize(const std::wstring& raw) {
 static bool ReadFileText(const std::wstring& p, std::string& out) {
   HANDLE f = CreateFileW(p.c_str(), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, 0, nullptr);
   if (f == INVALID_HANDLE_VALUE) return false;
-  const DWORD n = GetFileSize(f, nullptr);
-  out.resize(n < 16 * 1024 * 1024 ? n : 0);
+  LARGE_INTEGER size{};
+  if (!GetFileSizeEx(f, &size) || size.QuadPart > 64ll * 1024 * 1024) {
+    CloseHandle(f);
+    return false;
+  }
+  const DWORD n = DWORD(size.QuadPart);
+  out.resize(n);
   DWORD got = 0;
   const bool ok = out.empty() || ReadFile(f, &out[0], DWORD(out.size()), &got, nullptr);
   CloseHandle(f);
   out.resize(got);
-  return ok;
+  return ok && got == n;
 }
 static bool SameFile(const std::wstring& a, const std::wstring& b) {
   std::string x, y;
@@ -237,90 +238,11 @@ static bool IsElevated() {
   }
   return r;
 }
-// то же действие — от администратора (папка игры в Program Files без прав на запись)
-static int RunElevated(const std::wstring& args) {
-  wchar_t self[MAX_PATH];
-  GetModuleFileNameW(nullptr, self, MAX_PATH);
-  SHELLEXECUTEINFOW sei{ sizeof sei };
-  sei.fMask = SEE_MASK_NOCLOSEPROCESS;
-  sei.lpVerb = L"runas";
-  sei.lpFile = self;
-  sei.lpParameters = args.c_str();
-  sei.nShow = SW_HIDE;
-  if (!ShellExecuteExW(&sei) || !sei.hProcess) return -1;
-  WaitForSingleObject(sei.hProcess, INFINITE);
-  DWORD code = 1;
-  GetExitCodeProcess(sei.hProcess, &code);
-  CloseHandle(sei.hProcess);
-  return int(code);
-}
-enum Result { RES_OK, RES_NO_GAME, RES_NO_SOURCE, RES_RUNNING, RES_ACCESS, RES_FAIL };
-static Result DoInstall(const std::wstring& game, bool install) {
-  if (!IsGameDir(game)) return RES_NO_GAME;
-  if (GameRunning()) return RES_RUNNING;
-  const std::wstring dst = game + kBmlRel, bak = dst + L".bak";
-  const std::wstring src = ExeDir() + L"\\data\\BINARY_BEHAVIOR\\_DIRECTORY_CONTENTS.BML";
-  const std::wstring orig = ExeDir() + L"\\data\\BINARY_BEHAVIOR\\_DIRECTORY_CONTENTS.original.BML";
-  auto copy = [](const std::wstring& a, const std::wstring& b) -> Result {
-    if (CopyFileW(a.c_str(), b.c_str(), FALSE)) return RES_OK;
-    return GetLastError() == ERROR_ACCESS_DENIED ? RES_ACCESS : RES_FAIL;
-  };
-  if (install) {
-    if (!Exists(src)) return RES_NO_SOURCE;
-    if (!Exists(bak)) {  // оригинал игры — рядом; если в игре уже чужая/старая версия — кладём оригинал из мода
-      const bool vanilla = !Exists(orig) || SameFile(dst, orig);
-      const Result r = copy(vanilla ? dst : orig, bak);
-      if (r != RES_OK) return r;
-    }
-    return copy(src, dst);
-  }
-  if (Exists(bak)) return copy(bak, dst);
-  return Exists(orig) ? copy(orig, dst) : RES_FAIL;
-}
-
-// ---------------- ярлык на рабочем столе ----------------
 static std::wstring ShortcutPath() {
   wchar_t desk[MAX_PATH];
   if (FAILED(SHGetFolderPathW(nullptr, CSIDL_DESKTOPDIRECTORY, nullptr, 0, desk))) return {};
   return std::wstring(desk) + L"\\AlienMod (Alien Isolation).lnk";
 }
-static bool MakeShortcut() {
-  IShellLinkW* sl = nullptr;
-  if (FAILED(CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_IShellLinkW, reinterpret_cast<void**>(&sl)))) return false;
-  const std::wstring dir = ExeDir(), exe = dir + L"\\AlienInjectorUI.exe";
-  sl->SetPath(exe.c_str());
-  sl->SetWorkingDirectory(dir.c_str());
-  sl->SetDescription(TR(L"Внедрить мод в Alien: Isolation (можно в любой момент игры)", L"Inject the mod into Alien: Isolation (any time)"));
-  IPersistFile* pf = nullptr;
-  bool ok = false;
-  if (SUCCEEDED(sl->QueryInterface(IID_IPersistFile, reinterpret_cast<void**>(&pf)))) {
-    ok = SUCCEEDED(pf->Save(ShortcutPath().c_str(), TRUE));
-    pf->Release();
-  }
-  sl->Release();
-  return ok;
-}
-
-// ---------------- окно ----------------
-enum { ID_PATH = 100, ID_BROWSE, ID_INSTALL, ID_UNINSTALL, ID_PLAY, ID_CLOSE, ID_SHORTCUT, ID_STATUS };
-static HWND s_wnd, s_path, s_status;
-static HFONT s_font, s_bold;
-static COLORREF s_statusCol = RGB(0, 0, 0);
-static float s_scale = 1.f;
-static int S(int v) { return int(v * s_scale + 0.5f); }
-
-static std::wstring GetText(HWND h) {
-  std::wstring s(size_t(GetWindowTextLengthW(h)), L'\0');
-  if (!s.empty()) GetWindowTextW(h, &s[0], int(s.size() + 1));
-  return s;
-}
-static void SetStatus(const std::wstring& text, COLORREF c) {
-  s_statusCol = c;
-  SetWindowTextW(s_status, text.c_str());
-  InvalidateRect(s_status, nullptr, TRUE);
-}
-// сборка AI.exe: мод сделан под Steam-версию от 17.02.2015 (штамп PE 0x54E3199D, SizeOfImage 0x01F81000). Другая сборка
-// (GOG, Epic, другое обновление) — адреса другие, мод там не запустится (сам мод и инжектор это тоже проверяют)
 static int GameBuild(const std::wstring& dir) {  // 1 — та, 0 — другая, -1 — не прочитать
   HANDLE f = CreateFileW((dir + L"\\AI.exe").c_str(), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, 0, nullptr);
   if (f == INVALID_HANDLE_VALUE) return -1;
@@ -334,216 +256,154 @@ static int GameBuild(const std::wstring& dir) {  // 1 — та, 0 — друга
   const auto* nt = reinterpret_cast<IMAGE_NT_HEADERS32*>(buf + lfanew);
   return nt->FileHeader.TimeDateStamp == 0x54E3199D && nt->OptionalHeader.SizeOfImage == 0x01F81000 ? 1 : 0;
 }
-static void Validate() {
-  const std::wstring d = Normalize(GetText(s_path));
-  const bool ok = IsGameDir(d);
-  if (ok && GameBuild(d) == 0) {  // не Steam-сборка: ставить можно, но честно предупредить
-    SetStatus(TR(L"Не Steam-версия игры (или другое обновление) — мод поставится, но часть функций или весь мод может не работать",
-                 L"Not the Steam build (or another update) — the mod will install, but some features or the whole mod may not work"),
-              RGB(200, 120, 20));
-    EnableWindow(GetDlgItem(s_wnd, ID_INSTALL), TRUE);
-    EnableWindow(GetDlgItem(s_wnd, ID_UNINSTALL), TRUE);
-    EnableWindow(GetDlgItem(s_wnd, ID_PLAY), TRUE);
-    return;
+static HRESULT MakeShortcut() {
+  const auto destination = ShortcutPath();
+  if (destination.empty()) return HRESULT_FROM_WIN32(ERROR_PATH_NOT_FOUND);
+  IShellLinkW* link = nullptr;
+  HRESULT result = CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER,
+      IID_IShellLinkW, reinterpret_cast<void**>(&link));
+  if (FAILED(result)) return result;
+  const auto directory = ExeDir();
+  result = link->SetPath((directory + L"\\AlienInjectorUI.exe").c_str());
+  if (SUCCEEDED(result)) result = link->SetWorkingDirectory(directory.c_str());
+  if (SUCCEEDED(result)) result = link->SetDescription(L"Gagen's Playable Alien");
+  IPersistFile* file = nullptr;
+  if (SUCCEEDED(result))
+    result = link->QueryInterface(IID_IPersistFile, reinterpret_cast<void**>(&file));
+  if (SUCCEEDED(result)) {
+    result = file->Save(destination.c_str(), TRUE);
+    file->Release();
   }
-  if (d.empty()) SetStatus(TR(L"Игра не найдена — укажи папку кнопкой «Обзор…»", L"Game not found — pick its folder with «Browse…»"), RGB(190, 60, 30));
-  else if (!ok) SetStatus(TR(L"В этой папке нет Alien: Isolation (AI.exe и DATA\\BINARY_BEHAVIOR)", L"No Alien: Isolation here (AI.exe and DATA\\BINARY_BEHAVIOR)"), RGB(190, 60, 30));
-  else if (Exists(d + kBmlRel + L".bak") && SameFile(d + kBmlRel, ExeDir() + L"\\data\\BINARY_BEHAVIOR\\_DIRECTORY_CONTENTS.BML"))
-    SetStatus(TR(L"Игра найдена, мод уже установлен (можно поставить ещё раз)", L"Game found, the mod is already installed (you can reinstall)"), RGB(30, 130, 60));
-  else SetStatus(TR(L"Игра найдена — можно ставить", L"Game found — ready to install"), RGB(30, 130, 60));
-  EnableWindow(GetDlgItem(s_wnd, ID_INSTALL), ok);
-  EnableWindow(GetDlgItem(s_wnd, ID_UNINSTALL), ok);
-  EnableWindow(GetDlgItem(s_wnd, ID_PLAY), ok);
-}
-static void Browse() {
-  IFileOpenDialog* dlg = nullptr;
-  if (FAILED(CoCreateInstance(CLSID_FileOpenDialog, nullptr, CLSCTX_INPROC_SERVER, IID_IFileOpenDialog, reinterpret_cast<void**>(&dlg)))) return;
-  DWORD opt = 0;
-  dlg->GetOptions(&opt);
-  dlg->SetOptions(opt | FOS_PICKFOLDERS | FOS_FORCEFILESYSTEM | FOS_PATHMUSTEXIST);
-  dlg->SetTitle(TR(L"Папка Alien: Isolation (где лежит AI.exe)", L"Alien: Isolation folder (the one with AI.exe)"));
-  dlg->SetOkButtonLabel(TR(L"Выбрать папку", L"Select folder"));
-  std::wstring start = Normalize(GetText(s_path));
-  while (!start.empty() && !Exists(start)) start = Parent(start);
-  if (!start.empty()) {
-    IShellItem* it = nullptr;
-    if (SUCCEEDED(SHCreateItemFromParsingName(start.c_str(), nullptr, IID_IShellItem, reinterpret_cast<void**>(&it)))) {
-      dlg->SetFolder(it);
-      it->Release();
-    }
-  }
-  if (SUCCEEDED(dlg->Show(s_wnd))) {
-    IShellItem* it = nullptr;
-    if (SUCCEEDED(dlg->GetResult(&it))) {
-      PWSTR p = nullptr;
-      if (SUCCEEDED(it->GetDisplayName(SIGDN_FILESYSPATH, &p))) {
-        SetWindowTextW(s_path, Normalize(p).c_str());
-        CoTaskMemFree(p);
-      }
-      it->Release();
-    }
-  }
-  dlg->Release();
-  Validate();
-}
-static std::wstring ResultText(Result r, bool install) {
-  switch (r) {
-    case RES_OK: return install ? TR(L"Готово: мод в игре. Запусти игру, потом AlienInjectorUI.exe (ярлык «AlienMod») — в любой момент, хоть на уровне.",
-                                   L"Done: the mod is in the game. Start the game, then AlienInjectorUI.exe (the «AlienMod» shortcut) — any time, even mid-level.")
-                              : TR(L"Готово: в игре снова оригинальное дерево поведения.", L"Done: the game has its original behaviour tree again.");
-    case RES_NO_GAME: return TR(L"В этой папке нет Alien: Isolation.", L"No Alien: Isolation in this folder.");
-    case RES_NO_SOURCE: return TR(L"Рядом с установщиком нет data\\BINARY_BEHAVIOR\\_DIRECTORY_CONTENTS.BML — распакуй мод целиком.",
-                                L"data\\BINARY_BEHAVIOR\\_DIRECTORY_CONTENTS.BML is missing next to the installer — unpack the whole mod.");
-    case RES_RUNNING: return TR(L"Сначала закрой игру: файл, который меняем, она держит открытым.", L"Close the game first: it keeps the file open.");
-    case RES_ACCESS: return TR(L"Нет прав на папку игры (и от администратора не вышло).", L"No write access to the game folder (even as administrator).");
-    default: return TR(L"Не удалось скопировать файл.", L"Could not copy the file.");
-  }
-}
-static void Act(bool install) {
-  const std::wstring game = Normalize(GetText(s_path));
-  if (install && GameBuild(game) == 0)  // не Steam-сборка: окно сразу на двух языках, установка всё равно идёт
-    MessageBoxW(s_wnd,
-      L"Эта Alien: Isolation — не Steam-сборка от 17.02.2015 (GOG, Epic или другое обновление).\n"
-      L"Мод сделан под Steam-версию: часть функций или весь мод может не работать, игра может вылететь.\n"
-      L"Мод всё равно будет установлен.\n\n"
-      L"This Alien: Isolation is not the Steam build of 17 Feb 2015 (GOG, Epic or another update).\n"
-      L"The mod is made for the Steam version: some features or the whole mod may not work, and the game may crash.\n"
-      L"The mod will be installed anyway.",
-      L"Alien Playable", MB_OK | MB_ICONWARNING);
-  Result r = DoInstall(game, install);
-  if (r == RES_ACCESS && !IsElevated()) {  // Program Files без прав — то же самое от администратора
-    const int code = RunElevated(std::wstring(install ? L"--install \"" : L"--uninstall \"") + game + L"\"");
-    r = code < 0 ? RES_ACCESS : Result(code);
-  }
-  if (r == RES_OK && install && SendDlgItemMessageW(s_wnd, ID_SHORTCUT, BM_GETCHECK, 0, 0) == BST_CHECKED) MakeShortcut();
-  if (r == RES_OK && !install) DeleteFileW(ShortcutPath().c_str());
-  if (r == RES_OK) {
-    const std::wstring ini = ExeDir() + L"\\AlienModUI.ini";  // где игра — моду и инжектору
-    WritePrivateProfileStringW(L"setup", L"game", game.c_str(), ini.c_str());
-  }
-  SetStatus(ResultText(r, install), r == RES_OK ? RGB(30, 130, 60) : RGB(190, 60, 30));
-}
-static void Play() {
-  const std::wstring game = Normalize(GetText(s_path));
-  std::wstring low = game;
-  std::transform(low.begin(), low.end(), low.begin(), ::towlower);
-  if (low.find(L"steamapps") != std::wstring::npos) ShellExecuteW(nullptr, L"open", L"steam://rungameid/214490", nullptr, nullptr, SW_SHOWNORMAL);
-  else ShellExecuteW(nullptr, L"open", (game + L"\\AI.exe").c_str(), nullptr, game.c_str(), SW_SHOWNORMAL);
+  link->Release();
+  return result;
 }
 
-static HWND Ctl(const wchar_t* cls, const wchar_t* text, DWORD style, int x, int y, int w, int h, int id, HFONT f = nullptr) {
-  HWND c = CreateWindowExW(0, cls, text, WS_CHILD | WS_VISIBLE | style, S(x), S(y), S(w), S(h), s_wnd,
-                           reinterpret_cast<HMENU>(INT_PTR(id)), GetModuleHandleW(nullptr), nullptr);
-  SendMessageW(c, WM_SETFONT, WPARAM(f ? f : s_font), TRUE);
-  return c;
-}
-static LRESULT CALLBACK WndProc(HWND h, UINT m, WPARAM w, LPARAM l) {
-  switch (m) {
-    case WM_CREATE: {
-      s_wnd = h;
-      Ctl(L"STATIC", TR(L"AlienMod — играть за Чужого и лицехватов", L"AlienMod — play as the Alien and the facehuggers"), SS_LEFT, 20, 16, 520, 26,
-          0, s_bold);
-      Ctl(L"STATIC", TR(L"Папка Alien: Isolation (там, где AI.exe):", L"Alien: Isolation folder (the one with AI.exe):"), SS_LEFT, 20, 52, 520, 20, 0);
-      s_path = CreateWindowExW(WS_EX_CLIENTEDGE, L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_TABSTOP | ES_AUTOHSCROLL, S(20), S(74), S(410),
-                               S(26), h, reinterpret_cast<HMENU>(INT_PTR(ID_PATH)), GetModuleHandleW(nullptr), nullptr);
-      SendMessageW(s_path, WM_SETFONT, WPARAM(s_font), TRUE);
-      Ctl(L"BUTTON", TR(L"Обзор…", L"Browse…"), WS_TABSTOP | BS_PUSHBUTTON, 438, 73, 102, 28, ID_BROWSE);
-      s_status = Ctl(L"STATIC", L"", SS_LEFT, 20, 108, 520, 40, ID_STATUS);
-      HWND sc = Ctl(L"BUTTON", TR(L"Ярлык «AlienMod» на рабочем столе", L"«AlienMod» shortcut on the desktop"), WS_TABSTOP | BS_AUTOCHECKBOX, 20, 150, 400,
-                    22, ID_SHORTCUT);
-      SendMessageW(sc, BM_SETCHECK, BST_CHECKED, 0);
-      Ctl(L"BUTTON", TR(L"Установить", L"Install"), WS_TABSTOP | BS_DEFPUSHBUTTON, 20, 184, 128, 32, ID_INSTALL);
-      Ctl(L"BUTTON", TR(L"Удалить из игры", L"Remove from game"), WS_TABSTOP | BS_PUSHBUTTON, 156, 184, 140, 32, ID_UNINSTALL);
-      Ctl(L"BUTTON", TR(L"Запустить игру", L"Start the game"), WS_TABSTOP | BS_PUSHBUTTON, 304, 184, 128, 32, ID_PLAY);
-      Ctl(L"BUTTON", TR(L"Закрыть", L"Close"), WS_TABSTOP | BS_PUSHBUTTON, 440, 184, 100, 32, ID_CLOSE);
-      Ctl(L"STATIC",
-          TR(L"В игру копируется один файл — DATA\\BINARY_BEHAVIOR\\_DIRECTORY_CONTENTS.BML (деревья поведения с ветками мода). "
-             L"Оригинал сохраняется рядом (.bak), «Удалить из игры» возвращает его.",
-             L"Only one file goes into the game — DATA\\BINARY_BEHAVIOR\\_DIRECTORY_CONTENTS.BML (behaviour trees with the mod's branches). "
-             L"The original is kept next to it (.bak); «Remove from game» puts it back."),
-          SS_LEFT, 20, 228, 520, 48, 0);
-      SetStatus(TR(L"Ищу игру…", L"Looking for the game…"), RGB(90, 90, 90));
-      UpdateWindow(h);
-      SetWindowTextW(s_path, FindGame().c_str());
-      Validate();
-      return 0;
-    }
-    case WM_COMMAND:
-      switch (LOWORD(w)) {
-        case ID_PATH: if (HIWORD(w) == EN_CHANGE) Validate(); break;
-        case ID_BROWSE: Browse(); break;
-        case ID_INSTALL: Act(true); break;
-        case ID_UNINSTALL: Act(false); break;
-        case ID_PLAY: Play(); break;
-        case ID_CLOSE: DestroyWindow(h); break;
-      }
-      return 0;
-    case WM_CTLCOLORSTATIC:
-      if (reinterpret_cast<HWND>(l) == s_status) {
-        SetTextColor(reinterpret_cast<HDC>(w), s_statusCol);
-        SetBkMode(reinterpret_cast<HDC>(w), TRANSPARENT);
-        return LRESULT(GetSysColorBrush(COLOR_WINDOW));
-      }
-      SetBkMode(reinterpret_cast<HDC>(w), TRANSPARENT);
-      return LRESULT(GetSysColorBrush(COLOR_WINDOW));
-    case WM_DESTROY: PostQuitMessage(0); return 0;
-  }
-  return DefWindowProcW(h, m, w, l);
+#include "operations.h"
+#include "worker.h"
+
+static std::wstring StatusReport(const std::wstring& path) {
+  const bool valid = IsGameDir(path);
+  const auto directory = ExeDir();
+  const bool installed = valid && SameFile(path + kBmlRel, directory + kBmlRel);
+  const bool backup = valid && (Exists(path + kBmlRel + L".bak") ||
+      !LevelFiles(path + kLevels, L"COMMANDS.PAK.alienmod.bak").empty());
+  const bool canRestore = valid && (installed || backup ||
+      Exists(directory + L"\\data\\BINARY_BEHAVIOR\\_DIRECTORY_CONTENTS.original.BML"));
+  const bool levels = !LevelFiles(directory + kLevels, L"COMMANDS.PAK").empty();
+  const bool treeSource = Exists(directory + kBmlRel);
+  const bool dll = Exists(directory + L"\\AlienModUI.dll");
+  const bool injector = Exists(directory + L"\\AlienInjectorUI.exe");
+  return path + L"\n" + std::to_wstring(valid) + L"\n" + std::to_wstring(installed) + L"\n" +
+      std::to_wstring(backup) + L"\n" + std::to_wstring(canRestore) + L"\n" +
+      std::to_wstring(levels) + L"\n" + std::to_wstring(valid ? GameBuild(path) : -1) +
+      L"\n" + std::to_wstring(treeSource) + L"\n" + std::to_wstring(dll) +
+      L"\n" + std::to_wstring(injector);
 }
 
-int WINAPI WinMain(HINSTANCE inst, HINSTANCE, LPSTR, int show) {
+static Report Launch(const std::wstring& game, int language) {
+  Report report;
+  if (!IsGameDir(game)) {
+    report.Add(RES_NO_GAME, std::wstring(T(Text::MissingGame, language)) + L"\r\n" + game);
+    return report;
+  }
+  const auto directory = ExeDir();
+  const auto launcher = directory + L"\\AlienInjectorUI.exe";
+  for (const auto& path : {launcher, directory + L"\\AlienModUI.dll"}) {
+    if (!Exists(path))
+      report.Add(RES_NO_SOURCE, std::wstring(T(Text::FileMissing, language)) + L"\r\n" + path);
+  }
+  if (report.code != RES_OK) return report;
+  auto open = [&](const std::wstring& path, const wchar_t* options, const std::wstring& working) {
+    SHELLEXECUTEINFOW request{sizeof request};
+    request.fMask = SEE_MASK_FLAG_NO_UI;
+    request.lpVerb = L"open";
+    request.lpFile = path.c_str();
+    request.lpParameters = options;
+    request.lpDirectory = working.c_str();
+    request.nShow = SW_SHOWNORMAL;
+    if (ShellExecuteExW(&request)) return true;
+    const auto error = GetLastError();
+    report.Add(RES_FAIL, std::wstring(T(Text::OpenError, language)) + L"\r\n" + path +
+                         L"\r\n" + SystemError(error, language));
+    return false;
+  };
+  auto lower = game;
+  std::transform(lower.begin(), lower.end(), lower.begin(), ::towlower);
+  if (!GameRunning()) {
+    const bool steam = lower.find(L"steamapps") != std::wstring::npos;
+    if (!open(steam ? L"steam://rungameid/214490" : game + L"\\AI.exe", nullptr, game)) return report;
+  }
+  open(launcher, L"--no-focus --no-log", directory);
+  return report;
+}
+
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
   int argc = 0;
-  wchar_t** argv = CommandLineToArgvW(GetCommandLineW(), &argc);
-  if (argc >= 3 && (wcscmp(argv[1], L"--install") == 0 || wcscmp(argv[1], L"--uninstall") == 0))  // вызов самого себя с правами
-    return int(DoInstall(Normalize(argv[2]), wcscmp(argv[1], L"--install") == 0));
-  if (argc >= 3 && wcscmp(argv[1], L"--find") == 0) {  // для проверки: найденная папка игры -> файл (UTF-8)
-    const std::wstring g = FindGame();
-    HANDLE f = CreateFileW(argv[2], GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, 0, nullptr);
-    if (f != INVALID_HANDLE_VALUE) {
-      const int n = WideCharToMultiByte(CP_UTF8, 0, g.c_str(), int(g.size()), nullptr, 0, nullptr, nullptr);
-      std::string u(size_t(std::max(n, 0)), '\0');
-      if (n > 0) WideCharToMultiByte(CP_UTF8, 0, g.c_str(), int(g.size()), &u[0], n, nullptr, nullptr);
-      DWORD w = 0;
-      WriteFile(f, u.data(), DWORD(u.size()), &w, nullptr);
-      CloseHandle(f);
-    }
-    return g.empty() ? 1 : 0;
+  auto argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+  std::vector<std::wstring> args;
+  for (int i = 0; argv && i < argc; ++i) args.emplace_back(argv[i]);
+  if (argv) LocalFree(argv);
+  if (args.size() < 3) return RES_FAIL;
+  const auto& action = args[1];
+  if (action == L"--find") {
+    const auto directory = FindGame();
+    const auto bytes = Utf8(directory);
+    return !WriteBytes(args[2], bytes.data(), DWORD(bytes.size())) || directory.empty();
   }
-  CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
-  INITCOMMONCONTROLSEX icc{ sizeof icc, ICC_STANDARD_CLASSES };
-  InitCommonControlsEx(&icc);
-  HDC dc = GetDC(nullptr);
-  s_scale = GetDeviceCaps(dc, LOGPIXELSX) / 96.f;
-  ReleaseDC(nullptr, dc);
-  NONCLIENTMETRICSW ncm{ sizeof ncm };
-  SystemParametersInfoW(SPI_GETNONCLIENTMETRICS, sizeof ncm, &ncm, 0);
-  LOGFONTW lf = ncm.lfMessageFont;
-  lf.lfHeight = -S(15);
-  s_font = CreateFontIndirectW(&lf);
-  lf.lfHeight = -S(20);
-  lf.lfWeight = FW_SEMIBOLD;
-  s_bold = CreateFontIndirectW(&lf);
-  WNDCLASSW wc{};
-  wc.lpfnWndProc = WndProc;
-  wc.hInstance = inst;
-  wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
-  wc.hbrBackground = GetSysColorBrush(COLOR_WINDOW);
-  wc.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
-  wc.lpszClassName = L"AlienModSetup";
-  RegisterClassW(&wc);
-  RECT r{ 0, 0, S(560), S(288) };
-  const DWORD style = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;
-  AdjustWindowRect(&r, style, FALSE);
-  const int ww = r.right - r.left, wh = r.bottom - r.top;
-  HWND h = CreateWindowExW(0, wc.lpszClassName, TR(L"Установка AlienMod", L"AlienMod setup"), style, (GetSystemMetrics(SM_CXSCREEN) - ww) / 2,
-                           (GetSystemMetrics(SM_CYSCREEN) - wh) / 2, ww, wh, nullptr, nullptr, inst, nullptr);
-  ShowWindow(h, show);
-  MSG msg;
-  while (GetMessageW(&msg, nullptr, 0, 0) > 0)
-    if (!IsDialogMessageW(h, &msg)) {
-      TranslateMessage(&msg);
-      DispatchMessageW(&msg);
+  if (action != L"--install" && action != L"--uninstall" && action != L"--verify" &&
+      action != L"--status" && action != L"--play") return RES_FAIL;
+  const Operation operation = action == L"--install" ? Operation::Install :
+      action == L"--uninstall" ? Operation::Restore : Operation::Verify;
+  unsigned components = Behaviour;
+  int language = DefaultLanguage();
+  bool managed = false, shortcut = false;
+  std::wstring reportPath, progressPath;
+  for (size_t i = 3; i + 1 < args.size(); i += 2) {
+    if (args[i] == L"--report") reportPath = args[i + 1];
+    if (args[i] == L"--progress") progressPath = args[i + 1];
+    if (args[i] == L"--lang") language = std::clamp(_wtoi(args[i + 1].c_str()), 0, kLanguageCount - 1);
+    if (args[i] == L"--components") components = unsigned(_wtoi(args[i + 1].c_str())) & (Behaviour | Levels);
+    if (args[i] == L"--managed") managed = args[i + 1] == L"1";
+    if (args[i] == L"--shortcut") shortcut = args[i + 1] == L"1";
+  }
+  Report report;
+  const auto path = Normalize(args[2]);
+  auto progress = [&](Text phase, int percent) {
+    if (!managed || progressPath.empty()) return;
+    const char* key = phase == Text::Backup ? "Backup" : phase == Text::Admin ? "Admin" :
+        phase == Text::Writing ? "Writing" : phase == Text::Restoring ? "Restoring" : "Checking";
+    const std::string line = std::string(key) + " " + std::to_string(percent) + "\n";
+    WriteBytes(progressPath, line.data(), DWORD(line.size()), true);
+  };
+  try {
+    if (action == L"--status") report.details = StatusReport(path);
+    else if (action == L"--play") report = Launch(path, language);
+    else {
+      report = Perform(path, operation, components, language, progress);
+      if (managed && report.code == RES_ACCESS && !IsElevated() && operation != Operation::Verify) {
+        progress(Text::Admin, 0);
+        const auto elevated = Elevated(path, operation, components, language);
+        if (elevated.code == RES_OK) report = elevated;
+        else report.Add(elevated.code, elevated.details);
+      }
+      if (report.code == RES_OK && managed && operation != Operation::Verify) {
+        SaveSetting(L"game", path);
+        if (operation == Operation::Install && shortcut) {
+          const HRESULT com = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+          const HRESULT error = SUCCEEDED(com) ? MakeShortcut() : com;
+          if (SUCCEEDED(com)) CoUninitialize();
+          if (FAILED(error))
+            report.Add(RES_FAIL, std::wstring(T(Text::ShortcutError, language)) + L"\r\n" +
+                                 ShortcutPath() + L"\r\n" + SystemError(error, language));
+        }
+      }
     }
-  CoUninitialize();
-  return 0;
+  } catch (const std::exception& error) {
+    report.Add(RES_FAIL, std::wstring(T(Text::FileOperation, language)) + L"\r\n" +
+                         path + L"\r\n" + Widen(error.what()));
+  }
+  if (managed && action != L"--status") LogReport(LogPath(), action.c_str() + 2, path, report);
+  if (!reportPath.empty() && !WriteBytes(reportPath, report.details.data(), DWORD(report.details.size() * sizeof(wchar_t))))
+    return RES_FAIL;
+  return report.code;
 }

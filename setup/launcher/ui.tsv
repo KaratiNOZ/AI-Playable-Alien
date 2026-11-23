@@ -1,0 +1,40 @@
+GameDetection	Game detection	Обнаружение игры	Detección del juego	ゲームの検出	游戏检测	Détection du jeu
+ModState	Mod installation	Установка мода	Instalación del mod	MOD の導入	模组安装	Installation du mod
+FileHealth	File verification	Проверка файлов	Verificación de archivos	ファイルの検証	文件验证	Vérification des fichiers
+ModVersion	Mod version	Версия мода	Versión del mod	MOD のバージョン	模组版本	Version du mod
+Found	Game found	Игра найдена	Juego encontrado	ゲームを検出済み	已找到游戏	Jeu détecté
+NotFound	Game not found	Игра не найдена	Juego no encontrado	ゲームが見つかりません	未找到游戏	Jeu introuvable
+NotInstalled	Not installed	Не установлено	No instalado	未導入	未安装	Non installé
+TreeInstalled	Behaviour tree installed	Дерево поведения установлено	Árbol de comportamiento instalado	ビヘイビアツリー導入済み	行为树已安装	Arbre de comportement installé
+NotChecked	Not verified yet	Ещё не проверены	Aún sin verificar	未検証	尚未验证	Pas encore vérifiés
+FilesOk	Selected files verified	Выбранные файлы проверены	Archivos seleccionados verificados	選択したファイルを検証済み	所选文件已验证	Fichiers sélectionnés vérifiés
+FilesBad	Verification found a problem	Проверка выявила проблему	La verificación detectó un problema	検証で問題を検出	验证发现问题	La vérification a détecté un problème
+MissingRequired	Required files are missing	Отсутствуют необходимые файлы	Faltan archivos necesarios	必要なファイルがありません	缺少必需文件	Des fichiers requis manquent
+Present	Present	На месте	Presente	あり	存在	Présent
+Absent	Missing	Отсутствует	Falta	なし	缺失	Manquant
+Unknown	Unknown	Неизвестно	Desconocido	不明	未知	Inconnu
+ValidPath	Valid game folder	Папка игры корректна	Carpeta del juego válida	ゲームフォルダーは有効です	游戏目录有效	Dossier du jeu valide
+InvalidPath	No valid game folder	Нет корректной папки игры	No hay una carpeta válida	有効なゲームフォルダーがありません	没有有效的游戏目录	Aucun dossier du jeu valide
+HeroDescription	Installer and launcher for the Alien: Isolation mod.	Установщик и лаунчер мода для Alien: Isolation.	Instalador y lanzador del mod de Alien: Isolation.	Alien: Isolation 用 MOD のインストーラーとランチャー。	Alien: Isolation 模组的安装与启动工具。	Installez et lancez le mod pour Alien: Isolation.
+TreeAbout	Installs the behaviour tree used by the mod in the game.	Устанавливает дерево поведения, которое мод использует в игре.	Instala el árbol de comportamiento que usa el mod.	ゲーム内で MOD が使うビヘイビアツリーを導入します。	安装模组在游戏中使用的行为树。	Installe l’arbre de comportement utilisé par le mod.
+LevelsAbout	Installs the optional level packages included in this archive.	Устанавливает дополнительные пакеты уровней из этого архива.	Instala los paquetes opcionales de niveles de este archivo.	このアーカイブの追加レベルパッケージを導入します。	安装此压缩包内的可选关卡包。	Installe les packs de niveaux facultatifs de cette archive.
+ShortcutAbout	Adds a desktop shortcut to the mod launcher.	Добавляет на рабочий стол ярлык для запуска мода.	Crea un acceso directo al lanzador en el escritorio.	デスクトップに MOD ランチャーのショートカットを作成します。	在桌面创建模组启动器的快捷方式。	Ajoute un raccourci vers le lanceur sur le bureau.
+ReadyToSelect	Available	Доступно	Disponible	利用可能	可用	Disponible
+TreeMissing	The behaviour tree is missing from this archive.	В этом архиве нет дерева поведения.	Falta el árbol de comportamiento en este archivo.	このアーカイブにビヘイビアツリーがありません。	此压缩包缺少行为树。	L’arbre de comportement manque dans cette archive.
+Maintenance	Maintenance	Обслуживание	Mantenimiento	メンテナンス	维护	Maintenance
+MaintenanceAbout	Compare installed files or restore the originals.	Сравните установленные файлы или восстановите оригиналы.	Compara los archivos instalados o restaura los originales.	導入済みファイルの比較や元のファイルの復元ができます。	比较已安装文件或恢复原始文件。	Comparez les fichiers installés ou restaurez les originaux.
+DiagnosticsAbout	Game, package and installation checks.	Состояние игры, архива и установленных файлов.	Comprobaciones del juego, el paquete y la instalación.	ゲーム、パッケージ、導入状態の確認。	检查游戏、安装包及安装状态。	Vérifications du jeu, de l’archive et de l’installation.
+DiagnosticsReport	Diagnostic report and logs	Отчёт диагностики и логи	Informe de diagnóstico y registros	診断レポートとログ	诊断报告和日志	Rapport de diagnostic et journaux
+CopyReport	Copy report	Копировать отчёт	Copiar informe	レポートをコピー	复制报告	Copier le rapport
+Copied	Diagnostic report copied.	Отчёт диагностики скопирован.	Informe de diagnóstico copiado.	診断レポートをコピーしました。	已复制诊断报告。	Rapport de diagnostic copié.
+PackageFiles	Required package files	Необходимые файлы архива	Archivos necesarios del paquete	パッケージの必須ファイル	安装包必需文件	Fichiers requis de l’archive
+LaunchFiles	Mod launcher and library	Лаунчер и библиотека мода	Lanzador y biblioteca del mod	MOD ランチャーとライブラリ	模组启动器和库文件	Lanceur et bibliothèque du mod
+NexusAbout	Download the mod and read the installation guide.	Скачивание мода и инструкция по установке.	Descarga el mod y consulta la guía de instalación.	MOD のダウンロードと導入ガイド。	下载模组并查看安装指南。	Téléchargez le mod et consultez le guide d’installation.
+RepoAbout	Source code, documentation and issue tracker.	Исходный код, документация и сообщения об ошибках.	Código, documentación y seguimiento de problemas.	ソースコード、ドキュメント、問題の報告。	源代码、文档和问题追踪。	Code source, documentation et suivi des problèmes.
+ReleaseAbout	Published builds and release notes.	Опубликованные сборки и описания релизов.	Versiones publicadas y notas de publicación.	公開ビルドとリリースノート。	已发布版本和更新说明。	Versions publiées et notes de version.
+DiscordAbout	Discuss the mod and ask the community for help.	Обсуждение мода и помощь сообщества.	Comenta el mod y pide ayuda a la comunidad.	MOD についての交流とコミュニティのサポート。	讨论模组并向社区求助。	Discutez du mod et demandez de l’aide à la communauté.
+VideoAbout	Videos and gameplay demonstrations.	Видео и демонстрации геймплея.	Vídeos y demostraciones de juego.	動画とゲームプレイの紹介。	视频与玩法演示。	Vidéos et démonstrations de gameplay.
+PhotoAbout	Photograph used on the home screen.	Фотография на главном экране.	Fotografía de la pantalla de inicio.	ホーム画面の写真。	主页使用的照片。	Photographie de l’écran d’accueil.
+FontAbout	Typeface used for the launcher’s headings.	Шрифт заголовков лаунчера.	Tipografía de los títulos del lanzador.	ランチャーの見出しに使用している書体。	启动器标题所用字体。	Police des titres du lanceur.
+Updating	Updating mod files…	Обновляем файлы мода…	Actualizando archivos del mod…	MOD ファイルを更新中…	正在更新模组文件…	Mise à jour des fichiers du mod…
+Launching	Starting the game and mod…	Запускаем игру и мод…	Iniciando el juego y el mod…	ゲームと MOD を起動中…	正在启动游戏和模组…	Démarrage du jeu et du mod…
