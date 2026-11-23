@@ -1,7 +1,7 @@
 @echo off
 setlocal
 cd /d "%~dp0.."
-rem Build AlienModUI.dll + AlienInjectorUI.exe + AlienModSetup.exe (x86) into the mod folder (one level up).
+rem Build the x86 mod, injector, installer worker and WPF installer into the mod folder.
 
 set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 if exist "%VSWHERE%" goto msvc
@@ -32,7 +32,7 @@ goto fail
 
 :ok
 echo.
-echo Done: AlienModUI.dll, AlienInjectorUI.exe, AlienModSetup.exe
+echo Done: AlienModUI.dll, AlienInjectorUI.exe, AlienModSetup.exe, AlienModSetupWorker.exe
 pause
 exit /b 0
 

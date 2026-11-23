@@ -54,12 +54,11 @@ Gagen's Playable Alien is a mod that lets you take control of different creature
 
 1. Unpack the archive **anywhere except `Program Files`**.
 2. Close the game.
-3. Run `AlienModSetup.exe` and click **"Install"**.
-4. Start the game.
-5. Run `runUI.bat` or `AlienInjectorUI.exe`.
-6. Press **Delete** or **Insert** in-game to open the mod menu.
+3. Run `AlienModSetup.exe`, open **Installation**, check the game folder and select **Install**. Keep `AlienModSetupWorker.exe` beside the installer.
+4. Click **Play with mod**.
+5. Press **Delete** or **Insert** in-game to open the mod menu.
 
-> *To uninstall:* Run `AlienModSetup.exe` → **"Remove from game"**.
+> **Restore original files** rolls back the installed game files. **Verify files** checks the selected components. In **Diagnostics**, you can copy the full report and find the installer, game, and crash logs.
 
 ### ⌨️ Controls
 
@@ -121,12 +120,11 @@ Gagen's Playable Alien — мод, позволяющий управлять р�
 
 1. Распакуйте архив **куда угодно, кроме `Program Files`**.
 2. Закройте игру.
-3. Запустите `AlienModSetup.exe` и нажмите **«Установить»**.
-4. Запустите игру.
-5. Запустите `runUI.bat` или `AlienInjectorUI.exe`.
-6. В игре нажмите **Delete** или **Insert**, чтобы открыть меню мода.
+3. Запустите `AlienModSetup.exe`, откройте **«Установка»**, проверьте папку игры и нажмите **«Установить»**. Оставьте `AlienModSetupWorker.exe` рядом с установщиком.
+4. Нажмите **«Играть с модом»**.
+5. В игре нажмите **Delete** или **Insert**, чтобы открыть меню мода.
 
-> *Для удаления:* Запустите `AlienModSetup.exe` → **«Удалить из игры»**.
+> **«Вернуть оригиналы»** восстанавливает изменённые файлы игры. **«Проверить файлы»** проверяет выбранные компоненты. В разделе **«Диагностика»** можно скопировать полный отчёт и найти логи установщика, игры и вылетов.
 
 ### ⌨️ Управление
 

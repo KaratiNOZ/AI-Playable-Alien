@@ -32,13 +32,25 @@ target_link_libraries(AlienInjector PRIVATE shell32 user32)
 set_target_properties(AlienInjector PROPERTIES OUTPUT_NAME AlienInjectorUI)
 
 # установщик: находит игру, «Обзор…» — обычный выбор папки Проводника, ставит/убирает BML мода
-add_executable(AlienModSetup WIN32 setup/setup.cpp setup/setup.rc)
-target_link_libraries(AlienModSetup PRIVATE ole32 shell32 comctl32 advapi32 uuid gdi32 user32)
+add_executable(AlienModSetupWorker WIN32 setup/setup.cpp setup/setup.rc)
+target_link_libraries(AlienModSetupWorker PRIVATE ole32 shell32 advapi32 uuid user32)
 if(MSVC)
-  target_link_options(AlienModSetup PRIVATE /MANIFEST:NO)  # свой манифест — в setup.rc
+  target_link_options(AlienModSetupWorker PRIVATE /MANIFEST:NO)  # свой манифест — в setup.rc
 endif()
 
-foreach(t AlienMod AlienInjector AlienModSetup)
+set(setup_ui "${CMAKE_CURRENT_SOURCE_DIR}/setup/launcher")
+add_custom_command(OUTPUT "${ALIENMOD_BINARY_DIR}/AlienModSetup.exe"
+  COMMAND powershell.exe -NoProfile -ExecutionPolicy Bypass -File "${setup_ui}/build.ps1"
+    -Output "${ALIENMOD_BINARY_DIR}/AlienModSetup.exe" -Intermediate "${CMAKE_CURRENT_BINARY_DIR}/setup-ui"
+  DEPENDS "${setup_ui}/build.ps1" "${setup_ui}/Launcher.cs" "${setup_ui}/Radar.cs" "${setup_ui}/Launcher.xaml"
+    "${setup_ui}/launcher.manifest" "${CMAKE_CURRENT_SOURCE_DIR}/setup/strings.h" "${setup_ui}/ui.tsv"
+    "${setup_ui}/assets/tunnel.jpg" "${setup_ui}/assets/BarlowSemiCondensed-Bold.ttf"
+    "${setup_ui}/assets/OFL.txt" "${setup_ui}/assets/launcher.ico"
+  VERBATIM)
+add_custom_target(AlienModSetup ALL DEPENDS "${ALIENMOD_BINARY_DIR}/AlienModSetup.exe")
+add_dependencies(AlienModSetup AlienModSetupWorker)
+
+foreach(t AlienMod AlienInjector AlienModSetupWorker)
   if(MSVC)
     target_compile_options(${t} PRIVATE /utf-8 /W3 /EHsc /D_CRT_SECURE_NO_WARNINGS)
   else()
